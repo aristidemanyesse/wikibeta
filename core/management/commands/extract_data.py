@@ -12,14 +12,14 @@ class Command(BaseCommand):
         files = [x for x in os.listdir("datas/lot1/france") if not os.path.isdir("datas/lot1/france/{}".format(x))]
         for file in files:
             nb = re.findall('\d+', file)
-            if nb[0] == "1":
+            if nb[0] == "2":
                 if len(nb) == 1:
                     edition = "{}-{}".format(year, year+1)
                 else:
                     edition = "{}-{}".format(year-int(nb[-1]), year-int(nb[-1])+1)
                 path = "datas/lot1/france/{}".format(edition)
                 os.makedirs(path, exist_ok=True)
-                os.rename("datas/lot1/france/{}".format(file), "datas/lot1/france/{}/{}".format(edition, "Ligue 1.csv"))
+                os.rename("datas/lot1/france/{}".format(file), "datas/lot1/france/{}/{}".format(edition, "Ligue 2.csv"))
                 print(edition)
 
 
