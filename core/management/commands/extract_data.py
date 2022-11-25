@@ -9,17 +9,18 @@ class Command(BaseCommand):
         contries = [x for x in os.listdir("datas/lot1/") if os.path.isdir("datas/lot1/{}".format(x))]
         
         year = 2013
-        files = [x for x in os.listdir("datas/lot1/belgium") if not os.path.isdir("datas/lot1/belgium/{}".format(x))]
+        files = [x for x in os.listdir("datas/lot1/france") if not os.path.isdir("datas/lot1/france/{}".format(x))]
         for file in files:
             nb = re.findall('\d+', file)
-            if len(nb) == 1:
-                edition = "{}-{}".format(year, year+1)
-            else:
-                edition = "{}-{}".format(year-int(nb[-1]), year-int(nb[-1])+1)
-            path = "datas/lot1/belgium/{}".format(edition)
-            os.makedirs(path, exist_ok=True)
-            os.rename("datas/lot1/belgium/{}".format(file), "datas/lot1/belgium/{}/{}".format(edition, "Jupyter league.csv"))
-            print(edition)
+            if nb[0] == "1":
+                if len(nb) == 1:
+                    edition = "{}-{}".format(year, year+1)
+                else:
+                    edition = "{}-{}".format(year-int(nb[-1]), year-int(nb[-1])+1)
+                path = "datas/lot1/france/{}".format(edition)
+                os.makedirs(path, exist_ok=True)
+                os.rename("datas/lot1/france/{}".format(file), "datas/lot1/france/{}/{}".format(edition, "Ligue 1.csv"))
+                print(edition)
 
 
         #     file.n
