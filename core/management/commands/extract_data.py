@@ -9,7 +9,7 @@ class Command(BaseCommand):
         contries = [x for x in os.listdir("datas/lot1/") if os.path.isdir("datas/lot1/{}".format(x))]
         
         year = 2013
-        files = [x for x in os.listdir("datas/lot1/france") if not os.path.isdir("datas/lot1/france/{}".format(x))]
+        files = [x for x in os.listdir("datas/lot1/germany") if not os.path.isdir("datas/lot1/germany/{}".format(x))]
         for file in files:
             nb = re.findall('\d+', file)
             if nb[0] == "2":
@@ -17,9 +17,9 @@ class Command(BaseCommand):
                     edition = "{}-{}".format(year, year+1)
                 else:
                     edition = "{}-{}".format(year-int(nb[-1]), year-int(nb[-1])+1)
-                path = "datas/lot1/france/{}".format(edition)
+                path = "datas/lot1/germany/{}".format(edition)
                 os.makedirs(path, exist_ok=True)
-                os.rename("datas/lot1/france/{}".format(file), "datas/lot1/france/{}/{}".format(edition, "Ligue 2.csv"))
+                os.rename("datas/lot1/germany/{}".format(file), "datas/lot1/germany/{}/{}".format(edition, "Bundesliga2.csv"))
                 print(edition)
 
 
