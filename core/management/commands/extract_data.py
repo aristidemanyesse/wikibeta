@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 import csv, os, re
 from betting.models import *
 from features.models import *
+from dateparser import parse
 
 
 def indexof(list, str):
@@ -14,7 +15,6 @@ def indexof(list, str):
 def booker_listed(booker:Bookmaker , row:list):
     return  booker.code+"H" in row and booker.code+"D" in row and booker.code+"A" in row
    
-        
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -27,8 +27,7 @@ class Command(BaseCommand):
                 code, name = line.split(" = ")
                 name = name.replace("home win odds", "").replace("draw odds", "").replace("away win odds", "")
                 #enregistrement des editions
-                # booker, created = Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
-                print(code[:-1], name)
+                booker, created = Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
         
         
         
@@ -37,12 +36,12 @@ class Command(BaseCommand):
         contries = [x for x in os.listdir("datas/lot1/") if os.path.isdir("datas/lot1/{}".format(x))]
         for contry in contries:
             #enregistrement des pays
-            # pays, created = Pays.objects.get_or_create(name = contry.capitalize())
+            pays, created = Pays.objects.get_or_create(name = contry.capitalize())
             editions = [x for x in os.listdir("datas/lot1/{}".format(contry)) if os.path.isdir("datas/lot1/{}/{}".format(contry, x))]
             
             for edition in editions:
                 #enregistrement des editions
-                # edition_, created = Edition.objects.get_or_create(name = edition)
+                edition_, created = Edition.objects.get_or_create(name = edition)
                 competitions = [x for x in os.listdir("datas/lot1/{}/{}/".format(contry, edition)) if not os.path.isdir("datas/lot1/{}/{}/{}".format(contry, edition, x))]
                 
                 for compet in competitions:
@@ -51,8 +50,8 @@ class Command(BaseCommand):
                     if os.path.exists(path):
                         #enregistrement des competitions
                         compet = compet.split(".")[0]
-                        # competition_, created = Competition.objects.get_or_create(name = compet, pays = pays)
-                        # edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
+                        competition_, created = Competition.objects.get_or_create(name = compet, pays = pays)
+                        edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
                         
                         
                         with open(path,'rt')as f:
@@ -61,7 +60,6 @@ class Command(BaseCommand):
                             for row in data:
                                 if i == 0:
                                     header = row
-                                    print(header)
                                     i = 1
                                     continue
                                 
@@ -97,9 +95,9 @@ class Command(BaseCommand):
                                 team, created = Team.objects.get_or_create(name = away, pays = pays)
                                 away, created = EditionTeam.objects.get_or_create(team = team, edition = edition_)
                                 
-                                
                                 #enregistrement du match et des infos du match
                                 match, created = Match.objects.get_or_create(
+                                    date              = parse(row[indexof(header, "Date")] if indexof(header, "Date") >= 0 else None, settings={'TIMEZONE': 'UTC'}),
                                     home              = home,
                                     away              = away,
                                     edition           = edicompet,
@@ -141,53 +139,9 @@ class Command(BaseCommand):
                                             draw = row[indexof(header, code+"D")] if indexof(header, code+"D") >= 0 else 1,
                                             away = row[indexof(header, code+"A")] if indexof(header, code+"A") >= 0 else 1,
                                             )
-                                        
-                                        
-                                        
-                                print(indexof(header, "HomeTeam"))
-                                break
-                    break
-                break
-            break
-
-        
-        ['Div', 'Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR', 'HTHG', 'HTAG', 'HTR', 'B365H', 'B365D', 'B365A', 'BWH', 'BWD', 'BWA', 'GBH', 'GBD', 'GBA', 'IWH', 'IWD', 'IWA', 'LBH', 'LBD', 'LBA', 'SBH', 'SBD', 'SBA', 'WHH', 'WHD', 'WHA', 'SJH', 'SJD', 'SJA', 'VCH', 'VCD', 'VCA', 'BSH', 'BSD', 'BSA', 'Bb1X2', 'BbMxH', 'BbAvH', 'BbMxD', 'BbAvD', 'BbMxA', 'BbAvA', 'BbOU', 'BbMx>2.5', 'BbAv>2.5', 'BbMx<2.5', 'BbAv<2.5', 'BbAH', 'BbAHh', 'BbMxAHH', 'BbAvAHH', 'BbMxAHA', 'BbAvAHA']
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        # for path, dirs, files in os.walk("datas/lot1/england/"):
-        #     for dir in dirs:
-        #         os.rename("datas/lot1/england/{}/Premier.csv".format(dir), "datas/lot1/england/{}/{}".format(dir, "Premier League.csv"))
-        #         print(dir)
-        #     break
-        
-        
-        # year = 2013
-        # files = [x for x in os.listdir("datas/lot1/england") if not os.path.isdir("datas/lot1/england/{}".format(x))]
-        # for file in files:
-        #     nb = re.findall('\d+', file)
-        #     if nb[0] == "1":
-        #         if len(nb) == 1:
-        #             edition = "{}-{}".format(year, year+1)
-        #         else:
-        #             edition = "{}-{}".format(year-int(nb[-1]), year-int(nb[-1])+1)
-        #         path = "datas/lot1/england/{}".format(edition)
-        #         os.makedirs(path, exist_ok=True)
-        #         os.rename("datas/lot1/england/{}".format(file), "datas/lot1/england/{}/{}".format(edition, "england SuperLigue.csv"))
-        #         print(edition)
+                                      
+                              
+                                print(competition_, edition_, match.date)
 
 
-        #     file.n
-        # os.makedirs()
-        # print(files)
-        
-
-        self.stdout.write(self.style.SUCCESS('hello world !'))
+        self.stdout.write(self.style.SUCCESS('Successful !'))
