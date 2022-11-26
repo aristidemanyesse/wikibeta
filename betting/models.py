@@ -14,6 +14,6 @@ class Bookmaker(BaseModel):
 class OddsMatch(BaseModel):
     match   = models.ForeignKey(Match, on_delete = models.CASCADE, related_name="match_odds")
     booker    = models.ForeignKey(Bookmaker, on_delete = models.CASCADE, related_name="booker_match")
-    home    = models.IntegerField(default = 1, null = True, blank=True)
-    draw    = models.IntegerField(default = 1, null = True, blank=True)
-    away    = models.IntegerField(default = 1, null = True, blank=True)
+    home    = models.FloatField(default = 1.0, null = True, blank=True)
+    draw    = models.FloatField(default = 1.0, null = True, blank=True)
+    away    = models.FloatField(default = 1.0, null = True, blank=True)

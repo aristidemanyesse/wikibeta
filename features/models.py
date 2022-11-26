@@ -23,8 +23,8 @@ class Competition(BaseModel):
 
 class Edition(BaseModel):
     name          = models.CharField(max_length = 255, null = True, blank=True)
-    start_date    = models.DateField(default = "", null = True, blank=True)
-    finish_date   = models.DateField(default = "", null = True, blank=True)
+    start_date    = models.DateField(null = True, blank=True)
+    finish_date   = models.DateField(null = True, blank=True)
 
     def __str__(self):
         return self.name
@@ -34,7 +34,7 @@ class EditionCompetition(BaseModel):
     competition   = models.ForeignKey(Competition, on_delete = models.CASCADE, related_name="competition_edition")
 
     def __str__(self):
-        return self.competition+" - "+self.edition  
+        return str(self.competition) +" - "+ str(self.edition)
 
 class Team(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
@@ -49,10 +49,12 @@ class Team(BaseModel):
 class EditionTeam(BaseModel):
     edition   = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_team")
     team      = models.ForeignKey(Team, on_delete = models.CASCADE, related_name="team_edition")
-    
+
+    def __str__(self):
+        return str(self.team)
     
 class Match(BaseModel):
-    date              = models.DateField(default = "", null = True, blank=True)
+    date              = models.DateField( null = True, blank=True)
     home              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="home_team")
     away              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="away_team")
     home_score        = models.IntegerField(default = 0, null = True, blank=True)
@@ -64,7 +66,7 @@ class Match(BaseModel):
     edition           = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_du_match")
 
     def __str__(self):
-        return self.home+" VS "+self.away
+        return str(self.home) +" -VS- "+ str(self.away)
 
 
 class ExtraInfosMatch(BaseModel):
@@ -85,7 +87,7 @@ class ExtraInfosMatch(BaseModel):
     away_red_cards          = models.IntegerField(default = 0, null = True, blank=True)
     
     def __str__(self):
-        return self.match+" (extra infos)"
+        return str(self.match) +" (extra infos)"
     
     
 class Goal(BaseModel):
@@ -97,6 +99,6 @@ class Goal(BaseModel):
     away_half_score   = models.IntegerField(default = 0, null = True, blank=True)
 
     def __str__(self):
-        return self.team+" goal in "+self.match
+        return str(self.team) +" goal in "+ str(self.match)
 
 
