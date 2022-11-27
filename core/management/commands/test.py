@@ -10,4 +10,5 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
+        print(str(None))
         print("" or 12)
