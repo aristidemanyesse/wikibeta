@@ -13,12 +13,15 @@ def indexof(list, str):
 
 
 def get(datas, header, key):
-    index = indexof(header, key)
-    if index >= 0:
-        if index > len(datas):
-            return None
-        return datas[index].lstrip() or None
-    return None
+    try:
+        index = indexof(header, key)
+        if index >= 0:
+            if index > len(datas):
+                return None
+            return datas[index].lstrip() or None
+        return None
+    except:
+        return None
 
 
 def booker_listed(booker:Bookmaker , row:list):

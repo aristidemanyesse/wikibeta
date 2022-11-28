@@ -16,8 +16,8 @@ class BookmakerAdmin(admin.ModelAdmin):
 @admin.register(OddsMatch)
 class OddsMatchAdmin(admin.ModelAdmin):
     empty_value_display = '-'
-    date_hierarchy = 'created_at'
+    date_hierarchy = 'match__date'
     list_filter = (
-        ('created_at', DateFieldListFilter),
+        ('match__date', DateFieldListFilter),
     )
-    list_display = ['booker', 'match',"home", "draw", "away"]
+    list_display = ['booker', 'match', "home", "draw", "away"]
