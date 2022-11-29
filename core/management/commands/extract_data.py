@@ -80,6 +80,7 @@ class Command(BaseCommand):
                                 if len(row) < 2:
                                     continue
                                 
+                                
                                 home                    = get(row, header, "HomeTeam") or ""
                                 away                    = get(row, header, "AwayTeam") or ""
                                 home_score              = get(row, header, "FTHG")
