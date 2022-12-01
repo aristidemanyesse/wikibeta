@@ -27,11 +27,8 @@ class CompetitionAdmin(admin.ModelAdmin):
 @admin.register(Edition)
 class EditionAdmin(admin.ModelAdmin):
     empty_value_display = '-'
-    date_hierarchy = 'start_date'
-    list_filter = (
-        ('start_date', DateFieldListFilter),
-    )
-    list_display = ['name', 'start_date', 'finish_date']
+    date_hierarchy = 'created_at'
+    list_display = ['name']
 
 
 @admin.register(EditionCompetition)
@@ -41,7 +38,7 @@ class EditionCompetitionAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['competition', 'edition']
+    list_display = ['competition', 'edition',  'start_date', 'finish_date']
 
 
 

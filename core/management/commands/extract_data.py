@@ -43,7 +43,6 @@ class Command(BaseCommand):
         
         
         
-        
         ## FOR ALL MATCHES ##
         contries = [x for x in os.listdir("datas/lot1/") if os.path.isdir("datas/lot1/{}".format(x))]
         contries = sorted(contries)

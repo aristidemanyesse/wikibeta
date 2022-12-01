@@ -23,8 +23,6 @@ class Competition(BaseModel):
 
 class Edition(BaseModel):
     name          = models.CharField(max_length = 255, null = True, blank=True)
-    start_date    = models.DateField(null = True, blank=True)
-    finish_date   = models.DateField(null = True, blank=True)
 
     def __str__(self):
         return self.name
@@ -32,6 +30,8 @@ class Edition(BaseModel):
 class EditionCompetition(BaseModel):
     edition       = models.ForeignKey(Edition, on_delete = models.CASCADE, related_name="edition_team")
     competition   = models.ForeignKey(Competition, on_delete = models.CASCADE, related_name="competition_edition")
+    start_date    = models.DateField(null = True, blank=True)
+    finish_date   = models.DateField(null = True, blank=True)
 
     def __str__(self):
         return str(self.competition) +" - "+ str(self.edition)
@@ -64,6 +64,19 @@ class Match(BaseModel):
     away_half_score   = models.IntegerField(default = 0, null = True, blank=True)
     result_half       = models.CharField(max_length = 255, null = True, blank=True)
     edition           = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_du_match")
+
+    def __str__(self):
+        return str(self.home) +" -VS- "+ str(self.away)
+    
+    
+class BeforeMatchStat(BaseModel):   
+    match             = models.ForeignKey(Match, on_delete = models.CASCADE, related_name="before_stat_match")
+    home_ppg          = models.IntegerField(null = True, blank=True)
+    away_ppg          = models.IntegerField(null = True, blank=True)
+    home_avg_scored   = models.IntegerField(null = True, blank=True)
+    home_avg_conceded = models.IntegerField(null = True, blank=True)
+    away_avg_scored   = models.IntegerField(null = True, blank=True)
+    away_avg_conceded = models.IntegerField(null = True, blank=True)
 
     def __str__(self):
         return str(self.home) +" -VS- "+ str(self.away)
