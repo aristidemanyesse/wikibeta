@@ -55,8 +55,8 @@ class EditionTeam(BaseModel):
     
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
-    home              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="home_team")
-    away              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="away_team")
+    home              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="home_match")
+    away              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="away_match")
     home_score        = models.IntegerField(default = 0, null = True, blank=True)
     away_score        = models.IntegerField(default = 0, null = True, blank=True)
     result            = models.CharField(max_length = 255, null = True, blank=True)
@@ -69,17 +69,42 @@ class Match(BaseModel):
         return str(self.home) +" -VS- "+ str(self.away)
     
     
+    def points_for_this_macth(self, team : EditionTeam):
+        if team == self.home or team == self.away:
+            if self.result == "D":
+                return 1
+            elif self.result == "H":
+                return 3 if (self.home == team) else 0
+            elif self.result == "A":
+                return 3 if (self.away == team) else 0
+        return 0
+        
+        
+    def goals_scored(self, team : EditionTeam):
+        if team == self.home or team == self.away:
+            return self.home_score if self.home == team else self.away_score
+        return 0
+    
+
+    def goals_conceded(self, team : EditionTeam):
+        if team == self.home or team == self.away:
+            return self.away_score if self.home == team else self.home_score
+        return 0
+       
+    
+    
 class BeforeMatchStat(BaseModel):   
-    match             = models.ForeignKey(Match, on_delete = models.CASCADE, related_name="before_stat_match")
-    home_ppg          = models.IntegerField(null = True, blank=True)
-    away_ppg          = models.IntegerField(null = True, blank=True)
-    home_avg_scored   = models.IntegerField(null = True, blank=True)
-    home_avg_conceded = models.IntegerField(null = True, blank=True)
-    away_avg_scored   = models.IntegerField(null = True, blank=True)
-    away_avg_conceded = models.IntegerField(null = True, blank=True)
+    match               = models.ForeignKey(Match, on_delete = models.CASCADE, related_name="before_stat_match")
+    team                = models.ForeignKey(EditionTeam, null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
+    ppg                 = models.FloatField(null = True, blank=True)
+    goals_scored        = models.FloatField(null = True, blank=True)
+    avg_goals_scored    = models.FloatField(null = True, blank=True)
+    goals_conceded      = models.FloatField(null = True, blank=True)
+    avg_goals_conceded  = models.FloatField(null = True, blank=True)
 
     def __str__(self):
-        return str(self.home) +" -VS- "+ str(self.away)
+        return str(self.match)
+
 
 
 class ExtraInfosMatch(BaseModel):

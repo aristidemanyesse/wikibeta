@@ -10,5 +10,19 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        print(str(None))
-        print("" or 12)
+        # datas = EditionCompetition.objects.filter()
+        # for edit in datas:
+        #     matchs = edit.edition_du_match.filter(deleted = False)
+        #     for match in matchs:
+        #         lot = Match.objects.filter(home = match.home, away = match.away, edition = edit) 
+        #         if len(lot) > 1:  
+        #             dele = lot[0].delete() 
+        #             print(dele)    
+        
+           
+        datas = Match.objects.filter(away_score = None, home_score = None, result = "")
+        for edit in datas:
+            dele = edit.delete() 
+            print(dele)       
+
+            # break

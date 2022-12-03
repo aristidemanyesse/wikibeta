@@ -34,9 +34,9 @@ class EditionAdmin(admin.ModelAdmin):
 @admin.register(EditionCompetition)
 class EditionCompetitionAdmin(admin.ModelAdmin):
     empty_value_display = '-'
-    date_hierarchy = 'created_at'
+    date_hierarchy = 'start_date'
     list_filter = (
-        ('created_at', DateFieldListFilter),
+        ('start_date', DateFieldListFilter),
     )
     list_display = ['competition', 'edition',  'start_date', 'finish_date']
 
@@ -81,6 +81,17 @@ class ExtraInfosMatchAdmin(admin.ModelAdmin):
         ('match__date', DateFieldListFilter),
     )
     list_display = ['match', 'home_shots', "away_shots", "home_corners", "away_corners"]
+
+
+
+@admin.register(BeforeMatchStat)
+class BeforeMatchStatAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'match__date'
+    list_filter = (
+        ('match__date', DateFieldListFilter),
+    )
+    list_display = ['match', 'team', "ppg", "goals_scored", "goals_conceded"]
 
 
 
