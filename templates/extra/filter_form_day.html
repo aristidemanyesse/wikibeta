@@ -1,0 +1,14 @@
+
+{% load myfilters %}
+{% load i18n %}
+
+<form id="formFiltrer" method="POST">
+    <div class="row" style="margin-top: -2%; margin-right: -5%">
+        <div class="col-9">
+            <input type="date" value="{{ request.session|dict_value:'date1'}}" class="form-control input-sm" name="date1">
+        </div>
+        <div class="col-3">
+            <button type="button" onclick="filtrer()" class="btn btn-sm btn-white"><i class="fa fa-search"></i> {% translate "Filtrer" %}</button>
+        </div>
+    </div>
+</form>

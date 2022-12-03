@@ -7,6 +7,7 @@ from django.core.validators import MinValueValidator
 class Pays(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
     code    = models.CharField(max_length = 255, null = True, blank=True)
+    flag    = models.ImageField(max_length = 255, upload_to = "static/images/pays/", default="", null = True, blank=True)
 
     def __str__(self):
         return self.name
@@ -40,7 +41,7 @@ class Team(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
     code    = models.CharField(max_length = 255, null = True, blank=True)
     pays    = models.ForeignKey(Pays, on_delete = models.CASCADE, related_name="pays_du_team")
-    logo    = models.CharField(max_length = 255, null = True, blank=True)
+    logo    = models.ImageField(max_length = 255, upload_to = "static/images/team/", default="", null = True, blank=True)
     
     def __str__(self):
         return self.name

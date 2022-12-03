@@ -10,7 +10,7 @@ class PaysAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', 'code']
+    list_display = ['name', "flag", 'code']
 
 
 @admin.register(Competition)

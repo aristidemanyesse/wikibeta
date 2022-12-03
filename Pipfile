@@ -9,6 +9,7 @@ django = "*"
 geopandas = "*"
 dateparser = "*"
 mysqlclient = "*"
+pillow = "*"
 
 [dev-packages]
 

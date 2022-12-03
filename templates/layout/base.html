@@ -1,0 +1,38 @@
+{% load myfilters %}
+{% load i18n %}
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        {% include "./partials/meta.html" %}
+        {% include "./partials/css_import.html" %}
+    </head>
+
+    <body class="top-navigation">
+
+        <div id="wrapper">
+            <div id="page-wrapper" class="gray-bg">
+                <div class="row border-bottom white-bg">
+                    {% include "./partials/header.html" %}
+                </div>
+
+                <div class="wrapper wrapper-content">
+                    <br><br>
+                    {% block main  %}
+                        hello world !!!
+                    {% endblock main %}
+
+                </div>
+
+                
+                {% include "./partials/footer.html" %}
+            </div>
+        </div>
+            
+        {% include "./partials/js_import.html" %}
+
+    </body>
+
+</html>

@@ -1,0 +1,56 @@
+{% extends "layout/base.html" %} 
+{% load static %}
+
+
+{% block main  %}
+
+<div class="container white-bg">
+
+    <div class="row m-b-lg m-t-lg">
+        <div class="col-md-6">
+
+            <div class="profile-image">
+                <img src="{{country.flag}}" class="img-circle circle-border m-b-md" alt="profile">
+            </div>
+            <div class="profile-info">
+                <div class="">
+                    <div>
+                        <h1 class="no-margins">{{country.name}}</h1>
+                        <h4>Founder of Groupeq</h4>
+                        <ul class="tag-list" style="padding: 0">
+                            <li><a href=""><i class="fa fa-tag"></i> Stats</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Résultats</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Prochains Matchs (7)</a></li>
+                            <li><a href=""><i class="fa fa-tag"></i> Clubs ({{ country.pays_du_team.filter | length }})</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <table class="table small m-b-xs">
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>{{ country.pays_de_competition.filter | length }}</strong> Compétitions
+                    </td>
+                    <td>
+                        <strong>{{ country.pays_du_team.filter | length }}</strong> Clubs proféssionnels
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3">
+            <small>Sales in last 24h</small>
+            <h2 class="no-margins">206 480</h2>
+            <div id="sparkline1"></div>
+        </div>
+
+
+    </div>
+
+</div>
+    
+{% endblock main %}
