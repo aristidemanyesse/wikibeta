@@ -1,0 +1,32 @@
+prediction
+
+P1 prediction par confrontation directes
+- au moins 7 matchs
+- moyenne de buts pas dans [1.8, 3]
+- prediction sur +1.5 et -3.5
+- pct de prediction sup a 85%
+
+
+P2  prediction par ppg
+- au moins 3 matchs
+- moyenne de buts pas dans [1.8, 3]
+- prediction sur +1.5 et -3.5
+- prediction sur double chance
+- pct de prediction sup a 85%
+
+
+P3 prediction sur les derniers matchs
+- au moins 3 matchs
+- moyenne de buts pas dans [1.8, 3]
+- prediction sur score exacte
+- prediction sur +1.5 et -3.5
+- prediction sur double chance
+- pct de prediction sup a 85%
+
+
+P4  prediction par betting
+- au moins 3 matchs
+- moyenne de buts pas dans [1.8, 3]
+- prediction sur +1.5 et -3.5
+- prediction sur double chance
+- pct de prediction sup a 85%

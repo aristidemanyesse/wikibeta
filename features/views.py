@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.shortcuts import get_object_or_404
 import datetime
+from django.http import HttpResponseRedirect
 from .models import *
+from core.functions import *
 # Create your views here.
 
 
@@ -26,27 +28,94 @@ def country(request, pays):
         return render(request, "features/country.html", ctx)
         
         
+        
 def competition(request, pays, competition):
     if request.method == "GET":
         competition = Competition.objects.get(pays__name = pays, name = competition)
-        print(competition)
-        ctx = {"competition" : competition}
+        editions = competition.competition_edition.filter()
+        edition = editions.first()
+        return HttpResponseRedirect(reverse('features:competition_edition', args=[pays, competition.name, edition.edition]))
+      
+ 
+ 
+def competition_edition(request, pays, competition, edition):
+    if request.method == "GET":
+        edition = EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
+        competition = edition.competition
+        editions = competition.competition_edition.filter()
+        matchs_joues = edition.edition_du_match.filter().order_by("-date")
+        teams = edition.edition_team.filter()
+        total_matchs = (len(teams)-1) * len(teams)
+        ratio = round(len(matchs_joues) / total_matchs ) * 100
+        
+        ctx = {
+            "edition":edition,
+            "matchs":matchs_joues, 
+            "matchs_20":matchs_joues[:20], 
+            "nb_matchs":total_matchs, 
+            "ratio":ratio, 
+            "teams":teams, 
+            "editions":editions,
+            "competition" : competition
+            }
         return render(request, "features/competition.html", ctx)
       
-        
+               
+
+               
 def team(request, name):
     if request.method == "GET":
         team = Team.objects.get(name = name)
-        print(team)
-        ctx = {"team" : team}
+        editions = team.team_edition.filter()
+        edition = editions.first()
+        return HttpResponseRedirect(reverse('features:team_edition', args=[team.name, edition.edition.edition.name]))
+        
+
+
+def team_edition(request, name, edition):
+    if request.method == "GET":
+        pre = EditionTeam.objects.filter(team__name = name, edition__edition__name = edition).order_by("-edition__edition__name")
+        team = pre.first()
+        editions = team.team.team_edition.filter()
+        matchs = Match.objects.filter(Q(home = team) | Q(away = team)).order_by("-date")
+        matchs_joues = matchs[:20]
+        
+        ctx = {
+            "team":team.team, 
+            "editions":editions, 
+            "matchs":matchs, 
+            "matchs_20":matchs_joues, 
+            }
         return render(request, "features/team.html", ctx)
         
 
-  
+    
 def match(request, id):
     if request.method == "GET":
-        match = Match.objects.all().first()
-        print(match)
+        match = Match.objects.get( id = id)
+        
+        matchs = match.similaires_ppg()
+        # for x in matchs:
+        #     print(x, x.score())
+        
+        total = 0
+        if len(matchs) > 0:
+            for x in matchs:
+                ppg_home = x.get_home_before_stats().ppg
+                ppg_away = x.get_away_before_stats().ppg
+                
+                if ppg_home == ppg_away :
+                    total += 1
+                elif ppg_home > ppg_away and x.home_score >= x.away_score :
+                    total += 1
+                elif ppg_home < ppg_away and x.home_score <= x.away_score :
+                    total += 1
+                
+            moy = total / len(matchs)
+                    
+            print("moyenne ::::::", moy)
+            print("pre 1.5  ===>", fish_law_moins(moy, 1.5))
+            print("Oui  ===>", fish_law_favoris_vn(moy, 1.5))
         ctx = {"match" : match}
         return render(request, "features/match.html", ctx)
 

@@ -1,4 +1,7 @@
 {% extends "layout/base.html" %} 
+{% load myfilters %}
+{% load footstats %}
+{% load humanize %}
 {% load static %}
 
 
@@ -16,22 +19,25 @@
                         <h1 class="bold">{{match.home}}</h1>
                         <h5 class="">{{match.home.team.pays.name}}</h5>
                         <div>
-                            <label class="label label-default">L</label>
-                            <label class="label label-default">L</label>
-                            <label class="label label-default">W</label>
-                            <label class="label label-default">W</label>
-                            <label class="label label-default">D</label>
+                           {% for x in match.home.get_last_form %}
+                                <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                            {% endfor %}
                         </div>
-                        <h2 class="bold">2,3</h2>
+                        <br>
+                        <label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label>
                     </div>
                 </div>
             </div>
             <div class="col-md-2 text-center">
+                {% if match.is_finished %} 
+                <h1 class="display-2 bold">{{match.home_score}} - {{match.away_score}}</h1>
+                <h4 class="display-2">{{match.home_half_score}} - {{match.away_half_score}}</h4> 
+                <h4 class="">{{match.date}}</h4> 
+                {% else %}
                 <h1 class="display-2">VS</h1>
-                {% comment %} <h1 class="display-2">0 - 0</h1>
-                <h4 class="display-2">0 - 0</h4> {% endcomment %}
                 <h4 class="m-t-sm text-center">{{match.date}}</h4>        
                 <h5 class="m-t-sm text-center">{{match.edition.competition}}</h5>  
+                {% endif %}
             </div>
             <div class="col-md-5">
                 <div class="row">
@@ -39,13 +45,12 @@
                         <h1 class="bold">{{match.away}}</h1>
                         <h5 class="">{{match.away.team.pays.name}}</h5>
                         <div>
-                            <label class="label label-default">L</label>
-                            <label class="label label-default">L</label>
-                            <label class="label label-default">W</label>
-                            <label class="label label-default">W</label>
-                            <label class="label label-default">D</label>
+                            {% for x in match.away.get_last_form %}
+                                <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                            {% endfor %}
                         </div>
-                        <h2 class="bold">2,3</h2>
+                        <br>
+                        <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label>
                     </div>
                     <div class="col-md-3">
                         
@@ -63,7 +68,7 @@
     <div class="col-md-6">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Les 7 derniers matchs de ... <small class="m-l-sm">sur les PPG</small></h5>
+                <h5>Les 7 derniers matchs de {{match.home}} <small class="m-l-sm">sur les PPG</small></h5>
                 <div class="ibox-tools">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-cogs"></i>
@@ -83,12 +88,20 @@
              
                 <table class="table table-striped table-hover">
                     <tbody>
+                        {% for match in match.home.get_last_matchs %}
                         <tr>
-                            <td><label class="label label-default">2</label></td>
-                            <td><img src=""></td>
-                            <td class="bold">Team A</td>
-                            <td>PPG</td>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'features:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center">
+                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'features:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'features:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -99,7 +112,7 @@
     <div class="col-md-6">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>Les 7 derniers matchs de ... <small class="m-l-sm">sur les buts</small></h5>
+                <h5>Les 7 derniers matchs de {{match.away}} <small class="m-l-sm">sur les buts</small></h5>
                 <div class="ibox-tools">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-cogs"></i>
@@ -119,14 +132,20 @@
              
                 <table class="table table-striped table-hover">
                     <tbody>
-                        <tr>
-                            <td><label class="label label-default">2</label></td>
-                            <td><img src=""></td>
-                            <td class="bold">Team A</td>
-                            <td>+1,5</td>
-                            <td>+2,5</td>
-                            <td>-3,5</td>
-                        </tr>
+                        {% for match in match.away.get_last_matchs %}
+                            <tr>
+                                <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                                <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'features:team' match.home %}">{{match.home}}</a></td>
+                                <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                                <td class="text-center">
+                                    <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                    <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
+                                </td>
+                                <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                                <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'features:team' match.away %}">{{match.away}}</a></td>
+                                <td><a href="{% url 'features:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                            </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -164,49 +183,48 @@
                     <table class="table table-striped table-hover">
                         <tbody>
                             <tr>
-                                <td class="bold">Team A</td>
-                                <td class="bold">En confrontation</td>
-                                <td class="bold">Team A</td>
+                                <td class="bold text-right">{{match.home}}</td>
+                                <td class="bold text-center">En confrontation</td>
+                                <td class="bold text-left">{{match.away}}</td>
                             </tr>
                             <tr>
-                                 <td>
-                                    <label class="label label-default">L</label>
-                                    <label class="label label-default">L</label>
-                                    <label class="label label-default">W</label>
-                                    <label class="label label-default">W</label>
-                                    <label class="label label-default">D</label>
+                                 <td class="text-right">
+                                    {% for x in match.home.get_last_form %}
+                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                                {% endfor %}
                                 </td>
-                                <td class="bold">Forme du moment</td>
-                                 <td>
-                                    <label class="label label-default">L</label>
-                                    <label class="label label-default">L</label>
-                                    <label class="label label-default">W</label>
-                                    <label class="label label-default">W</label>
-                                    <label class="label label-default">D</label>
+                                <td class="bold text-center">Forme du moment</td>
+                                 <td class="text-left">
+                                    {% for x in match.away.get_last_form %}
+                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                                {% endfor %}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="bold">Team A</td>
-                                <td class="bold">PPG</td>
-                                <td class="bold">Team A</td>
+                                <td class="bold text-right">
+                                    <label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label>
+                                </td>
+                                <td class="bold text-center">PPG</td>
+                                <td class="bold text-left">
+                                    <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored }}</td>
+                                <td class="bold text-center">Moyenne de buts marquées</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold">Team A</td>
-                                <td class="bold">Moyenne de buts marquées</td>
-                                <td class="bold">Team A</td>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded }}</td>
+                                <td class="bold text-center">Moyenne de buts encaissés</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold">Team A</td>
-                                <td class="bold">Moyenne de buts encaissés</td>
-                                <td class="bold">Team A</td>
-                                <td><img src=""></td>
-                            </tr>
-                            <tr>
-                                <td class="bold">Team A</td>
-                                <td class="bold">sCORE ATTENDU</td>
-                                <td class="bold">Team A</td>
+                                <td class="bold text-right">Team A</td>
+                                <td class="bold text-center">sCORE ATTENDU</td>
+                                <td class="bold text-left">Team A</td>
                                 <td><img src=""></td>
                             </tr>
                         </tbody>
@@ -256,130 +274,30 @@
 
     <div class="row">
         <div class="col-md-5">
-            <h4 class="bg-primary">Précédents matchs similaires</h4>
+            <h4 class="bg-primary p-xs">Précédents matchs similaires</h4>
+
             <table class="table small m-b-xs">
                 <tbody>
+                    {% for match in match.confrontations_directes %}
                     <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
+                        <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                        <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'features:team' match.home %}">{{match.home}}</a></td>
+                        <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                        <td class="text-center">
+                            <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
+                        </td>
+                        <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                        <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'features:team' match.away %}">{{match.away}}</a></td>
+                        <td><a href="{% url 'features:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                     </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>0 - 0</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
+                {% endfor %}                    
                 </tbody>
             </table>
         </div>
 
 
         <div class="col-md-7">
-            <div class="row text-left">
-                <div class="col-sm-6 col-md-4">
-                    <h3>CS à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h3>BTTS à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h3>0 - 0 à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-            </div> 
-            <br>
-            <div class="row text-left">
-                 <div class="col-sm-6 col-md-4">
-                    <h3>+0,5 à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-                 <div class="col-sm-6 col-md-4">
-                    <h3>+1,5 à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-                 <div class="col-sm-6 col-md-4">
-                    <h3>-2,5 à la mi-temps</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-            </div> 
-            <hr>
-            <div class="row text-left">
-                <div class="col-sm-6 col-md-4">
-                    <h3>CS à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h3>BTTS à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <h3>0 - 0 à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                </div>
-            </div> 
-            <br>
-            <div class="row text-left">
-                 <div class="col-sm-6 col-md-4">
-                    <h3>+0,5 à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-                 <div class="col-sm-6 col-md-4">
-                    <h3>+1,5 à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-                 <div class="col-sm-6 col-md-4">
-                    <h3>-2,5 à la fin</h3>
-                    <h6>2 fois sur 3</h6>
-                 </div>
-            </div> 
-        </div>
-    </div>
-
-
-
-    <div class="row m-t-lg">
-        <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Prédictions par Statistiques croisées <small class="m-l-sm">This is custom panel</small></h5>
@@ -387,59 +305,79 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-cogs"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
                     </div>
                 </div>
                 <div class="ibox-content">
                  
                     <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Tous le match</th>
+                                <th>1er MT</th>
+                                <th>2e MT</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
-                                <td>Tous</td>
-                                <td>1er MT</td>
-                                <td>2e MT</td>
-                                
-                                <td>Dom</td>
-                                <td>1er MT</td>
-                                <td>2e MT</td>
-
-                                <td>Ext</td>
-                                <td>1er MT</td>
-                                <td>2e MT</td>
+                                <td class="">+0.5but</td>
+                                <td class="{% if match.confrontations_directes|plus_but:'0.5' >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but:0.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_first_half:'0.5' >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_first_half:0.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_second_half:'0.5' >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_second_half:0.5 }}%</td>
                             </tr>
                             <tr>
-                                <td>0.5</td>
-                                <td>1.5</td>
-                                <td>2.5</td>
-                                <td>-0.5</td>
-                                <td>-1.5</td>
-                                <td>-2.5</td>
-                                <td>-3.5</td>
-                                <td>BTTS</td>
-                                <td>V</td>
-                                <td>N</td>
-                                <td>D</td>
-                                <td>VN</td>
+                                <td class="">+1.5buts</td>
+                                <td class="{% if match.confrontations_directes|plus_but:1.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but:1.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_first_half:1.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_first_half:1.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_second_half:1.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_second_half:1.5 }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">+2.5buts</td>
+                                <td class="{% if match.confrontations_directes|plus_but:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but:2.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_first_half:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_first_half:2.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|plus_but_second_half:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but_second_half:2.5 }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">-2.5buts</td>
+                                <td class="{% if match.confrontations_directes|plus_but:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but:2.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|moins_but_first_half:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |moins_but_first_half:2.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|moins_but_second_half:2.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |moins_but_second_half:2.5 }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">-3.5buts</td>
+                                <td class="{% if match.confrontations_directes|plus_but:3.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |plus_but:3.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|moins_but_first_half:3.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |moins_but_first_half:3.5 }}%</td>
+                                <td class="{% if match.confrontations_directes|moins_but_second_half:3.5 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |moins_but_second_half:3.5 }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">CS</td>
+                                <td class="{% if match.confrontations_directes|cs >= 80 %}bold{% endif %}">{{ match.confrontations_directes |cs }}%</td>
+                                <td class="{% if match.confrontations_directes|first_half_cs >= 80 %}bold{% endif %}">{{ match.confrontations_directes |first_half_cs }}%</td>
+                                <td class="{% if match.confrontations_directes|second_half_cs >= 80 %}bold{% endif %}">{{ match.confrontations_directes |second_half_cs }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">BTTS</td>
+                                <td class="{% if match.confrontations_directes|btts >= 80 %}bold{% endif %}">{{ match.confrontations_directes |btts }}%</td>
+                                <td class="{% if match.confrontations_directes|first_half_btts >= 80 %}bold{% endif %}">{{ match.confrontations_directes |first_half_btts }}%</td>
+                                <td class="{% if match.confrontations_directes|second_half_btts >= 80 %}bold{% endif %}">{{ match.confrontations_directes |second_half_btts }}%</td>
+                            </tr>
+                            <tr>
+                                <td class="">12</td>
+                                <td class="{% if match.confrontations_directes|_12 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |_12 }}%</td>
+                                <td class="{% if match.confrontations_directes|first_half_12 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |first_half_12 }}%</td>
+                                <td class="{% if match.confrontations_directes|second_half_12 >= 80 %}bold{% endif %}">{{ match.confrontations_directes |second_half_12 }}%</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="ibox-footer">
-                    <span class="pull-right">
-                      The righ side of the footer
-                </span>
-                    This is simple footer example
-                </div>
             </div>
         </div>
+    </div>
+
+
+
+    <div class="row m-t-lg">
+       
 
     </div>
 <br>
@@ -496,9 +434,14 @@
     
     
 
-<style>
-    .bold{
-        font-weight: bold;
-    }
-</style>
+    <style>
+        .bold{
+            font-weight:bold;
+        }
+    
+        .no-link{
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
 {% endblock main %}

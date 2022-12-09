@@ -2,11 +2,51 @@
 import json
 from django import template
 import sqlparse
+from fractions import Fraction
 
 register = template.Library()
 
 
+@register.simple_tag
+def method(obj, method_name, *args):
+    method = getattr(obj, method_name)
+    return method(*args)
 
+
+
+@register.filter('ratio')
+def ratio(nb, total):
+    res = round((nb * 100 / total ), 2)
+    return "{}%".format(res)
+
+
+
+@register.filter('couleur')
+def couleur(number):
+    if number > 2.5:
+        return "primary"
+    elif number > 2:
+        return "info"
+    elif number > 1.5:
+        return "success"
+    elif number > 1:
+        return "warning"
+    elif number > 0.5:
+        return "danger"
+    elif number >= 0:
+        return "default"
+    
+
+@register.filter('form_couleur')
+def form_couleur(res):
+    if res == "V":
+        return "primary"
+    elif res == "N":
+        return "default"
+    elif res == "D":
+        return "danger"
+
+    
 @register.filter('start0')
 def start0(number):
     try:
@@ -18,14 +58,6 @@ def start0(number):
     except :
         return "00"
 
-
-@register.filter('pretty_json')
-def pretty_json(json_text):
-    try:
-        pretty_json_text = json.dumps(json_text, indent=4)
-        return pretty_json_text
-    except Exception:
-        return json_text
 
 
 @register.filter('dict_value')
@@ -62,13 +94,6 @@ def multiply(value, arg):
 def to_int(value):
     return int(value)
 
-        
-@register.filter
-def div(value, arg):
-    try:
-        return int(value) / int(arg)
-    except :
-        return ""
 
 
 

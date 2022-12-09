@@ -10,7 +10,9 @@ urlpatterns = [
     path('pays/', views.pays, name="pays"),
     path('pays/<str:pays>/', views.country, name="country"),
     path('pays/<str:pays>/<str:competition>/', views.competition, name="competition"),
+    path('pays/<str:pays>/<str:competition>/<str:edition>/', views.competition_edition, name="competition_edition"),
     path('team/<str:name>/', views.team, name="team"),
+    path('team/<str:name>/<str:edition>/', views.team_edition, name="team_edition"),
     path('match/<uuid:id>/', views.match, name="match"),
     
     
