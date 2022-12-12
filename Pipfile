@@ -10,6 +10,8 @@ geopandas = "*"
 dateparser = "*"
 mysqlclient = "*"
 pillow = "*"
+dbutils = "*"
+django-db-connection-pool = {extras = ["mysql"], version = "*"}
 
 [dev-packages]
 

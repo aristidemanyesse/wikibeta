@@ -26,20 +26,20 @@ class Command(BaseCommand):
         #                 os.rename("datas/lot1/scotland/{}/{}".format(dir, file), "datas/lot1/scotland/{}/{}".format(dir, "Scotland League 2.csv"))
         #             print(dir)
         
-        # year = 2023
-        # files = [x for x in os.listdir("datas/lot1/scotland") if not os.path.isdir("datas/lot1/scotland/{}".format(x))]
-        # for file in files:
-        #     nb = re.findall('\d+', file)
-        #     # if len(nb) >= 1 and nb[0] == "1":
-        #     if len(nb) == 0 or nb[0] == 1 or nb[0] == 0:
-        #         edition = "{}-{}".format(year-1, year)
-        #     else:
-        #         edition = "{}-{}".format(year-int(nb[-1])-1, year-int(nb[-1]))
-        #     path = "datas/lot1/scotland/{}".format(edition)
-        #     os.makedirs(path, exist_ok=True)
-        #     os.rename("datas/lot1/scotland/{}".format(file), "datas/lot1/scotland/{}/{}".format(edition, file))
-        #     # "Premier League.csv"
-        #     print(edition, file)
+        year = 1993
+        dirs = [x for x in os.listdir("datas/lot") if os.path.isdir("datas/lot/{}".format(x))]
+        for dir in dirs:
+            nb = re.findall('\d+', dir)
+            # if len(nb) >= 1 and nb[0] == "1":
+            if len(nb) == 0:
+                edition = "{}-{}".format(year, year+1)
+            else:
+                edition = "{}-{}".format(year+int(nb[-1]), year+int(nb[-1])+1)
+            path = "datas/lot/{}".format(edition)
+            # os.makedirs(path, exist_ok=True)
+            os.rename("datas/lot/{}".format(dir), "datas/lot/{}".format(edition))
+            # "Premier League.csv"
+            print(edition, dir)
 
 
         self.stdout.write(self.style.SUCCESS('Structuration  success ! !'))

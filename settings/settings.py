@@ -82,12 +82,17 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     
     'default': {
-        'ENGINE'    : 'django.db.backends.mysql',
+        'ENGINE'    : 'dj_db_conn_pool.backends.mysql',
         'HOST'      : os.getenv("DB_HOST", "0.0.0.0"),
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
         'NAME'      : os.getenv("DB_NAME", "wikibet"),
+        'POOL_OPTIONS' : {
+            'POOL_SIZE': 1000,
+            'MAX_OVERFLOW': 100,
+            'RECYCLE': 24 * 60 * 60
+        }
     },
     
     

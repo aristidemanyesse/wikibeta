@@ -15,8 +15,8 @@ def intervale(number):
     #     return [0.71, 1.3]
     # elif 0 <= number <= 0.7 :
     #     return [0, 0.7]
-    # return [round(number, 1), round(number, 1)+0.1]
-    return [number - 0.02, number + 0.02,]
+    return [round(number, 1), round(number, 1)+0.1]
+    # return [number - 0.02, number + 0.0]
 
 
 
@@ -25,6 +25,15 @@ def factorial(n):
     if n == 1 or n == 0:
         return 1
     return n * factorial(n-1)
+
+
+def moyenne_harmonique(a, b):
+    return math.sqrt((math.pow(a, 2) + math.pow(b, 2)) / 2)
+
+
+def moyenne_geometrique(a, b):
+    return math.sqrt(a * b)
+
 
 
 def fish_law(avg, number):

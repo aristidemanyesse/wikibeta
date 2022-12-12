@@ -20,7 +20,7 @@ class TypePredictionhAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', 'description']
+    list_display = ['name', "code", 'description']
 
 
 

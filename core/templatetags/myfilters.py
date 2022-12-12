@@ -14,6 +14,14 @@ def method(obj, method_name, *args):
 
 
 
+@register.filter('method')
+def method(obj, *args):
+    method_name = args[0]
+    method = getattr(obj, method_name)
+    return method(*args[1:])
+
+
+
 @register.filter('ratio')
 def ratio(nb, total):
     res = round((nb * 100 / total ), 2)

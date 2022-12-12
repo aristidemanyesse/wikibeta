@@ -4,6 +4,7 @@ from core.models import BaseModel, Etat
 from django.core.validators import MinValueValidator
 from fractions import Fraction
 from core.functions import *
+from betting.models import *
 
 class Pays(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
@@ -238,7 +239,7 @@ class Team(BaseModel):
 
 
 class EditionTeam(BaseModel):
-    NB = 10
+    NB = 7
     edition   = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_team")
     team      = models.ForeignKey(Team, on_delete = models.CASCADE, related_name="team_edition")
 
@@ -248,15 +249,19 @@ class EditionTeam(BaseModel):
     def __str__(self):
         return str(self.team)
     
+
+    def get_last_away_matchs(self, match, number : None):
+        matchs = self.away_match.filter(date__lt = match.date).order_by("-date")
+        return matchs[:EditionTeam.NB if number is None else number]
     
     
-    def get_last_matchs(self):
-        # request.session['match'] = match
-        matchs = self.edition.edition_du_match.filter(Q(home = self) | Q(away = self)).order_by("-date")
-        return matchs[:EditionTeam.NB]
+    def get_recents_matchs(self, match, number : None):
+        matchs = self.edition.edition_du_match.filter(date__lt = match.date).filter(Q(home = self) | Q(away = self)).order_by("-date")
+        return matchs[:EditionTeam.NB if number is None else number]
     
-    def get_last_form(self):
-        matchs = self.get_last_matchs()
+    
+    def get_last_form(self, match):
+        matchs = self.get_recents_matchs(match)
         return [x.form(self) for x in matchs[:EditionTeam.NB]]
     
     
@@ -304,6 +309,7 @@ class EditionTeam(BaseModel):
     
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
+    hour              = models.TimeField( null = True, blank=True)
     home              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="home_match")
     away              = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="away_match")
     home_score        = models.IntegerField(default = 0, null = True, blank=True)
@@ -329,35 +335,48 @@ class Match(BaseModel):
        
     
     def confrontations_directes(self):
-        matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lte = self.date).exclude(id = self.id).order_by("-date")        
-        return matchs[:EditionTeam.NB]
+        matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lt = self.date).exclude(id = self.id).order_by("-date")        
+        return matchs
     
     
     def similaires_ppg(self):
         matchs = []
-        total = 0
         ppg_home = self.before_stat_match.filter(team = self.home).first().ppg
         ppg_away = self.before_stat_match.filter(team = self.away).first().ppg
         
-        befores = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_home)).filter(match__date__lte = self.date).exclude(id = self.id)
-        print(len(befores))
-        datas = [bef for bef in befores if bef.team == bef.match.home ]
-        print(len(datas))
-        exit()
-        print("**//////////////////////////", len(matchs))
-        return matchs
-        # return matchs[:EditionTeam.NB]
+        befores = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
+        for bef in befores:
+            if bef.team == bef.match.home:
+                befs = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_away), match = bef.match).exclude(id = bef.id)
+                if len(befs) == 1:
+                    matchs.append(bef.match)
+                
+        return matchs[:50]
+
+
+    def similaires_betting(self):
+        matchs = []
+        actual = self.match_odds.filter(booker__code = "B365").first()
+        if actual is not None:
+            odds = OddsMatch.objects.filter(home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
+            for odd in odds:
+                if intervale(odd.home) == intervale(actual.home):
+                    befs = OddsMatch.objects.filter(away__range = intervale(actual.away), match = odd.match).exclude(id = odd.id)
+                    if len(befs) == 1:
+                        matchs.append(odd.match)
+                    
+        return matchs[:50]
+    
     
     
     def form(self, team : EditionTeam):
-        if team == self.home or team == self.away:
+        if team in [self.home, self.away] :
             if self.result == "D":
                 return "N"
             elif self.result == "H":
                 return "V" if (self.home == team) else "D"
             elif self.result == "A":
                 return "V" if (self.away == team) else "D"
-        return ""
     
     
     def points_for_this_macth(self, team : EditionTeam):
@@ -381,8 +400,33 @@ class Match(BaseModel):
         if team == self.home or team == self.away:
             return self.away_score if self.home == team else self.home_score
         return 0
-       
+    
+    
+    def get_home_recents_matchs(self, number = None, edition = False):
+        if edition:
+            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home = self.home) | Q(away = self.home)).exclude(id  = self.id).order_by("-date")
+        else:
+            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home__team = self.home.team) | Q(away__team = self.home.team)).exclude(id  = self.id).order_by("-date")
+        return matchs[:EditionTeam.NB if number is None else number]
 
+
+    def get_away_recents_matchs(self, number = None, edition = False):
+        if edition:
+            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home = self.away) | Q(away = self.away)).exclude(id  = self.id).order_by("-date")
+        else:
+            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home__team = self.away.team) | Q(away__team = self.away.team)).exclude(id  = self.id).order_by("-date")
+        return matchs[:EditionTeam.NB if number is None else number]
+
+
+    def get_home_last_form(self):
+        return [x.form(self.home) for x in self.get_home_recents_matchs(edition=True)]
+
+
+    def get_away_last_form(self):
+        return [x.form(self.away) for x in self.get_away_recents_matchs(edition=True)]
+      
+      
+        
     def get_home_before_stats(self):
         return self.before_stat_match.filter(team = self.home).first()
 

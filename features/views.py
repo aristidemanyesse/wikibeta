@@ -4,6 +4,7 @@ import datetime
 from django.http import HttpResponseRedirect
 from .models import *
 from core.functions import *
+from prediction.models import *
 # Create your views here.
 
 
@@ -93,30 +94,50 @@ def team_edition(request, name, edition):
 def match(request, id):
     if request.method == "GET":
         match = Match.objects.get( id = id)
+        confrontations = match.confrontations_directes()
+        predictions = match.prediction_match.filter()
         
-        matchs = match.similaires_ppg()
-        # for x in matchs:
-        #     print(x, x.score())
+        datas = match.get_home_recents_matchs(edition = True)
+        buts = total = 0
+        if len(datas) > 4:
+            for x in datas:
+                if x.home == match.home:
+                    buts += x.home_score
+                    total += 1
+        moyp = buts / total
         
-        total = 0
-        if len(matchs) > 0:
-            for x in matchs:
-                ppg_home = x.get_home_before_stats().ppg
-                ppg_away = x.get_away_before_stats().ppg
-                
-                if ppg_home == ppg_away :
+        print(moyp)
+        for x in [0.5, 1.5, 2.5, 3.5]:
+            print(x, "+++++++++++>", fish_law_plus(moyp, x))
+
+            
+            
+        print("---------------------------------------------------------")
+        
+        datas = match.get_away_recents_matchs(edition = True)
+        gc = total=  0
+        if len(datas) > 4:
+            for x in datas:
+                if x.away == match.away:
+                    gc += x.home_score
                     total += 1
-                elif ppg_home > ppg_away and x.home_score >= x.away_score :
-                    total += 1
-                elif ppg_home < ppg_away and x.home_score <= x.away_score :
-                    total += 1
-                
-            moy = total / len(matchs)
-                    
-            print("moyenne ::::::", moy)
-            print("pre 1.5  ===>", fish_law_moins(moy, 1.5))
-            print("Oui  ===>", fish_law_favoris_vn(moy, 1.5))
-        ctx = {"match" : match}
+        moym = gc / total
+        
+        print(moym)
+        for x in [0.5, 1.5, 2.5, 3.5]:
+            print(x, "======>", fish_law_plus(moym, x))
+
+        # moy = moyenne_harmonique(moyp, moym)
+        
+        # print(len(datas), moyp, moym,  moy)
+        # print(moyp)
+        # for x in [0.5, 1.5, 2.5, 3.5]:
+        #     print(x, "+++++++++++>", fish_law_plus(moyp, x))
+        ctx = {
+            "match" : match,
+            "confrontations" : confrontations[:10],
+            "predictions" : predictions,
+            }
         return render(request, "features/match.html", ctx)
 
 
