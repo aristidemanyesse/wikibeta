@@ -22,15 +22,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-def home(request):
-    if request.user.is_authenticated:
-        return redirect("home/")
-    return redirect("auth/login")
+# def home(request):
+#     if request.user.is_authenticated:
+#         return redirect("home/")
+#     return redirect("auth/login")
 
 
 # urlpatterns = i18n_patterns(
 urlpatterns = [
     path('', include('fixtureApp.urls')),
+    path('pays/', include('competitionApp.urls')),
+    path('predicition/', include('predictionApp.urls')),
+    path('stats/', include('statsApp.urls')),
     # path('', home),
     # path('auth/', include('authApp.urls')),
     # path('core/', include('coreApp.urls')),

@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Avg, Sum, Q
 from coreApp.models import BaseModel
 from coreApp.functions import *
-from competitionApp.models import *
+import fixtureApp.models
 
     
 class Team(BaseModel):
@@ -28,56 +28,101 @@ class EditionTeam(BaseModel):
     def __str__(self):
         return str(self.team)
     
+    
+    def form(self, match):
+        if self in [match.home, match.away] :
+            if match.get_result().result == "D":
+                return "N"
+            elif match.get_result().result == "H":
+                return "V" if (match.home == self) else "D"
+            elif match.get_result().result == "A":
+                return "V" if (match.away == self) else "D"
+    
+    
+    def points_for_this_macth(self, match):
+        if self in [match.home, match.away] :
+            if match.get_result().result == "D":
+                return 1
+            elif match.get_result().result == "H":
+                return 3 if (match.home == self) else 0
+            elif match.get_result().result == "A":
+                return 3 if (match.away == self) else 0
+        return 0
+        
+        
+        
+        
+    def get_last_matchs(self, match, number = None, edition = False):
+        matchs = fixtureApp.models.Match.objects.filter(date__lt = match.date).filter(Q(home = self) | Q(away = self)).order_by("-date")
+        if edition:
+            matchs = matchs.filter(edition = match.edition)
+        return matchs[:EditionTeam.NB if number is None else number]
+    
 
-    def get_last_away_matchs(self, match, number : None):
-        matchs = self.away_match.filter(date__lt = match.date).order_by("-date")
-        return matchs[:EditionTeam.NB if number is None else number]
+    def get_last_form(self, match, number = None, edition = False):
+        matchs = self.get_last_matchs(match, number, edition)
+        return [x.form(self) for x in matchs]
     
     
-    def get_recents_matchs(self, match, number : None):
-        matchs = self.edition.edition_du_match.filter(date__lt = match.date).filter(Q(home = self) | Q(away = self)).order_by("-date")
-        return matchs[:EditionTeam.NB if number is None else number]
+    def last_stats(self, match, number = None, edition = False):
+        points = scored =  conceded = 0
+        matchs = self.get_last_matchs(match, number, edition)
+        if len(matchs) ==0:
+            return 0, 0, 0, 0, 0, 0
+        for match in matchs:
+            points    += self.points_for_this_macth(match)
+            scored    += match.get_result().home_score if match.home == self else match.get_result().away_score
+            conceded  += match.get_result().home_score if match.away == self else match.get_result().away_score
+        
+        return points, round(points / len(matchs)), scored, scored/len(matchs), conceded, conceded/len(matchs)
+    
+
     
     
-    def get_last_form(self, match):
-        matchs = self.get_recents_matchs(match)
-        return [x.form(self) for x in matchs[:EditionTeam.NB]]
-    
+    def get_before_stats(self, match):
+        return match.before_stat_match.filter(team = self).first()
+
+
+    def get_extra_info(self, match):
+        return match.extra_match.filter(team = self).first()
+
+
+
     
     def plus_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.home_score + match.away_score > nb:
+            if match.get_result().home_score + match.get_result().away_score > nb:
                 total += 1
         return total
 
 
     def moins_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.home_score + match.away_score < nb:
+            if match.get_result().home_score + match.get_result().away_score < nb:
                 total += 1
         return total
     
     
     def ht_plus_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.home_half_score is not None :
-                if match.home_half_score + match.away_half_score > nb:
+            if match.get_result().home_half_score is not None :
+                if match.get_result().home_half_score + match.get_result().away_half_score > nb:
                     total += 1
         return total
 
 
     def ht_moins_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.home_half_score is not None :
-                if match.home_half_score + match.away_half_score < nb:
+            if match.get_result().home_half_score is not None :
+                if match.get_result().home_half_score + match.get_result().away_half_score < nb:
                     total += 1
         return total
     

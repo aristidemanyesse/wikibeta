@@ -1,9 +1,11 @@
 from django.db import models
 from django.db.models import Avg, Sum, Q
+from annoying.decorators import signals
 from coreApp.models import BaseModel
 from coreApp.functions import *
 from teamApp.models import *
 from statsApp.models import *
+from bettingApp.models import *
 
 
 class Match(BaseModel):
@@ -18,25 +20,20 @@ class Match(BaseModel):
         ordering = ['date']
     
     
-    def finished(self, row, header):
-        return str(self.home) +" -VS- "+ str(self.away)
-
-        
-
     def __str__(self):
         return str(self.home) +" -VS- "+ str(self.away)
 
 
-    def score(self):
-        return str(self.home_score) +" - "+ str(self.away_score)
+    def get_result(self):
+        return self.result_match.filter().first()
        
     
-    def confrontations_directes(self):
+    def confrontations_directes(self, number = 50):
         matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lt = self.date).exclude(id = self.id).order_by("-date")        
-        return matchs
+        return matchs[:number]
     
     
-    def similaires_ppg(self):
+    def similaires_ppg(self, number = 50):
         matchs = []
         ppg_home = self.before_stat_match.filter(team = self.home).first().ppg
         ppg_away = self.before_stat_match.filter(team = self.away).first().ppg
@@ -48,10 +45,10 @@ class Match(BaseModel):
                 if len(befs) == 1:
                     matchs.append(bef.match)
                 
-        return matchs[:50]
+        return matchs[:number]
 
 
-    def similaires_betting(self):
+    def similaires_betting(self, number = 50):
         matchs = []
         actual = self.match_odds.filter(booker__code = "B365").first()
         if actual is not None:
@@ -62,83 +59,15 @@ class Match(BaseModel):
                     if len(befs) == 1:
                         matchs.append(odd.match)
                     
-        return matchs[:50]
+        return matchs[:number]
     
     
-    
-    def form(self, team : EditionTeam):
-        if team in [self.home, self.away] :
-            if self.result == "D":
-                return "N"
-            elif self.result == "H":
-                return "V" if (self.home == team) else "D"
-            elif self.result == "A":
-                return "V" if (self.away == team) else "D"
-    
-    
-    def points_for_this_macth(self, team : EditionTeam):
-        if team == self.home or team == self.away:
-            if self.result == "D":
-                return 1
-            elif self.result == "H":
-                return 3 if (self.home == team) else 0
-            elif self.result == "A":
-                return 3 if (self.away == team) else 0
-        return 0
-        
-        
-    def goals_scored(self, team : EditionTeam):
-        if team == self.home or team == self.away:
-            return self.home_score if self.home == team else self.away_score
-        return 0
+
+    def get_odds(self, code = "B365"):
+        return self.match_odds.filter(booker__code = code).first()
     
 
-    def goals_conceded(self, team : EditionTeam):
-        if team == self.home or team == self.away:
-            return self.away_score if self.home == team else self.home_score
-        return 0
-    
-    
-    def get_home_recents_matchs(self, number = None, edition = False):
-        if edition:
-            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home = self.home) | Q(away = self.home)).exclude(id  = self.id).order_by("-date")
-        else:
-            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home__team = self.home.team) | Q(away__team = self.home.team)).exclude(id  = self.id).order_by("-date")
-        return matchs[:EditionTeam.NB if number is None else number]
 
-
-    def get_away_recents_matchs(self, number = None, edition = False):
-        if edition:
-            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home = self.away) | Q(away = self.away)).exclude(id  = self.id).order_by("-date")
-        else:
-            matchs = Match.objects.filter(date__lt = self.date).filter(Q(home__team = self.away.team) | Q(away__team = self.away.team)).exclude(id  = self.id).order_by("-date")
-        return matchs[:EditionTeam.NB if number is None else number]
-
-
-    def get_home_last_form(self):
-        return [x.form(self.home) for x in self.get_home_recents_matchs(edition=True)]
-
-
-    def get_away_last_form(self):
-        return [x.form(self.away) for x in self.get_away_recents_matchs(edition=True)]
-      
-      
-        
-    def get_home_before_stats(self):
-        return self.before_stat_match.filter(team = self.home).first()
-
-    def get_away_before_stats(self):
-        return self.before_stat_match.filter(team = self.away).first()  
-
-    def get_home_extra_info(self):
-        return self.extra_match.filter(team = self.home).first()
-
-    def get_away_extra_info(self):
-        return self.extra_match.filter(team = self.away).first()
-
-    def get_bet365(self):
-        return self.match_odds.filter(booker__code = "B365").first()
-    
 
     
 class Goal(BaseModel):
@@ -153,3 +82,32 @@ class Goal(BaseModel):
         return str(self.team) +" goal in "+ str(self.match)
 
 
+
+
+
+
+#=====================================================================================================================================================================================
+# SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX ---SIGNAUX --- SIGNAUX
+#=====================================================================================================================================================================================
+
+
+
+
+
+# connect to registered signal
+@signals.post_save(sender=Match)
+def sighandler(instance, created, **kwargs):
+    if created:
+        #creation du before stat pour chaque equipe
+        for team in [instance.home, instance.away]:
+            points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
+            
+            BeforeMatchStat.objects.create(
+                match = instance,
+                team = instance.home if (instance.home == team) else instance.away,
+                ppg = ppg,
+                goals_scored = scored,
+                avg_goals_scored = avg_goals_scored,
+                goals_conceded = conceded,
+                avg_goals_conceded = avg_goals_conceded
+            )

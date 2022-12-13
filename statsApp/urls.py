@@ -4,7 +4,7 @@ from django.urls import path
 
 from . import views
 
-app_name = "predictionApp"
+app_name = "statsApp"
 urlpatterns = [
 
 ]

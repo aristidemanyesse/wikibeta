@@ -15,7 +15,7 @@ def team(request, name):
         team = Team.objects.get(name = name)
         editions = team.team_edition.filter()
         edition = editions.first()
-        return HttpResponseRedirect(reverse('features:team_edition', args=[team.name, edition.edition.edition.name]))
+        return HttpResponseRedirect(reverse('fixtureApp:team_edition', args=[team.name, edition.edition.edition.name]))
         
 
 

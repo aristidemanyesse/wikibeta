@@ -616,7 +616,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 
   CodeMirror.defineMIME("text/css", {
     mediaTypes: mediaTypes,
-    mediaFeatures: mediaFeatures,
+    mediafixtureApp: mediaFeatures,
     propertyKeywords: propertyKeywords,
     nonStandardPropertyKeywords: nonStandardPropertyKeywords,
     colorKeywords: colorKeywords,
@@ -639,7 +639,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 
   CodeMirror.defineMIME("text/x-scss", {
     mediaTypes: mediaTypes,
-    mediaFeatures: mediaFeatures,
+    mediafixtureApp: mediaFeatures,
     propertyKeywords: propertyKeywords,
     nonStandardPropertyKeywords: nonStandardPropertyKeywords,
     colorKeywords: colorKeywords,
@@ -680,7 +680,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
 
   CodeMirror.defineMIME("text/x-less", {
     mediaTypes: mediaTypes,
-    mediaFeatures: mediaFeatures,
+    mediafixtureApp: mediaFeatures,
     propertyKeywords: propertyKeywords,
     nonStandardPropertyKeywords: nonStandardPropertyKeywords,
     colorKeywords: colorKeywords,

@@ -28,7 +28,7 @@ def competition(request, pays, competition):
         competition = Competition.objects.get(pays__name = pays, name = competition)
         editions = competition.competition_edition.filter()
         edition = editions.first()
-        return HttpResponseRedirect(reverse('features:competition_edition', args=[pays, competition.name, edition.edition]))
+        return HttpResponseRedirect(reverse('fixtureApp:competition_edition', args=[pays, competition.name, edition.edition]))
       
  
  
