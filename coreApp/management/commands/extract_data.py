@@ -1,7 +1,8 @@
 from django.core.management.base import BaseCommand, CommandError
 import csv, os, re
-from betting.models import *
+from bettingApp.models import *
 from fixtureApp.models import *
+from competitionApp.models import *
 from dateparser import parse
 
 countries = {
@@ -130,13 +131,18 @@ def save_from_dir(path):
                     home              = home,
                     away              = away,
                     edition           = edicompet,
+                   
+                    is_finished       = True
+                    )
+                
+                info, created = ResultMatch.objects.get_or_create(
+                    match             = match,
                     home_score        = home_score,
                     away_score        = away_score,
                     result            = result,
                     home_half_score   = home_half_score,
                     away_half_score   = away_half_score,
-                    result_half       = result_half,
-                    is_finished       = True
+                    result_half       = result_half
                     )
                 
                 extra, created = ExtraInfosMatch.objects.get_or_create(
@@ -253,15 +259,19 @@ def save_from_file(path):
                 home              = home,
                 away              = away,
                 edition           = edicompet,
+                is_finished       = True
+                )
+            
+            info, created = ResultMatch.objects.get_or_create(
+                match             = match,
                 home_score        = home_score,
                 away_score        = away_score,
                 result            = result,
                 home_half_score   = home_half_score,
                 away_half_score   = away_half_score,
-                result_half       = result_half,
-                is_finished       = True
+                result_half       = result_half
                 )
-            
+
             extra, created = ExtraInfosMatch.objects.get_or_create(
                 match                   = match,
                 home_shots              = home_shots,

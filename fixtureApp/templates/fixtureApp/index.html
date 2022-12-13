@@ -160,18 +160,24 @@
                             {% for match in matchs %}
                                 <tr>
                                     <td class="bold">{{match.date | naturalday}}</td>
-                                    <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'fixtureApp:team' match.home %}">{{match.home}}</a></td>
+                                    <td class="{% if match.get_result.home_score > match.get_result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                                    {% if match.is_finished %}
                                     <td class="text-center">
-                                        <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
-                                        <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
+                                        <h6 class="no-margins text-center">{{match.get_result.home_half_score}} - {{match.get_result.away_half_score}}</h6>
+                                        <p class="no-margins text-center text-small">{{match.get_result.home_score}} - {{match.get_result.away_score}}</p>
                                     </td>
+                                    {% else %}
+                                    <td class="text-center">
+                                        <h4 class="no-margins text-center">Vs</h4>
+                                    </td>
+                                    {% endif %}
                                     <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                    <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'fixtureApp:team' match.away %}">{{match.away}}</a></td>
+                                    <td class="{% if match.get_result.home_score < match.get_result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
                                     <td class="text-left"  colspan="3">
-                                        <label class="label label-{% if match.home_score > match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.home }}</label>
-                                        <label class="label label-{% if match.home_score == match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.draw }}</label>
-                                        <label class="label label-{% if match.home_score < match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.away }}</label>
+                                        <label class="label label-{% if match.get_result.home_score > match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
+                                        <label class="label label-{% if match.get_result.home_score == match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
+                                        <label class="label label-{% if match.get_result.home_score < match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                                     </td>
                                     <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                 </tr>
@@ -183,5 +189,19 @@
         </div>
     </div>
     </div>
+
+
+
+
+    <style>
+        .bold{
+            font-weight:bold;
+        }
+    
+        .no-link{
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
     
 {% endblock main %}

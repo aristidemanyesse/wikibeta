@@ -31,6 +31,7 @@ def ratio(nb, total):
 
 @register.filter('couleur')
 def couleur(number):
+    number = 0 if number == '' else number
     if number > 2.5:
         return "primary"
     elif number > 2:

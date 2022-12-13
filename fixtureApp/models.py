@@ -62,6 +62,13 @@ class Match(BaseModel):
         return matchs[:number]
     
     
+    def get_home_before_stats(self):
+        return self.home.get_before_stats(self)
+    
+    
+    def get_away_before_stats(self):
+        return self.away.get_before_stats(self)
+    
 
     def get_odds(self, code = "B365"):
         return self.match_odds.filter(booker__code = code).first()

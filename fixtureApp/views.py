@@ -11,7 +11,11 @@ from predictionApp.models import *
 @render_to('fixtureApp/index.html')
 def home(request):
     if request.method == "GET":
-        ctx = {}
+        matchs = Match.objects.filter(is_finished=False)
+        ctx = {
+            "matchs" : matchs
+        }
+        print("----------", matchs)
         return ctx
         
 
@@ -19,12 +23,10 @@ def home(request):
 @render_to('fixtureApp/match.html')
 def match(request, id):
     if request.method == "GET":
-        match = Match.objects.filter(is_finished=False)
         confrontations = match.confrontations_directes()
         predictions = match.prediction_match.filter()
 
         ctx = {
-            "matchs" : matchs,
             "confrontations" : confrontations[:10],
             "predictions" : predictions,
         }

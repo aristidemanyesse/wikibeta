@@ -2,9 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 import os, time
 from settings import settings
 from .extract_data import save_from_dir, save_from_file
-from multiprocessing import Process, Pool
-from betting.models import Bookmaker
-from django import db
+from bettingApp.models import Bookmaker
 
 import threading
     

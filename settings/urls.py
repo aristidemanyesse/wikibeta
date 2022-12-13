@@ -32,6 +32,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', include('fixtureApp.urls')),
     path('pays/', include('competitionApp.urls')),
+    path('team/', include('teamApp.urls')),
     path('predicition/', include('predictionApp.urls')),
     path('stats/', include('statsApp.urls')),
     # path('', home),

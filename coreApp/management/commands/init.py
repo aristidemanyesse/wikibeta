@@ -1,9 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 import os, time
 from .predictions import *
-from fixtureApp.models import *
-from django import db
-
+from competitionApp.models import *
 import threading
     
 class Command(BaseCommand):
@@ -16,10 +14,6 @@ class Command(BaseCommand):
                 if threading.active_count() > 145:
                     time.sleep(360)
                 print("START: Current active thread count ---------------: ", threading.active_count())
-                p = threading.Thread(target=before_stats, args=(edit,))
-                p.setDaemon(True)
-                p.start()
-                time.sleep(1)
                 
                 # p = threading.Thread(target=p1, args=(edit,))
                 # p.setDaemon(True)

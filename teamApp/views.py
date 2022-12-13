@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.shortcuts import get_object_or_404
-import datetime
+from annoying.decorators import render_to
 from django.http import HttpResponseRedirect
 from .models import *
 from teamApp.models import *
@@ -15,10 +15,10 @@ def team(request, name):
         team = Team.objects.get(name = name)
         editions = team.team_edition.filter()
         edition = editions.first()
-        return HttpResponseRedirect(reverse('fixtureApp:team_edition', args=[team.name, edition.edition.edition.name]))
+        return HttpResponseRedirect(reverse('teamApp:team_edition', args=[team.name, edition.edition.edition.name]))
         
 
-
+@render_to("teamApp/team.html")
 def team_edition(request, name, edition):
     if request.method == "GET":
         pre = EditionTeam.objects.filter(team__name = name, edition__edition__name = edition).order_by("-edition__edition__name")
@@ -33,4 +33,4 @@ def team_edition(request, name, edition):
             "matchs":matchs, 
             "matchs_20":matchs_joues, 
             }
-        return render(request, "features/team.html", ctx)
+        return ctx
