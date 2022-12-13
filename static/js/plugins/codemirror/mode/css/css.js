@@ -252,7 +252,7 @@ CodeMirror.defineMode("css", function(config, parserConfig) {
         override = "keyword";
       else if (mediaTypes.hasOwnProperty(word))
         override = "attribute";
-      else if (mediaFeatures.hasOwnProperty(word))
+      else if (mediafixtureApp.hasOwnProperty(word))
         override = "property";
       else
         override = "error";

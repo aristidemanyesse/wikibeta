@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 
 # Application definition
 
@@ -39,10 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'core',
-    'features',
-    'betting',
-    'prediction',
+    'django_crontab',
+    "debug_toolbar",
+    'coreApp',
+    'competitionApp',
+    'teamApp',
+    'fixtureApp',
+    'statsApp',
+    'bettingApp',
+    'predictionApp',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'settings.urls'
@@ -120,6 +130,16 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# CRONJOBS
+CRONJOBS = [
+    # ('*/5 * * * *', 'myapp.cron.other_scheduled_job', ['arg1', 'arg2'], {'verbose': 0}),
+    # ('0   4 * * *', 'django.core.management.call_command', '>> /tmp/scheduled_job.log'),
+    ('*/4 * * * *', 'fixtureApp.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "features/crons/logs/fixtures_job.log" ))),
+    ('*/4 * * * *', 'fixtureApp.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "features/crons/logs/results_job.log" ))),
+]
+
 
 
 # Internationalization

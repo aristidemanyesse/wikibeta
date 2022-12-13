@@ -30,25 +30,26 @@ def home(request):
 
 # urlpatterns = i18n_patterns(
 urlpatterns = [
-    path('', include('features.urls')),
+    path('', include('fixtureApp.urls')),
     # path('', home),
     # path('auth/', include('authApp.urls')),
     # path('core/', include('coreApp.urls')),
-    # path('home/', include('features.urls')),
+    # path('home/', include('fixtureApp.urls')),
 
-    # path('boutique/', include('features.urls_boutique')),
-    # path('fabrique/', include('features.urls_fabrique')),
-    # path('manager/', include('features.urls_manager')),
+    # path('boutique/', include('fixtureApp.urls_boutique')),
+    # path('fabrique/', include('fixtureApp.urls_fabrique')),
+    # path('manager/', include('fixtureApp.urls_manager')),
 
     # path('tresorerie/', include('comptabilityApp.urls')),
 
     # path('fiches/', include('ficheApp.urls')),
     # path('administration/', include('administrationApp.urls')),
     path('admin/', admin.site.urls),
+    path('__debug__/', include('debug_toolbar.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-handler404 = 'auth.views.handler404'
-handler400 = 'auth.views.handler400'
-handler500 = 'auth.views.handler500'
+# handler404 = 'auth.views.handler404'
+# handler400 = 'auth.views.handler400'
+# handler500 = 'auth.views.handler500'

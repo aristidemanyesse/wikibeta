@@ -36040,7 +36040,7 @@ var Pattern = (function PatternClosure() {
         throw ex;
       }
       handler.send('UnsupportedFeature',
-                   {featureId: UNSUPPORTED_FEATURES.shadingPattern});
+                   {featureId: UNSUPPORTED_fixtureApp.shadingPattern});
       warn(ex);
       return new Shadings.Dummy();
     }
@@ -37251,7 +37251,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         }, function (reason) {
           // Error in the font data -- sending unsupported feature notification.
           self.handler.send('UnsupportedFeature',
-                            {featureId: UNSUPPORTED_FEATURES.font});
+                            {featureId: UNSUPPORTED_fixtureApp.font});
           return new TranslatedFont('g_font_error',
             new ErrorFont('Type3 font load error: ' + reason), translated.font);
         });
@@ -37488,7 +37488,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         // TODO fontCapability.reject?
         // Error in the font data -- sending unsupported feature notification.
         self.handler.send('UnsupportedFeature',
-                          {featureId: UNSUPPORTED_FEATURES.font});
+                          {featureId: UNSUPPORTED_fixtureApp.font});
 
         try {
           // error, but it's still nice to have font type reported
@@ -42447,7 +42447,7 @@ var WorkerMessageHandler = {
           // For compatibility with older behavior, generating unknown
           // unsupported feature notification on errors.
           handler.send('UnsupportedFeature',
-                       {featureId: UNSUPPORTED_FEATURES.unknown});
+                       {featureId: UNSUPPORTED_fixtureApp.unknown});
 
           var minimumStackMessage =
             'worker.js: while trying to getPage() and getOperatorList()';
