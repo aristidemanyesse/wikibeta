@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 import csv, os, re
-from betting.models import *
+from bettingApp.models import *
 from fixtureApp.models import *
 from dateparser import parse
 
