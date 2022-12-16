@@ -1,10 +1,11 @@
 import requests, os, csv
 from django.core.management.base import BaseCommand, CommandError
-from prediction.models import *
+from predictionApp.models import *
 from settings import settings
+from competitionApp.models import *
 from fixtureApp.models import *
 from dateparser import parse
-from core.management.commands.extract_data import get, save_from_file
+from coreApp.management.commands.extract_data import get, save_from_file
 from datetime import datetime
 
 

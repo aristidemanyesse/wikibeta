@@ -19,13 +19,15 @@ class Command(BaseCommand):
                     #enregistrement des editions
                     booker, created = Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
         
-                               
-            for x in os.listdir("datas/lot/"):
+                      
+            list_files = os.listdir("datas/lot/")
+            list_files = sorted(list_files)         
+            for x in list_files:
                 if os.path.isdir("datas/lot/{}".format(x)) : 
                     files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
                     for file in files:
-                        if threading.active_count() > 145:
-                            time.sleep(360)
+                        while threading.active_count() >= 145:
+                            time.sleep(120)
                         print("START: Current active thread count ---------------: ", threading.active_count())
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
@@ -34,8 +36,8 @@ class Command(BaseCommand):
                         time.sleep(1)
 
                 else:
-                    if threading.active_count() > 145:
-                        time.sleep(360)
+                    while threading.active_count() >= 145:
+                        time.sleep(120)
                     print("START: Current active thread count ---------------: ", threading.active_count())
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))
@@ -44,7 +46,7 @@ class Command(BaseCommand):
                     time.sleep(1)
                     
                     
-            self.stdout.write(self.style.SUCCESS('Base de données initialisée avec succes !'))
+            self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))
             
         except Exception as e:
             print(e)

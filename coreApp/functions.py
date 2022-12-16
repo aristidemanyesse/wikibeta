@@ -3,21 +3,24 @@ import math
 
 
 def intervale(number):
-    # if number > 2.6:
-    #     return [2.61, 3]
-    # elif 2.3 < number <= 2.6 :
-    #     return [2.31, 2.6]
-    # elif 1.9 < number <= 2.3 :
-    #     return [1.91, 2.3]
-    # elif 1.3 < number <= 1.9 :
-    #     return [1.31, 1.9]
-    # elif 0.7 < number <= 1.3 :
-    #     return [0.71, 1.3]
-    # elif 0 <= number <= 0.7 :
-    #     return [0, 0.7]
     return [round(number, 1), round(number, 1)+0.1]
     # return [number - 0.02, number + 0.0]
 
+
+
+def intervale2(number):
+    if number > 2.5:
+        return [2.51, 3]
+    elif 2. < number <= 2.5 :
+        return [2.1, 2.5]
+    elif 1.5 < number <= 2. :
+        return [1.51, 2.]
+    elif 1. < number <= 1.5 :
+        return [1.1, 1.5]
+    elif 0.5 < number <= 1. :
+        return [0.51, 1.]
+    elif 0 <= number <= 0.5 :
+        return [0, 0.5]
 
 
 

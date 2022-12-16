@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
-from prediction.models import *
+from predictionApp.models import *
 from fixtureApp.models import *
-from dateparser import parse
 
 
 def function(self, *args, **options):

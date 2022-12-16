@@ -48,6 +48,25 @@ class Match(BaseModel):
         return matchs[:number]
 
 
+
+
+    def similaires_ppg2(self, number = 50):
+        matchs = []
+        ppg_home = self.before_stat_match.filter(team = self.home).first().ppg
+        ppg_away = self.before_stat_match.filter(team = self.away).first().ppg
+        
+        befores = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
+        for bef in befores:
+            if bef.team == bef.match.home:
+                befs = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_away), match = bef.match).exclude(id = bef.id)
+                if len(befs) == 1:
+                    matchs.append(bef.match)
+                
+        return matchs[:number]
+
+        
+        
+
     def similaires_betting(self, number = 50):
         matchs = []
         actual = self.match_odds.filter(booker__code = "B365").first()
