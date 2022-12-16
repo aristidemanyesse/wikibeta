@@ -3,7 +3,7 @@ from predictionApp.models import *
 from fixtureApp.models import *
 
 
-def function(self, *args, **options):
+def function():
     datas = Prediction.objects.filter(is_checked = None)
     for predict in datas:
         predict.validity()
