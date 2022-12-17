@@ -23,7 +23,7 @@ class ResultMatchAdmin(admin.ModelAdmin):
     list_filter = (
         ('match__date', DateFieldListFilter),
     )
-    list_display = ['match',  "result"]
+    list_display = ['match', "home_score", "away_score",  "result"]
 
 
 

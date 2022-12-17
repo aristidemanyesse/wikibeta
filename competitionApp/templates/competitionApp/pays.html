@@ -10,10 +10,10 @@
         {% for country in  pays %}
         <div class="col-lg-4">
             <div class="contact-box">
-                <a href=# data-toggle="modal" data-target="#modal-{{ country.name }}" href="{% url 'fixtureApp:country' country.name %}">
+                <a href=# data-toggle="modal" data-target="#modal-{{ country.name }}" href="{% url 'competitionApp:country' country.name %}">
                 <div class="col-sm-4">
                     <div class="text-center">
-                        <img alt="image" class="img-responsive" src="{% static country.flag %}">
+                        {% comment %} <img alt="image" class="img-responsive" src="{% static country.flag %}"> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -40,7 +40,7 @@
                         <div class="row justify-content-center">
                             {% for compet in  country.pays_de_competition.filter %}
                                 <div class="col-sm-6 col-md-4 text-center border" style=" border: 1px solid red">
-                                    <a href="{% url 'fixtureApp:competition' country.name compet.name %}">
+                                    <a href="{% url 'competitionApp:competition' country.name compet.name %}">
                                         <img alt="image" class="img-responsive" src="{% static compet.logo %}" style="height: 200px; width: 200px; border: 1px solid red">
                                         <h2>{{ compet.name }}</h2>
                                     </a>

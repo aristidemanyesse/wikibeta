@@ -64,7 +64,7 @@
                 <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> {{edition.edition}}<span class="caret"></span></a>
                 <ul role="menu" class="dropdown-menu">
                     {% for edi in competition.competition_edition.filter %}
-                        <li><a href="{% url 'fixtureApp:competition_edition' competition.pays.name competition.name edi.edition.name %}">{{edi}}</a></li>
+                        <li><a href="{% url 'competitionApp:competition_edition' competition.pays.name competition.name edi.edition.name %}">{{edi}}</a></li>
                     {% endfor %}
                 </ul>
             </li>
@@ -343,7 +343,7 @@
                             <tr>
                                 <td><label class="label label-default">{{ forloop.counter }}</label></td>
                                     <td><img src=""></td>
-                                    <td class="bold text-left"><a class="no-link" href="{% url 'fixtureApp:team' element|dict_value:'team' %}">{{element|dict_value:"team"}}</a></td>
+                                    <td class="bold text-left"><a class="no-link" href="{% url 'teamApp:team' element|dict_value:'team' %}">{{element|dict_value:"team"}}</a></td>
                                     <td>{{element|dict_value:"mj"}}</td>
                                     <td>{{element|dict_value:"win"}}</td>
                                     <td>{{element|dict_value:"draw"}}</td>
@@ -489,7 +489,7 @@
                                             <label class="label label-{% if pre.is_checked %}primary{% else %}default{% endif %}">{{ pre.type.code }}</label>
                                         {% endfor %}
                                     </td>
-                                    <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'fixtureApp:team' match.home %}">{{match.home}}</a></td>
+                                    <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                                     <td class="text-center">
                                         {% if match.home_half_score is not None %}
@@ -498,7 +498,7 @@
                                         <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
                                     </td>
                                     <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                    <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'fixtureApp:team' match.away %}">{{match.away}}</a></td>
+                                    <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
                                     <td class="text-left"  colspan="3">
                                         <label class="label label-{% if match.home_score > match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.home }}</label>
                                         <label class="label label-{% if match.home_score == match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.draw }}</label>

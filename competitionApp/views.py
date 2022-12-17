@@ -1,25 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from competitionApp.models import *
-from django.shortcuts import render, redirect, reverse
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from annoying.decorators import render_to
 
 # Create your views here.
 
 
+@render_to("competitionApp/pays.html")
 def pays(request):
     if request.method == "GET":
         pays = Pays.objects.all()
         ctx = {"pays" : pays}
-        return render(request, "features/pays.html", ctx)
+        return ctx
     
         
+@render_to("competitionApp/country.html")
 def country(request, pays):
     if request.method == "GET":
         country = Pays.objects.get(name = pays)
         print(country)
         ctx = {"country" : country}
-        return render(request, "features/country.html", ctx)
+        return ctx
         
         
         
@@ -28,10 +29,11 @@ def competition(request, pays, competition):
         competition = Competition.objects.get(pays__name = pays, name = competition)
         editions = competition.competition_edition.filter()
         edition = editions.first()
-        return HttpResponseRedirect(reverse('fixtureApp:competition_edition', args=[pays, competition.name, edition.edition]))
+        return HttpResponseRedirect(reverse('competitionApp:competition_edition', args=[pays, competition.name, edition.edition]))
       
  
  
+@render_to("competitionApp/competition.html")
 def competition_edition(request, pays, competition, edition):
     if request.method == "GET":
         edition = EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
@@ -52,5 +54,5 @@ def competition_edition(request, pays, competition, edition):
             "editions":editions,
             "competition" : competition
             }
-        return render(request, "features/competition.html", ctx)
+        return ctx
       

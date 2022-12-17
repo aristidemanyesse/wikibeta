@@ -34,29 +34,35 @@ def function():
                 if len(row) < 2:
                     continue
                 
-                compet             = get(row, header, "Div") or ""
-                edicompet= EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
+                print(45)
+                compet    = get(row, header, "Div") or ""
+                edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
 
-                home                    = get(row, header, "HomeTeam") or ""
-                away                    = get(row, header, "AwayTeam") or ""
+                print(456)
+                home      = get(row, header, "HomeTeam") or ""
+                away      = get(row, header, "AwayTeam") or ""
                     
+                print(45645)
                 #enregistrement des équipes
-                home, created = EditionTeam.objects.get_or_create(team__name = home, edition = edicompet)
-                away, created = EditionTeam.objects.get_or_create(team__name = away, edition = edicompet)
+                home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
+                home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                 
+                away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
+                away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
+                
+                print(4567777)
                 #enregistrement du match et des infos du match
                 match, created = Match.objects.get_or_create(
                     date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
                     hour              = get(row, header, "Time") or None,
                     home              = home,
                     away              = away,
-                    edition           = edicompet,
-                    is_finished       = False
-                    )
+                    edition           = edicompet
+                )
                 
                 home_score              = get(row, header, "FTHG")
                 away_score              = get(row, header, "FTAG")
-                result                  = get(row, header, "R") or ""
+                result                  = get(row, header, "FTR") or ""
                 home_half_score         = get(row, header, "HTHG")
                 away_half_score         = get(row, header, "HTAG")
                 result_half             = get(row, header, "HTR") or ""
@@ -78,16 +84,19 @@ def function():
                 away_red_cards          = get(row, header, "AR")
                 
                 
-                
-                match.home_score        = home_score
-                match.away_score        = away_score
-                match.result            = result
-                match.home_half_score   = home_half_score
-                match.away_half_score   = away_half_score
-                match.result_half       = result_half
                 match.is_finished       = True
                 match.save()
 
+                
+                info, created = ResultMatch.objects.get_or_create(
+                    match             = match,
+                    home_score        = home_score,
+                    away_score        = away_score,
+                    result            = result,
+                    home_half_score   = home_half_score,
+                    away_half_score   = away_half_score,
+                    result_half       = result_half
+                )
                 
 
                 extra, created = ExtraInfosMatch.objects.get_or_create(
@@ -123,7 +132,7 @@ def function():
                 print(match, match.date)
                 
     except Exception as e:
-        print("Errror 12 --------------------------------", e)
+        print("Errror 452 --------------------------------", e)
             
             
             
@@ -148,14 +157,27 @@ def function():
                 
                 compet                = get(row, header, "League") or ""
                 pays                  = get(row, header, "Country") or ""
-                edicompet  = EditionCompetition.objects.filter(competition__code = compet, competition__pays__name = pays ).order_by("-edition__name").first()
                 
+                pays, created = Pays.objects.get_or_create(name = pays)
+                compet, created = Competition.objects.get_or_create(code = compet, pays = pays)
+                
+                edicompet = EditionCompetition.objects.filter(competition = compet).order_by("-edition__name").first()
+                if edicompet is not None:
+                    if edicompet.is_finished :
+                        edicompet = EditionCompetition.objects.create(competition = compet, edition = Edition.objects.create(name = edicompet.edition.next()))
+                else:
+                    edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
+                    edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
+                    
                 home                    = get(row, header, "Home") or ""
                 away                    = get(row, header, "Away") or ""
                     
                 #enregistrement des équipes
-                home, created = EditionTeam.objects.get_or_create(team__name = home, edition = edicompet)
-                away, created = EditionTeam.objects.get_or_create(team__name = away, edition = edicompet)
+                home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
+                home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
+                
+                away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
+                away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
                 
                 #enregistrement du match et des infos du match
                 match, created = Match.objects.get_or_create(
@@ -163,8 +185,7 @@ def function():
                     hour              = get(row, header, "Time") or None,
                     home              = home,
                     away              = away,
-                    edition           = edicompet,
-                    is_finished       = False
+                    edition           = edicompet
                     )
                 
                 home_score              = get(row, header, "HG")
@@ -191,14 +212,19 @@ def function():
                 away_red_cards          = get(row, header, "AR")
                 
                 
-                match.home_score        = home_score
-                match.away_score        = away_score
-                match.result            = result
-                match.home_half_score   = home_half_score
-                match.away_half_score   = away_half_score
-                match.result_half       = result_half
                 match.is_finished       = True
                 match.save()
+
+                
+                info, created = ResultMatch.objects.get_or_create(
+                    match             = match,
+                    home_score        = home_score,
+                    away_score        = away_score,
+                    result            = result,
+                    home_half_score   = home_half_score,
+                    away_half_score   = away_half_score,
+                    result_half       = result_half
+                )
                 
                 
                 extra, created = ExtraInfosMatch.objects.get_or_create(

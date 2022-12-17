@@ -3,12 +3,18 @@ from fixtureApp.models import *
 
     # for match in Match.objects.filter(is_finished = False).order_by("-date"):
     #     print("Prédiction pour {}".format(match))
-def function(match):
+def function(edition):
+    for match in edition.edition_du_match.all():
+        predict(match)
+    
+    
+def predict(match):
     matchs = match.confrontations_directes()
     if len(matchs) >= 14 :
         moy = 0
         for x in matchs:
-            moy += (x.home_score + x.away_score) / len(matchs)
+            result = x.get_result()
+            moy += (result.home_score + result.away_score) / len(matchs)
             
             
         if (moy >= 2.7):
@@ -33,3 +39,5 @@ def function(match):
                         match = match,
                         pct = p
                     )
+
+    print("Prédiction pour le match", match)   

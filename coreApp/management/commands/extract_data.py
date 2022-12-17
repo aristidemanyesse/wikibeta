@@ -131,7 +131,6 @@ def save_from_dir(path):
                     home              = home,
                     away              = away,
                     edition           = edicompet,
-                   
                     is_finished       = True
                     )
                 
@@ -175,10 +174,7 @@ def save_from_dir(path):
                             draw = float(get(row, header, code+"D") or 0.0),
                             away = float(get(row, header, code+"A") or 0.0)
                             )
-                        
-                
-                print(competition_, edition_, match.date)
-    
+                            
 
 
 
@@ -300,8 +296,5 @@ def save_from_file(path):
                 draw = float(get(row, header, "Avg D") or 0.0),
                 away = float(get(row, header, "Avg A") or 0.0)
                 )
-                    
-            
-            print(competition_, edition_, match.date)
-    
+                        
 

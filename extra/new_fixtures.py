@@ -34,13 +34,16 @@ def function():
                 
                 compet    = get(row, header, "Div") or ""
                 edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
-                
+
                 home      = get(row, header, "HomeTeam") or ""
                 away      = get(row, header, "AwayTeam") or ""
                     
                 #enregistrement des équipes
-                home, created = EditionTeam.objects.get_or_create(team__name = home, edition = edicompet)
-                away, created = EditionTeam.objects.get_or_create(team__name = away, edition = edicompet)
+                home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
+                home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
+                
+                away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
+                away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
                 
                 #enregistrement du match et des infos du match
                 match, created = Match.objects.get_or_create(
@@ -48,8 +51,7 @@ def function():
                     hour              = get(row, header, "Time") or None,
                     home              = home,
                     away              = away,
-                    edition           = edicompet,
-                    is_finished       = False
+                    edition           = edicompet
                     )
                 
                 print("resultat 1 pour ", match)
@@ -77,8 +79,17 @@ def function():
                 pays      = get(row, header, "Country") or ""
                 
                 pays, created = Pays.objects.get_or_create(name = pays)
-                edicompet = EditionCompetition.objects.filter(competition__code = compet, competition__pays = pays ).order_by("-edition__name").first()
+                compet, created = Competition.objects.get_or_create(code = compet, pays = pays)
                 
+                edicompet = EditionCompetition.objects.filter(competition = compet).order_by("-edition__name").first()
+                if edicompet is not None:
+                    if edicompet.is_finished :
+                        edicompet = EditionCompetition.objects.create(competition = compet, edition = Edition.objects.create(name = edicompet.edition.next()))
+                else:
+                    edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
+                    edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
+
+
                 home      = get(row, header, "Home") or ""
                 away      = get(row, header, "Away") or ""
                     
@@ -88,15 +99,14 @@ def function():
                 
                 away, created = Team.objects.get_or_create(name = away, pays = pays )
                 away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
-                
+
                 #enregistrement du match et des infos du match
                 match, created = Match.objects.get_or_create(
                     date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
                     hour              = get(row, header, "Time") or None,
                     home              = home,
                     away              = away,
-                    edition           = edicompet,
-                    is_finished       = False
+                    edition           = edicompet
                     )
                 print("Resultat 2 pour ", match)
     except Exception as e:

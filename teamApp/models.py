@@ -31,22 +31,26 @@ class EditionTeam(BaseModel):
     
     def form(self, match):
         if self in [match.home, match.away] :
-            if match.get_result().result == "D":
-                return "N"
-            elif match.get_result().result == "H":
-                return "V" if (match.home == self) else "D"
-            elif match.get_result().result == "A":
-                return "V" if (match.away == self) else "D"
+            result = match.get_result()
+            if result is not None:
+                if result.result == "D":
+                    return "N"
+                elif result.result == "H":
+                    return "V" if (match.home == self) else "D"
+                elif result.result == "A":
+                    return "V" if (match.away == self) else "D"
     
     
     def points_for_this_macth(self, match):
         if self in [match.home, match.away] :
-            if match.get_result().result == "D":
-                return 1
-            elif match.get_result().result == "H":
-                return 3 if (match.home == self) else 0
-            elif match.get_result().result == "A":
-                return 3 if (match.away == self) else 0
+            result = match.get_result()
+            if result is not None:
+                if result.result == "D":
+                    return 1
+                elif result.result == "H":
+                    return 3 if (match.home == self) else 0
+                elif result.result == "A":
+                    return 3 if (match.away == self) else 0
         return 0
         
         
@@ -70,9 +74,11 @@ class EditionTeam(BaseModel):
         if len(matchs) ==0:
             return 0, 0, 0, 0, 0, 0
         for match in matchs:
-            points    += self.points_for_this_macth(match)
-            scored    += match.get_result().home_score if match.home == self else match.get_result().away_score
-            conceded  += match.get_result().home_score if match.away == self else match.get_result().away_score
+            result = match.get_result()
+            if result is not None:
+                points    += self.points_for_this_macth(match)
+                scored    += result.home_score if match.home == self else result.away_score
+                conceded  += result.home_score if match.away == self else result.away_score
         
         return points, round(points / len(matchs)), scored, scored/len(matchs), conceded, conceded/len(matchs)
     
@@ -93,7 +99,8 @@ class EditionTeam(BaseModel):
         matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.get_result().home_score + match.get_result().away_score > nb:
+            result = match.get_result()
+            if result.home_score + result.away_score > nb:
                 total += 1
         return total
 
@@ -102,7 +109,8 @@ class EditionTeam(BaseModel):
         matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.get_result().home_score + match.get_result().away_score < nb:
+            result = match.get_result()
+            if result.home_score + result.away_score < nb:
                 total += 1
         return total
     
@@ -111,8 +119,9 @@ class EditionTeam(BaseModel):
         matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.get_result().home_half_score is not None :
-                if match.get_result().home_half_score + match.get_result().away_half_score > nb:
+            result = match.get_result()
+            if result.home_half_score is not None :
+                if result.home_half_score + result.away_half_score > nb:
                     total += 1
         return total
 
@@ -121,8 +130,9 @@ class EditionTeam(BaseModel):
         matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
-            if match.get_result().home_half_score is not None :
-                if match.get_result().home_half_score + match.get_result().away_half_score < nb:
+            result = match.get_result()
+            if result.home_half_score is not None :
+                if result.home_half_score + result.away_half_score < nb:
                     total += 1
         return total
     

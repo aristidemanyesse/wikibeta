@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 import csv, os, re
 from bettingApp.models import *
 from fixtureApp.models import *
+from statsApp.models import *
 from competitionApp.models import *
 from dateparser import parse
 
@@ -11,17 +12,20 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         Competition.objects.filter(name = None).delete() 
-        Match.objects.filter(away_score = None, home_score = None, result = "").delete() 
+        # ResultMatch.objects.filter(match__away_score = None, match__home_score = None, result = "").delete() 
         OddsMatch.objects.filter(home = 0).delete() 
         
         
-        for match in Match.objects.all():
-            result = match.result_match.filter().first()
-            if result.away_score == result.home_score == 0:
-                result.home_half_score = 0
-                result.away_half_score = 0
-                result.result_half = "D"
-                result.save()
+        # for match in Match.objects.all():
+        #     result = match.get_result()
+        #     if result and result.away_score is None:
+        #         match.delete()
+                
+        #     if result.away_score == result.home_score == 0:
+        #         result.home_half_score = 0
+        #         result.away_half_score = 0
+        #         result.result_half = "D"
+        #         result.save()
                 
                 
         datas = EditionCompetition.objects.filter()

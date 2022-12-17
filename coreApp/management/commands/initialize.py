@@ -3,6 +3,8 @@ import os, time
 from settings import settings
 from .extract_data import save_from_dir, save_from_file
 from bettingApp.models import Bookmaker
+from predictionApp.models import *
+from django.contrib.auth.models import User, Group, Permission
 
 import threading
     
@@ -10,43 +12,48 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        try:            
-            # FOR ALL BOOKMAKERS ##
-            with open("datas/bookmakers.txt",'rt', encoding='utf-8' ) as file:
-                for line in file:
-                    code, name = line.split(" = ")
-                    name = name.replace("home win odds", "").replace("draw odds", "").replace("away win odds", "")
-                    #enregistrement des editions
-                    booker, created = Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
         
-                      
-            list_files = os.listdir("datas/lot/")
-            list_files = sorted(list_files)         
-            for x in list_files:
-                if os.path.isdir("datas/lot/{}".format(x)) : 
-                    files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
-                    for file in files:
-                        while threading.active_count() >= 145:
-                            time.sleep(120)
-                        print("START: Current active thread count ---------------: ", threading.active_count())
-                        path = "datas/lot/{}/{}".format(x, file)
-                        p = threading.Thread(target=save_from_dir , args=(path,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(1)
-
-                else:
-                    while threading.active_count() >= 145:
-                        time.sleep(120)
-                    print("START: Current active thread count ---------------: ", threading.active_count())
-                    path = "datas/lot/{}".format(x)
-                    p = threading.Thread(target=save_from_file , args=(path,))
-                    p.setDaemon(True)
-                    p.start()
-                    time.sleep(1)
-                    
-                    
-            self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))
+        # print("Super admin registered")
+        # user = User(
+        #     username = "admin",
+        #     email = "",
+        #     first_name = "Super",
+        #     last_name = "Administrateur",
+        # )
+        # user.set_password("12345678")
+        # user.is_superuser = True
+        # user.is_staff = True
+        # user.save()
+        
+        
+        datas = {
+            "m1_5":"Moins de 1,5but dans le match",
+            "m2_5":"Moins de 2,5buts dans le match",
+            "m3_5":"Moins de 3,5buts dans le match",
+            "p1_5":"Plus de 1,5but dans le match",
+            "p2_5":"Plus de 2,5buts dans le match",
+            "p3_5":"Plus de 3,5buts dans le match",
+            "VN_Home":"Equipe à domicile ne perd pas",
+            "VN_Away":"Equipe à domicile ne perd pas",
+            "12":"Pas de nul dans le match"
+        }
+        for x in datas:
+            TypePrediction.objects.create(
+                name = x, 
+                code = x, 
+                description = datas[x], 
+            )
             
-        except Exception as e:
-            print(e)
+            
+
+        datas = {
+            "M1":"Prédiction sur les confrontations directes",
+            "M2":"Prédiction sur les ppg",
+            "M3":"Prédiction sur les ppg 2",
+            "M4":"Prédiction sur les odds betting"
+        }
+        for x in datas:
+            ModePrediction.objects.create(
+                name = x, 
+                description = datas[x], 
+            )

@@ -1,1290 +1,609 @@
-------------------------- 2022-12-13 13:04:03.286482
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Errror 7887 -------------------------------- (1048, "Column 'team_id' cannot be null")
-------------------------- 2022-12-13 13:08:02.904045
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
---@@@@@@@@@@@@@@@@@@@@@@---- FC Rapid Bucuresti Petrolul
-Errror 7887 -------------------------------- (1048, "Column 'team_id' cannot be null")
-------------------------- 2022-12-13 13:12:03.502915
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns Super League - 2022
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger Super League - 2022
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua Super League - 2022
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai Super League - 2022
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen Super League - 2022
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan Super League - 2022
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port Super League - 2022
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng Super League - 2022
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
---@@@@@@@@@@@@@@@@@@@@@@---- FC Rapid Bucuresti Petrolul Liga 1 - 2020-2021
-Errror 7887 -------------------------------- (1048, "Column 'team_id' cannot be null")
-------------------------- 2022-12-13 13:16:03.231801
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Errror 7887 -------------------------------- (1048, "Column 'pays_id' cannot be null")
-------------------------- 2022-12-13 13:20:03.735998
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Errror 7887 -------------------------------- ['La valeur «\xa0China\xa0» n’est pas un UUID valide.']
-------------------------- 2022-12-13 13:24:03.923843
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-(<Pays: China>, False)
-Errror 7887 -------------------------------- ['La valeur «\xa0China\xa0» n’est pas un UUID valide.']
-------------------------- 2022-12-13 13:28:03.458505
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns Super League - 2022
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger Super League - 2022
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua Super League - 2022
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai Super League - 2022
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen Super League - 2022
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan Super League - 2022
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port Super League - 2022
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-China
-Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng Super League - 2022
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Romania
-Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FC Rapid Bucuresti Petrolul Liga 1 - 2020-2021
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Romania
-Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FCSB CFR Cluj Liga 1 - 2020-2021
-Resultat 2 pour  FCSB -VS- CFR Cluj
-
-None
---@@@@@@@@@@@@@@@@@@@@@@----   None
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:32:03.399184
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns Super League - 2022
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger Super League - 2022
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua Super League - 2022
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai Super League - 2022
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen Super League - 2022
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan Super League - 2022
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port Super League - 2022
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng Super League - 2022
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-ooooooooooooooooooo Romania
-********** Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FC Rapid Bucuresti Petrolul Liga 1 - 2020-2021
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-ooooooooooooooooooo Romania
-********** Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FCSB CFR Cluj Liga 1 - 2020-2021
-Resultat 2 pour  FCSB -VS- CFR Cluj
-ooooooooooooooooooo 
-********** None
---@@@@@@@@@@@@@@@@@@@@@@----   None
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:36:03.146129
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Dalian Pro Wuhan Three Towns Super League - 2022
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Wuhan FC Tianjin Jinmen Tiger Super League - 2022
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou City Shanghai Shenhua Super League - 2022
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Beijing Guoan Changchun Yatai Super League - 2022
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Cangzhou Henan Songshan Longmen Super League - 2022
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Guangzhou FC Shandong Taishan Super League - 2022
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Meizhou Hakka Shanghai Port Super League - 2022
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-ooooooooooooooooooo China
-********** Super League - 2022
---@@@@@@@@@@@@@@@@@@@@@@---- Zhejiang Professional Chengdu Rongcheng Super League - 2022
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-ooooooooooooooooooo Romania
-********** Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FC Rapid Bucuresti Petrolul Liga 1 - 2020-2021
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-ooooooooooooooooooo Romania
-********** Liga 1 - 2020-2021
---@@@@@@@@@@@@@@@@@@@@@@---- FCSB CFR Cluj Liga 1 - 2020-2021
-Resultat 2 pour  FCSB -VS- CFR Cluj
-ooooooooooooooooooo 
-********** None
---@@@@@@@@@@@@@@@@@@@@@@----   None
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:40:02.886259
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:44:03.212950
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:48:02.841001
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:52:03.764348
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 13:56:02.986462
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:00:03.028542
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:04:03.329741
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:08:03.390067
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:12:03.552516
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:16:04.128927
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:20:03.322693
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:24:02.846456
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:28:03.683246
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:32:03.865498
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:36:03.603315
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:40:03.388943
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:44:03.400363
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:48:03.726904
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:52:03.409619
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 14:56:03.357291
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:00:03.146341
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:04:03.499291
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:08:02.916448
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:12:03.477490
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:16:03.203395
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:20:03.453287
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:24:03.322693
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:28:03.326316
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:32:02.884858
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:36:03.647537
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:40:03.667943
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:44:03.083030
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:48:03.521975
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:52:03.144641
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 15:56:03.732128
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:00:03.622377
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:04:03.349324
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:08:03.810910
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:12:03.313296
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:16:03.602089
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:20:04.111597
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:24:04.062471
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:28:03.041207
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:32:02.956488
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:36:03.408693
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:40:03.305777
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:44:03.496158
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:48:03.625924
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:52:03.150605
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 16:56:02.920359
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:00:03.593316
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:04:03.771231
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:08:03.648568
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:12:03.194138
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:16:03.844934
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:20:03.844134
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:24:03.727828
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:28:03.706053
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:32:04.443188
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:36:03.261669
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:40:04.097472
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:44:03.041741
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:48:03.401108
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:52:03.337125
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 17:56:03.400459
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
-------------------------- 2022-12-13 18:00:04.304503
-resultat 1 pour  Aldershot -VS- Boreham Wood
-resultat 1 pour  Dorking -VS- Maidstone
-resultat 1 pour  Notts County -VS- Gateshead
-resultat 1 pour  Rangers -VS- Hibernian
-Resultat 2 pour  Dalian Pro -VS- Wuhan Three Towns
-Resultat 2 pour  Wuhan FC -VS- Tianjin Jinmen Tiger
-Resultat 2 pour  Guangzhou City -VS- Shanghai Shenhua
-Resultat 2 pour  Beijing Guoan -VS- Changchun Yatai
-Resultat 2 pour  Cangzhou -VS- Henan Songshan Longmen
-Resultat 2 pour  Guangzhou FC -VS- Shandong Taishan
-Resultat 2 pour  Meizhou Hakka -VS- Shanghai Port
-Resultat 2 pour  Zhejiang Professional -VS- Chengdu Rongcheng
-Resultat 2 pour  FC Rapid Bucuresti -VS- Petrolul
-Resultat 2 pour  FCSB -VS- CFR Cluj
-Errror 7887 -------------------------------- (1048, "Column 'edition_id' cannot be null")
+------------------------- 2022-12-17 01:20:02.360230
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:24:02.737340
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:28:02.121459
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:32:02.407993
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:36:01.966809
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:40:02.726954
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value
+------------------------- 2022-12-17 01:41:02.668468
+resultat 1 pour  Birmingham -VS- Reading
+resultat 1 pour  Bristol City -VS- Stoke
+resultat 1 pour  Burnley -VS- Middlesbrough
+resultat 1 pour  Cardiff -VS- Blackpool
+resultat 1 pour  Coventry -VS- Swansea
+resultat 1 pour  Huddersfield -VS- Watford
+resultat 1 pour  Hull -VS- Sunderland
+resultat 1 pour  Preston -VS- QPR
+resultat 1 pour  West Brom -VS- Rotherham
+resultat 1 pour  Norwich -VS- Blackburn
+resultat 1 pour  Luton -VS- Millwall
+resultat 1 pour  Wigan -VS- Sheffield United
+resultat 1 pour  Barnsley -VS- Burton
+resultat 1 pour  Bolton -VS- Exeter
+resultat 1 pour  Charlton -VS- Bristol Rvs
+resultat 1 pour  Cheltenham -VS- Lincoln
+resultat 1 pour  Derby -VS- Forest Green
+resultat 1 pour  Fleetwood Town -VS- Cambridge
+resultat 1 pour  Peterboro -VS- Shrewsbury
+resultat 1 pour  Plymouth -VS- Morecambe
+resultat 1 pour  Port Vale -VS- Accrington
+resultat 1 pour  Portsmouth -VS- Milton Keynes Dons
+resultat 1 pour  Sheffield Weds -VS- Oxford
+resultat 1 pour  Wycombe -VS- Ipswich
+resultat 1 pour  AFC Wimbledon -VS- Stevenage
+resultat 1 pour  Barrow -VS- Swindon
+resultat 1 pour  Bradford -VS- Rochdale
+resultat 1 pour  Colchester -VS- Salford
+resultat 1 pour  Doncaster -VS- Harrogate
+resultat 1 pour  Hartlepool -VS- Newport County
+resultat 1 pour  Leyton Orient -VS- Sutton
+resultat 1 pour  Mansfield -VS- Grimsby
+resultat 1 pour  Northampton -VS- Carlisle
+resultat 1 pour  Stockport -VS- Gillingham
+resultat 1 pour  Tranmere -VS- Crawley Town
+resultat 1 pour  Walsall -VS- Crewe
+resultat 1 pour  Pisa -VS- Brescia
+resultat 1 pour  Reggina -VS- Bari
+resultat 1 pour  Cittadella -VS- Sudtirol
+resultat 1 pour  Cosenza -VS- Ascoli
+resultat 1 pour  Modena -VS- Benevento
+resultat 1 pour  Parma -VS- Spal
+resultat 1 pour  Ternana -VS- Como
+resultat 1 pour  Palermo -VS- Cagliari
+resultat 1 pour  Genoa -VS- Frosinone
+resultat 1 pour  Perugia -VS- Venezia
+resultat 1 pour  Aberdeen -VS- Celtic
+resultat 1 pour  Hearts -VS- Kilmarnock
+resultat 1 pour  Livingston -VS- Dundee United
+resultat 1 pour  Motherwell -VS- St Mirren
+resultat 1 pour  Ross County -VS- St Johnstone
+resultat 1 pour  Dundee -VS- Cove Rangers
+resultat 1 pour  Hamilton -VS- Inverness C
+resultat 1 pour  Morton -VS- Queens Park
+resultat 1 pour  Partick -VS- Ayr
+resultat 1 pour  Raith Rvs -VS- Arbroath
+resultat 1 pour  Airdrie Utd -VS- Dunfermline
+resultat 1 pour  Alloa -VS- Falkirk
+resultat 1 pour  FC Edinburgh -VS- Montrose
+resultat 1 pour  Peterhead -VS- Clyde
+resultat 1 pour  Queen of Sth -VS- Kelty Hearts
+resultat 1 pour  Albion Rvs -VS- Elgin
+resultat 1 pour  Annan Athletic -VS- Bonnyrigg Rose
+resultat 1 pour  Dumbarton -VS- Stenhousemuir
+resultat 1 pour  East Fife -VS- Stranraer
+resultat 1 pour  Stirling -VS- Forfar
+resultat 1 pour  Tenerife -VS- Andorra
+resultat 1 pour  Lugo -VS- Granada
+resultat 1 pour  Mirandes -VS- Ponferradina
+resultat 1 pour  Cartagena -VS- Santander
+resultat 1 pour  Villarreal B -VS- Las Palmas
+resultat 1 pour  Oviedo -VS- Sp Gijon
+resultat 1 pour  Albacete -VS- Ibiza
+resultat 1 pour  Burgos -VS- Huesca
+resultat 1 pour  Levante -VS- Eibar
+resultat 1 pour  Malaga -VS- Alaves
+resultat 1 pour  Leganes -VS- Zaragoza
+Resultat 2 pour  FC Voluntari -VS- Farul Constanta
+Resultat 2 pour  Sepsi Sf. Gheorghe -VS- U. Cluj
+Resultat 2 pour  Univ. Craiova -VS- Chindia Targoviste
+Resultat 2 pour  FC Arges -VS- Mioveni
+Resultat 2 pour  Petrolul -VS- U Craiova 1948
+Resultat 2 pour  UTA Arad -VS- FC Rapid Bucuresti
+Resultat 2 pour  FCSB -VS- FC Botosani
+Resultat 2 pour  CFR Cluj -VS- FC Hermannstadt
+Errror 7887 -------------------------------- Cannot use None as a query value

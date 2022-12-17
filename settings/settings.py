@@ -137,8 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
 CRONJOBS = [
     # ('*/5 * * * *', 'myapp.cron.other_scheduled_job', ['arg1', 'arg2'], {'verbose': 0}),
     # ('0   4 * * *', 'django.core.management.call_command', '>> /tmp/scheduled_job.log'),
-    ('*/4 * * * *', 'fixtureApp.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "features/crons/logs/fixtures_job.log" ))),
-    ('*/4 * * * *', 'fixtureApp.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "features/crons/logs/results_job.log" ))),
+    ('* */1 * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
+    ('* */1 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
 ]
 
 
