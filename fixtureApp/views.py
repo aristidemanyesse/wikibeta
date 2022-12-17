@@ -41,11 +41,23 @@ def fixtures(request, year, month, day):
 @render_to('fixtureApp/match.html')
 def match(request, id):
     if request.method == "GET":
+        match = Match.objects.get(id=id)
+        print(match)
         confrontations = match.confrontations_directes()
         predictions = match.prediction_match.filter()
+        
+        home_last_matchs = match.home.get_last_matchs(match, number = 7, edition = True)
+        home_last_forms = match.home.get_last_form(match, number = 5, edition = True)
+        away_last_matchs = match.away.get_last_matchs(match, number = 7, edition = True)
+        away_last_forms = match.away.get_last_form(match, number = 5, edition = True)
 
         ctx = {
+            "match" : match,
             "confrontations" : confrontations[:10],
             "predictions" : predictions,
+            "home_last_matchs" : home_last_matchs,
+            "home_last_forms" : home_last_forms,
+            "away_last_matchs" : away_last_matchs,
+            "away_last_forms" : away_last_forms,
         }
         return ctx

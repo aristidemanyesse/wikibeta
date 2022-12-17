@@ -51,7 +51,6 @@ class EditionTeam(BaseModel):
                     return 3 if (match.home == self) else 0
                 elif result.result == "A":
                     return 3 if (match.away == self) else 0
-        return 0
         
         
         
@@ -65,22 +64,23 @@ class EditionTeam(BaseModel):
 
     def get_last_form(self, match, number = None, edition = False):
         matchs = self.get_last_matchs(match, number, edition)
-        return [x.form(self) for x in matchs]
+        return [self.form(x) for x in matchs]
     
     
     def last_stats(self, match, number = None, edition = False):
-        points = scored =  conceded = 0
+        total = points = scored =  conceded = 0
         matchs = self.get_last_matchs(match, number, edition)
         if len(matchs) ==0:
             return 0, 0, 0, 0, 0, 0
         for match in matchs:
             result = match.get_result()
             if result is not None:
+                total += 1
                 points    += self.points_for_this_macth(match)
                 scored    += result.home_score if match.home == self else result.away_score
                 conceded  += result.home_score if match.away == self else result.away_score
         
-        return points, round(points / len(matchs)), scored, scored/len(matchs), conceded, conceded/len(matchs)
+        return points, round((points / total), 2), scored, round((scored/total), 2), conceded, round((conceded/total), 2)
     
 
     

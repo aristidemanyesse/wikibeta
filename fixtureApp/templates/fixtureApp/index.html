@@ -158,27 +158,28 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {% for edition in datas %}
-                                <tr style="margin-top: 10%">
-                                    <td colspan="13">{{edition.competition}}</td>
+                        {% for edition in datas %}
+                        <tbody style="margin-top:15%">
+                                <tr>
+                                    <td colspan="13" class="bold">{{edition.competition.pays}} - {{edition.competition}}</td>
                                 </tr>
                                 {% for match in datas|dict_value:edition %}
+                                    {% with match.get_result as result %}
                                     <tr>
-                                        <td class="bold">{{match.date | naturalday}} {{match.hour}}</td>
+                                        <td class="">{{match.date | naturalday}} {{match.hour}}</td>
                                         <td class="text-left"  colspan="3">
                                             {% for pre in match.prediction_match.filter %}
                                                 <label class="label label-{% if pre.is_checked %}primary{% else %}default{% endif %}">{{ pre.type.code }}</label>
                                             {% endfor %}
                                         </td>
-                                        <td class="{% if match.get_result.home_score > match.get_result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                                        <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                                         <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                                         {% if match.is_finished %}
                                         <td class="text-center">
                                             {% if match.home_half_score is not None %}
                                                 <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
                                             {% endif %}
-                                            <p class="no-margins text-center text-small">{{match.get_result.home_score}} - {{match.get_result.away_score}}</p>
+                                            <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                                         </td>
                                         {% else %}
                                         <td class="text-center">
@@ -186,17 +187,18 @@
                                         </td>
                                         {% endif %}
                                         <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                        <td class="{% if match.get_result.home_score < match.get_result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                                        <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
                                         <td class="text-left"  colspan="3">
-                                            <label class="label label-{% if match.get_result.home_score > match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
-                                            <label class="label label-{% if match.get_result.home_score == match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
-                                            <label class="label label-{% if match.get_result.home_score < match.get_result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
+                                            <label class="label label-{% if result.home_score > result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
+                                            <label class="label label-{% if result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
+                                            <label class="label label-{% if result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                                         </td>
                                         <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                     </tr>
+                                    {% endwith %}
                                 {% endfor %}
+                            </tbody>
                             {% endfor %}
-                        </tbody>
                     </table>
                 </div>
             </div>

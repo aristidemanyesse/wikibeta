@@ -29,15 +29,18 @@
                 </div>
             </div>
             <div class="col-md-2 text-center">
-                {% if match.is_finished %} 
-                <h1 class="display-2 bold">{{match.home_score}} - {{match.away_score}}</h1>
-                <h4 class="display-2">{{match.home_half_score}} - {{match.away_half_score}}</h4> 
-                <h4 class="">{{match.date}}</h4> 
-                {% else %}
-                <h1 class="display-2">VS</h1>
-                <h4 class="m-t-sm text-center">{{match.date}}</h4>        
-                <h5 class="m-t-sm text-center">{{match.edition.competition}}</h5>  
-                {% endif %}
+                {% with match.get_result as result %}
+                    {% if match.is_finished %} 
+                    <h1 class="display-2 bold">{{result.home_score}} - {{result.away_score}}</h1>
+                    <h4 class="display-2">{{result.home_half_score}} - {{result.away_half_score}}</h4> 
+                    <h4 class="">{{match.date}}</h4> 
+                    {% else %}
+                    <h1 class="display-2">VS</h1>
+                    <h4 class="m-t-sm text-center">{{match.date}}</h4>        
+                    <h4 class="m-t-sm text-center">{{match.hour}}</h4>        
+                    <h5 class="m-t-sm text-center">{{match.edition.competition}}</h5>  
+                    {% endif %}
+                {% endwith %}
             </div>
             <div class="col-md-5">
                 <div class="row">
@@ -100,20 +103,22 @@
                 <div class="ibox-content">
                     <table class="table table-striped table-hover">
                         <tbody>
-                            {% for match in match.get_home_recents_matchs %}
-                            <tr>
-                                <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
-                                <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'fixtureApp:team' match.home %}">{{match.home}}</a></td>
-                                <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
-                                <td class="text-center">
-                                    <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
-                                    <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
-                                </td>
-                                <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'fixtureApp:team' match.away %}">{{match.away}}</a></td>
-                                <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
-                            </tr>
-                        {% endfor %}
+                            {% for match in home_last_matchs %}
+                                {% with match.get_result as result %}
+                                <tr>
+                                    <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                                    <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                                    <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                                    <td class="text-center">
+                                        <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                        <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                                    </td>
+                                    <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                                    <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                                    <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                                </tr>
+                                {% endwith %}
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -135,19 +140,21 @@
                 
                     <table class="table table-striped table-hover">
                         <tbody>
-                            {% for match in match.get_away_recents_matchs %}
+                            {% for match in away_last_matchs %}
+                                {% with match.get_result as result %}
                                 <tr>
                                     <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
-                                    <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'fixtureApp:team' match.home %}">{{match.home}}</a></td>
+                                    <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                                     <td class="text-center">
-                                        <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
-                                        <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
+                                        <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                        <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                                     </td>
                                     <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                    <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'fixtureApp:team' match.away %}">{{match.away}}</a></td>
+                                    <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
                                     <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                 </tr>
+                                {% endwith %}
                             {% endfor %}
                         </tbody>
                     </table>
@@ -192,27 +199,27 @@
                             </tr>
                             <tr>
                                  <td class="text-right">
-                                    {% for x in match.get_home_last_form %}
+                                    {% for x in home_last_forms %}
                                     <label class="label label-{{x|form_couleur}}">{{x}}</label>
                                 {% endfor %}
                                 </td>
                                 <td class="bold text-center">Forme du moment</td>
                                  <td class="text-left">
-                                    {% for x in match.get_away_last_form %}
+                                    {% for x in away_last_forms %}
                                     <label class="label label-{{x|form_couleur}}">{{x}}</label>
                                 {% endfor %}
                                 </td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored }}</td>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored|rounded }}</td>
                                 <td class="bold text-center">Moyenne de buts marquées</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored }}</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded }}</td>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
                                 <td class="bold text-center">Moyenne de buts encaissés</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded }}</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
@@ -268,24 +275,26 @@
 
     <div class="row">
         <div class="col-md-5">
-            <h4 class="bg-primary p-xs">Précédents matchs similaires</h4>
+            <h4 class="bg-primary p-xs">Précédents confrontations directes</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
                     {% for match in confrontations %}
-                    <tr>
-                        <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
-                        <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'fixtureApp:team' match.home %}">{{match.home}}</a></td>
-                        <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
-                        <td class="text-center">
-                            <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
-                            <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
-                        </td>
-                        <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                        <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'fixtureApp:team' match.away %}">{{match.away}}</a></td>
-                        <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
-                    </tr>
-                {% endfor %}                    
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center">
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}                    
                 </tbody>
             </table>
         </div>

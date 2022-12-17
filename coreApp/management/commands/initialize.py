@@ -13,17 +13,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        # print("Super admin registered")
-        # user = User(
-        #     username = "admin",
-        #     email = "",
-        #     first_name = "Super",
-        #     last_name = "Administrateur",
-        # )
-        # user.set_password("12345678")
-        # user.is_superuser = True
-        # user.is_staff = True
-        # user.save()
+        print("Super admin registered")
+        user = User(
+            username = "admin",
+            email = "",
+            first_name = "Super",
+            last_name = "Administrateur",
+        )
+        user.set_password("12345678")
+        user.is_superuser = True
+        user.is_staff = True
+        user.save()
         
         
         datas = {

@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
                     for file in files:
                         while threading.active_count() >= 130:
-                            time.sleep(300)
+                            time.sleep(120)
                         print("START: Current active thread count ---------------: ", threading.active_count())
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
@@ -37,7 +37,7 @@ class Command(BaseCommand):
 
                 else:
                     while threading.active_count() >= 130:
-                        time.sleep(300)
+                        time.sleep(120)
                     print("START: Current active thread count ---------------: ", threading.active_count())
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))

@@ -40,34 +40,27 @@ def predict(match):
                         pct = p
                     )
         
-    print("Prédiction pour le match", match)   
-    # return 0
-    #     total = 0     
-    #     for x in matchs:
-    #         ppg_home = x.get_home_before_stats().ppg
-    #         ppg_away = x.get_away_before_stats().ppg
+        total = 0     
+        for x in matchs:
+            ppg_home = x.get_home_before_stats().ppg
+            ppg_away = x.get_away_before_stats().ppg
             
-    #         if ppg_home == ppg_away :
-    #             total += 1
-    #         elif ppg_home > ppg_away and x.home_score >= x.away_score :
-    #             total += 1
-    #         elif ppg_home < ppg_away and x.home_score <= x.away_score :
-    #             total += 1
-            
-    #     p = (total / len(matchs)) * 100
-    #     if p >= 90:
-    #         Prediction.objects.create(
-    #             mode = ModePrediction.get("M4"),
-    #             type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
-    #             match = match,
-    #             pct = p
-    #         )
-    #     elif p <= 10:
-    #         Prediction.objects.create(
-    #             mode = ModePrediction.get("M4"),
-    #             type = TypePrediction.get("VN_{}".format("Away" if ppg_home >= ppg_away else "Home" )),
-    #             match = match,
-    #             pct = 100 - p
-    #         )
+            if ppg_home == ppg_away :
+                total += 1
+            elif ppg_home > ppg_away and x.home_score >= x.away_score :
+                total += 1
+            elif ppg_home < ppg_away and x.home_score <= x.away_score :
+                total += 1
+        
+            p = (total / len(matchs)) * 100
+            if p >= 85:
+                Prediction.objects.create(
+                    mode = ModePrediction.get("M4"),
+                    type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
+                    match = match,
+                    pct = p
+                )
+                
+        print("Prédiction pour le match", match)   
 
     

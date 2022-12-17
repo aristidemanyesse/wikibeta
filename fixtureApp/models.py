@@ -8,6 +8,14 @@ from statsApp.models import *
 from bettingApp.models import *
 
 
+import predictionApp.functions.p1 as p1
+import predictionApp.functions.p2 as p2
+import predictionApp.functions.p3 as p3
+import predictionApp.functions.p4 as p4
+
+
+
+
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
     hour              = models.TimeField( null = True, blank=True)
@@ -137,3 +145,8 @@ def sighandler(instance, created, **kwargs):
                 goals_conceded = conceded,
                 avg_goals_conceded = avg_goals_conceded
             )
+            
+            p1.predict(instance)
+            p2.predict(instance)
+            p3.predict(instance)
+            p4.predict(instance)

@@ -28,8 +28,6 @@ class Competition(BaseModel):
     class Meta:
         ordering = ['name']
 
-    def __str__(self):
-        return ""
 
 class Edition(BaseModel):
     name          = models.CharField(max_length = 255, null = True, blank=True)
