@@ -3,10 +3,9 @@ from django.db.models import Avg, Sum, Q
 from annoying.decorators import signals
 from coreApp.models import BaseModel
 from coreApp.functions import *
-from teamApp.models import *
 from statsApp.models import *
 from bettingApp.models import *
-
+import threading, time
 
 import predictionApp.functions.p1 as p1
 import predictionApp.functions.p2 as p2
@@ -37,21 +36,26 @@ class Match(BaseModel):
        
     
     def confrontations_directes(self, number = 50):
-        matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lt = self.date).exclude(id = self.id).order_by("-date")        
+        matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lt = self.date, is_finished = True).exclude(id = self.id).order_by("-date")        
         return matchs[:number]
     
     
     def similaires_ppg(self, number = 50):
         matchs = []
-        ppg_home = self.before_stat_match.filter(team = self.home).first().ppg
-        ppg_away = self.before_stat_match.filter(team = self.away).first().ppg
-        
-        befores = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
-        for bef in befores:
-            if bef.team == bef.match.home:
-                befs = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_away), match = bef.match).exclude(id = bef.id)
-                if len(befs) == 1:
-                    matchs.append(bef.match)
+        home = self.before_stat_match.filter(team = self.home).first()
+        if home is not None:
+            ppg_home = home.ppg
+            
+            away = self.before_stat_match.filter(team = self.away).first()
+            if away is not None:
+                ppg_away = away.ppg
+                
+                befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-8).exclude(id = self.id).order_by("-match__date")
+                for bef in befores:
+                    if bef.team == bef.match.home:
+                        befs = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_away), match = bef.match).exclude(id = bef.id)
+                        if len(befs) == 1:
+                            matchs.append(bef.match)
                 
         return matchs[:number]
 
@@ -60,15 +64,21 @@ class Match(BaseModel):
 
     def similaires_ppg2(self, number = 50):
         matchs = []
-        ppg_home = self.before_stat_match.filter(team = self.home).first().ppg
-        ppg_away = self.before_stat_match.filter(team = self.away).first().ppg
-        
-        befores = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
-        for bef in befores:
-            if bef.team == bef.match.home:
-                befs = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_away), match = bef.match).exclude(id = bef.id)
-                if len(befs) == 1:
-                    matchs.append(bef.match)
+        home = self.before_stat_match.filter(team = self.home).first()
+        if home is not None:
+            ppg_home = home.ppg
+            
+            away = self.before_stat_match.filter(team = self.away).first()
+            if away is not None:
+                ppg_away = away.ppg
+                
+                
+                befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-5).exclude(id = self.id).order_by("-match__date")
+                for bef in befores:
+                    if bef.team == bef.match.home:
+                        befs = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_away), match = bef.match).exclude(id = bef.id)
+                        if len(befs) == 1:
+                            matchs.append(bef.match)
                 
         return matchs[:number]
 
@@ -79,7 +89,7 @@ class Match(BaseModel):
         matchs = []
         actual = self.match_odds.filter(booker__code = "B365").first()
         if actual is not None:
-            odds = OddsMatch.objects.filter(home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date).exclude(id = self.id).order_by("-match__date")
+            odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-5).exclude(id = self.id).order_by("-match__date")
             for odd in odds:
                 if intervale(odd.home) == intervale(actual.home):
                     befs = OddsMatch.objects.filter(away__range = intervale(actual.away), match = odd.match).exclude(id = odd.id)
@@ -131,6 +141,7 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
+    print("------------------------------")
     if created:
         #creation du before stat pour chaque equipe
         for team in [instance.home, instance.away]:
@@ -150,3 +161,19 @@ def sighandler(instance, created, **kwargs):
             p2.predict(instance)
             p3.predict(instance)
             p4.predict(instance)
+            # p = threading.Thread(target=p1.predict, args=(instance,))
+            # p.setDaemon(True)
+            # p.start()
+            
+            # p = threading.Thread(target=p2.predict, args=(instance,))
+            # p.setDaemon(True)
+            # p.start()
+            
+            # p = threading.Thread(target=p3.predict, args=(instance,))
+            # p.setDaemon(True)
+            # p.start()
+
+            # p = threading.Thread(target=p4.predict, args=(instance,))
+            # p.setDaemon(True)
+            # p.start()
+            

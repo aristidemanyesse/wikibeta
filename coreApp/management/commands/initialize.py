@@ -34,7 +34,7 @@ class Command(BaseCommand):
             "p2_5":"Plus de 2,5buts dans le match",
             "p3_5":"Plus de 3,5buts dans le match",
             "VN_Home":"Equipe à domicile ne perd pas",
-            "VN_Away":"Equipe à domicile ne perd pas",
+            "VN_Away":"Equipe à l'exterieur ne perd pas",
             "12":"Pas de nul dans le match"
         }
         for x in datas:

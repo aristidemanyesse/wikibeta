@@ -1,4 +1,4 @@
-import requests, os, csv
+import requests, os, csv, time
 from django.core.management.base import BaseCommand, CommandError
 from predictionApp.models import *
 from settings import settings
@@ -11,13 +11,18 @@ from datetime import datetime
 
 def function():
     print("-------------------------", datetime.now())
+    
     try:
         url = ['https://www.football-data.co.uk/fixtures.csv', "https://www.football-data.co.uk/new_league_fixtures.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
             with open(os.path.join(settings.BASE_DIR, 'datas/fixtures/data_{}.csv'.format(i)), 'wb') as file:
                 file.write(response.content)
-        
+    except Exception as e:
+        print("Errror ------------", e)
+    
+    
+    try:
         file = os.path.join(settings.BASE_DIR, "datas/fixtures/data_0.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
@@ -47,12 +52,20 @@ def function():
                     away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
                     
                     #enregistrement du match et des infos du match
-                    match, created = Match.objects.get_or_create(
+                    match = Match.objects.filter(
                         date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
                         hour              = get(row, header, "Time") or None,
                         home              = home,
                         away              = away,
                         edition           = edicompet
+                        ).first()
+                    if match is None:
+                        match = Match.objects.create(
+                            date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
+                            hour              = get(row, header, "Time") or None,
+                            home              = home,
+                            away              = away,
+                            edition           = edicompet
                         )
                     
                     print("resultat 1 pour ", match)

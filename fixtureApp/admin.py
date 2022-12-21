@@ -14,7 +14,7 @@ class MatchAdmin(admin.ModelAdmin):
     list_filter = (
         ('date', DateFieldListFilter),
     )
-    list_display = ['date', 'home', "away", "is_finished", "edition"]
+    list_display = ['date', "hour", 'home', "away", "is_finished", "edition"]
 
 
 

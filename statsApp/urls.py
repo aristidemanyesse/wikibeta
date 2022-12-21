@@ -6,5 +6,5 @@ from . import views
 
 app_name = "statsApp"
 urlpatterns = [
-
+    path('', views.statistiques, name="statistiques"),
 ]

@@ -13,10 +13,10 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:            
             
-            for edit in EditionCompetition.objects.filter():
-                if threading.active_count() > 145:
-                    time.sleep(360)
+            for edit in EditionCompetition.objects.filter().order_by("edition__name"):
                 print("START: Current active thread count ---------------: ", threading.active_count())
+                while threading.active_count() > 130:
+                    time.sleep(300)
                 
                 p = threading.Thread(target=p1.function, args=(edit,))
                 p.setDaemon(True)

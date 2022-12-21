@@ -1,8 +1,6 @@
 from predictionApp.models import *
 from fixtureApp.models import *
 
-    # for match in Match.objects.filter(is_finished = False).order_by("-date"):
-    #     print("Prédiction pour {}".format(match))
 def function(edition):
     for match in edition.edition_du_match.all():
         predict(match)
@@ -40,4 +38,3 @@ def predict(match):
                         pct = p
                     )
 
-    print("Prédiction pour le match", match)   

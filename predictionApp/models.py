@@ -15,6 +15,9 @@ class ModePrediction(BaseModel):
         return cls.objects.get(name = mode)
 
 
+    def ratio_by_type(self, type):
+        total = Prediction.objects.filter(type = type, mode = self).exclude(is_checked = None)
+        return round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
     
 
 class TypePrediction(BaseModel):
@@ -40,22 +43,24 @@ class Prediction(BaseModel):
 
 
     def validity(self):
-        if self.type == TypePrediction.get("p1_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) > 1.5
-        if self.type == TypePrediction.get("p2_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) > 2.5
-        if self.type == TypePrediction.get("p3_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) > 3.5
-        if self.type == TypePrediction.get("m1_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) < 1.5
-        if self.type == TypePrediction.get("m2_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) < 2.5
-        if self.type == TypePrediction.get("m3_5"):
-            self.is_checked = (self.match.get_result().home_score + self.match.get_result().away_score) < 3.5
-        if self.type == TypePrediction.get("VN_Home"):
-            self.is_checked = self.match.get_result().home_score >= self.match.get_result().away_score
-        if self.type == TypePrediction.get("12"):
-            self.is_checked = self.match.get_result().home_score != self.match.get_result().away_score
-        if self.type == TypePrediction.get("VN_Away"):
-            self.is_checked = self.match.get_result().home_score <= self.match.get_result().away_score
-        self.save()
+        if self.match.is_finished:
+            result = self.match.get_result()
+            if self.type == TypePrediction.get("p1_5"):
+                self.is_checked = (result.home_score + result.away_score) > 1.5
+            if self.type == TypePrediction.get("p2_5"):
+                self.is_checked = (result.home_score + result.away_score) > 2.5
+            if self.type == TypePrediction.get("p3_5"):
+                self.is_checked = (result.home_score + result.away_score) > 3.5
+            if self.type == TypePrediction.get("m1_5"):
+                self.is_checked = (result.home_score + result.away_score) < 1.5
+            if self.type == TypePrediction.get("m2_5"):
+                self.is_checked = (result.home_score + result.away_score) < 2.5
+            if self.type == TypePrediction.get("m3_5"):
+                self.is_checked = (result.home_score + result.away_score) < 3.5
+            if self.type == TypePrediction.get("VN_Home"):
+                self.is_checked = result.home_score >= result.away_score
+            if self.type == TypePrediction.get("12"):
+                self.is_checked = result.home_score != result.away_score
+            if self.type == TypePrediction.get("VN_Away"):
+                self.is_checked = result.home_score <= result.away_score
+            self.save()

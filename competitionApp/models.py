@@ -38,7 +38,6 @@ class Edition(BaseModel):
     def next(self):
         if len(self.name) > 5:
             t = self.name.split("-")
-            print("%s: %s" % (self.name, t))
             return "{}-{}".format(int(t[0])+1, int(t[1])+1)
         else:
             return "{}".format(int(self.name)+1)

@@ -31,4 +31,4 @@ class PredictionAdmin(admin.ModelAdmin):
     list_filter = (
         ('match__date', DateFieldListFilter),
     )
-    list_display = ['mode', 'type', 'pct', 'is_checked']
+    list_display = ["match", 'mode', 'type', 'pct', 'is_checked']

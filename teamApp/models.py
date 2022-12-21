@@ -1,8 +1,7 @@
 from django.db import models
 from django.db.models import Avg, Sum, Q
 from coreApp.models import BaseModel
-from coreApp.functions import *
-import fixtureApp.models
+from fixtureApp.models import Match
 
     
 class Team(BaseModel):
@@ -56,7 +55,7 @@ class EditionTeam(BaseModel):
         
         
     def get_last_matchs(self, match, number = None, edition = False):
-        matchs = fixtureApp.models.Match.objects.filter(date__lt = match.date).filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__lt = match.date).order_by("-date")
         if edition:
             matchs = matchs.filter(edition = match.edition)
         return matchs[:EditionTeam.NB if number is None else number]
@@ -72,13 +71,14 @@ class EditionTeam(BaseModel):
         matchs = self.get_last_matchs(match, number, edition)
         if len(matchs) ==0:
             return 0, 0, 0, 0, 0, 0
+        
         for match in matchs:
             result = match.get_result()
             if result is not None:
-                total += 1
-                points    += self.points_for_this_macth(match)
-                scored    += result.home_score if match.home == self else result.away_score
-                conceded  += result.home_score if match.away == self else result.away_score
+                total       += 1
+                points      += self.points_for_this_macth(match)
+                scored      += result.home_score if match.home == self else result.away_score
+                conceded    += result.home_score if match.away == self else result.away_score
         
         return points, round((points / total), 2), scored, round((scored/total), 2), conceded, round((conceded/total), 2)
     
@@ -96,7 +96,7 @@ class EditionTeam(BaseModel):
 
     
     def plus_but(self, nb):
-        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -106,7 +106,7 @@ class EditionTeam(BaseModel):
 
 
     def moins_but(self, nb):
-        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -116,7 +116,7 @@ class EditionTeam(BaseModel):
     
     
     def ht_plus_but(self, nb):
-        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -127,7 +127,7 @@ class EditionTeam(BaseModel):
 
 
     def ht_moins_but(self, nb):
-        matchs = fixtureApp.models.Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()

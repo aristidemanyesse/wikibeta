@@ -32,6 +32,7 @@ class ResultMatch(BaseModel):
     def __str__(self):
         return str(self.match)+" (resultast)"
     
+    
 class ExtraInfosMatch(BaseModel):
     match                   = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="extra_match")
     home_shots              = models.IntegerField(default = 0, null = True, blank=True)

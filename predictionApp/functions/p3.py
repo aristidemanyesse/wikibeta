@@ -1,9 +1,7 @@
 from predictionApp.models import *
 from fixtureApp.models import *
 
-    # for match in Match.objects.filter(is_finished = False).order_by("-date"):
-    #     print("Prédiction pour {}".format(match))
-    
+
 def function(edition):
     for match in edition.edition_du_match.all():
         predict(match)
@@ -45,21 +43,22 @@ def predict(match):
             ppg_home = x.get_home_before_stats().ppg
             ppg_away = x.get_away_before_stats().ppg
             
+            result = x.get_result()
+            
             if ppg_home == ppg_away :
                 total += 1
-            elif ppg_home > ppg_away and x.home_score >= x.away_score :
+            elif ppg_home > ppg_away and result.home_score >= result.away_score :
                 total += 1
-            elif ppg_home < ppg_away and x.home_score <= x.away_score :
+            elif ppg_home < ppg_away and result.home_score <= result.away_score :
                 total += 1
         
-            p = (total / len(matchs)) * 100
-            if p >= 85:
-                Prediction.objects.create(
-                    mode = ModePrediction.get("M3"),
-                    type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
-                    match = match,
-                    pct = p
-                )
+        p = (total / len(matchs)) * 100
+        if p >= 85:
+            Prediction.objects.create(
+                mode = ModePrediction.get("M3"),
+                type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
+                match = match,
+                pct = p
+            )
                 
-        print("Prédiction pour le match", match)   
                 

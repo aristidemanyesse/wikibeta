@@ -169,7 +169,7 @@
                                         <td class="">{{match.date | naturalday}} {{match.hour}}</td>
                                         <td class="text-left"  colspan="3">
                                             {% for pre in match.prediction_match.filter %}
-                                                <label class="label label-{% if pre.is_checked %}primary{% else %}default{% endif %}">{{ pre.type.code }}</label>
+                                                <label class="label label-{% if pre.is_checked %}primary{% else %}default{% endif %}">{{ pre.mode }}:{{ pre.type.code }}</label>
                                             {% endfor %}
                                         </td>
                                         <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>

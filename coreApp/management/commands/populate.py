@@ -26,24 +26,24 @@ class Command(BaseCommand):
                 if os.path.isdir("datas/lot/{}".format(x)) : 
                     files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
                     for file in files:
-                        while threading.active_count() >= 130:
-                            time.sleep(120)
                         print("START: Current active thread count ---------------: ", threading.active_count())
+                        while threading.active_count() >= 140:
+                            time.sleep(120)
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)
                         p.start()
-                        time.sleep(1)
+                        time.sleep(3)
 
                 else:
-                    while threading.active_count() >= 130:
-                        time.sleep(120)
                     print("START: Current active thread count ---------------: ", threading.active_count())
+                    while threading.active_count() >= 140:
+                        time.sleep(120)
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))
                     p.setDaemon(True)
                     p.start()
-                    time.sleep(1)
+                    time.sleep(3)
                     
                     
             self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))

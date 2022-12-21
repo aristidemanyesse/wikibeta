@@ -42,7 +42,6 @@ def fixtures(request, year, month, day):
 def match(request, id):
     if request.method == "GET":
         match = Match.objects.get(id=id)
-        print(match)
         confrontations = match.confrontations_directes()
         predictions = match.prediction_match.filter()
         
