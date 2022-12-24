@@ -16,7 +16,6 @@ class Pays(BaseModel):
         ordering = ['name']
 
 
-
 class TypeCompetition(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
         
@@ -254,5 +253,29 @@ class EditionCompetition(BaseModel):
     
     
     
-    
-    
+
+class Ranking(BaseModel):
+    start_date    = models.DateField(null = True, blank=True)
+    edition       = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_rankings")
+
+        
+        
+class LigneRanking(BaseModel):
+    ranking   = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="ranking_lignes")
+    team      = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="team_lignes_rankings")
+    mj        = models.IntegerField(default= 0, null = True, blank=True)
+    win       = models.IntegerField(default= 0, null = True, blank=True)
+    draw      = models.IntegerField(default= 0, null = True, blank=True)
+    lose      = models.IntegerField(default= 0, null = True, blank=True)
+    gs        = models.IntegerField(default= 0, null = True, blank=True)
+    ga        = models.IntegerField(default= 0, null = True, blank=True)
+    gd        = models.IntegerField(default= 0, null = True, blank=True)
+    form      = models.CharField(max_length=255, default= "", null = True, blank=True)
+    pts       = models.IntegerField(default= 0, null = True, blank=True)
+    cs        = models.IntegerField(default= 0, null = True, blank=True)
+    btts      = models.IntegerField(default= 0, null = True, blank=True)
+    avg_gs    = models.FloatField(default = 0.0, null = True, blank=True)
+    avg_ga    = models.FloatField(default = 0.0, null = True, blank=True)
+    p1_5      = models.FloatField(default = 0.0, null = True, blank=True)
+    p2_5      = models.FloatField(default = 0.0, null = True, blank=True)
+    m3_5      = models.FloatField(default = 0.0, null = True, blank=True)
