@@ -107,8 +107,8 @@ class Match(BaseModel):
         return self.away.get_before_stats(self)
     
 
-    def get_odds(self, code = "B365"):
-        return self.match_odds.filter(booker__code = code).first()
+    def get_odds(self):
+        return self.match_odds.filter().first()
     
 
 
@@ -141,7 +141,7 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
-    print("------------------------------")
+    print(instance)
     if created:
         #creation du before stat pour chaque equipe
         for team in [instance.home, instance.away]:
@@ -157,10 +157,10 @@ def sighandler(instance, created, **kwargs):
                 avg_goals_conceded = avg_goals_conceded
             )
             
-            p1.predict(instance)
-            p2.predict(instance)
-            p3.predict(instance)
-            p4.predict(instance)
+            # p1.predict(instance)
+            # p2.predict(instance)
+            # p3.predict(instance)
+            # p4.predict(instance)
             # p = threading.Thread(target=p1.predict, args=(instance,))
             # p.setDaemon(True)
             # p.start()

@@ -10,7 +10,6 @@ from datetime import datetime
 import time
 
 def function():
-    time.sleep(3)
     print("-------------------------", datetime.now())
 
     try:

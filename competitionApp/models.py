@@ -14,16 +14,18 @@ class Pays(BaseModel):
 
     class Meta:
         ordering = ['name']
+
+
+
+class TypeCompetition(BaseModel):
+    name    = models.CharField(max_length = 255, null = True, blank=True)
         
-    def __str__(self):
-        return self.name
-
-
 
 class Competition(BaseModel):
     name    = models.CharField(max_length = 255, default="", null = True, blank=True)
     code    = models.CharField(max_length = 255, default="", null = True, blank=True)
-    pays    = models.ForeignKey(Pays, on_delete = models.CASCADE, related_name="pays_de_competition")
+    type    = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
+    pays    = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
 
     class Meta:
         ordering = ['name']
@@ -116,123 +118,137 @@ class EditionCompetition(BaseModel):
     
     
     def cs(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_score == 0 or  match.result_match.all().first().away_score == 0:
+            result = match.get_result()
+            if result.home_score == 0 or  result.away_score == 0:
                 total +=1
         return total
     
     def half_cs(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None:
-                if match.result_match.all().first().home_half_score == 0 or match.result_match.all().first().away_half_score == 0:
+            result = match.get_result()
+            if result.home_half_score is not None:
+                if result.home_half_score == 0 or result.away_half_score == 0:
                     total +=1
         return total
 
 
     def btts(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_score > 0 and match.result_match.all().first().away_score > 0:
+            result = match.get_result()
+            if result.home_score > 0 and result.away_score > 0:
                 total +=1
         return total
     
     
     def half_btts(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None:
-                if match.result_match.all().first().home_half_score > 0 and  match.result_match.all().first().away_half_score > 0:
+            result = match.get_result()
+            if result.home_half_score is not None:
+                if result.home_half_score > 0 and  result.away_half_score > 0:
                     total +=1
         return total
     
 
     def nul_nul(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_score == 0 and match.result_match.all().first().away_score == 0:
+            result = match.get_result()
+            if result.home_score == 0 and result.away_score == 0:
                 total +=1
         return total
     
     
     def half_nul_nul(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None:
-                if match.result_match.all().first().home_half_score == 0 and  match.result_match.all().first().away_half_score == 0:
+            result = match.get_result()
+            if result.home_half_score is not None:
+                if result.home_half_score == 0 and  result.away_half_score == 0:
                     total +=1
         return total
     
     
     
     def avg_buts(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            total += match.result_match.all().first().home_score + match.result_match.all().first().away_score
+            result = match.get_result()
+            total += result.home_score + result.away_score
         return round(total / len(matchs), 2) if len(matchs) > 0 else 0
     
     
     def half_avg_buts(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None:
-                total += match.result_match.all().first().home_half_score + match.result_match.all().first().away_half_score
+            result = match.get_result()
+            if result.home_half_score is not None:
+                total += result.home_half_score + result.away_half_score
         return round(total / len(matchs), 2) if len(matchs) > 0 else 0
     
     
     def second_avg_buts(self):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None:
-                total += match.result_match.all().first().home_score  - match.result_match.all().first().home_half_score + match.result_match.all().first().away_score - match.result_match.all().first().away_half_score
+            result = match.get_result()
+            if result.home_half_score is not None:
+                total += result.home_score  - result.home_half_score + result.away_score - result.away_half_score
         return round(total / len(matchs), 2) if len(matchs) > 0 else 0
     
         
                 
     def plus_but(self, nb):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_score + match.result_match.all().first().away_score > nb:
+            print("----", match, match.date)
+            result = match.get_result()
+            if result.home_score + result.away_score > nb:
                 total += 1
         return total
 
 
     def moins_but(self, nb):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_score + match.result_match.all().first().away_score < nb:
+            result = match.get_result()
+            if result.home_score + result.away_score < nb:
                 total += 1
         return total
     
     
     def ht_plus_but(self, nb):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None :
-                if match.result_match.all().first().home_half_score + match.result_match.all().first().away_half_score > nb:
+            result = match.get_result()
+            if result.home_half_score is not None :
+                if result.home_half_score + result.away_half_score > nb:
                     total += 1
         return total
 
 
     def ht_moins_but(self, nb):
-        matchs = self.edition_du_match.filter()
+        matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            if match.result_match.all().first().home_half_score is not None :
-                if match.result_match.all().first().home_half_score + match.result_match.all().first().away_half_score < nb:
+            result = match.get_result()
+            if result.home_half_score is not None :
+                if result.home_half_score + result.away_half_score < nb:
                     total += 1
         return total
     

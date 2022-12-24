@@ -18,7 +18,6 @@ def pays(request):
 def country(request, pays):
     if request.method == "GET":
         country = Pays.objects.get(name = pays)
-        print(country)
         ctx = {"country" : country}
         return ctx
         

@@ -23,6 +23,10 @@ def home(request):
 @render_to('fixtureApp/index.html')
 def fixtures(request, year, month, day):
     if request.method == "GET":
+        datas = Prediction.objects.filter(is_checked = None)
+        for predict in datas:
+            predict.validity()
+            
         date = datetime(year, month, day)
         datas = {}
         for edition in EditionCompetition.objects.filter(is_finished=False):

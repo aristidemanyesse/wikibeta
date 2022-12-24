@@ -37,7 +37,6 @@ def statistiques(request):
             
         predictions = Prediction.objects.exclude(is_checked = None)
         success = predictions.filter(is_checked = True)
-        ratio = int(round((success.count() / predictions.count())*100, 2)) if predictions.count() > 0 else 0
         ratio = round((success.count() / predictions.count())*100, 2) if predictions.count() > 0 else 0
         
         matchs = Match.objects.filter(is_finished=False)

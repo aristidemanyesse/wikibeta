@@ -10,7 +10,8 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        try:            
+        try:       
+            
             # FOR ALL BOOKMAKERS ##
             with open("datas/bookmakers.txt",'rt', encoding='utf-8' ) as file:
                 for line in file:
@@ -28,22 +29,22 @@ class Command(BaseCommand):
                     for file in files:
                         print("START: Current active thread count ---------------: ", threading.active_count())
                         while threading.active_count() >= 140:
-                            time.sleep(120)
+                            time.sleep(200)
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)
                         p.start()
-                        time.sleep(3)
+                        time.sleep(1)
 
                 else:
                     print("START: Current active thread count ---------------: ", threading.active_count())
                     while threading.active_count() >= 140:
-                        time.sleep(120)
+                        time.sleep(200)
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))
                     p.setDaemon(True)
                     p.start()
-                    time.sleep(3)
+                    time.sleep(1)
                     
                     
             self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))

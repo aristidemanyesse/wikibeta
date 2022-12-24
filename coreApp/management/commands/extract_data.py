@@ -14,8 +14,8 @@ countries = {
     "E2":"England",
     "E3":"England",
     "EC":"England",
-    "F1":"Finland",
-    "F2":"Finland",
+    "F1":"France",
+    "F2":"France",
     "G1":"Greece",
     "I1":"Italia",
     "I2":"Italia",
@@ -118,6 +118,8 @@ def save_from_dir(path):
                     home_red_cards          = get(row, header, "HR")
                     away_red_cards          = get(row, header, "AR")
 
+                    if home == "" or away == "":
+                        continue
                     #enregistrement des équipes
                     team, created = Team.objects.get_or_create(name = home, pays = pays)
                     home, created = EditionTeam.objects.get_or_create(team = team, edition = edicompet)
@@ -135,47 +137,50 @@ def save_from_dir(path):
                         is_finished       = True
                         )
                     
-                    info, created = ResultMatch.objects.get_or_create(
-                        match             = match,
-                        home_score        = home_score,
-                        away_score        = away_score,
-                        result            = result,
-                        home_half_score   = home_half_score,
-                        away_half_score   = away_half_score,
-                        result_half       = result_half
-                        )
-                    
-                    extra, created = ExtraInfosMatch.objects.get_or_create(
-                        match                   = match,
-                        home_shots              = home_shots,
-                        away_shots              = away_shots,
-                        home_shots_on_target    = home_shots_on_target,
-                        away_shots_on_target    = away_shots_on_target,
-                        home_corners            = home_corners,
-                        away_corners            = away_corners,
-                        home_fouls              = home_fouls,
-                        away_fouls              = away_fouls,
-                        home_offsides           = home_offsides,
-                        away_offsides           = away_offsides,
-                        home_yellow_cards       = home_yellow_cards,
-                        away_yellow_cards       = away_yellow_cards,
-                        home_red_cards          = home_red_cards,
-                        away_red_cards          = away_red_cards
-                        )
-                    
-                    
-                    #enregistrement des cotes
-                    for booker in Bookmaker.objects.all():
-                        if booker_listed(booker, header):
-                            code = booker.code
-                            oddsmatch, created = OddsMatch.objects.get_or_create(
-                                match = match, 
-                                booker = booker,
-                                home = float(get(row, header, code+"H") or 0.0),
-                                draw = float(get(row, header, code+"D") or 0.0),
-                                away = float(get(row, header, code+"A") or 0.0)
-                                )
-                            
+                    if created:
+                        info, created = ResultMatch.objects.get_or_create(
+                            match             = match,
+                            home_score        = home_score,
+                            away_score        = away_score,
+                            result            = result,
+                            home_half_score   = home_half_score,
+                            away_half_score   = away_half_score,
+                            result_half       = result_half
+                            )
+                        
+                        extra, created = ExtraInfosMatch.objects.get_or_create(
+                            match                   = match,
+                            home_shots              = home_shots,
+                            away_shots              = away_shots,
+                            home_shots_on_target    = home_shots_on_target,
+                            away_shots_on_target    = away_shots_on_target,
+                            home_corners            = home_corners,
+                            away_corners            = away_corners,
+                            home_fouls              = home_fouls,
+                            away_fouls              = away_fouls,
+                            home_offsides           = home_offsides,
+                            away_offsides           = away_offsides,
+                            home_yellow_cards       = home_yellow_cards,
+                            away_yellow_cards       = away_yellow_cards,
+                            home_red_cards          = home_red_cards,
+                            away_red_cards          = away_red_cards
+                            )
+                        
+                        
+                        #enregistrement des cotes
+                        for booker in Bookmaker.objects.all():
+                            if booker_listed(booker, header):
+                                code = booker.code
+                                if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0:
+                                    continue
+                                oddsmatch, created = OddsMatch.objects.get_or_create(
+                                    match = match, 
+                                    booker = booker,
+                                    home = float(get(row, header, code+"H")),
+                                    draw = float(get(row, header, code+"D")),
+                                    away = float(get(row, header, code+"A"))
+                                    )
+                                
 
 
 
@@ -207,9 +212,12 @@ def save_from_file(path):
             pa = get(row, header, "Country") or ""
             pays, created = Pays.objects.get_or_create(name = pa.capitalize())
     
-            edition = get(row, header, "Season") or ""
-            if len(edition) > 5:
+            edition = get(row, header, "Season")
+            if len(edition) > 8:
                 edition = "{}-{}".format(edition.split("/")[0], edition.split("/")[1])
+                
+            if edition == "" or edition is None:
+                continue
             edition_, created = Edition.objects.get_or_create(name = edition)
             
             compet             = get(row, header, "League") or ""
@@ -243,6 +251,8 @@ def save_from_file(path):
                 home_red_cards          = get(row, header, "HR")
                 away_red_cards          = get(row, header, "AR")
 
+                if home == "" or away == "":
+                    continue
                 #enregistrement des équipes
                 team, created = Team.objects.get_or_create(name = home, pays = pays)
                 home, created = EditionTeam.objects.get_or_create(team = team, edition = edicompet)
@@ -260,43 +270,48 @@ def save_from_file(path):
                     is_finished       = True
                     )
                 
-                info, created = ResultMatch.objects.get_or_create(
-                    match             = match,
-                    home_score        = home_score,
-                    away_score        = away_score,
-                    result            = result,
-                    home_half_score   = home_half_score,
-                    away_half_score   = away_half_score,
-                    result_half       = result_half
-                    )
+                if created:
+                    info, created = ResultMatch.objects.get_or_create(
+                        match             = match,
+                        home_score        = home_score,
+                        away_score        = away_score,
+                        result            = result,
+                        home_half_score   = home_half_score,
+                        away_half_score   = away_half_score,
+                        result_half       = result_half
+                        )
 
-                extra, created = ExtraInfosMatch.objects.get_or_create(
-                    match                   = match,
-                    home_shots              = home_shots,
-                    away_shots              = away_shots,
-                    home_shots_on_target    = home_shots_on_target,
-                    away_shots_on_target    = away_shots_on_target,
-                    home_corners            = home_corners,
-                    away_corners            = away_corners,
-                    home_fouls              = home_fouls,
-                    away_fouls              = away_fouls,
-                    home_offsides           = home_offsides,
-                    away_offsides           = away_offsides,
-                    home_yellow_cards       = home_yellow_cards,
-                    away_yellow_cards       = away_yellow_cards,
-                    home_red_cards          = home_red_cards,
-                    away_red_cards          = away_red_cards
-                    )
+                    extra, created = ExtraInfosMatch.objects.get_or_create(
+                        match                   = match,
+                        home_shots              = home_shots,
+                        away_shots              = away_shots,
+                        home_shots_on_target    = home_shots_on_target,
+                        away_shots_on_target    = away_shots_on_target,
+                        home_corners            = home_corners,
+                        away_corners            = away_corners,
+                        home_fouls              = home_fouls,
+                        away_fouls              = away_fouls,
+                        home_offsides           = home_offsides,
+                        away_offsides           = away_offsides,
+                        home_yellow_cards       = home_yellow_cards,
+                        away_yellow_cards       = away_yellow_cards,
+                        home_red_cards          = home_red_cards,
+                        away_red_cards          = away_red_cards
+                        )
                 
                 
-                #enregistrement des cotes
-                booker = Bookmaker.objects.get(code = "B365")
-                oddsmatch, created = OddsMatch.objects.get_or_create(
-                    match = match, 
-                    booker = booker,
-                    home = float(get(row, header, "Avg H") or 0.0),
-                    draw = float(get(row, header, "Avg D") or 0.0),
-                    away = float(get(row, header, "Avg A") or 0.0)
-                    )
-                        
+                    #enregistrement des cotes
+                    for booker in Bookmaker.objects.all():
+                        if booker_listed(booker, header):
+                            code = booker.code
+                            if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0:
+                                continue
+                            oddsmatch, created = OddsMatch.objects.get_or_create(
+                                match = match, 
+                                booker = booker,
+                                home = float(get(row, header, code+"H")),
+                                draw = float(get(row, header, code+"D")),
+                                away = float(get(row, header, code+"A"))
+                                )
+                            
 
