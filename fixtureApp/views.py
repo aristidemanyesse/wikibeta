@@ -49,9 +49,9 @@ def match(request, id):
         confrontations = match.confrontations_directes()
         predictions = match.prediction_match.filter()
         
-        home_last_matchs = match.home.get_last_matchs(match, number = 7, edition = True)
+        home_last_matchs = match.home.get_last_matchs(match, number = 10, edition = True)
         home_last_forms = match.home.get_last_form(match, number = 5, edition = True)
-        away_last_matchs = match.away.get_last_matchs(match, number = 7, edition = True)
+        away_last_matchs = match.away.get_last_matchs(match, number = 10, edition = True)
         away_last_forms = match.away.get_last_form(match, number = 5, edition = True)
 
         ctx = {

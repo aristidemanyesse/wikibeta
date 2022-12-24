@@ -6,7 +6,7 @@ def function(edition):
         predict(match)
     
     
-def predict(match):
+def predict(match):        
     matchs = match.confrontations_directes()
     if len(matchs) >= 14 :
         moy = 0
@@ -14,7 +14,7 @@ def predict(match):
             result = x.get_result()
             moy += (result.home_score + result.away_score) / len(matchs)
             
-            
+        
         if (moy >= 2.7):
             for x in [1.5, 2.5, 3.5]:
                 p = fish_law_plus(moy, x)

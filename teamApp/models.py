@@ -17,7 +17,7 @@ class Team(BaseModel):
 
 
 class EditionTeam(BaseModel):
-    NB = 7
+    NB = 5
     edition   = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_team")
     team      = models.ForeignKey(Team, on_delete = models.CASCADE, related_name="team_edition")
 
@@ -69,7 +69,7 @@ class EditionTeam(BaseModel):
     def last_stats(self, match, number = None, edition = False):
         total = points = scored =  conceded = 0
         matchs = self.get_last_matchs(match, number, edition)
-        if len(matchs) ==0:
+        if len(matchs) == 0:
             return 0, 0, 0, 0, 0, 0
         
         for match in matchs:

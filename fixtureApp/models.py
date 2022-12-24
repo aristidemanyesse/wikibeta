@@ -21,10 +21,11 @@ class Match(BaseModel):
     home              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
     away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
     edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
-    is_finished        = models.BooleanField(default = False, null = True, blank=True)
+    is_finished       = models.BooleanField(default = False, null = True, blank=True)
+    is_first_match    = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
-        ordering = ['date']
+        ordering = ['date', "hour", "home"]
     
     
     def __str__(self):
@@ -87,7 +88,7 @@ class Match(BaseModel):
 
     def similaires_betting(self, number = 50):
         matchs = []
-        actual = self.match_odds.filter(booker__code = "B365").first()
+        actual = self.get_odds()
         if actual is not None:
             odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-5).exclude(id = self.id).order_by("-match__date")
             for odd in odds:
@@ -148,15 +149,16 @@ def sighandler(instance, created, **kwargs):
             points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
             
             BeforeMatchStat.objects.create(
-                match = instance,
-                team = instance.home if (instance.home == team) else instance.away,
-                ppg = ppg,
-                goals_scored = scored,
-                avg_goals_scored = avg_goals_scored,
-                goals_conceded = conceded,
-                avg_goals_conceded = avg_goals_conceded
+                match               = instance,
+                team                = instance.home if (instance.home == team) else instance.away,
+                ppg                 = ppg,
+                goals_scored        = scored,
+                avg_goals_scored    = avg_goals_scored,
+                goals_conceded      = conceded,
+                avg_goals_conceded  = avg_goals_conceded
             )
             
+            # p0.predict(instance)
             # p1.predict(instance)
             # p2.predict(instance)
             # p3.predict(instance)

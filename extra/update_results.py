@@ -117,7 +117,7 @@ def function():
                         
                         
                         #enregistrement des cotes
-                        booker = Bookmaker.objects.get(code = "B365")
+                        booker = Bookmaker.objects.get(code = "Avg")
                         oddsmatch, created = OddsMatch.objects.get_or_create(
                             match = match, 
                             booker = booker,
@@ -247,7 +247,7 @@ def function():
                         
                         
                         #enregistrement des cotes
-                        booker = Bookmaker.objects.get(code = "B365")
+                        booker = Bookmaker.objects.get(code = "Avg")
                         oddsmatch, created = OddsMatch.objects.get_or_create(
                             match = match, 
                             booker = booker,

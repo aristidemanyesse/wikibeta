@@ -35,7 +35,11 @@ class Command(BaseCommand):
             "p3_5":"Plus de 3,5buts dans le match",
             "VN_Home":"Equipe à domicile ne perd pas",
             "VN_Away":"Equipe à l'exterieur ne perd pas",
-            "12":"Pas de nul dans le match"
+            "12":"Pas de nul dans le match",
+            "But_Home":"But de l'equipe à domicile",
+            "But_Away":"But de l'equipe à l'exterieur",
+            "btts":"But pour les deux equipes",
+            "no_btts":"Les deux équipes ne marquent pas",
         }
         for x in datas:
             TypePrediction.objects.create(
@@ -47,6 +51,7 @@ class Command(BaseCommand):
             
 
         datas = {
+            "M0":"Prédiction sur les stats d'avant match",
             "M1":"Prédiction sur les confrontations directes",
             "M2":"Prédiction sur les ppg",
             "M3":"Prédiction sur les ppg 2",
