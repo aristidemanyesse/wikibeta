@@ -26,16 +26,16 @@ class Command(BaseCommand):
         # OddsMatch.objects.filter(home = 0).delete() 
         
         
-        # for match in Match.objects.all():
-        #     result = match.get_result()
-        #     if result and result.away_score is None:
-        #         match.delete()
+        for match in Match.objects.all():
+            result = match.get_result()
+            if result and result.away_score is None:
+                match.delete()
                 
-        #     if result.away_score == result.home_score == 0:
-        #         result.home_half_score = 0
-        #         result.away_half_score = 0
-        #         result.result_half = "D"
-        #         result.save()
+            if result.away_score == result.home_score == 0:
+                result.home_half_score = 0
+                result.away_half_score = 0
+                result.result_half = "D"
+                result.save()
                 
                 
         # datas = EditionCompetition.objects.filter()

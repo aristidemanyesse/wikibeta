@@ -16,19 +16,12 @@ import predictionApp.functions.p4 as p4
 import statsApp.get_home_facts as get_home_facts
 import statsApp.get_away_facts as get_away_facts
 
-
-class Referer(BaseModel):
-    name              = models.CharField(max_length=255, default = "")
-    pays              = models.ForeignKey("competitionApp.pays", on_delete = models.CASCADE, related_name="pays_referer")
-
-
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
     hour              = models.TimeField( null = True, blank=True)
     home              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
     away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
     edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
-    referer           = models.ForeignKey(Referer, null = True, blank=True, on_delete = models.CASCADE, related_name="referer_du_match")
     is_finished       = models.BooleanField(default = False, null = True, blank=True)
     is_first_match    = models.BooleanField(default = False, null = True, blank=True)
 

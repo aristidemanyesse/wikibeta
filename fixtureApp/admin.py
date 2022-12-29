@@ -5,8 +5,6 @@ from django.contrib.admin import DateFieldListFilter
 
 
 
-
-
 @admin.register(Match)
 class MatchAdmin(admin.ModelAdmin):
     empty_value_display = '-'

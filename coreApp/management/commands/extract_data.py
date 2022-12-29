@@ -166,21 +166,12 @@ def save_from_dir(path):
                             away_red_cards          = away_red_cards
                             )
                         
-                        ref = get(row, header, "HY")
-                        if ref != "":
-                            referer, created = Referer.objects.get_or_create(
-                                name = ref,
-                                pays = pays
-                            )
-                            match.referer = referer
-                            match.save()
-                        
                         
                         #enregistrement des cotes
                         for booker in Bookmaker.objects.all():
                             if booker_listed(booker, header):
                                 code = booker.code
-                                if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0:
+                                if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
                                     continue
                                 oddsmatch, created = OddsMatch.objects.get_or_create(
                                     match = match, 
@@ -307,22 +298,14 @@ def save_from_file(path):
                         home_red_cards          = home_red_cards,
                         away_red_cards          = away_red_cards
                         )
-                
-                    ref = get(row, header, "HY")
-                    if ref != "":
-                        referer, created = Referer.objects.get_or_create(
-                            name = ref,
-                            pays = pays
-                        )
-                        match.referer = referer
-                        match.save()
+
                         
                         
                     #enregistrement des cotes
                     for booker in Bookmaker.objects.all():
                         if booker_listed(booker, header):
                             code = booker.code
-                            if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0:
+                            if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
                                 continue
                             oddsmatch, created = OddsMatch.objects.get_or_create(
                                 match = match, 

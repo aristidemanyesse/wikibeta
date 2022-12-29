@@ -76,7 +76,7 @@ class EditionTeam(BaseModel):
             result = match.get_result()
             if result is not None:
                 total       += 1
-                points      += self.points_for_this_macth(match)
+                points      += self.points_for_this_macth(match) or 0
                 scored      += result.home_score if match.home == self else result.away_score
                 conceded    += result.home_score if match.away == self else result.away_score
         
