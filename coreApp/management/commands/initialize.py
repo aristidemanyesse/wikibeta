@@ -4,6 +4,7 @@ from settings import settings
 from .extract_data import save_from_dir, save_from_file
 from bettingApp.models import Bookmaker
 from predictionApp.models import *
+from statsApp.models import *
 from django.contrib.auth.models import User, Group, Permission
 
 import threading
@@ -42,7 +43,7 @@ class Command(BaseCommand):
             "no_btts":"Les deux équipes ne marquent pas",
         }
         for x in datas:
-            TypePrediction.objects.create(
+            TypePrediction.objects.get_or_create(
                 name = x, 
                 code = x, 
                 description = datas[x], 
@@ -58,7 +59,33 @@ class Command(BaseCommand):
             "M4":"Prédiction sur les odds betting"
         }
         for x in datas:
-            ModePrediction.objects.create(
+            ModePrediction.objects.get_or_create(
+                name = x, 
+                description = datas[x], 
+            )
+            
+            
+            
+            
+
+        datas = {            
+            "Win":"Victoires",
+            "Draw":"match nul",
+            "Lose":"Defaites",
+            
+            "btts":"Les deux équipes marquent",
+            "CS":"Clean sheet",
+            "GC":"Au moins un but concédé",
+            "GS":"Au moins un but marqué",
+            
+            "p1_5":"Au moins de 2 buts dans le match",
+            "m3_5":"Au plus de 3 buts dans le match",
+            
+            "TGS":"Total des buts marqués",
+            "TGC":"Total des buts concédés"
+        }
+        for x in datas:
+            TypeFact.objects.get_or_create(
                 name = x, 
                 description = datas[x], 
             )

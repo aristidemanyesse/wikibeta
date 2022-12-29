@@ -63,4 +63,12 @@ class Prediction(BaseModel):
                 self.is_checked = result.home_score != result.away_score
             if self.type == TypePrediction.get("VN_Away"):
                 self.is_checked = result.home_score <= result.away_score
+            if self.type == TypePrediction.get("But_Home"):
+                self.is_checked = result.home_score > 0
+            if self.type == TypePrediction.get("But_Away"):
+                self.is_checked =result.away_score > 0
+            if self.type == TypePrediction.get("btts"):
+                self.is_checked = result.home_score > 0 and result.away_score > 0
+            if self.type == TypePrediction.get("no_btts"):
+                self.is_checked = (result.home_score > 0 and result.away_score == 0) or (result.home_score == 0 and result.away_score > 0)
             self.save()

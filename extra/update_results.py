@@ -121,9 +121,9 @@ def function():
                         oddsmatch, created = OddsMatch.objects.get_or_create(
                             match = match, 
                             booker = booker,
-                            home = float(get(row, header, "Avg H") or 0.0),
-                            draw = float(get(row, header, "Avg D") or 0.0),
-                            away = float(get(row, header, "Avg A") or 0.0)
+                            home = float(get(row, header, "AvgH") or 0.0),
+                            draw = float(get(row, header, "AvgD") or 0.0),
+                            away = float(get(row, header, "AvgA") or 0.0)
                             )
                                 
                         
@@ -251,9 +251,9 @@ def function():
                         oddsmatch, created = OddsMatch.objects.get_or_create(
                             match = match, 
                             booker = booker,
-                            home = float(get(row, header, "Avg H") or 0.0),
-                            draw = float(get(row, header, "Avg D") or 0.0),
-                            away = float(get(row, header, "Avg A") or 0.0)
+                            home = float(get(row, header, "AvgH") or 0.0),
+                            draw = float(get(row, header, "AvgD") or 0.0),
+                            away = float(get(row, header, "AvgA") or 0.0)
                             )
                         
                         

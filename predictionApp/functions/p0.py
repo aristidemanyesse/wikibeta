@@ -7,8 +7,8 @@ def function(edition):
     
     
 def predict(match):        
-    before_home = match.home.get_before_stats()
-    before_away = match.away.get_before_stats()
+    before_home = match.home.get_before_stats(match)
+    before_away = match.away.get_before_stats(match)
     home =(before_home.avg_goals_scored + before_away.avg_goals_conceded) / 2
     away =(before_home.avg_goals_conceded + before_away.avg_goals_scored) / 2
     

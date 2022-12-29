@@ -19,12 +19,7 @@
                         <h1 class="no-margins">{{competition}}</h1>
                         <h3 class="m-t-sm">{{edition.edition}}</h3>
                         <h5 class="m-t-sm">{{competition.pays}}</h5>
-                        <ul class="tag-list" style="padding: 0">
-                            <li><a href=""><i class="fa fa-tag"></i> Stats</a></li>
-                            <li><a href=""><i class="fa fa-tag"></i> Résultats</a></li>
-                            <li><a href=""><i class="fa fa-tag"></i> Prochains Matchs (7)</a></li>
-                            <li><a href=""><i class="fa fa-tag"></i> Clubs ({{ competition.competition_edition.filter | length }})</a></li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>
@@ -75,77 +70,142 @@
 </div>
 
 
+<div class="container m-t-sm m-a-none">
+
+    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
+    <button type="button" class="btn btn-default btn-rounded">zezzzez</button>
+    <button type="button" class="btn btn-default btn-rounded">dsdsd</button>
+    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
+    <button type="button" class="btn btn-default btn-rounded">zezllmm</button>
+    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
+</div>
 
 
+<div class="container m-t-sm">
+    <h4 class="bg-primary p-xs">Statistiques</h4>
 
-<div class="container m-t-lg">
 
-    <div class="row m-b-lg ">
-        <div class="col-md-8">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins"> {% method edition 'plus_but' 1.5 %}</h3>
-                            <h5>+1,5 buts</h5>
-                            <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            <small>ratio</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins">{% method edition 'moins_but' 3.5 %}</h3>
-                            <h5>-3,5 buts</h5>
-                            <div class="stat-percent font-bold text-navy">{% method edition 'moins_but' 3.5 %}<i class="fa fa-bolt"></i></div>
-                            <small>ratio</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins">{{edition.avg_buts}}</h3>
-                            <h5>Moyenne de buts</h5>
-                            <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            <small>Points par match</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins">886,200</h3>
-                            <h5>Victoire du favoris</h5>
-                            <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            <small>ratio</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins">{{edition.btts}}</h3>
-                            <h5>Buts pour 2</h5>
-                            <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            <small>ratio</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="ibox">
-                        <div class="ibox-content">
-                            <h3 class="stat-percent no-margins">{% method edition 'ht_plus_but' 0.5 %}</h3>
-                            <h5>+0,5 but à la MT</h5>
-                            <div class="stat-percent font-bold text-navy">98% <i class="fa fa-bolt"></i></div>
-                            <small>Points par match</small>
-                        </div>
-                    </div>
+    <div class="">
+        <div class="flot-chart">
+            <div class="flot-chart-content" id="flot-dashboard-chart"></div>
+        </div>
+    </div><br>
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Faits intéressants sur {{ match.home }} </h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        
+        
+        <div class="col-md-5">
+            <div class="row text-center">
+                <div class="col-sm-6">
+                    <canvas id="doughnutChart2" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <h5 >Victoire/Nul</h5>
+                </div>
+                <div class="col-sm-6">
+                    <canvas id="doughnutChart" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <h5>But HT/FT</h5>
+                </div> 
+                <br> <br>
+                <div class="col-sm-6">
+                    <canvas id="doughnutChart3" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <h5 >+1,5/-3,5</h5>
+                </div>
+                <div class="col-sm-6">
+                    <canvas id="doughnutChart4" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <h5 >BTTS/CS</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container m-t-lg">
+    <div class="row m-b-lg ">
+        
+        <div class="col-md-5">
+            <h4 class="bg-primary p-xs">Les prochains matchs de la compétition</h4>
+            <table class="table small m-b-xs">
+                <tbody>
+                    <tr>
+                        <td>30/01 15:23</td>
+                        <td>Team A</td>
+                        <td>-VS-</td>
+                        <td>Team B</td>
+                        <td><i class="fa fa-eye"></i> stats</td>
+                    </tr>
+                    <tr>
+                        <td>30/01 15:23</td>
+                        <td>Team A</td>
+                        <td>-VS-</td>
+                        <td>Team B</td>
+                        <td><i class="fa fa-eye"></i> stats</td>
+                    </tr>
+                    <tr>
+                        <td>30/01 15:23</td>
+                        <td>Team A</td>
+                        <td>-VS-</td>
+                        <td>Team B</td>
+                        <td><i class="fa fa-eye"></i> stats</td>
+                    </tr>
+                    <tr>
+                        <td>30/01 15:23</td>
+                        <td>Team A</td>
+                        <td>-VS-</td>
+                        <td>Team B</td>
+                        <td><i class="fa fa-eye"></i> stats</td>
+                    </tr>
+                    <tr>
+                        <td>30/01 15:23</td>
+                        <td>Team A</td>
+                        <td>-VS-</td>
+                        <td>Team B</td>
+                        <td><i class="fa fa-eye"></i> stats</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="col-md-7">
             <h4 class="bg-primary p-xs">Les prochains matchs de la compétition</h4>
             <table class="table small m-b-xs">
                 <tbody>
@@ -189,7 +249,52 @@
         </div>
 
     </div>
+</div>
 
+
+
+
+<div class="container m-t-lg">
+
+    <h4 class="bg-primary p-xs">Dernier classement en date</h4>
+
+
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th></th>
+                            <th class="bold text-left">Equipe</th>
+                            <th>MP</th>
+                            <th>Win</th>
+                            <th>Draw</th>
+                            <th>Lose</th>
+                            <th>GS</th>
+                            <th>GC</th>
+                            <th>GD</th>
+                            <th>Pts</th>
+                            <th class="text-center">Forms</th>
+                            <th>PPG</th>
+
+                            <th>CS</th>
+                            <th>BTTS</th>
+                            <th>Avg G</th>
+
+                            <th>+1,5</th>
+                            <th>+2,5</th>
+                            <th>-3,5</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -229,7 +334,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-7">
+        {% comment %} <div class="col-md-7">
             <div class="row text-left">
                 <div class="col-sm-6 col-md-4">
                     <h3>CS à la mi-temps</h3>
@@ -289,246 +394,325 @@
                     <h6>{% method edition 'moins_but'  3.5 %}</h6>
                  </div>
             </div> 
-        </div>
-
-
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Le classement <small class="m-l-sm">This is custom panel</small></h5>
-                    <div class="ibox-tools">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-cogs"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th></th>
-                                <th class="bold text-left">Equipe</th>
-                                <th>MP</th>
-                                <th>Win</th>
-                                <th>Draw</th>
-                                <th>Lose</th>
-                                <th>GS</th>
-                                <th>GC</th>
-                                <th>GD</th>
-                                <th>Pts</th>
-                                <th class="text-center">Forms</th>
-                                <th>PPG</th>
-
-                                <th>CS</th>
-                                <th>BTTS</th>
-                                <th>Avg G</th>
-
-                                <th>+1,5</th>
-                                <th>+2,5</th>
-                                <th>-3,5</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            {% for element in edition.classement %}
-                            <tr>
-                                <td><label class="label label-default">{{ forloop.counter }}</label></td>
-                                    <td><img src=""></td>
-                                    <td class="bold text-left"><a class="no-link" href="{% url 'teamApp:team' element|dict_value:'team' %}">{{element|dict_value:"team"}}</a></td>
-                                    <td>{{element|dict_value:"mj"}}</td>
-                                    <td>{{element|dict_value:"win"}}</td>
-                                    <td>{{element|dict_value:"draw"}}</td>
-                                    <td>{{element|dict_value:"lose"}}</td>
-                                    <td>{{element|dict_value:"gs"}}</td>
-                                    <td>{{element|dict_value:"ga"}}</td>
-                                    <td>{{element|dict_value:"gd"}}</td>
-                                    <td class="bold bg-red">{{element|dict_value:"pts"}}</td>
-                                    <td>
-                                        {% for x in element|dict_value:"form" %}
-                                            <label class="label label-{{x|form_couleur}}">{{x}}</label>
-                                        {% endfor %}
-                                    </td>
-                                    <td class=""><label class="label label-{{element|dict_value:'ppg'|couleur}}">{{element|dict_value:"ppg"}}</label></td>
-
-                                    <td>{{element|dict_value:"cs"}}</td>
-                                    <td>{{element|dict_value:"btts"}}</td>
-                                    <td>{{element|dict_value:"avg_gs"}}</td>
-
-                                    <td class="{% if element|dict_value:'1.5' >= 80 %}bold{% endif %}">{{element|dict_value:"1.5"}}%</td>
-                                    <td class="{% if element|dict_value:'2.5' >= 80 %}bold{% endif %}">{{element|dict_value:"2.5"}}%</td>
-                                    <td class="{% if element|dict_value:'3.5' >= 80 %}bold{% endif %}">{{element|dict_value:"3.5"}}%</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Les Prochains matchs <small class="m-l-sm">This is custom panel</small></h5>
-                    <div class="ibox-tools">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-cogs"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                 
-                    <table class="table table-striped table-hover">
-                        <tbody>
-                            <tr>
-                                <td>30/11/2022 15:30</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td class="bold">Team A</td>
-                                <td><label class="label label-primary">2,25</label></td>
-                                <td>
-                                    <p class="no-margins text-center text-small">2 - 0</p>
-                                    <h6 class="no-margins text-center">2 - 0</h6>
-                                </td>
-                                <td><label class="label label-info">1,25</label></td>
-                                <td class="bold">Team B</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td><i class="fa fa-eye"></i> stats</td>
-                            </tr>
-                            <tr>
-                                <td>30/11/2022 15:30</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td class="bold">Team A</td>
-                                <td><label class="label label-primary">2,25</label></td>
-                                <td>
-                                    <p class="no-margins text-center text-small">2 - 0</p>
-                                    <h6 class="no-margins text-center">2 - 0</h6>
-                                </td>
-                                <td><label class="label label-info">1,25</label></td>
-                                <td class="bold">Team B</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td><i class="fa fa-eye"></i> stats</td>
-                            </tr>
-                            <tr>
-                                <td>30/11/2022 15:30</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td class="bold">Team A</td>
-                                <td><label class="label label-primary">2,25</label></td>
-                                <td>
-                                    <p class="no-margins text-center text-small">2 - 0</p>
-                                    <h6 class="no-margins text-center">2 - 0</h6>
-                                </td>
-                                <td><label class="label label-info">1,25</label></td>
-                                <td class="bold">Team B</td>
-                                <td><label class="label label-default">2,25</label></td>
-                                <td><i class="fa fa-eye"></i> stats</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Les derniers résultats <small class="m-l-sm">This is custom panel</small></h5>
-                    <div class="ibox-tools">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-cogs"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#">Config option 1</a>
-                            </li>
-                            <li><a href="#">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                 
-                    <table class="table  table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th class="text-left" colspan="3">Prédictions</th>
-                                <th class="text-right" colspan="2">Domicile</th>
-                                <th  width="90px" class="text-center">Score</th>
-                                <th class="text-left" colspan="2">Extérieur</th>
-                                <th class="text-left" colspan="3">Cotes Bet365</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for match in matchs_20 %}
-                                <tr>
-                                    <td class="bold">{{match.date | naturalday}}</td>
-                                    <td class="text-left"  colspan="3">
-                                        {% for pre in match.prediction_match.filter %}
-                                            <label class="label label-{% if pre.is_checked %}primary{% else %}default{% endif %}">{{ pre.type.code }}</label>
-                                        {% endfor %}
-                                    </td>
-                                    <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
-                                    <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
-                                    <td class="text-center">
-                                        {% if match.home_half_score is not None %}
-                                            <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
-                                        {% endif %}
-                                        <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
-                                    </td>
-                                    <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
-                                    <td class="{% if match.home_score < match.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
-                                    <td class="text-left"  colspan="3">
-                                        <label class="label label-{% if match.home_score > match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.home }}</label>
-                                        <label class="label label-{% if match.home_score == match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.draw }}</label>
-                                        <label class="label label-{% if match.home_score < match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.away }}</label>
-                                    </td>
-                                    <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        </div> {% endcomment %}
 
     </div>
+    
+
+    <div class="container m-t-lg">
+        <h4 class="bg-primary p-xs">Corners</h4>
+        
+        <div class="row">
+            <div class="col-md-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th class="bold text-left">Equipe</th>
+                                    <th>MP</th>
+                                    <th>Win</th>
+                                    <th>Draw</th>
+                                    <th>Lose</th>
+                                    <th>GS</th>
+                                    
+                                    <th>CS</th>
+                                    <th>BTTS</th>
+                                    <th>Avg G</th>
+                                    
+                                    <th>+1,5</th>
+                                    <th>+2,5</th>
+                                    <th>-3,5</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Moyenne Corners / match</h5>
+                                <h2 class="text-right no-margins">88</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Min. Corners</h5>
+                                <h2 class="text-right no-margins">20</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Max. Corners</h5>
+                                <h2 class="text-right no-margins">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container m-t-lg">
+        <h4 class="bg-primary p-xs">Hors-Jeu</h4>
+        
+        <div class="row">
+            <div class="col-md-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th class="bold text-left">Equipe</th>
+                                    <th>MP</th>
+                                    <th>Win</th>
+                                    <th>Draw</th>
+                                    <th>Lose</th>
+                                    <th>GS</th>
+                                    
+                                    <th>CS</th>
+                                    <th>BTTS</th>
+                                    <th>Avg G</th>
+                                    
+                                    <th>+1,5</th>
+                                    <th>+2,5</th>
+                                    <th>-3,5</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox text-center">
+                            <div class="ibox-content">
+                                <span id="sparkline8"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Moyenne Hors-Jeu / match</h5>
+                                <h2 class="text-right no-margins">88</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Min. Hors-Jeu</h5>
+                                <h2 class="text-right no-margins">20</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Max. Hors-Jeu</h5>
+                                <h2 class="text-right no-margins">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    
+    <div class="container m-t-lg">
+        <h4 class="bg-primary p-xs">Fautes</h4>
+        
+        <div class="row">
+            <div class="col-md-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th class="bold text-left">Equipe</th>
+                                    <th>MP</th>
+                                    <th>Win</th>
+                                    <th>Draw</th>
+                                    <th>Lose</th>
+                                    <th>GS</th>
+                                    
+                                    <th>CS</th>
+                                    <th>BTTS</th>
+                                    <th>Avg G</th>
+                                    
+                                    <th>+1,5</th>
+                                    <th>+2,5</th>
+                                    <th>-3,5</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Moyenne fautes / match</h5>
+                                <h2 class="text-right no-margins">88</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Min. fautes</h5>
+                                <h2 class="text-right no-margins">20</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Max. fautes</h5>
+                                <h2 class="text-right no-margins">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container m-t-lg">
+        <h4 class="bg-primary p-xs">Cartons</h4>
+        
+        <div class="row">
+            <div class="col-md-7">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th class="bold text-left">Equipe</th>
+                                    <th>MP</th>
+                                    <th>Win</th>
+                                    <th>Draw</th>
+                                    <th>Lose</th>
+                                    <th>GS</th>
+                                    
+                                    <th>CS</th>
+                                    <th>BTTS</th>
+                                    <th>Avg G</th>
+                                    
+                                    <th>+1,5</th>
+                                    <th>+2,5</th>
+                                    <th>-3,5</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Moyenne Cartons / match</h5>
+                                <h2 class="text-right no-margins">88</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Min. Cartons</h5>
+                                <h2 class="text-right no-margins">20</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <h5>Max. Cartons</h5>
+                                <h2 class="text-right no-margins">5</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 <br>
 
 </div>
 
-
-
-<style>
-    .bold{
-        font-weight:bold;
-    }
-
-    .no-link{
-        color: inherit;
-        text-decoration: none;
-    }
-</style>
     
 {% endblock main %}
+
+
+{% block script %}
+
+{% include "./competition.js" %}
+
+{% endblock script %}

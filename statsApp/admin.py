@@ -28,7 +28,6 @@ class ResultMatchAdmin(admin.ModelAdmin):
 
 
 
-
 @admin.register(BeforeMatchStat)
 class BeforeMatchStatAdmin(admin.ModelAdmin):
     empty_value_display = '-'
@@ -39,3 +38,24 @@ class BeforeMatchStatAdmin(admin.ModelAdmin):
     list_display = ['match', 'team', "ppg", "goals_scored", "goals_conceded"]
 
 
+
+
+@admin.register(TypeFact)
+class TypeFactAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'created_at'
+    list_filter = (
+        ('created_at', DateFieldListFilter),
+    )
+    list_display = ['name', 'description']
+
+
+
+@admin.register(Fact)
+class FactAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'match__date'
+    list_filter = (
+        ('match__date', DateFieldListFilter),
+    )
+    list_display = ['match', 'type', "all_matches", "full_time", "team", "total", "success", "pct"]

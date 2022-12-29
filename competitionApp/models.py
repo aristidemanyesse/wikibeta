@@ -213,7 +213,6 @@ class EditionCompetition(BaseModel):
         matchs = self.edition_du_match.filter(is_finished = True)
         total = 0
         for match in matchs:
-            print("----", match, match.date)
             result = match.get_result()
             if result.home_score + result.away_score > nb:
                 total += 1

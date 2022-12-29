@@ -43,32 +43,33 @@ def function():
 
                     home      = get(row, header, "HomeTeam") or ""
                     away      = get(row, header, "AwayTeam") or ""
+                    
+                    if home != "" and away != "":
+                        #enregistrement des équipes
+                        home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
+                        home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                         
-                    #enregistrement des équipes
-                    home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
-                    home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
-                    
-                    away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
-                    away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
-                    
-                    #enregistrement du match et des infos du match
-                    match = Match.objects.filter(
-                        date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
-                        hour              = get(row, header, "Time") or None,
-                        home              = home,
-                        away              = away,
-                        edition           = edicompet
-                        ).first()
-                    if match is None:
-                        match = Match.objects.create(
+                        away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
+                        away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
+                        
+                        #enregistrement du match et des infos du match
+                        match = Match.objects.filter(
                             date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
                             hour              = get(row, header, "Time") or None,
                             home              = home,
                             away              = away,
                             edition           = edicompet
-                        )
-                    
-                    print("resultat 1 pour ", match)
+                            ).first()
+                        if match is None:
+                            match = Match.objects.create(
+                                date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
+                                hour              = get(row, header, "Time") or None,
+                                home              = home,
+                                away              = away,
+                                edition           = edicompet
+                            )
+                        
+                        print("resultat 1 pour ", match)
     except Exception as e:
         print("Errror 12 --------------------------------", e)
 
@@ -107,22 +108,23 @@ def function():
 
                     home      = get(row, header, "Home") or ""
                     away      = get(row, header, "Away") or ""
-                        
-                    #enregistrement des équipes
-                    home, created = Team.objects.get_or_create(name = home, pays = pays )
-                    home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                     
-                    away, created = Team.objects.get_or_create(name = away, pays = pays )
-                    away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
+                    if home != "" and away != "":
+                        #enregistrement des équipes
+                        home, created = Team.objects.get_or_create(name = home, pays = pays )
+                        home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
+                        
+                        away, created = Team.objects.get_or_create(name = away, pays = pays )
+                        away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
 
-                    #enregistrement du match et des infos du match
-                    match, created = Match.objects.get_or_create(
-                        date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
-                        hour              = get(row, header, "Time") or None,
-                        home              = home,
-                        away              = away,
-                        edition           = edicompet
-                        )
-                    print("Resultat 2 pour ", match)
+                        #enregistrement du match et des infos du match
+                        match, created = Match.objects.get_or_create(
+                            date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
+                            hour              = get(row, header, "Time") or None,
+                            home              = home,
+                            away              = away,
+                            edition           = edicompet
+                            )
+                        print("Resultat 2 pour ", match)
     except Exception as e:
         print("Errror 7887 --------------------------------", e)                

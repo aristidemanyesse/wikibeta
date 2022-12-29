@@ -67,10 +67,20 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="input-group date">
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="date" class="form-control" value="{{date.day|start0}}/{{date.month|start0}}/{{date.year}}">
-            </div>
             
+            <div class="row m-b-sm">
+                <div class="col-xs-2">
+                    <a href="{% url 'fixtureApp:fixtures' date.year date.month date.day|add:-1 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-left"></i></button></a>
+                </div>
+                <div class="col-xs-8">
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="date" class="form-control" value="{{date.day|start0}}/{{date.month|start0}}/{{date.year}}">
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <a href="{% url 'fixtureApp:fixtures' date.year date.month date.day|add:1 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-right"></i></button></a>
+                </div>
+            </div>
 
             <div class="ibox float-e-margins">
                 <div class="ibox-content">

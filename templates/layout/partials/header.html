@@ -11,11 +11,11 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            <li class="">
-                <a aria-expanded="false" role="button" href="{% url 'fixtureApp:home' %}"><i class="fa fa-sign-out"></i>Quoi de neuf</a>
-            </li>
             <li class="active">
                 <a aria-expanded="false" role="button" href="{% url 'competitionApp:pays' %}"><i class="fa fa-sign-out"></i>Toutes les compétitions</a>
+            </li>
+            <li class="">
+                <a aria-expanded="false" role="button" href="#" data-toggle="modal" data-target="#modal-recherche"><i class="fa fa-sign-out"></i>Rechercher</a>
             </li>
             <li class="">
                 <a aria-expanded="false" role="button" href="#"><i class="fa fa-sign-out"></i>Prédictions du jour</a>
@@ -49,3 +49,64 @@
         </ul>
     </div>
 </nav>
+
+
+
+
+<div class="modal inmodal fade" id="modal-recherche" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Recherche & Filtres</h4>
+                <small class="font-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+            </div>
+            <div class="modal-body">
+               
+                <div class="row">
+                    <div class="col-sm-7">
+                        <form id="form-cote" >
+                            <h2 class="bold text-center">Par cotes similaires</h2><br>
+                            <div class="row text-center">
+                                <div class="col-sm-4">
+                                    <label>Domicile</label>
+                                    <input type="number" class="form-control" name="domicile" placeholder="2.01" step="0.01" required >
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Nul</label>
+                                    <input type="number" class="form-control" name="nul" placeholder="2.78" step="0.01" required >
+                                </div>
+                                <div class="col-sm-4">
+                                    <label>Extérieur</label>
+                                    <input type="number" class="form-control" name="exterieur" placeholder="2.01" step="0.01" required >
+                                </div>
+                            </div><br>
+                            <div class="text-center">
+                                <button class="btn btn-md btn-info dim">Rechercher par cotes similaires</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-5 border-left">
+                        <form id="form-ppg" >
+                            <h2 class="bold text-center">Par PPG</h2><br>
+                            <div class="row text-center">
+                                <div class="col-sm-6">
+                                    <label>Domicile</label>
+                                    <input type="number" class="form-control" name="domicile" placeholder="2.01" step="0.01" required >
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Extérieur</label>
+                                    <input type="number" class="form-control" name="exterieur" placeholder="3.71" step="0.01" required >
+                                </div>
+                            </div><br>
+                            <div class="text-center">
+                                <button class="btn btn-sm btn-warning dim">Rechercher par PPG</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

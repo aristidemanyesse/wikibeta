@@ -85,11 +85,49 @@
 </div>
 
 
+<div class="row">
+    <div class="container">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Faits intéressants sur {{ match.home }} </h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            {% for fact in home_facts %}
+                                <tr>
+                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Faits intéressants sur {{ match.away }} </h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            {% for fact in away_facts %}
+                                <tr>
+                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="container">
     <div class="row  m-t-lg">
-
+        
         <div class="col-md-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -102,8 +140,8 @@
                     <table class="table table-striped table-hover">
                         <tbody>
                             {% for x in home_last_matchs %}
-                                {% with x.get_result as result %}
-                                <tr {% if match.home != x.home %}class="not_domicile"{% endif %}>
+                            {% with x.get_result as result %}
+                            <tr {% if match.home != x.home %}class="not_domicile"{% endif %}>
                                     <td class="bold">{{x.date.day}}/{{x.date.month}}/{{x.date.year}}</td>
                                     <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' x.home %}">{{x.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ x.get_home_before_stats.ppg | couleur }}">{{ x.get_home_before_stats.ppg }}</label></td>
@@ -116,13 +154,12 @@
                                     <td><a href="{% url 'fixtureApp:match' x.id %}"><i class="fa fa-eye"></i></a></td>
                                 </tr>
                                 {% endwith %}
-                            {% endfor %}
-                        </tbody>
+                                {% endfor %}
+                            </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-6">
             <div class="ibox float-e-margins">
@@ -218,12 +255,6 @@
                                 <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
-                            <tr>
-                                <td class="bold text-right">Team A</td>
-                                <td class="bold text-center">Score attendu</td>
-                                <td class="bold text-left">Team A</td>
-                                <td><img src=""></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -260,7 +291,7 @@
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
-                            <td class="text-center">
+                            <td class="text-center" width="50px">
                                 <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                                 <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>

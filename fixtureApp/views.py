@@ -13,11 +13,8 @@ from competitionApp.models import *
 @render_to('fixtureApp/index.html')
 def home(request):
     if request.method == "GET":
-        matchs = Match.objects.filter(is_finished=False)
-        ctx = {
-            "matchs" : matchs
-        }
-        return ctx
+        date = datetime.now()
+        return HttpResponseRedirect(reverse('fixtureApp:fixtures', args=[date.year, date.month, date.day]))
         
 
 @render_to('fixtureApp/index.html')
@@ -53,6 +50,9 @@ def match(request, id):
         home_last_forms = match.home.get_last_form(match, number = 5, edition = True)
         away_last_matchs = match.away.get_last_matchs(match, number = 10, edition = True)
         away_last_forms = match.away.get_last_form(match, number = 5, edition = True)
+        
+        home_facts = match.match_facts.filter(team = match.home)
+        away_facts = match.match_facts.filter(team = match.away)
 
         ctx = {
             "match" : match,
@@ -62,5 +62,7 @@ def match(request, id):
             "home_last_forms" : home_last_forms,
             "away_last_matchs" : away_last_matchs,
             "away_last_forms" : away_last_forms,
+            "home_facts" : home_facts,
+            "away_facts" : away_facts,
         }
         return ctx

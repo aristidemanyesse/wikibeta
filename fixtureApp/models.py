@@ -7,12 +7,19 @@ from statsApp.models import *
 from bettingApp.models import *
 import threading, time
 
+import predictionApp.functions.p0 as p0
 import predictionApp.functions.p1 as p1
 import predictionApp.functions.p2 as p2
 import predictionApp.functions.p3 as p3
 import predictionApp.functions.p4 as p4
 
+import statsApp.get_home_facts as get_home_facts
+import statsApp.get_away_facts as get_away_facts
 
+
+class Referer(BaseModel):
+    name              = models.CharField(max_length=255, default = "")
+    pays              = models.ForeignKey("competitionApp.pays", on_delete = models.CASCADE, related_name="pays_referer")
 
 
 class Match(BaseModel):
@@ -21,6 +28,7 @@ class Match(BaseModel):
     home              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
     away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
     edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
+    referer           = models.ForeignKey(Referer, null = True, blank=True, on_delete = models.CASCADE, related_name="referer_du_match")
     is_finished       = models.BooleanField(default = False, null = True, blank=True)
     is_first_match    = models.BooleanField(default = False, null = True, blank=True)
 
@@ -142,7 +150,6 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
-    print(instance)
     if created:
         #creation du before stat pour chaque equipe
         for team in [instance.home, instance.away]:
@@ -158,24 +165,13 @@ def sighandler(instance, created, **kwargs):
                 avg_goals_conceded  = avg_goals_conceded
             )
             
-            # p0.predict(instance)
-            # p1.predict(instance)
-            # p2.predict(instance)
-            # p3.predict(instance)
-            # p4.predict(instance)
-            # p = threading.Thread(target=p1.predict, args=(instance,))
-            # p.setDaemon(True)
-            # p.start()
+        # p0.predict(instance)
+        # p1.predict(instance)
+        # p2.predict(instance)
+        # p3.predict(instance)
+        # p4.predict(instance)
+                
+        # get_home_facts.function(instance)
+        # get_away_facts.function(instance)
             
-            # p = threading.Thread(target=p2.predict, args=(instance,))
-            # p.setDaemon(True)
-            # p.start()
-            
-            # p = threading.Thread(target=p3.predict, args=(instance,))
-            # p.setDaemon(True)
-            # p.start()
-
-            # p = threading.Thread(target=p4.predict, args=(instance,))
-            # p.setDaemon(True)
-            # p.start()
             
