@@ -9,6 +9,11 @@ from coreApp.management.commands.extract_data import get, save_from_file
 from datetime import datetime
 
 
+def booker_listed(booker:Bookmaker , row:list):
+    return  booker.code+"H" in row and booker.code+"D" in row and booker.code+"A" in row
+
+
+
 def function():
     print("-------------------------", datetime.now())
     
@@ -51,7 +56,7 @@ def function():
                         
                         away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
                         away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
-                        
+                                                
                         #enregistrement du match et des infos du match
                         match = Match.objects.filter(
                             date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
@@ -68,6 +73,20 @@ def function():
                                 away              = away,
                                 edition           = edicompet
                             )
+                            
+                            #enregistrement des cotes
+                            for booker in Bookmaker.objects.all():
+                                if booker_listed(booker, header):
+                                    code = booker.code
+                                    if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
+                                        continue
+                                    oddsmatch, created = OddsMatch.objects.get_or_create(
+                                        match = match, 
+                                        booker = booker,
+                                        home = float(get(row, header, code+"H")),
+                                        draw = float(get(row, header, code+"D")),
+                                        away = float(get(row, header, code+"A"))
+                                    )
                         
                         print("resultat 1 pour ", match)
     except Exception as e:
@@ -125,6 +144,22 @@ def function():
                             away              = away,
                             edition           = edicompet
                             )
+                        
+                        #enregistrement des cotes
+                        for booker in Bookmaker.objects.all():
+                            if booker_listed(booker, header):
+                                code = booker.code
+                                if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
+                                    continue
+                                oddsmatch, created = OddsMatch.objects.get_or_create(
+                                    match = match, 
+                                    booker = booker,
+                                    home = float(get(row, header, code+"H")),
+                                    draw = float(get(row, header, code+"D")),
+                                    away = float(get(row, header, code+"A"))
+                                )
+                                
+                                
                         print("Resultat 2 pour ", match)
     except Exception as e:
         print("Errror 7887 --------------------------------", e)                

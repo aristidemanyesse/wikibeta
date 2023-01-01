@@ -38,5 +38,21 @@ class EditionCompetitionAdmin(admin.ModelAdmin):
     list_filter = (
         ('start_date', DateFieldListFilter),
     )
-    list_display = ['competition', 'edition',  'start_date', 'finish_date']
+    list_display = ['competition', 'edition',  'start_date', 'finish_date', "is_finished"]
 
+
+
+
+@admin.register(Ranking)
+class RankingAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'created_at'
+    list_display = ['edition', "created_at"]
+
+
+
+@admin.register(LigneRanking)
+class LigneRankingAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'created_at'
+    list_display = ['ranking', "team", "mj", "form", "created_at"]

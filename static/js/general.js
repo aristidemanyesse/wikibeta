@@ -24,7 +24,7 @@ $(document).ready(function () {
     $("#form-ppg").submit(function (e) {
         domicile = $(this).find("input[name=domicile]").val();
         exterieur = $(this).find("input[name=exterieur]").val();
-        window.location.href = "/stats/rechercher/cote/"+domicile+"/"+exterieur+"/";
+        window.location.href = "/stats/rechercher/ppg/"+domicile+"/"+exterieur+"/";
 
         return false
     })

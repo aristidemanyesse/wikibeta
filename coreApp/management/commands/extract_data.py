@@ -164,7 +164,7 @@ def save_from_dir(path):
                             away_yellow_cards       = away_yellow_cards,
                             home_red_cards          = home_red_cards,
                             away_red_cards          = away_red_cards
-                            )
+                        )
                         
                         
                         #enregistrement des cotes

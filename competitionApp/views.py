@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse
 from competitionApp.models import *
 from django.http import HttpResponseRedirect
 from annoying.decorators import render_to
+import statsApp.get_recherche_facts as get_recherche_facts
 
 # Create your views here.
 
@@ -38,21 +39,57 @@ def competition_edition(request, pays, competition, edition):
         edition = [] or  EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
         competition = edition.competition
         editions = [] or competition.competition_edition.filter()
-        matchs_joues = []
-        # matchs_joues = edition.edition_du_match.filter().order_by("-date")
-        teams = [] or edition.edition_team.filter()
-        total_matchs = (len(teams)-1) * len(teams)
-        ratio = round(len(matchs_joues) / total_matchs ) * 100
+        matchs_played = edition.edition_du_match.filter(is_finished = True).order_by('-date')
+        next_matchs = edition.edition_du_match.filter(is_finished = False)
+        
+        teams = edition.edition_team.filter()
+        total_official_matchs = (len(teams)-1) * len(teams)
+        ratio = round(total_official_matchs / len(matchs_played) ) * 100
+        
+        facts = [] 
+        # or get_recherche_facts.function(matchs)
+        
+        victoires = nuls = p1_5 = m3_5 = btts = cs = ht = ft = 0
+        for x in matchs_played:
+            result = x.get_result()
+            if result.home_half_score is not None:
+                ht += result.home_half_score + result.away_half_score
+                ft += (result.home_score + result.away_score) - (result.home_half_score + result.away_half_score )
+                
+            if result.home_score != result.away_score:
+                victoires += 1
+            else :
+                nuls += 1
+                
+            if result.home_score > 0 and result.away_score > 0:
+                btts += 1
+            else :
+                cs += 1
+                
+            if result.home_score + result.away_score > 1.5:
+                p1_5 += 1
+            elif result.home_score + result.away_score < 3.5 :
+                m3_5 += 1
+
         
         ctx = {
-            "edition":edition,
-            "matchs":matchs_joues, 
-            "matchs_20":matchs_joues[:20], 
-            "nb_matchs":total_matchs, 
-            "ratio":ratio, 
-            "teams":teams, 
             "editions":editions,
-            "competition" : competition
+            "competition" : competition,
+            "matchs": matchs_played, 
+            "next_matchs": next_matchs, 
+            "total_official_matchs": total_official_matchs,
+            "teams":teams, 
+            "facts":facts, 
+            "matchs10":matchs_played[:10], 
+            "ratio":ratio, 
+            "victoires": victoires,
+            "nuls": nuls,
+            "p1_5": p1_5,
+            "m3_5": m3_5,
+            "btts": btts,
+            "cs": cs,
+            "ht": ht,
+            "ft": ft,
             }
         return ctx
       

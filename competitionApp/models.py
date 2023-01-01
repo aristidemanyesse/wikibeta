@@ -54,7 +54,7 @@ class EditionCompetition(BaseModel):
     is_finished    = models.BooleanField(default=False, null = True, blank=True)
 
     class Meta:
-        ordering = ['-start_date']
+        ordering = ["competition", '-start_date']
 
     def __str__(self):
         return str(self.competition) +" - "+ str(self.edition)
@@ -104,7 +104,6 @@ class EditionCompetition(BaseModel):
                 "cs"      : cs,
                 "btts"    : btts,
                 "avg_gs"  : avg_gs,
-                "btts"    : btts,
                 "1.5"    : int(round(team.plus_but(1.5)/len(matchs), 2)*100),
                 "2.5"    : int(round(team.plus_but(2.5)/len(matchs), 2)*100),
                 "3.5"    : int(round(team.moins_but(3.5)/len(matchs), 2)*100),
@@ -254,10 +253,11 @@ class EditionCompetition(BaseModel):
     
 
 class Ranking(BaseModel):
-    start_date    = models.DateField(null = True, blank=True)
     edition       = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_rankings")
 
-        
+    def __str__(self):
+        return str(self.edition)
+    
         
 class LigneRanking(BaseModel):
     ranking   = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="ranking_lignes")

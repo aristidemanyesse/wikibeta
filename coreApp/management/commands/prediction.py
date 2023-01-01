@@ -6,6 +6,10 @@ import predictionApp.functions.p2 as p2
 import predictionApp.functions.p3 as p3
 import predictionApp.functions.p4 as p4
 from competitionApp.models import *
+
+import statsApp.get_home_facts as get_home_facts
+import statsApp.get_away_facts as get_away_facts
+
 import threading
     
 class Command(BaseCommand):
@@ -14,11 +18,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:            
             
-            for edit in EditionCompetition.objects.filter().order_by("-edition__name").limit(10):
+            for edit in EditionCompetition.objects.filter().order_by("-edition__name"):
                 print("START: Current active thread count ---------------: ", threading.active_count())
-                while threading.active_count() > 130:
+                while threading.active_count() > 120:
                     time.sleep(300)
                 
+                print(edit)
                 p = threading.Thread(target=p0.function, args=(edit,))
                 p.setDaemon(True)
                 p.start()
@@ -43,8 +48,24 @@ class Command(BaseCommand):
                 p.setDaemon(True)
                 p.start()
                 time.sleep(1)
+                
+                
+                # for match in edit.edition_du_match.all():
+                #     p = threading.Thread(target=get_home_facts.function, args=(match,))
+                #     p.setDaemon(True)
+                #     p.start()
+                #     time.sleep(1)
                     
-            self.stdout.write(self.style.SUCCESS('Base de données initialisée avec succes !'))
-            
+                #     p = threading.Thread(target=get_away_facts.function, args=(match,))
+                #     p.setDaemon(True)
+                #     p.start()
+                #     time.sleep(1)
+                    
+                    
+            while threading.active_count() > 0:
+                print("en attente ---------------: ", threading.active_count())
+                time.sleep(30)
+            self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))    
+                    
         except Exception as e:
             print(e)

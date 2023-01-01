@@ -13,7 +13,9 @@
                 <a href=# data-toggle="modal" data-target="#modal-{{ country.name }}" href="{% url 'competitionApp:country' country.name %}">
                 <div class="col-sm-4">
                     <div class="text-center">
-                        {% comment %} <img alt="image" class="img-responsive" src="{% static country.flag %}"> {% endcomment %}
+                        {% if country.flag %}
+                            <img alt="image" class="img-responsive" src="{{ country.flag.url }}">
+                            {% endif %}
                     </div>
                 </div>
                 <div class="col-sm-8">

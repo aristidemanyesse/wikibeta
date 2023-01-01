@@ -52,7 +52,7 @@ class Match(BaseModel):
             if away is not None:
                 ppg_away = away.ppg
                 
-                befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-8).exclude(id = self.id).order_by("-match__date")
+                befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-2).exclude(id = self.id).order_by("-match__date")
                 for bef in befores:
                     if bef.team == bef.match.home:
                         befs = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_away), match = bef.match).exclude(id = bef.id)
@@ -75,7 +75,7 @@ class Match(BaseModel):
                 ppg_away = away.ppg
                 
                 
-                befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-5).exclude(id = self.id).order_by("-match__date")
+                befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-1).exclude(id = self.id).order_by("-match__date")
                 for bef in befores:
                     if bef.team == bef.match.home:
                         befs = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_away), match = bef.match).exclude(id = bef.id)
@@ -95,7 +95,7 @@ class Match(BaseModel):
             for odd in odds:
                 if intervale(odd.home) == intervale(actual.home):
                     befs = OddsMatch.objects.filter(away__range = intervale(actual.away), match = odd.match).exclude(id = odd.id)
-                    if len(befs) == 1:
+                    if len(befs) == 1 and odd.match not in matchs:
                         matchs.append(odd.match)
                     
         return matchs[:number]
@@ -157,14 +157,13 @@ def sighandler(instance, created, **kwargs):
                 goals_conceded      = conceded,
                 avg_goals_conceded  = avg_goals_conceded
             )
-            
-        # p0.predict(instance)
-        # p1.predict(instance)
-        # p2.predict(instance)
-        # p3.predict(instance)
-        # p4.predict(instance)
+        p0.predict(instance)
+        p1.predict(instance)
+        p2.predict(instance)
+        p3.predict(instance)
+        p4.predict(instance)
                 
-        # get_home_facts.function(instance)
-        # get_away_facts.function(instance)
+        get_home_facts.function(instance)
+        get_away_facts.function(instance)
             
             

@@ -27,9 +27,9 @@ class Command(BaseCommand):
                 if os.path.isdir("datas/lot/{}".format(x)) : 
                     files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
                     for file in files:
-                        print("START: Current active thread count ---------------: ", threading.active_count())
-                        while threading.active_count() >= 130:
-                            time.sleep(200)
+                        print("processus en cours ---------------: ", threading.active_count())
+                        while threading.active_count() >= 145:
+                            time.sleep(100)
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)
@@ -37,9 +37,9 @@ class Command(BaseCommand):
                         time.sleep(1)
 
                 else:
-                    print("START: Current active thread count ---------------: ", threading.active_count())
-                    while threading.active_count() >= 130:
-                        time.sleep(200)
+                    print("processus en cours ---------------: ", threading.active_count())
+                    while threading.active_count() >= 145:
+                        time.sleep(100)
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))
                     p.setDaemon(True)
@@ -47,7 +47,9 @@ class Command(BaseCommand):
                     time.sleep(1)
                     
 
-                    
+            while threading.active_count() > 0:
+                print("en attente ---------------: ", threading.active_count())
+                time.sleep(30)
             self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))
             
         except Exception as e:

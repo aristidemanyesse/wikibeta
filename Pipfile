@@ -15,6 +15,7 @@ django-db-connection-pool = {extras = ["mysql"], version = "*"}
 django-crontab = "*"
 django-annoying = "*"
 django-debug-toolbar = "*"
+dateutils = "*"
 
 [dev-packages]
 

@@ -3,13 +3,14 @@ from django.shortcuts import get_object_or_404
 from annoying.decorators import render_to
 from django.http import HttpResponseRedirect
 from .models import *
-from datetime import datetime
+from datetime import datetime, timedelta
+from dateutils import relativedelta
 from coreApp.functions import *
 from predictionApp.models import *
 from competitionApp.models import *
 from bettingApp.models import *
 import statsApp.get_recherche_facts as get_recherche_facts
-
+import math
 # Create your views here.
 
 
@@ -40,15 +41,39 @@ def statistiques(request):
             
         predictions = Prediction.objects.exclude(is_checked = None)
         success = predictions.filter(is_checked = True)
-        ratio = round((success.count() / predictions.count())*100, 2) if predictions.count() > 0 else 0
+        ratio = int((success.count() / predictions.count()) * 100)
+        decimal = int(((success.count() / predictions.count() * 100) - ratio) * 100)
         
-        matchs = Match.objects.filter(is_finished=False)
+        
+        now = datetime.now() - timedelta()
+        i = 24
+        stats_pre = {}
+        stats_total = {}
+        stats_pct = {}
+        while i > 0:
+            fin  = now
+            now = now - relativedelta(months=1)
+            predicts = Prediction.objects.filter(match__date__gte = now, match__date__lt = fin)
+            total = 0
+            for x in predicts:
+                total += 1 if x.is_checked else 0
+                
+            stats_pre[now] = predicts.count()
+            stats_total[now] = total
+            stats_pct[now] = round(total / predicts.count() * 100)
+            
+            i-=1
+        
         ctx = {
             "modes" : modes,
             "types" : types,
             "predictions" : predictions,
             "tableau" : tableau,
             "ratio" : ratio,
+            "decimal" : decimal,
+            "stats_pre" : stats_pre,
+            "stats_pct" : stats_pct,
+            "stats_total" : stats_total,
         }
         return ctx
     
@@ -72,7 +97,7 @@ def rechercher_cote(request, home, away, draw):
                 similaires_matchs.append(odd.match)
                
         
-        facts = get_recherche_facts.function(similaires_matchs[:100])
+        facts = get_recherche_facts.function(similaires_matchs) if len(similaires_matchs) > 0 else []
         ctx = {
                "home": home,
                "away": away,
@@ -88,12 +113,24 @@ def rechercher_cote(request, home, away, draw):
 
 
 @render_to('statsApp/rechercher_ppg.html')
-def rechercher_ppg(request):
+def rechercher_ppg(request, home, away):
     if request.method == "GET":
+        date = datetime.now()
+        home = float(home)
+        away = float(away)
         
-        
-            
-        ctx = {
+        similaires_matchs = []
+        befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(home), match__date__year__gte = date.year-1).order_by("-match__date")
+        for bef in befores:
+            befs = BeforeMatchStat.objects.filter(ppg__range = intervale(away), match = bef.match).exclude(id = bef.id)
+            if len(befs) == 1:
+                similaires_matchs.append(bef.match)
                
+        facts = get_recherche_facts.function(similaires_matchs) if len(similaires_matchs) > 0 else []
+        ctx = {
+               "home": home,
+               "away": away,
+               "similaires_matchs": similaires_matchs[:30],
+               "facts": facts,
             }
         return ctx

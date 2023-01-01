@@ -27,7 +27,7 @@ def fixtures(request, year, month, day):
         date = datetime(year, month, day)
         datas = {}
         for edition in EditionCompetition.objects.filter(is_finished=False):
-            matchs = Match.objects.filter(date = date, edition = edition).order_by("-date")
+            matchs = Match.objects.filter(date = date, edition = edition)
             if len(matchs) > 0 :
                 datas[edition] = matchs
                 

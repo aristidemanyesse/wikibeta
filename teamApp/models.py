@@ -10,8 +10,8 @@ class Team(BaseModel):
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     logo    = models.ImageField(max_length = 255, upload_to = "static/images/team/", default="", null = True, blank=True)
     
-    def __str__(self):
-        return self.name
+    class Meta:
+        ordering = ['name']
 
 
 
@@ -22,7 +22,7 @@ class EditionTeam(BaseModel):
     team      = models.ForeignKey(Team, on_delete = models.CASCADE, related_name="team_edition")
 
     class Meta:
-        ordering = ['-edition']
+        ordering = ['team']
         
     def __str__(self):
         return str(self.team)
@@ -55,7 +55,7 @@ class EditionTeam(BaseModel):
         
         
     def get_last_matchs(self, match, number = None, edition = False):
-        matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__lt = match.date).order_by("-date")
+        matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__lt = match.date, is_finished = True).exclude(id = match.id).order_by("-date")
         if edition:
             matchs = matchs.filter(edition = match.edition)
         return matchs[:EditionTeam.NB if number is None else number]

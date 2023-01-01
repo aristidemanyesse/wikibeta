@@ -15,8 +15,8 @@ def function(matchs):
 
     
     #victoire à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -67,8 +67,8 @@ def function(matchs):
     
     
     # #defaite à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -116,8 +116,8 @@ def function(matchs):
        
         
     # #nul à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -166,8 +166,8 @@ def function(matchs):
        
         
     # #btts à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -216,8 +216,8 @@ def function(matchs):
        
         
     # #clean sheet à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -266,8 +266,8 @@ def function(matchs):
        
         
     # #au moins un but concedé à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -317,8 +317,8 @@ def function(matchs):
        
         
     # #au moins un but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -366,8 +366,8 @@ def function(matchs):
        
         
     # #au moins deux but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -416,8 +416,8 @@ def function(matchs):
        
         
     # #au plus trois but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -466,8 +466,8 @@ def function(matchs):
        
         
     #moyenne but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0
@@ -516,8 +516,8 @@ def function(matchs):
        
         
     # moyenne but concédé à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 20:
-        i = 20
+    if len(matchs) >= 50:
+        i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
         taux_max = 0

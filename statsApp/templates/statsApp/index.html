@@ -8,69 +8,16 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <div>
-                            <span class="pull-right text-right">
-                            <small>Average value of sales in the past month in: <strong>United states</strong></small>
-                                <br/>
-                                All sales: 162,862
-                            </span>
-                        <h3 class="font-bold no-margins">
-                            Half-year revenue margin
-                        </h3>
-                        <small>Sales marketing.</small>
-                    </div>
-
-                    <div class="m-t-sm">
-
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div>
-                                <canvas id="lineChart" height="114"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <ul class="stat-list m-t-lg">
-                                    <li>
-                                        <h2 class="no-margins">2,346</h2>
-                                        <small>Total orders in period</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 48%;"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="m-t-md">
-                        <small class="pull-right">
-                            <i class="fa fa-clock-o"> </i>
-                            Update on 16.07.2015
-                        </small>
-                        <small>
-                            <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
-                        </small>
-                    </div>
-
+        <div class="col-lg-9">
+            <div class="">
+                <div class="flot-chart">
+                    <div class="flot-chart-content" id="flot-dashboard-chart"></div>
                 </div>
-            </div>
+            </div><br>
         </div>
-        <div class="col-lg-4 text-center">
-           
-            <h1 class="bold" style="font-size:190px; margin: 0">{{ratio}}<sup><small>%</small></sup></h1>
+        <div class="col-lg-3 text-center">
+            <h1 class="bold" style="font-size:150px; margin: 0">{{ratio}}<sup><small>{{decimal}}</small></sup></h1>
             <h2 class="bold" style="margin: 0">{{predictions|length}} prédictions</h2>
-
         </div>
 
         </div>
@@ -173,5 +120,123 @@
 
 {% block script %}
 
+$(function(){
+
+
+
+var data2 = [
+{% for date in stats_pct %} [gd({{date.year}}, {{date.month}}, {{date.day}}), {{stats_pct|dict_value:date}}], {% endfor %}
+];
+
+var data3 = [
+{% for date in stats_pre %} [gd({{date.year}}, {{date.month}}, {{date.day}}), {{stats_pre|dict_value:date}}], {% endfor %}
+];
+
+var data4 = [
+{% for date in stats_total %} [gd({{date.year}}, {{date.month}}, {{date.day}}), {{stats_total|dict_value:date}}], {% endfor %}
+];
+
+
+
+    var dataset = [
+    {
+        label: "Prédictions",
+        data: data3,
+        color: "#324A46",
+        bars: {
+            show: true,
+            align: "center",
+            barWidth: 24 * 60 * 60 * 600,
+            lineWidth:7
+        }
+
+    },
+    {
+        label: "Reussies",
+        data: data4,
+        color: "#1CCF0F",
+        bars: {
+            show: true,
+            align: "center",
+            barWidth: 24 * 60 * 60 * 600,
+            lineWidth:5
+        }
+
+    }, {
+        label: "Pourcentage",
+        data: data2,
+        yaxis: 2,
+        color: "#1C84C6",
+        lines: {
+            lineWidth:1,
+                show: true,
+                fill: true,
+            fillColor: {
+                colors: [{
+                    opacity: 0.2
+                }, {
+                    opacity: 0.4
+                }]
+            }
+        },
+        splines: {
+            show: false,
+            tension: 0.6,
+            lineWidth: 1,
+            fill: 0.1
+        },
+    }
+];
+
+
+var options = {
+    xaxis: {
+        mode: "time",
+        tickSize: [3, "month"],
+        tickLength: 0,
+        axisLabel: "Date",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Arial',
+        axisLabelPadding: 10,
+        color: "#d5d5d5"
+    },
+    yaxes: [{
+        position: "left",
+        color: "#d5d5d5",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: 'Arial',
+        axisLabelPadding: 3
+    }, {
+        position: "right",
+        clolor: "#d5d5d5",
+        axisLabelUseCanvas: true,
+        axisLabelFontSizePixels: 12,
+        axisLabelFontFamily: ' Arial',
+        axisLabelPadding: 67
+    }
+    ],
+    legend: {
+        noColumns: 1,
+        labelBoxBorderColor: "#000000",
+        position: "nw"
+    },
+    grid: {
+        hoverable: false,
+        borderWidth: 0
+    }
+};
+
+function gd(year, month, day) {
+    return new Date(year, month - 1, day).getTime();
+}
+
+var previousPoint = null, previousLabel = null;
+
+$.plot($("#flot-dashboard-chart"), dataset, options);
+
+
+})
 
 {% endblock script %}

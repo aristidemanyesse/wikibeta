@@ -71,13 +71,9 @@
 
 
 <div class="container m-t-sm m-a-none">
-
-    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
-    <button type="button" class="btn btn-default btn-rounded">zezzzez</button>
-    <button type="button" class="btn btn-default btn-rounded">dsdsd</button>
-    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
-    <button type="button" class="btn btn-default btn-rounded">zezllmm</button>
-    <button type="button" class="btn btn-default btn-rounded">dfdf</button>
+    {% for team in teams %}
+        <a href="{% url "teamApp:team" team.team %}" type="button" class="btn btn-default m-b-sm">{{team}}</a>
+    {% endfor %}
 </div>
 
 
@@ -99,33 +95,11 @@
                     <h5>Faits intéressants sur {{ match.home }} </h5>
                     <table class="table table-stripped small m-t-md">
                         <tbody>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-circle text-navy"></i> /Dec/2022 13:17:14] "GET /static/js/plugins/alerty/alerty.min.js HTTP/1</td>
-                            </tr>
+                            {% for fact in facts %}
+                                <tr>
+                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -136,11 +110,11 @@
         <div class="col-md-5">
             <div class="row text-center">
                 <div class="col-sm-6">
-                    <canvas id="doughnutChart2" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <canvas id="doughnutChart" width="135" height="135" style="margin: 18px auto 0"></canvas>
                     <h5 >Victoire/Nul</h5>
                 </div>
                 <div class="col-sm-6">
-                    <canvas id="doughnutChart" width="135" height="135" style="margin: 18px auto 0"></canvas>
+                    <canvas id="doughnutChart2" width="135" height="135" style="margin: 18px auto 0"></canvas>
                     <h5>But HT/FT</h5>
                 </div> 
                 <br> <br>
@@ -162,44 +136,25 @@
     <div class="row m-b-lg ">
         
         <div class="col-md-5">
-            <h4 class="bg-primary p-xs">Les prochains matchs de la compétition</h4>
+            <h4 class="bg-primary p-xs">Les 10 derniers matchs de la compétition</h4>
             <table class="table small m-b-xs">
                 <tbody>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
+                    {% for match in matchs10 %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}  
                 </tbody>
             </table>
         </div>
@@ -209,41 +164,22 @@
             <h4 class="bg-primary p-xs">Les prochains matchs de la compétition</h4>
             <table class="table small m-b-xs">
                 <tbody>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
-                    <tr>
-                        <td>30/01 15:23</td>
-                        <td>Team A</td>
-                        <td>-VS-</td>
-                        <td>Team B</td>
-                        <td><i class="fa fa-eye"></i> stats</td>
-                    </tr>
+                    {% for match in next_matchs %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}  
                 </tbody>
             </table>
         </div>
@@ -714,5 +650,71 @@
 {% block script %}
 
 {% include "./competition.js" %}
+
+$(function(){
+
+
+    var doughnutData = {
+        labels: ["App","Software","Laptop" ],
+        datasets: [{
+            data: [70,27,85],
+            backgroundColor: ["#a3e1d4","#dedede","#9CC3DA"]
+        }]
+    } ;
+    
+    
+    var doughnutOptions = {
+        responsive: false,
+        legend: {
+            display: false
+        }
+    };
+
+    var doughnutData = {
+        labels: ["Victoires","Nuls"],
+        datasets: [{
+            data: [{{victoires}},{{nuls}}],
+            backgroundColor: ["#0AD971","#dedede"]
+        }]
+    } ;
+    var ctx = document.getElementById("doughnutChart").getContext("2d");
+    new Chart(ctx, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+    
+
+    var doughnutData = {
+        labels: ["1e Mi-temps","2e Mi-temps"],
+        datasets: [{
+            data: [{{ht}},{{ft}}],
+            backgroundColor: ["#0AD971","#3224A9"]
+        }]
+    } ;
+    var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+    
+    
+    var doughnutData = {
+        labels: ["+1,5","-3,5"],
+        datasets: [{
+            data: [{{p1_5}},{{m3_5}}],
+            backgroundColor: ["#0AD971","#920D0D"]
+        }]
+    } ;
+    var ctx4 = document.getElementById("doughnutChart3").getContext("2d");
+    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+    
+    
+    var doughnutData = {
+        labels: ["BTTS","No_BTTS"],
+        datasets: [{
+            data: [{{btts}},{{cs}}],
+            backgroundColor: ["#0AD971","#8A0909"]
+        }]
+    } ;
+    var ctx4 = document.getElementById("doughnutChart4").getContext("2d");
+    new Chart(ctx4, {type: 'doughnut', data: doughnutData, options:doughnutOptions});
+    
+
+
+})
 
 {% endblock script %}
