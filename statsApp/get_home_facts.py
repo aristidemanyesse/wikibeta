@@ -50,7 +50,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Win"),
@@ -102,7 +102,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Lose"),
@@ -153,7 +153,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Draw"),
@@ -204,7 +204,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "btts"),
@@ -255,7 +255,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "CS"),
@@ -306,7 +306,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "GC"),
@@ -356,7 +356,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "GS"),
@@ -408,7 +408,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "p1_5"),
@@ -460,7 +460,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "m3_5"),
@@ -512,7 +512,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "TGS"),
@@ -564,7 +564,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "TGC"),
@@ -621,7 +621,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Win"),
@@ -672,7 +672,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Lose"),
@@ -721,7 +721,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "Draw"),
@@ -771,7 +771,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "btts"),
@@ -821,7 +821,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "CS"),
@@ -871,7 +871,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "GC"),
@@ -922,7 +922,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "GS"),
@@ -971,7 +971,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "p1_5"),
@@ -1021,7 +1021,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "m3_5"),
@@ -1071,7 +1071,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "TGS"),
@@ -1121,7 +1121,7 @@ def function(match):
                     pct = round(taux_min, 2)
                 )
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 Fact.objects.get_or_create(
                     type = TypeFact.objects.get(name = "TGC"),

@@ -21,11 +21,12 @@ class TypeCompetition(BaseModel):
         
 
 class Competition(BaseModel):
+    type    = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     name    = models.CharField(max_length = 255, default="", null = True, blank=True)
     code    = models.CharField(max_length = 255, default="", null = True, blank=True)
-    type    = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     pays    = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
-
+    logo    = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default="", null = True, blank=True)
+    
     class Meta:
         ordering = ['name']
 

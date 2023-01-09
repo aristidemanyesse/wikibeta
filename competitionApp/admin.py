@@ -20,7 +20,7 @@ class CompetitionAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', 'code',"pays"]
+    list_display = ['name', "type", 'code',"pays", "logo"]
 
 
 

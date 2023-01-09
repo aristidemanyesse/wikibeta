@@ -8,7 +8,7 @@ class Team(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
     code    = models.CharField(max_length = 255, null = True, blank=True)
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
-    logo    = models.ImageField(max_length = 255, upload_to = "static/images/team/", default="", null = True, blank=True)
+    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="", null = True, blank=True)
     
     class Meta:
         ordering = ['name']

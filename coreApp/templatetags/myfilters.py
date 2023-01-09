@@ -1,5 +1,6 @@
 # coding: utf-8
 import json
+from datetime import datetime, timedelta
 from django import template
 import sqlparse
 from fractions import Fraction
@@ -111,6 +112,17 @@ def sub(value, arg):
     return value - arg
 
 
+
+@register.filter("next")
+def next(value, arg = 1):
+    return value + timedelta(days = arg)
+
+
+@register.filter("prev")
+def next(value, arg = 1):
+    return value - timedelta(days = arg)
+
+    
 
 @register.inclusion_tag('djutils/sort_th.html', takes_context=True)
 def sort_th(context, sort_param_name, label):

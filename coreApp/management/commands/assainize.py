@@ -11,16 +11,28 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        datas = EditionCompetition.objects.filter()
-        for edit in datas:
+        
+        datas = Competition.objects.filter()
+        for comp in datas:
+            comp.logo = "static/images/competitions/default.png"
+            comp.save()
+            
+        datas = Team.objects.filter()
+        for comp in datas:
+            comp.logo = "static/images/teams/default.png"
+            comp.save()
+
+            
+        # datas = EditionCompetition.objects.filter()
+        # for edit in datas:
             # teams = edit.edition_team.filter()
             # if len(edit.edition_du_match.filter()) == len(teams) * (len(teams)-1) :
             #     edit.is_finished = True
             #     edit.save()
                 
-            if edit.finish_date is not None and edit.finish_date <= (datetime.now() - timedelta(days = 365)).date() :
-                edit.is_finished = True
-                edit.save()
+            # if edit.finish_date is not None and edit.finish_date <= (datetime.now() - timedelta(days = 365)).date() :
+            #     edit.is_finished = True
+            #     edit.save()
             # matchs = edit.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
             # if  matchs.first() is not None and matchs.last() is not None:
             #     print(len(matchs), matchs.first().date, matchs.last().date) 

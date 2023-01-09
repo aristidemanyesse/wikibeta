@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from annoying.decorators import render_to
 from django.http import HttpResponseRedirect
 from .models import *
-from datetime import datetime
+from datetime import datetime, timedelta
 from coreApp.functions import *
 from predictionApp.models import *
 from competitionApp.models import *
@@ -32,8 +32,12 @@ def fixtures(request, year, month, day):
                 datas[edition] = matchs
                 
         ctx = {
-            "date" : date,
-            "datas" : datas,
+            "av_hier"     : date - timedelta(days=2),
+            "hier"        : date - timedelta(days=1),
+            "date"        : date,
+            "demain"      : date + timedelta(days=1),
+            "ap_demain"   : date + timedelta(days=2),
+            "datas"       : datas,
         }
         return ctx
         

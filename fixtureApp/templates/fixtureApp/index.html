@@ -6,143 +6,55 @@
 
 {% block main  %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <div>
-                            <span class="pull-right text-right">
-                            <small>Average value of sales in the past month in: <strong>United states</strong></small>
-                                <br/>
-                                All sales: 162,862
-                            </span>
-                        <h3 class="font-bold no-margins">
-                            Half-year revenue margin
-                        </h3>
-                        <small>Sales marketing.</small>
-                    </div>
+<div class="container" >
+    <div class="ibox" >
+        <div class="ibox-content" style="height:250px; background-image: url('{% static "images/dist/ban-index.png" %}'); background-size: contain; ">
 
-                    <div class="m-t-sm">
-
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div>
-                                <canvas id="lineChart" height="114"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <ul class="stat-list m-t-lg">
-                                    <li>
-                                        <h2 class="no-margins">2,346</h2>
-                                        <small>Total orders in period</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 48%;"></div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <h2 class="no-margins ">4,422</h2>
-                                        <small>Orders in last month</small>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" style="width: 60%;"></div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="m-t-md">
-                        <small class="pull-right">
-                            <i class="fa fa-clock-o"> </i>
-                            Update on 16.07.2015
-                        </small>
-                        <small>
-                            <strong>Analysis of sales:</strong> The value has been changed over time, and last month reached a level over $50,000.
-                        </small>
-                    </div>
-
-                </div>
-            </div>
         </div>
-        <div class="col-lg-4">
-            
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-xs-6 col-sm-2">
+            <a href="{% url 'fixtureApp:fixtures' av_hier.year av_hier.month av_hier.day %}" type="button" class="btn btn-default m-b-sm">Avant-hier {{av_hier.day|start0}}/{{av_hier.month|start0}}/{{av_hier.year}}</a>
+        </div>
+
+        <div class="col-xs-6 col-sm-2">
+            <a href="{% url 'fixtureApp:fixtures' hier.year hier.month hier.day %}" type="button" class="btn btn-default m-b-sm">Hier - {{hier.day|start0}}/{{hier.month|start0}}/{{hier.year}}</a>
+        </div>
+
+        <div class="col-sm-4 justify-center">
             <div class="row m-b-sm">
-                <div class="col-xs-2">
+                {% comment %} <div class="col-xs-2">
                     <a href="{% url 'fixtureApp:fixtures' date.year date.month date.day|add:-1 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-left"></i></button></a>
-                </div>
-                <div class="col-xs-8">
+                </div> {% endcomment %}
+                <div class="col-xs-12">
                     <div class="input-group date">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="date" class="form-control" value="{{date.day|start0}}/{{date.month|start0}}/{{date.year}}">
                     </div>
                 </div>
-                <div class="col-xs-2">
-                    <a href="{% url 'fixtureApp:fixtures' date.year date.month date.day|add:1 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-right"></i></button></a>
-                </div>
-            </div>
-
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <br>
-                            <h4>02/12/2022</h4>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <small class="stats-label">Proposés</small>
-                            <h4>46.11%</h4>
-                        </div>
-                        <div class="col-xs-4">
-                            <small class="stats-label">Gagnés</small>
-                            <h4>432.021</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <br>
-                            <h4>02/12/2022</h4>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <small class="stats-label">Proposés</small>
-                            <h4>92.43%</h4>
-                        </div>
-                        <div class="col-xs-4">
-                            <small class="stats-label">Gagnés</small>
-                            <h4>564.554</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <br>
-                            <h4>Ce jour</h4>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <small class="stats-label">Proposés</small>
-                            <h4>150.23%</h4>
-                        </div>
-                        <div class="col-xs-4">
-                            <small class="stats-label">Gagnés</small>
-                            <h4>124.990</h4>
-                        </div>
-                    </div>
-                </div>
+                {% comment %} <div class="col-xs-2">
+                    <a href="{% url 'fixtureApp:fixtures' date.year date.month|start0 date.day|add:1|start0 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-right"></i></button></a>
+                </div> {% endcomment %}
             </div>
         </div>
+        
+            <div class="col-xs-6 col-sm-2">
+                <a href="{% url 'fixtureApp:fixtures' demain.year demain.month demain.day %}" type="button" class="btn btn-default m-b-sm">Demain - {{demain.day|start0}}/{{demain.month|start0}}/{{demain.year}}</a>
+        </div>
 
+        <div class="col-xs-6 col-sm-2">
+            <a href="{% url 'fixtureApp:fixtures' ap_demain.year ap_demain.month ap_demain.day %}" type="button" class="btn btn-default m-b-sm">Ap demain - {{ap_demain.day|start0}}/{{ap_demain.month|start0}}/{{ap_demain.year}}</a>
         </div>
 
     </div>
+        
+</div>
 
 
-    <div class="container">
+<div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -175,14 +87,14 @@
                                         {% if edition.competition.pays.flag %}
                                             <img alt="image" style="height:20px; display:inline-block; margin-right:1%" class="img-responsive" src="{{ edition.competition.pays.flag.url }}">
                                         {% endif %}
-                                        {{edition.competition.pays}} - {{edition.competition}}
+                                        <a class="no-link" href="{% url 'competitionApp:competition_edition' edition.competition.pays edition.competition edition.edition %}">{{edition.competition.pays}} - {{edition.competition}}</a>
                                     </td>
                                 </tr>
                                 {% for match in datas|dict_value:edition %}
                                     {% with match.get_result as result %}
                                     <tr>
-                                        <td class="">{{match.date | naturalday}} {{match.hour}}</td>
-                                        <td class="text-right"  colspan="3">
+                                        <td style="width:140px">{{match.date | naturalday}} {{match.hour}}</td>
+                                        <td class="text-left"  colspan="3">
                                             {% for pre in match.prediction_match.filter %}
                                                 <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.mode }}:{{ pre.type.code }}</label>
                                             {% endfor %}
@@ -204,9 +116,9 @@
                                         <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
                                         <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
                                         <td class="text-left"  colspan="3">
-                                            <label class="label label-{% if result.home_score > result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
-                                            <label class="label label-{% if result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
-                                            <label class="label label-{% if result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
+                                            <label class="label label-{% if match.is_finished and result.home_score > result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
+                                            <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
+                                            <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                                         </td>
                                         <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                     </tr>
@@ -219,7 +131,7 @@
             </div>
         </div>
     </div>
-    </div>
+</div>
 
 
 
