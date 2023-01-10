@@ -42,7 +42,7 @@
                     <h4 class="m-t-sm text-center">{{match.hour}}</h4>        
                     <h5 class="m-t-sm text-center">{{match.edition.competition}}</h5>  
                     {% endif %}
-<br>
+                    <br>
                     <div>
                         <label class="label label-{% if match.is_finished and result.home_score > result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
                         <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
