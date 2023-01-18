@@ -111,7 +111,6 @@ def rechercher_cote(request, home, away, draw):
 
 
 
-
 @render_to('statsApp/rechercher_ppg.html')
 def rechercher_ppg(request, home, away):
     if request.method == "GET":
@@ -122,15 +121,17 @@ def rechercher_ppg(request, home, away):
         similaires_matchs = []
         befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(home), match__date__year__gte = date.year-1).order_by("-match__date")
         for bef in befores:
-            befs = BeforeMatchStat.objects.filter(ppg__range = intervale(away), match = bef.match).exclude(id = bef.id)
-            if len(befs) == 1:
-                similaires_matchs.append(bef.match)
+            if bef.team == bef.match.home:
+                befs = BeforeMatchStat.objects.filter(ppg__range = intervale(away), match = bef.match).exclude(id = bef.id)
+                if len(befs) == 1:
+                    similaires_matchs.append(bef.match)
                
-        facts = get_recherche_facts.function(similaires_matchs) if len(similaires_matchs) > 0 else []
+        facts = get_recherche_facts.function(similaires_matchs[:100]) if len(similaires_matchs) > 0 else []
         ctx = {
                "home": home,
                "away": away,
-               "similaires_matchs": similaires_matchs[:30],
+               "total": len(similaires_matchs),
+               "similaires_matchs": similaires_matchs[:20],
                "facts": facts,
             }
         return ctx

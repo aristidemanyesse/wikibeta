@@ -76,37 +76,96 @@
 
 
 <div class="container">
-    <div class="row  m-b-lg">
-
-        <a href="#" type="button" class="btn btn-default m-b-sm">Forme du moment</a> 
-        <a href="#" type="button" class="btn btn-default m-b-sm">Confrontations directes</a> 
-        <a href="#" type="button" class="btn btn-default m-b-sm">Matchs similaires</a> 
-        <a href="#" type="button" class="btn btn-default m-b-sm">Prédictions</a> 
-
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="row  m-b-lg">
-        {% for prediction in predictions %}
-        <div class="col-md-3">
-            <div class="ibox">
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> D'entrée de jeu</h4>
+    
+    <div class="row m-b-sm ">
+        <div class="col-md-8">
+            <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <h3 class="stat-percent no-margins">{{prediction.pct|rounded}}%</h3>
-                    <h5>{{prediction.type.code}}</h5>
-                    <div class="stat-percent font-bold text-navy">{{prediction.is_checked}}</div>
-                    <small>{{prediction.mode}}</small>
+                 
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="bold text-right text-uppercase">{{match.home}}</td>
+                                <td class="bold text-center">En confrontation</td>
+                                <td class="bold text-left text-uppercase">{{match.away}}</td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">
+                                    <label class="">5</label>
+                                </td>
+                                <td class="bold text-center">Rang</td>
+                                <td class="bold text-left">
+                                    <label class="">5</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">
+                                    <label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label>
+                                </td>
+                                <td class="bold text-center">PPG</td>
+                                <td class="bold text-left">
+                                    <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                 <td class="text-right">
+                                    {% for x in home_last_forms %}
+                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                                {% endfor %}
+                                </td>
+                                <td class="bold text-center">Forme du moment</td>
+                                 <td class="text-left">
+                                    {% for x in away_last_forms %}
+                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
+                                {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored|rounded }}</td>
+                                <td class="bold text-center">Moyenne de buts marquées</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-center">Moyenne de fautes commises / subies </td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-center">Moyenne de cartons</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-center">Moyenne de hors jeu</td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        {% endfor %}   
+      
+
+        <div class="col-md-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row text-center">
+                        <div>
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-
-<div class="row">
-    <div class="container">
+    <div class="row">
         <div class="col-md-6">
             <div class="ibox">
                 <div class="ibox-content">
@@ -141,13 +200,14 @@
             </div>
         </div>
     </div>
+
 </div>
 
 
+<div class="container"> 
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Dans le passé</h4>
 
-<div class="container">
-    <div class="row  m-t-lg">
-        
+    <div class="row ">
         <div class="col-md-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -179,6 +239,15 @@
                                 {% endfor %}
                             </tbody>
                     </table>
+
+                    <div class="text-center">
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but">ClSh = 10</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -215,12 +284,321 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <div class="text-center">
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Faits intéressants sur {{ match.home }} </h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            {% for fact in home_facts %}
+                                <tr>
+                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h5>Faits intéressants sur {{ match.away }} </h5>
+                    <table class="table table-stripped small m-t-md">
+                        <tbody>
+                            {% for fact in away_facts %}
+                                <tr>
+                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6  m-b-md">
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
+
+            <table class="table small m-b-xs">
+                <tbody>
+                    {% for match in confrontations %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                            {% if match.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% endif %}
+                            <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}                    
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+            </div>
+        </div>
+
+        <div class="col-md-6 m-b-md">
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par PPG</h4>
+
+            <table class="table small m-b-xs">
+                <tbody>
+                    {% for match in confrontations %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                            {% if match.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% endif %}
+                            <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}                    
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+            </div>
+        </div>
+
+        <div class="col-md-6  m-b-md">
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par cotes</h4>
+
+            <table class="table small m-b-xs">
+                <tbody>
+                    {% for match in confrontations %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                            {% if match.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% endif %}
+                            <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}                    
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+            </div>
+        </div>
+
+        <div class="col-md-6  m-b-md">
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
+
+            <table class="table small m-b-xs">
+                <tbody>
+                    {% for match in confrontations %}
+                        {% with match.get_result as result %}
+                        <tr>
+                            <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
+                            <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
+                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
+                            <td class="text-center" width="50px">
+                            {% if match.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% endif %}
+                            <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
+                            </td>
+                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
+                            <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
+                        </tr>
+                        {% endwith %}                    
+                    {% endfor %}                    
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+            </div>
+        </div>
+    </div>    
+</div>
+
+
+
+<div class="container">
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Force de frappe & Bouclier de défense</h4>
+    
+    <div class="row">
+        <div class="col-sm-6 border-right">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="widget  p-sm text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-flash fa-4x"></i>
+                            <h1 class="m-xs">612</h1>
+                            <h3 class="font-bold no-margins">
+                                buts marqués en 17 matchs
+                            </h3>
+                            <small>2.14 buts par matchs</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="widget  p-sm text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-flash fa-4x"></i>
+                            <h1 class="m-xs">612</h1>
+                            <h3 class="font-bold no-margins">
+                                buts encaissés en 17 matchs 
+                            </h3>
+                            <small>2.14 buts par matchs</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 border-left">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="widget  p-sm text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-flash fa-4x"></i>
+                            <h1 class="m-xs">612</h1>
+                            <h3 class="font-bold no-margins">
+                                buts marqués en 17 matchs
+                            </h3>
+                            <small>2.14 buts par matchs</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="widget  p-sm text-center">
+                        <div class="m-b-md">
+                            <i class="fa fa-flash fa-4x"></i>
+                            <h1 class="m-xs">612</h1>
+                            <h3 class="font-bold no-margins">
+                                buts encaissés en 17 matchs 
+                            </h3>
+                            <small>2.14 buts par matchs</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
+
+
+
+<div class="container">
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Fautes</h4>
+    
+    <div class="row  m-b-lg">
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Conners</h4>
+    
+    <div class="row  m-b-lg">
+
+
+    </div>
+</div>
+
+
+
+<div class="container">
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Hors-jeu</h4>
+    
+    <div class="row  m-b-lg">
+
+
+    </div>
+</div>
+
+
+
+
+<div class="container">
+    <div class="row  m-b-lg">
+        {% for prediction in predictions %}
+        <div class="col-md-3">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3 class="stat-percent no-margins">{{prediction.pct|rounded}}%</h3>
+                    <h5>{{prediction.type.code}}</h5>
+                    <div class="stat-percent font-bold text-navy">{{prediction.is_checked}}</div>
+                    <small>{{prediction.mode}}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}   
+    </div>
+</div>
+
+
 
 
 <div class="container m-t-lg">
@@ -304,8 +682,8 @@
 
 
     <div class="row">
-        <div class="col-md-5">
-            <h4 class="bg-primary p-xs">Précédents confrontations directes</h4>
+        <div class="col-md-6">
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
@@ -329,10 +707,18 @@
                     {% endfor %}                    
                 </tbody>
             </table>
+            <div class="text-center">
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
+                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+            </div>
         </div>
 
 
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Prédictions par Statistiques croisées <small class="m-l-sm">This is custom panel</small></h5>

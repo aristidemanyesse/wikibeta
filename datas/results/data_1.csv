@@ -1,13 +1,13 @@
 Country,League,Season,Date,Time,Home,Away,HG,AG,Res,PH,PD,PA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA
-China,Super League,2022,30/12/2022,07:00,Hebei,Henan Songshan Longmen,0,4,A,,,,61,14,1.24,17.11,7.13,1.17
-China,Super League,2022,30/12/2022,07:00,Shanghai Shenhua,Shenzhen,2,0,H,1.06,14.58,28.36,1.07,19,51,1.05,11.84,28.1
-China,Super League,2022,31/12/2022,07:00,Chengdu Rongcheng,Dalian Pro,3,0,H,1.2,6.66,12.04,1.23,7,14.5,1.2,6.37,11.52
-China,Super League,2022,31/12/2022,07:00,Guangzhou City,Cangzhou,1,4,A,3.91,4.19,1.74,4.75,4.33,2.25,4.06,4.01,1.73
-China,Super League,2022,31/12/2022,07:00,Meizhou Hakka,Guangzhou FC,1,0,H,1.75,3.99,3.78,1.85,4.15,4.5,1.75,3.93,3.95
-China,Super League,2022,31/12/2022,07:00,Shandong Taishan,Beijing Guoan,3,0,H,,,,,,,,,
-China,Super League,2022,31/12/2022,07:00,Shanghai Port,Changchun Yatai,4,0,H,1.12,8.5,21.08,1.13,11,29,1.09,9.3,21.43
-China,Super League,2022,31/12/2022,07:00,Wuhan Three Towns,Tianjin Jinmen Tiger,3,0,H,1.84,4.04,3.48,2.59,3.59,2.59,2.59,3.59,2.59
-China,Super League,2022,31/12/2022,07:00,Zhejiang Professional,Wuhan FC,4,0,H,1.05,11.02,20.61,1.05,23,81,1.03,14.68,39.42
+Mexico,Liga MX,2022/2023,13/01/2023,03:05,Atlas,Mazatlan FC,2,1,H,1.76,3.62,5.41,1.79,3.81,5.42,1.72,3.48,4.98
+Mexico,Liga MX,2022/2023,14/01/2023,01:05,Atl. San Luis,Guadalajara Chivas,0,0,D,3.14,3.35,2.44,3.19,3.39,2.5,2.94,3.17,2.39
+Mexico,Liga MX,2022/2023,14/01/2023,03:05,Puebla,Queretaro,2,0,H,2.2,3.39,3.59,2.3,3.54,3.59,2.17,3.3,3.25
+Mexico,Liga MX,2022/2023,14/01/2023,23:00,Cruz Azul,Monterrey,2,3,A,2.71,3.3,2.81,2.75,3.48,2.81,2.61,3.15,2.69
+Mexico,Liga MX,2022/2023,15/01/2023,01:05,Juarez,Club Tijuana,3,0,H,2.32,3.25,3.45,2.35,3.33,3.45,2.26,3.15,3.21
+Mexico,Liga MX,2022/2023,15/01/2023,01:05,Toluca,Club America,2,2,D,4.22,3.96,1.85,4.25,4.09,1.85,3.96,3.74,1.81
+Mexico,Liga MX,2022/2023,15/01/2023,03:05,Santos Laguna,U.N.A.M.- Pumas,3,0,H,2.22,3.7,3.26,2.23,3.78,3.4,2.14,3.53,3.1
+Mexico,Liga MX,2022/2023,16/01/2023,01:05,U.A.N.L.- Tigres,Pachuca,4,1,H,2.17,3.24,3.85,2.18,3.33,3.85,2.11,3.14,3.57
+Mexico,Liga MX,2022/2023,17/01/2023,03:05,Club Leon,Necaxa,2,1,H,1.79,3.95,4.62,1.95,4,4.62,1.76,3.73,4.23
 ,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,,,,,
