@@ -79,7 +79,7 @@
     <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> D'entrée de jeu</h4>
     
     <div class="row m-b-sm ">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                  
@@ -123,26 +123,38 @@
                             </tr>
                             <tr>
                                 <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored|rounded }}</td>
-                                <td class="bold text-center">Moyenne de buts marquées</td>
+                                <td class="bold text-center">Moy. de buts marquées</td>
                                 <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
                                 <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
-                                <td class="bold text-center">Moyenne de fautes commises / subies </td>
+                                <td class="bold text-center">Moy. de buts concédés </td>
                                 <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
-                                <td class="bold text-center">Moyenne de cartons</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_corners_for|rounded }} / {{ match.get_home_before_stats.avg_corners_against|rounded }}</td>
+                                <td class="bold text-center">Moy. de corners pour / contre </td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_corners_for|rounded }} / {{ match.get_away_before_stats.avg_corners_against|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
-                                <td class="bold text-center">Moyenne de hors jeu</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_fouls_for|rounded }} / {{ match.get_home_before_stats.avg_fouls_against|rounded }}</td>
+                                <td class="bold text-center">Moy. de fautes commises / subies </td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_fouls_for|rounded }} / {{ match.get_away_before_stats.avg_fouls_against|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_cards_for|rounded }} / {{ match.get_home_before_stats.avg_cards_against|rounded }}</td>
+                                <td class="bold text-center">Moy. de cartons pour / contre </td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_cards_for|rounded }} / {{ match.get_away_before_stats.avg_cards_against|rounded }}</td>
+                                <td><img src=""></td>
+                            </tr>
+                            <tr>
+                                <td class="bold text-right">{{ match.get_home_before_stats.avg_offside_for|rounded }} / {{ match.get_home_before_stats.avg_offside_against|rounded }}</td>
+                                <td class="bold text-center">Moyenne de hors-jeu pour / contre </td>
+                                <td class="bold text-left">{{ match.get_away_before_stats.avg_offside_for|rounded }} / {{ match.get_away_before_stats.avg_offside_against|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                         </tbody>
@@ -152,60 +164,88 @@
         </div>
       
 
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="ibox">
+                {% if not match.is_finished %}
                 <div class="ibox-content">
                     <div class="row text-center">
-                        <div>
-                            <canvas id="radarChart"></canvas>
+                        <div style="height:400px">
+                            <canvas style="height:400px; width:400px" id="radarChart"></canvas>
                         </div>
                     </div> 
                 </div>
+                {% else %}
+                <div class="ibox-content">
+                    <div>
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_shots }}</small>
+                            <span class="bold">Tirs</span>
+                            <small class="pull-right">{{ extra_infos.away_shots }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_shots|taux:extra_infos.away_shots}}%;" class="progress-bar"></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_shots_on_target }}</small>
+                            <span class="bold">Tirs cadrés</span>
+                            <small class="pull-right">{{ extra_infos.away_shots_on_target }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_shots_on_target|taux:extra_infos.away_shots_on_target}}%;" class="progress-bar"></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_corners }}</small>
+                            <span class="bold">Cornes</span>
+                            <small class="pull-right">{{ extra_infos.away_corners }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_corners|taux:extra_infos.away_corners}}%;" class="progress-bar"></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_fouls }}</small>
+                            <span class="bold">Fautes</span>
+                            <small class="pull-right">{{ extra_infos.away_fouls }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_fouls|taux:extra_infos.away_fouls}}%;" class="progress-bar"></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_yellow_cards }}</small>
+                            <span class="bold">Cartons jaunes</span>
+                            <small class="pull-right">{{ extra_infos.away_yellow_cards }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_yellow_cards|taux:extra_infos.away_yellow_cards}}%;" class="progress-bar "></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_red_cards }}</small>
+                            <span class="bold">Cartons rouges</span>
+                            <small class="pull-right">{{ extra_infos.away_red_cards }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_red_cards|taux:extra_infos.away_red_cards}}%;" class="progress-bar "></div>
+                        </div>
+
+                        <div class="text-center">
+                            <small class="pull-left">{{ extra_infos.home_offsides }}</small>
+                            <span class="bold">Hors-jeu</span>
+                            <small class="pull-right">{{ extra_infos.away_offsides }}</small>
+                        </div>
+                        <div class="progress-x progress-small">
+                            <div style="width: {{extra_infos.home_offsides|taux:extra_infos.away_offsides}}%;" class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <h5>Faits intéressants sur {{ match.home }} </h5>
-                    <table class="table table-stripped small m-t-md">
-                        <tbody>
-                            {% for fact in home_facts %}
-                                <tr>
-                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="ibox">
-                <div class="ibox-content">
-                    <h5>Faits intéressants sur {{ match.away }} </h5>
-                    <table class="table table-stripped small m-t-md">
-                        <tbody>
-                            {% for fact in away_facts %}
-                                <tr>
-                                    <td><i class="fa fa-circle text-navy"></i> {{fact.sentence}}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<div class="container"> 
-    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Dans le passé</h4>
 
     <div class="row ">
         <div class="col-md-6">
@@ -333,6 +373,13 @@
         </div>
     </div>
 
+</div>
+
+
+<div class="container"> 
+    <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Dans le passé</h4>
+
+
     <div class="row">
         <div class="col-md-6  m-b-md">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
@@ -369,12 +416,12 @@
             </div>
         </div>
 
-        <div class="col-md-6 m-b-md">
+        <div class="col-md-6 m-b-md" style="height: 450px">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par PPG</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
-                    {% for match in confrontations %}
+                    {% for match in similaires_ppg %}
                         {% with match.get_result as result %}
                         <tr>
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
@@ -404,25 +451,28 @@
             </div>
         </div>
 
-        <div class="col-md-6  m-b-md">
+        <div class="col-md-6  m-b-md" style="height: 450px">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par cotes</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
-                    {% for match in confrontations %}
+                    {% for match in similaires_betting %}
                         {% with match.get_result as result %}
                         <tr>
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
-                            <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                             <td class="text-center" width="50px">
                             {% if match.home_half_score is not None %}
                                 <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
-                            <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
                             <td class="{% if result.home_score < result.away_score %}bold{% endif %} text-left"><a class="no-link" href="{% url 'teamApp:team' match.away %}">{{match.away}}</a></td>
+                            <td class="text-left"  colspan="3">
+                                <label class="label label-{% if match.is_finished and result.home_score > result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.home }}</label>
+                                <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
+                                <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
+                            </td>
                             <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i></a></td>
                         </tr>
                         {% endwith %}                    
@@ -440,11 +490,11 @@
         </div>
 
         <div class="col-md-6  m-b-md">
-            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
+            <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par PPG 2</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
-                    {% for match in confrontations %}
+                    {% for match in similaires_ppg2 %}
                         {% with match.get_result as result %}
                         <tr>
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
@@ -603,91 +653,13 @@
 
 <div class="container m-t-lg">
 
-    <div class="row m-b-lg ">
-        <div class="col-md-8">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>Comparaison n'est pas raison <small class="m-l-sm">sur la forme du moment</small></h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                 
-                    <table class="table table-striped table-hover">
-                        <tbody>
-                            <tr>
-                                <td class="bold text-right">{{match.home}}</td>
-                                <td class="bold text-center">En confrontation</td>
-                                <td class="bold text-left">{{match.away}}</td>
-                            </tr>
-                            <tr>
-                                <td class="bold text-right">
-                                    <label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label>
-                                </td>
-                                <td class="bold text-center">PPG</td>
-                                <td class="bold text-left">
-                                    <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                 <td class="text-right">
-                                    {% for x in home_last_forms %}
-                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
-                                {% endfor %}
-                                </td>
-                                <td class="bold text-center">Forme du moment</td>
-                                 <td class="text-left">
-                                    {% for x in away_last_forms %}
-                                    <label class="label label-{{x|form_couleur}}">{{x}}</label>
-                                {% endfor %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored|rounded }}</td>
-                                <td class="bold text-center">Moyenne de buts marquées</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored|rounded }}</td>
-                                <td><img src=""></td>
-                            </tr>
-                            <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
-                                <td class="bold text-center">Moyenne de buts encaissés</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
-                                <td><img src=""></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-      
-
-        <div class="col-md-4">
-            <div class="ibox">
-                <div class="ibox-title">
-                    <h5>Example of initial collapsed panel</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="row text-center">
-                        <div>
-                            <canvas id="radarChart"></canvas>
-                        </div>
-                    </div> 
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div class="row">
         <div class="col-md-6">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Précédents confrontations directes</h4>
 
             <table class="table small m-b-xs">
                 <tbody>
-                    {% for match in confrontations %}
+                    {% for match in inter %}
                         {% with match.get_result as result %}
                         <tr>
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>

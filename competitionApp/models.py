@@ -66,53 +66,56 @@ class EditionCompetition(BaseModel):
         for team in self.edition_team.filter():
             cs = btts = ga = gs = 0
             win = draw = lose = 0
-            matchs = Match.objects.filter(Q(home = team) | Q(away = team)).order_by("-date")
-            for match in matchs:
-                result = match.get_result()
-                btts += 1 if (result.home_score > 0 and result.away_score > 0)  else 0
-                if match.home == team:
-                    gs += result.home_score
-                    ga += result.away_score
-                    cs += 1 if result.away_score == 0 else 0
-                elif match.away == team:
-                    gs += result.away_score
-                    ga += result.home_score
-                    cs += 1 if result.home_score == 0 else 0
-                    
-                if result.result == "D":
-                    draw += 1
-                if (result.result == "H" and match.home == team) or (result.result == "A" and match.away == team ) :
-                    win += 1
-                if (result.result == "A" and match.home == team) or (result.result == "H" and match.away == team ) :
-                    lose += 1
-                    
-            pts = win*3 + draw
-            ppg = round(pts / len(matchs), 2)
-            avg_gs = round(gs / len(matchs), 2)
-            
-            element = {
-                "team"    : team,
-                "mj"      : len(matchs),
-                "win"     : win,
-                "draw"    : draw,
-                "lose"    : lose,
-                "gs"      : gs,
-                "ga"      : ga,
-                "gd"      : gs - ga,
-                "form"     : [team.form(x) for x in matchs[:EditionTeam.NB]],
-                "pts"     : pts,
-                "ppg"     : ppg,
-                "cs"      : cs,
-                "btts"    : btts,
-                "avg_gs"  : avg_gs,
-                "1.5"    : int(round(team.plus_but(1.5)/len(matchs), 2)*100),
-                "2.5"    : int(round(team.plus_but(2.5)/len(matchs), 2)*100),
-                "3.5"    : int(round(team.moins_but(3.5)/len(matchs), 2)*100),
-            }
-            element["form"].reverse()
-            datas.append(element)
+            matchs = Match.objects.filter(is_finished = True).filter(Q(home = team) | Q(away = team)).order_by("-date")
+            if len(matchs) > 0:
+                for match in matchs:
+                    result = match.get_result()
+                    if result is not None:
+                        btts += 1 if (result.home_score > 0 and result.away_score > 0)  else 0
+                        if match.home == team:
+                            gs += result.home_score
+                            ga += result.away_score
+                            cs += 1 if result.away_score == 0 else 0
+                        elif match.away == team:
+                            gs += result.away_score
+                            ga += result.home_score
+                            cs += 1 if result.home_score == 0 else 0
+                        if result.result == "D":
+                            draw += 1
+                        if (result.result == "H" and match.home == team) or (result.result == "A" and match.away == team ) :
+                            win += 1
+                        if (result.result == "A" and match.home == team) or (result.result == "H" and match.away == team ) :
+                            lose += 1
+                                                
+                pts = win*3 + draw
+                ppg = round(pts / len(matchs), 2)
+                avg_gs = round(gs / len(matchs), 2)
+                avg_ga = round(ga / len(matchs), 2)
+                
+                element = {
+                    "team"    : team,
+                    "mj"      : len(matchs),
+                    "win"     : win,
+                    "draw"    : draw,
+                    "lose"    : lose,
+                    "gs"      : gs,
+                    "ga"      : ga,
+                    "gd"      : gs - ga,
+                    "form"     : [team.form(x) for x in matchs[:EditionTeam.NB]],
+                    "pts"     : pts,
+                    "ppg"     : ppg,
+                    "cs"      : cs,
+                    "btts"    : btts,
+                    "avg_gs"  : avg_gs,
+                    "avg_ga"  : avg_ga,
+                    "p1_5"    : int(round(team.plus_but(1.5)/len(matchs), 2)*100),
+                    "p2_5"    : int(round(team.plus_but(2.5)/len(matchs), 2)*100),
+                    "m3_5"    : int(round(team.moins_but(3.5)/len(matchs), 2)*100),
+                }
+                element["form"].reverse()
+                datas.append(element)
         
-        datas = sorted(datas, reverse=True, key=lambda x: x.get("pts"))
+        datas = sorted(datas, reverse=True, key=lambda x: (x.get("pts"), x.get("gd"), x.get("win")))
         return datas
     
     
@@ -261,8 +264,9 @@ class Ranking(BaseModel):
     
         
 class LigneRanking(BaseModel):
-    ranking   = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="ranking_lignes")
-    team      = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="team_lignes_rankings")
+    ranking   = models.ForeignKey(Ranking, on_delete = models.CASCADE, related_name="ranking_lignes")
+    team      = models.ForeignKey(EditionTeam, on_delete = models.CASCADE, related_name="team_lignes_rankings")
+    level     = models.IntegerField(default= 0, null = True, blank=True)
     mj        = models.IntegerField(default= 0, null = True, blank=True)
     win       = models.IntegerField(default= 0, null = True, blank=True)
     draw      = models.IntegerField(default= 0, null = True, blank=True)
@@ -271,6 +275,7 @@ class LigneRanking(BaseModel):
     ga        = models.IntegerField(default= 0, null = True, blank=True)
     gd        = models.IntegerField(default= 0, null = True, blank=True)
     form      = models.CharField(max_length=255, default= "", null = True, blank=True)
+    ppg       = models.FloatField(default = 0.0, null = True, blank=True)
     pts       = models.IntegerField(default= 0, null = True, blank=True)
     cs        = models.IntegerField(default= 0, null = True, blank=True)
     btts      = models.IntegerField(default= 0, null = True, blank=True)
@@ -279,3 +284,9 @@ class LigneRanking(BaseModel):
     p1_5      = models.FloatField(default = 0.0, null = True, blank=True)
     p2_5      = models.FloatField(default = 0.0, null = True, blank=True)
     m3_5      = models.FloatField(default = 0.0, null = True, blank=True)
+    
+    class Meta:
+        ordering = ['level']
+
+    def __str__(self):
+        return "Rang - " + str(self.team)

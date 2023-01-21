@@ -12,15 +12,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        datas = Competition.objects.filter()
+        datas = Match.objects.filter().order_by("-date")
+        print(len(datas))
+        i = 0
         for comp in datas:
-            comp.logo = "static/images/competitions/default.png"
+            print(i)
+            print(comp)
             comp.save()
+            i += 1
             
-        datas = Team.objects.filter()
-        for comp in datas:
-            comp.logo = "static/images/teams/default.png"
-            comp.save()
+        # datas = Competition.objects.filter()
+        # for comp in datas:
+        #     comp.logo = "static/images/competitions/default.png"
+        #     comp.save()
+            
+        # datas = Team.objects.filter()
+        # for comp in datas:
+        #     comp.logo = "static/images/teams/default.png"
+        #     comp.save()
 
             
         # datas = EditionCompetition.objects.filter()

@@ -15,7 +15,7 @@ def function(matchs):
 
     
     #victoire à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -50,7 +50,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "Win"),
@@ -67,7 +67,7 @@ def function(matchs):
     
     
     # #defaite à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -101,7 +101,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "Lose"),
@@ -116,7 +116,7 @@ def function(matchs):
        
         
     # #nul à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -150,7 +150,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "Draw"),
@@ -166,7 +166,7 @@ def function(matchs):
        
         
     # #btts à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -200,7 +200,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "btts"),
@@ -216,7 +216,7 @@ def function(matchs):
        
         
     # #clean sheet à domicile de l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -250,7 +250,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "CS"),
@@ -266,7 +266,7 @@ def function(matchs):
        
         
     # #au moins un but concedé à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -300,7 +300,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "GC"),
@@ -317,7 +317,7 @@ def function(matchs):
        
         
     # #au moins un but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -351,7 +351,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "GS"),
@@ -366,7 +366,7 @@ def function(matchs):
        
         
     # #au moins deux but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -400,7 +400,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "p1_5"),
@@ -416,7 +416,7 @@ def function(matchs):
        
         
     # #au plus trois but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -450,7 +450,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX and len (tableau_max) > 0:
+        elif taux_max >= MAX and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "m3_5"),
@@ -466,7 +466,7 @@ def function(matchs):
        
         
     #moyenne but marqué à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -500,7 +500,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "TGS"),
@@ -516,7 +516,7 @@ def function(matchs):
        
         
     # moyenne but concédé à domicile pour l'equipe qui joue à domicile
-    if len(matchs) >= 50:
+    if len(matchs) >= 10:
         i = round(len(matchs) / 2)
         taux_min = 100
         tableau_min = {}
@@ -550,7 +550,7 @@ def function(matchs):
                 )
                 facts.append(fact)
         
-        if taux_max >= MAX_GOAL and len (tableau_max) > 0:
+        elif taux_max >= MAX_GOAL and len (tableau_max) > 0:
             for k, v in tableau_max.items():
                 fact = Fact(
                     type = TypeFact.objects.get(name = "TGC"),

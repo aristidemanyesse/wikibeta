@@ -83,6 +83,50 @@ class EditionTeam(BaseModel):
         return points, round((points / total), 2), scored, round((scored/total), 2), conceded, round((conceded/total), 2)
     
 
+
+    def extra_info_stats(self, match, number = None, edition = False):
+        matchs = self.get_last_matchs(match, number, edition)
+        total = 0
+        datas = {}
+        datas["avg_fouls_for"]          = 0
+        datas["avg_shots_for"]          = 0
+        datas["avg_shots_target_for"]   = 0
+        datas["avg_corners_for"]        = 0
+        datas["avg_offside_for"]        = 0
+        datas["avg_cards_for"]          = 0
+        
+        datas["avg_fouls_against"]          = 0
+        datas["avg_shots_against"]          = 0
+        datas["avg_shots_target_against"]   = 0
+        datas["avg_corners_against"]        = 0
+        datas["avg_offside_against"]        = 0
+        datas["avg_cards_against"]          = 0
+
+        if len(matchs) > 0:
+            for match in matchs:
+                info = match.get_extra_info_match()
+                if info is not None:
+                    total             += 1
+                    datas["avg_fouls_for"]          += info.home_fouls or 0 if match.home == self else info.away_fouls or 0
+                    datas["avg_shots_for"]          += info.home_shots or 0 if match.home == self else info.away_shots or 0
+                    datas["avg_shots_target_for"]   += info.home_shots_on_target or 0 if match.home == self else info.away_shots_on_target or 0
+                    datas["avg_corners_for"]        += info.home_corners or 0 if match.home == self else info.away_corners or 0
+                    datas["avg_offside_for"]        += info.home_offsides or 0 if match.home == self else info.away_offsides or 0
+                    datas["avg_cards_for"]          += info.home_yellow_cards or 0 if match.home == self else info.away_yellow_cards or 0
+
+                    datas["avg_fouls_against"]          += info.home_fouls or 0 if match.away == self else info.home_fouls or 0
+                    datas["avg_shots_against"]          += info.home_shots or 0 if match.away == self else info.home_shots or 0
+                    datas["avg_shots_target_against"]   += info.home_shots_on_target or 0 if match.away == self else info.home_shots_on_target or 0
+                    datas["avg_corners_against"]        += info.home_corners or 0 if match.away == self else info.home_corners or 0
+                    datas["avg_offside_against"]        += info.home_offsides or 0 if match.away == self else info.home_offsides or 0
+                    datas["avg_cards_against"]          += info.home_yellow_cards or 0 if match.away == self else info.home_yellow_cards or 0
+        
+            for key in datas.keys():
+                datas[key] = round(datas[key] / total, 2)
+            
+        return datas
+
+    
     
     
     def get_before_stats(self, match):
@@ -96,7 +140,7 @@ class EditionTeam(BaseModel):
 
     
     def plus_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -106,7 +150,7 @@ class EditionTeam(BaseModel):
 
 
     def moins_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -116,7 +160,7 @@ class EditionTeam(BaseModel):
     
     
     def ht_plus_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()
@@ -127,7 +171,7 @@ class EditionTeam(BaseModel):
 
 
     def ht_moins_but(self, nb):
-        matchs = Match.objects.filter(Q(home = self) | Q(away = self)).order_by("-date")
+        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
         total = 0
         for match in matchs:
             result = match.get_result()

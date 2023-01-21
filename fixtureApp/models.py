@@ -5,7 +5,7 @@ from coreApp.models import BaseModel
 from coreApp.functions import *
 from statsApp.models import *
 from bettingApp.models import *
-import threading, time
+from datetime import datetime, timedelta, time
 
 import predictionApp.functions.p0 as p0
 import predictionApp.functions.p1 as p1
@@ -42,21 +42,20 @@ class Match(BaseModel):
         return matchs[:number]
     
     
-    def similaires_ppg(self, number = 50):
+    def similaires_ppg(self, number = 100):
         matchs = []
+        date = self.date - timedelta(days = 3 * 12 * 30)
         home = self.before_stat_match.filter(team = self.home).first()
+        away = self.before_stat_match.filter(team = self.away).first()
         if home is not None:
             ppg_home = home.ppg
-            
-            away = self.before_stat_match.filter(team = self.away).first()
-            if away is not None:
-                ppg_away = away.ppg
-                
-                befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-2).exclude(id = self.id).order_by("-match__date")
-                for bef in befores:
-                    if bef.team == bef.match.home:
-                        befs = BeforeMatchStat.objects.filter(ppg__range = intervale(ppg_away), match = bef.match).exclude(id = bef.id)
-                        if len(befs) == 1:
+            ppg_away = away.ppg
+            befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
+            for bef in befores:
+                if bef.team == bef.match.home:
+                    pa = bef.match.before_stat_match.exclude(id = bef.id).first()
+                    if intervale(ppg_away)[0] <= pa.ppg <= intervale(ppg_away)[1] :
+                        if bef.match not in matchs:
                             matchs.append(bef.match)
                 
         return matchs[:number]
@@ -64,22 +63,20 @@ class Match(BaseModel):
 
 
 
-    def similaires_ppg2(self, number = 50):
+    def similaires_ppg2(self, number = 100):
         matchs = []
+        date = self.date - timedelta(days = 3 * 12 * 30)
         home = self.before_stat_match.filter(team = self.home).first()
+        away = self.before_stat_match.filter(team = self.away).first()
         if home is not None:
             ppg_home = home.ppg
-            
-            away = self.before_stat_match.filter(team = self.away).first()
-            if away is not None:
-                ppg_away = away.ppg
-                
-                
-                befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-1).exclude(id = self.id).order_by("-match__date")
-                for bef in befores:
-                    if bef.team == bef.match.home:
-                        befs = BeforeMatchStat.objects.filter(ppg__range = intervale2(ppg_away), match = bef.match).exclude(id = bef.id)
-                        if len(befs) == 1:
+            ppg_away = away.ppg
+            befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
+            for bef in befores:
+                if bef.team == bef.match.home:
+                    pa = bef.match.before_stat_match.exclude(id = bef.id).first()
+                    if intervale2(ppg_away)[0] <= pa.ppg <= intervale2(ppg_away)[1] :
+                        if bef.match not in matchs:
                             matchs.append(bef.match)
                 
         return matchs[:number]
@@ -87,11 +84,12 @@ class Match(BaseModel):
         
         
 
-    def similaires_betting(self, number = 50):
+    def similaires_betting(self, number = 100):
         matchs = []
         actual = self.get_odds()
         if actual is not None:
-            odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__year__gte = self.date.year-5).exclude(id = self.id).order_by("-match__date")
+            date = self.date - timedelta(days = 3 * 12 * 30)
+            odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__gte = date).exclude(id = self.id).order_by("-match__date")
             for odd in odds:
                 if intervale(odd.home) == intervale(actual.home):
                     befs = OddsMatch.objects.filter(away__range = intervale(actual.away), match = odd.match).exclude(id = odd.id)
@@ -111,6 +109,11 @@ class Match(BaseModel):
 
     def get_odds(self):
         return self.match_odds.filter().first()
+    
+
+    def get_extra_info_match(self):
+        return self.extra_info_match.filter().first()
+    
     
 
 
@@ -143,20 +146,62 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
+    #creation du before stat pour chaque equipe
+    for team in [instance.home, instance.away]:
+        points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
+        datas = team.extra_info_stats(instance, edition = True)
+        
+        BeforeMatchStat.objects.create(
+            match                       = instance,
+            team                        = instance.home if (instance.home == team) else instance.away,
+            ppg                         = ppg,
+            goals_scored                = scored,
+            avg_goals_scored            = avg_goals_scored,
+            goals_conceded              = conceded,
+            avg_goals_conceded          = avg_goals_conceded,
+            avg_fouls_for               = datas.get("avg_fouls_for", 0),
+            avg_fouls_against           = datas.get("avg_fouls_against", 0),
+            avg_corners_for             = datas.get("avg_corners_for", 0),
+            avg_corners_against         = datas.get("avg_corners_against", 0),
+            avg_shots_for               = datas.get("avg_shots_for", 0),
+            avg_shots_against           = datas.get("avg_shots_against", 0),
+            avg_shots_target_for        = datas.get("avg_shots_target_for", 0),
+            avg_shots_target_against    = datas.get("avg_shots_target_against", 0),
+            avg_offside_for             = datas.get("avg_offside_for", 0),
+            avg_offside_against         = datas.get("avg_offside_against", 0),
+            avg_cards_for               = datas.get("avg_cards_for", 0),
+            avg_cards_against           = datas.get("avg_cards_against", 0)
+        )    
+            
     if created:
         #creation du before stat pour chaque equipe
         for team in [instance.home, instance.away]:
             points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
+            datas = team.extra_info_stats(instance, edition = True)
             
             BeforeMatchStat.objects.create(
-                match               = instance,
-                team                = instance.home if (instance.home == team) else instance.away,
-                ppg                 = ppg,
-                goals_scored        = scored,
-                avg_goals_scored    = avg_goals_scored,
-                goals_conceded      = conceded,
-                avg_goals_conceded  = avg_goals_conceded
-            )
+                match                       = instance,
+                team                        = instance.home if (instance.home == team) else instance.away,
+                ppg                         = ppg,
+                goals_scored                = scored,
+                avg_goals_scored            = avg_goals_scored,
+                goals_conceded              = conceded,
+                avg_goals_conceded          = avg_goals_conceded,
+                avg_fouls_for               = datas.get("avg_fouls_for", 0),
+                avg_fouls_against           = datas.get("avg_fouls_against", 0),
+                avg_corners_for             = datas.get("avg_corners_for", 0),
+                avg_corners_against         = datas.get("avg_corners_against", 0),
+                avg_shots_for               = datas.get("avg_shots_for", 0),
+                avg_shots_against           = datas.get("avg_shots_against", 0),
+                avg_shots_target_for        = datas.get("avg_shots_target_for", 0),
+                avg_shots_target_against    = datas.get("avg_shots_target_against", 0),
+                avg_offside_for             = datas.get("avg_offside_for", 0),
+                avg_offside_against         = datas.get("avg_offside_against", 0),
+                avg_cards_for               = datas.get("avg_cards_for", 0),
+                avg_cards_against           = datas.get("avg_cards_against", 0)
+            )    
+    
+    
         p0.predict(instance)
         p1.predict(instance)
         p2.predict(instance)

@@ -41,7 +41,7 @@
                         
                         <div class="row justify-content-center">
                             {% for compet in  country.pays_de_competition.filter %}
-                                <div class="col-sm-6 col-md-4 m-b-md">
+                                <div class="col-sm-6 col-md-4 col-lg-3 m-b-md">
                                     <a href="{% url 'competitionApp:competition' country.name compet.name %}">
                                         <div class="text-center border-right">
                                             <img alt="image" src="{{ compet.logo.url }}" style="height: 150px; width: 150px;">

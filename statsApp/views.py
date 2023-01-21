@@ -85,13 +85,13 @@ def statistiques(request):
 @render_to('statsApp/rechercher_cote.html')
 def rechercher_cote(request, home, away, draw):
     if request.method == "GET":
-        date = datetime.now()
+        date = datetime.now() - timedelta(days = 12 * 30)
         home = float(home)
         draw = float(draw)
         away = float(away)
         
         similaires_matchs = []
-        odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(home), away__range = intervale(away), draw__range = intervale(draw), match__date__year__gte = date.year-1).order_by("-match__date")
+        odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(home), away__range = intervale(away), draw__range = intervale(draw), match__date__gte = date).order_by("-match__date")
         for odd in odds:
             if odd.match not in similaires_matchs:
                 similaires_matchs.append(odd.match)
@@ -114,12 +114,12 @@ def rechercher_cote(request, home, away, draw):
 @render_to('statsApp/rechercher_ppg.html')
 def rechercher_ppg(request, home, away):
     if request.method == "GET":
-        date = datetime.now()
+        date = datetime.now() - timedelta(days = 12 * 30)
         home = float(home)
         away = float(away)
         
         similaires_matchs = []
-        befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(home), match__date__year__gte = date.year-1).order_by("-match__date")
+        befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(home), match__date__gte = date).order_by("-match__date")
         for bef in befores:
             if bef.team == bef.match.home:
                 befs = BeforeMatchStat.objects.filter(ppg__range = intervale(away), match = bef.match).exclude(id = bef.id)

@@ -42,6 +42,9 @@ def competition_edition(request, pays, competition, edition):
         matchs_played = edition.edition_du_match.filter(is_finished = True).order_by('-date')
         next_matchs = edition.edition_du_match.filter(is_finished = False)
         
+        rank = edition.edition_rankings.filter().order_by('-created_at').first()
+        print(rank.ranking_lignes.filter())
+        
         teams = edition.edition_team.filter()
         total_official_matchs = (len(teams)-1) * len(teams)
         ratio = round(total_official_matchs / len(matchs_played) ) * 100
@@ -80,6 +83,7 @@ def competition_edition(request, pays, competition, edition):
             "total_official_matchs": total_official_matchs,
             "teams":teams, 
             "facts":facts, 
+            "rank":rank, 
             "matchs10":matchs_played[:10], 
             "ratio":ratio, 
             "victoires": victoires,

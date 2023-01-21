@@ -30,6 +30,16 @@ def ratio(nb, total):
 
 
 
+@register.filter('taux')
+def taux(a, b):
+    return int(round(((a or 0) / ((a or 0) + (b or 0))) * 100, 2)) if (a or 0) + (b or 0) > 0 else 0
+
+
+@register.filter('eval')
+def eavl(a):
+    return eval(a)
+
+
 @register.filter('couleur')
 def couleur(number):
     number = 0 if number == '' else number

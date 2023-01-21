@@ -100,13 +100,25 @@ class Fact(BaseModel):
 
 
 class BeforeMatchStat(BaseModel):   
-    match               = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="before_stat_match")
-    team                = models.ForeignKey("teamApp.EditionTeam", null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
-    ppg                 = models.FloatField(null = True, blank=True)
-    goals_scored        = models.IntegerField(null = True, blank=True)
-    goals_conceded      = models.IntegerField(null = True, blank=True)
-    avg_goals_scored    = models.FloatField(null = True, blank=True)
-    avg_goals_conceded  = models.FloatField(null = True, blank=True)
+    match                       = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="before_stat_match")
+    team                        = models.ForeignKey("teamApp.EditionTeam", null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
+    ppg                         = models.FloatField(null = True, blank=True)
+    goals_scored                = models.IntegerField(null = True, blank=True)
+    goals_conceded              = models.IntegerField(null = True, blank=True)
+    avg_goals_scored            = models.FloatField(null = True, blank=True)
+    avg_goals_conceded          = models.FloatField(null = True, blank=True)
+    avg_fouls_for               = models.FloatField(null = True, blank=True)
+    avg_fouls_against           = models.FloatField(null = True, blank=True)
+    avg_corners_for             = models.FloatField(null = True, blank=True)
+    avg_corners_against         = models.FloatField(null = True, blank=True)
+    avg_shots_for               = models.FloatField(null = True, blank=True)
+    avg_shots_against           = models.FloatField(null = True, blank=True)
+    avg_shots_target_for        = models.FloatField(null = True, blank=True)
+    avg_shots_target_against    = models.FloatField(null = True, blank=True)
+    avg_offside_for             = models.FloatField(null = True, blank=True)
+    avg_offside_against         = models.FloatField(null = True, blank=True)
+    avg_cards_for               = models.FloatField(null = True, blank=True)
+    avg_cards_against           = models.FloatField(null = True, blank=True)
 
     def __str__(self):
         return str(self.match)
@@ -125,7 +137,7 @@ class ResultMatch(BaseModel):
     
     
 class ExtraInfosMatch(BaseModel):
-    match                   = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="extra_match")
+    match                   = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="extra_info_match")
     home_shots              = models.IntegerField(default = 0, null = True, blank=True)
     away_shots              = models.IntegerField(default = 0, null = True, blank=True)
     home_shots_on_target    = models.IntegerField(default = 0, null = True, blank=True)

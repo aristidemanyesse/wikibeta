@@ -9,6 +9,9 @@ from predictionApp.models import *
 from competitionApp.models import *
 # Create your views here.
 
+def intersection(list1, list2):
+    return [value for value in list1 if value in list2]
+
 
 @render_to('fixtureApp/index.html')
 def home(request):
@@ -57,10 +60,24 @@ def match(request, id):
         
         home_facts = match.match_facts.filter(team = match.home)
         away_facts = match.match_facts.filter(team = match.away)
+        
+        extra_infos = match.get_extra_info_match()
+        
+        similaires_ppg = match.similaires_ppg(10)
+        
+        similaires_ppg2 = match.similaires_ppg2(10)
+        
+        similaires_betting = match.similaires_betting(10)
+        
+        inter = intersection(similaires_ppg, similaires_betting)
 
         ctx = {
             "match" : match,
             "confrontations" : confrontations[:10],
+            "similaires_ppg" : similaires_ppg,
+            "similaires_ppg2" : similaires_ppg2,
+            "similaires_betting" : similaires_betting,
+            "inter" : inter,
             "predictions" : predictions,
             "home_last_matchs" : home_last_matchs,
             "home_last_forms" : home_last_forms,
@@ -68,5 +85,6 @@ def match(request, id):
             "away_last_forms" : away_last_forms,
             "home_facts" : home_facts,
             "away_facts" : away_facts,
+            "extra_infos" : extra_infos
         }
         return ctx
