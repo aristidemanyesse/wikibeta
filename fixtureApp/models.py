@@ -6,6 +6,7 @@ from coreApp.functions import *
 from statsApp.models import *
 from bettingApp.models import *
 from datetime import datetime, timedelta, time
+import json
 
 import predictionApp.functions.p0 as p0
 import predictionApp.functions.p1 as p1
@@ -50,7 +51,7 @@ class Match(BaseModel):
         if home is not None:
             ppg_home = home.ppg
             ppg_away = away.ppg
-            befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
+            befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
             for bef in befores:
                 if bef.team == bef.match.home:
                     pa = bef.match.before_stat_match.exclude(id = bef.id).first()
@@ -146,10 +147,18 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
-    #creation du before stat pour chaque equipe
+    
+    
+    confrontations        = instance.confrontations_directes()
+    similaires_ppg        = instance.similaires_ppg(10)
+    similaires_ppg2       = instance.similaires_ppg2(10)
+    similaires_betting    = instance.similaires_betting(10)
+    
+    instance.before_stat_match.filter().delete()
+    
     for team in [instance.home, instance.away]:
         points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
-        datas = team.extra_info_stats(instance, edition = True)
+        datas = team.extra_info_stats(instance, edition = True)      
         
         BeforeMatchStat.objects.create(
             match                       = instance,
@@ -170,14 +179,19 @@ def sighandler(instance, created, **kwargs):
             avg_offside_for             = datas.get("avg_offside_for", 0),
             avg_offside_against         = datas.get("avg_offside_against", 0),
             avg_cards_for               = datas.get("avg_cards_for", 0),
-            avg_cards_against           = datas.get("avg_cards_against", 0)
-        )    
+            avg_cards_against           = datas.get("avg_cards_against", 0),
+            list_confrontations         = json.dumps([str(x.id) for x in confrontations]),
+            list_similaires_ppg         = json.dumps([str(x.id) for x in similaires_ppg]),
+            list_similaires_ppg2        = json.dumps([str(x.id) for x in similaires_ppg2]),
+            list_similaires_betting     = json.dumps([str(x.id) for x in similaires_betting])
+        )  
             
+
     if created:
         #creation du before stat pour chaque equipe
         for team in [instance.home, instance.away]:
             points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
-            datas = team.extra_info_stats(instance, edition = True)
+            datas = team.extra_info_stats(instance, edition = True)      
             
             BeforeMatchStat.objects.create(
                 match                       = instance,
@@ -198,9 +212,12 @@ def sighandler(instance, created, **kwargs):
                 avg_offside_for             = datas.get("avg_offside_for", 0),
                 avg_offside_against         = datas.get("avg_offside_against", 0),
                 avg_cards_for               = datas.get("avg_cards_for", 0),
-                avg_cards_against           = datas.get("avg_cards_against", 0)
+                avg_cards_against           = datas.get("avg_cards_against", 0),
+                list_confrontations         = json.dumps([str(x.id) for x in confrontations]),
+                list_similaires_ppg         = json.dumps([str(x.id) for x in similaires_ppg]),
+                list_similaires_ppg2        = json.dumps([str(x.id) for x in similaires_ppg2]),
+                list_similaires_betting     = json.dumps([str(x.id) for x in similaires_betting])
             )    
-    
     
         p0.predict(instance)
         p1.predict(instance)

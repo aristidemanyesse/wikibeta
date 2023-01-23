@@ -55,4 +55,7 @@ class RankingAdmin(admin.ModelAdmin):
 class LigneRankingAdmin(admin.ModelAdmin):
     empty_value_display = '-'
     date_hierarchy = 'created_at'
-    list_display = ['ranking', "team", "mj", "form", "created_at"]
+    list_filter = (
+        ('created_at', DateFieldListFilter),
+    )
+    list_display = ['ranking', "team", "level", "mj", "form", "created_at"]

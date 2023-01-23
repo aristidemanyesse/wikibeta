@@ -50,7 +50,6 @@ def fixtures(request, year, month, day):
 def match(request, id):
     if request.method == "GET":
         match = Match.objects.get(id=id)
-        confrontations = match.confrontations_directes()
         predictions = match.prediction_match.filter()
         
         home_last_matchs = match.home.get_last_matchs(match, number = 10, edition = True)
@@ -63,13 +62,25 @@ def match(request, id):
         
         extra_infos = match.get_extra_info_match()
         
-        similaires_ppg = match.similaires_ppg(10)
+        stats = match.get_home_before_stats()
+        confrontations = Match.objects.filter(id__in = eval(stats.list_confrontations))
+        similaires_ppg = Match.objects.filter(id__in = eval(stats.list_similaires_ppg))
+        similaires_ppg2 = Match.objects.filter(id__in = eval(stats.list_similaires_ppg2))
+        similaires_betting = Match.objects.filter(id__in = eval(stats.list_similaires_betting))
         
-        similaires_ppg2 = match.similaires_ppg2(10)
         
-        similaires_betting = match.similaires_betting(10)
-        
+        # confrontations = match.confrontations_directes()
+        # similaires_ppg = match.similaires_ppg(10)
+        # similaires_ppg2 = match.similaires_ppg2(10)
+        # similaires_betting = match.similaires_betting(10)
+    
         inter = intersection(similaires_ppg, similaires_betting)
+        
+        home_rank = LigneRanking.objects.filter(team = match.home, created_at__lte = match.date + timedelta(days = 1) ).order_by('-created_at').first()
+        away_rank = LigneRanking.objects.filter(team = match.away, created_at__lte = match.date  + timedelta(days = 1) ).order_by('-created_at').first()
+                
+        rank = match.edition.edition_rankings.filter(created_at__lte = match.date + timedelta(days = 1)).order_by('-created_at').first()
+
 
         ctx = {
             "match" : match,
@@ -85,6 +96,9 @@ def match(request, id):
             "away_last_forms" : away_last_forms,
             "home_facts" : home_facts,
             "away_facts" : away_facts,
-            "extra_infos" : extra_infos
+            "extra_infos" : extra_infos,
+            "rank" : rank,
+            "home_rank" : home_rank,
+            "away_rank" : away_rank,
         }
         return ctx

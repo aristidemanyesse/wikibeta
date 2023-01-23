@@ -119,9 +119,14 @@ class BeforeMatchStat(BaseModel):
     avg_offside_against         = models.FloatField(null = True, blank=True)
     avg_cards_for               = models.FloatField(null = True, blank=True)
     avg_cards_against           = models.FloatField(null = True, blank=True)
+    list_confrontations         = models.TextField(default = "", null = True, blank=True)
+    list_similaires_ppg         = models.TextField(default = "", null = True, blank=True)
+    list_similaires_ppg2        = models.TextField(default = "", null = True, blank=True)
+    list_similaires_betting     = models.TextField(default = "", null = True, blank=True)
 
     def __str__(self):
         return str(self.match)
+
 
 class ResultMatch(BaseModel):
     match              = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="result_match")

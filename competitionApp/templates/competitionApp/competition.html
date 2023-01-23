@@ -226,11 +226,11 @@
                             <td>{{ligne.level|start0}}</td>
                             <td><img style="width:20px" src="{{ligne.team.team.logo.url}}" class="" alt="profile"></td>
                             <td class="bold text-left">{{ligne.team}}</td>
-                            <td>{{ligne.pts}}</td>
-                            <td>{{ligne.win}}</td>
+                            <td class="border-left bold text-primary">{{ligne.pts}}</td>
+                            <td class="border-left">{{ligne.win}}</td>
                             <td>{{ligne.draw}}</td>
                             <td>{{ligne.lose}}</td>
-                            <td>{{ligne.gs}}</td>
+                            <td class="border-left">{{ligne.gs}}</td>
                             <td>{{ligne.ga}}</td>
                             <td>{{ligne.gd}}</td>
                             <td class="text-center">
@@ -242,15 +242,15 @@
                                 <label class="label label-{{ ligne.ppg | couleur }}">{{ ligne.ppg }}</label>
                             </td>
 
-                            <td>{{ligne.cs}}</td>
+                            <td class="border-left">{{ligne.cs}}</td>
                             <td>{{ligne.btts}}</td>
                             <td>{{ligne.avg_gs}}</td>
                             <td>{{ligne.avg_ga}}</td>
                             
-                            <td>{{ligne.p1_5}}</td>
+                            <td class="border-left">{{ligne.p1_5}}</td>
                             <td>{{ligne.p2_5}}</td>
                             <td>{{ligne.m3_5}}</td>
-                            <td>{{ligne.mj}}</td>
+                            <td class="border-left bold">{{ligne.mj}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

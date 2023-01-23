@@ -144,6 +144,7 @@ def function():
                             away              = away,
                             edition           = edicompet
                             )
+                    
                         
                         #enregistrement des cotes
                         for booker in Bookmaker.objects.all():

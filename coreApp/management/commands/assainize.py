@@ -1,25 +1,30 @@
 from django.core.management.base import BaseCommand, CommandError
-from datetime import datetime, timedelta, date
 from bettingApp.models import *
 from fixtureApp.models import *
 from statsApp.models import *
 from competitionApp.models import *
 from dateparser import parse
-
+import threading
+import time
+    
 
 class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        
-        datas = Match.objects.filter().order_by("-date")
-        print(len(datas))
-        i = 0
-        for comp in datas:
-            print(i)
-            print(comp)
-            comp.save()
-            i += 1
+        matchs = Match.objects.filter().order_by("-date")[:5000]
+        for match in matchs:
+            while threading.active_count() >= 35:
+                time.sleep(30)
+            print(match, "en attente ---------------: ", threading.active_count())
+            p = threading.Thread(target=match.save)
+            p.setDaemon(True)
+            p.start()
+    
+        while threading.active_count() > 0:
+            print("en attente ---------------: ", threading.active_count())
+            time.sleep(10)
+
             
         # datas = Competition.objects.filter()
         # for comp in datas:

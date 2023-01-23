@@ -290,3 +290,20 @@ class LigneRanking(BaseModel):
 
     def __str__(self):
         return "Rang - " + str(self.team)
+    
+    
+
+class CompetitionStat(BaseModel):   
+    edition             = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_stats")
+    ranking             = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="ranking_stats")
+    ppg                 = models.FloatField(null = True, blank=True)
+    avg_goals    = models.FloatField(null = True, blank=True)
+    avg_fouls           = models.FloatField(null = True, blank=True)
+    avg_corners         = models.FloatField(null = True, blank=True)
+    avg_shots           = models.FloatField(null = True, blank=True)
+    avg_shots_target    = models.FloatField(null = True, blank=True)
+    avg_offside         = models.FloatField(null = True, blank=True)
+    avg_cards           = models.FloatField(null = True, blank=True)
+
+    def __str__(self):
+        return str(self.match)
