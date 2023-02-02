@@ -13,6 +13,7 @@ class PaysAdmin(admin.ModelAdmin):
     list_display = ['name', "flag", 'code']
 
 
+
 @admin.register(Competition)
 class CompetitionAdmin(admin.ModelAdmin):
     empty_value_display = '-'
@@ -20,7 +21,8 @@ class CompetitionAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', "type", 'code',"pays", "logo"]
+    list_display = ['code', "name" ,"type","pays", "logo"]
+    list_editable = ["name", "logo"]
 
 
 
@@ -46,8 +48,8 @@ class EditionCompetitionAdmin(admin.ModelAdmin):
 @admin.register(Ranking)
 class RankingAdmin(admin.ModelAdmin):
     empty_value_display = '-'
-    date_hierarchy = 'created_at'
-    list_display = ['edition', "created_at"]
+    date_hierarchy = 'date'
+    list_display = ['edition', "date", "created_at"]
 
 
 
@@ -59,3 +61,15 @@ class LigneRankingAdmin(admin.ModelAdmin):
         ('created_at', DateFieldListFilter),
     )
     list_display = ['ranking', "team", "level", "mj", "form", "created_at"]
+
+
+
+
+@admin.register(CompetitionStat)
+class CompetitionStatAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'created_at'
+    list_filter = (
+        ('created_at', DateFieldListFilter),
+    )
+    list_display = ['edition', "avg_goals", "avg_fouls", "avg_corners", "avg_yellow_cards", "created_at"]

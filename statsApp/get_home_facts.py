@@ -3,6 +3,12 @@ from .models import *
 from django.db.models import Avg, Sum, Q
 
 
+def main(edit):
+    for match in edit.edition_du_match.all():
+        if match.match_facts.all().count() == 0 :
+            function(match)
+        
+            
 def function(match):
     
     MIN = 0.2
@@ -12,9 +18,8 @@ def function(match):
     #Home
     edition = match.edition
     matchs_home = fixtureApp.models.Match.objects.filter(edition = edition, is_finished=True, date__gte = edition.start_date, date__lt = match.date , home = match.home).order_by('-date')
-    matchs_home_all = match.home.get_last_matchs(match, 100, edition = True)
+    matchs_home_all = match.home.get_last_matchs(match, 20, edition = True)
 
-    
     #toute victoire de l'equipe qui joue à domicile
     if len(matchs_home_all) >= 5:
         i = 5
@@ -1133,3 +1138,5 @@ def function(match):
                     success = v,
                     pct = round(taux_max, 2)
                 )
+                
+    

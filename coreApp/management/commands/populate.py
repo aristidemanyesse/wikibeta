@@ -18,7 +18,7 @@ class Command(BaseCommand):
                     code, name = line.split(" = ")
                     name = name.replace("home win odds", "").replace("draw odds", "").replace("away win odds", "")
                     #enregistrement des editions
-                    booker, created = Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
+                    Bookmaker.objects.get_or_create(name = name.capitalize(), code = code[:-1])
         
                       
             list_files = os.listdir("datas/lot/")
@@ -28,8 +28,8 @@ class Command(BaseCommand):
                     files = [file for file in os.listdir("datas/lot/{}".format(x)) if not os.path.isdir("datas/lot/{}/{}".format(x, file))]
                     for file in files:
                         print("processus en cours ---------------: ", threading.active_count())
-                        while threading.active_count() >= 145:
-                            time.sleep(100)
+                        while threading.active_count() >= 1000:
+                            time.sleep(50)
                         path = "datas/lot/{}/{}".format(x, file)
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)
@@ -38,8 +38,8 @@ class Command(BaseCommand):
 
                 else:
                     print("processus en cours ---------------: ", threading.active_count())
-                    while threading.active_count() >= 145:
-                        time.sleep(100)
+                    while threading.active_count() >= 1000:
+                        time.sleep(50)
                     path = "datas/lot/{}".format(x)
                     p = threading.Thread(target=save_from_file , args=(path,))
                     p.setDaemon(True)
@@ -49,7 +49,7 @@ class Command(BaseCommand):
 
             while threading.active_count() > 0:
                 print("en attente ---------------: ", threading.active_count())
-                time.sleep(30)
+                time.sleep(15)
             self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))
             
         except Exception as e:

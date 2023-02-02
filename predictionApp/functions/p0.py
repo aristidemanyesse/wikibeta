@@ -8,7 +8,8 @@ GA = 0.5
 
 def function(edition):
     for match in edition.edition_du_match.all():
-        predict(match)
+        if match.prediction_match.all().count() == 0 :
+            predict(match)
     
     
 def predict(match):        

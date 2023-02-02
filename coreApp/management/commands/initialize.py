@@ -41,6 +41,8 @@ class Command(BaseCommand):
             "But_Away":"But de l'equipe à l'exterieur",
             "btts":"But pour les deux equipes",
             "no_btts":"Les deux équipes ne marquent pas",
+            "corner_p8_5":"Plus de 8,5 corners dans le match",
+            "corner_m12_5":"Moins de 12,5 corners dans le match",
         }
         for x in datas:
             TypePrediction.objects.get_or_create(

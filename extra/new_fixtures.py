@@ -74,23 +74,39 @@ def function():
                                 edition           = edicompet
                             )
                             
+                            print("Enregistrement 1 pour ", match, match.date)
+
                             #enregistrement des cotes
                             for booker in Bookmaker.objects.all():
                                 if booker_listed(booker, header):
                                     code = booker.code
                                     if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
                                         continue
-                                    oddsmatch, created = OddsMatch.objects.get_or_create(
+                                    OddsMatch.objects.get_or_create(
                                         match = match, 
                                         booker = booker,
                                         home = float(get(row, header, code+"H")),
                                         draw = float(get(row, header, code+"D")),
                                         away = float(get(row, header, code+"A"))
                                     )
-                        
-                        print("resultat 1 pour ", match)
+                                    
+                                    
+                            confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
+                            similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
+                            similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
+                            similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
+                            
+                            for stats in [match.get_home_before_stats(), match.get_away_before_stats()]:
+                                stats.list_confrontations         = confrontations
+                                stats.list_similaires_ppg         = similaires_ppg
+                                stats.list_similaires_ppg2        = similaires_ppg2
+                                stats.list_similaires_betting     = similaires_betting
+                                stats.save()
+                           
     except Exception as e:
-        print("Errror 12 --------------------------------", e)
+        print("Errror 12 -----------", e)
+
+
 
 
 
@@ -136,31 +152,51 @@ def function():
                         away, created = Team.objects.get_or_create(name = away, pays = pays )
                         away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
 
-                        #enregistrement du match et des infos du match
-                        match, created = Match.objects.get_or_create(
+                        #enregistrement du match et des infos du match                      
+                        match = Match.objects.filter(
                             date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
                             hour              = get(row, header, "Time") or None,
                             home              = home,
                             away              = away,
                             edition           = edicompet
-                            )
-                    
+                            ).first()
                         
-                        #enregistrement des cotes
-                        for booker in Bookmaker.objects.all():
-                            if booker_listed(booker, header):
-                                code = booker.code
-                                if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
-                                    continue
-                                oddsmatch, created = OddsMatch.objects.get_or_create(
-                                    match = match, 
-                                    booker = booker,
-                                    home = float(get(row, header, code+"H")),
-                                    draw = float(get(row, header, code+"D")),
-                                    away = float(get(row, header, code+"A"))
-                                )
+                        if match is None:
+                            match = Match.objects.create(
+                                date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
+                                hour              = get(row, header, "Time") or None,
+                                home              = home,
+                                away              = away,
+                                edition           = edicompet
+                            )
+
+                            print("Enregistrement 2 pour ", match, match.date)
+                            
+                            #enregistrement des cotes
+                            for booker in Bookmaker.objects.all():
+                                if booker_listed(booker, header):
+                                    code = booker.code
+                                    if get(row, header, code+"H") == "" or get(row, header, code+"H") == 0 or get(row, header, code+"H") is None:
+                                        continue
+                                    OddsMatch.objects.get_or_create(
+                                        match = match, 
+                                        booker = booker,
+                                        home = float(get(row, header, code+"H")),
+                                        draw = float(get(row, header, code+"D")),
+                                        away = float(get(row, header, code+"A"))
+                                    )
+                                    
+                            confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
+                            similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
+                            similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
+                            similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
+                            
+                            for stats in [match.get_home_before_stats(), match.get_away_before_stats()]:
+                                stats.list_confrontations         = confrontations
+                                stats.list_similaires_ppg         = similaires_ppg
+                                stats.list_similaires_ppg2        = similaires_ppg2
+                                stats.list_similaires_betting     = similaires_betting
+                                stats.save()
                                 
-                                
-                        print("Resultat 2 pour ", match)
     except Exception as e:
         print("Errror 7887 --------------------------------", e)                

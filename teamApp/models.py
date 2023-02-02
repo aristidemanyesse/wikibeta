@@ -77,10 +77,10 @@ class EditionTeam(BaseModel):
             if result is not None:
                 total       += 1
                 points      += self.points_for_this_macth(match) or 0
-                scored      += result.home_score if match.home == self else result.away_score
-                conceded    += result.home_score if match.away == self else result.away_score
+                scored      += (result.home_score or 0) if match.home == self else (result.away_score or 0)
+                conceded    += (result.home_score or 0) if match.away == self else (result.away_score or 0)
         
-        return points, round((points / total), 2), scored, round((scored/total), 2), conceded, round((conceded/total), 2)
+        return points, round((points / total), 2) if total > 0 else 0, scored, round((scored/total), 2) if total > 0 else 0, conceded, round((conceded/total), 2) if total > 0 else 0
     
 
 
@@ -107,22 +107,22 @@ class EditionTeam(BaseModel):
                 info = match.get_extra_info_match()
                 if info is not None:
                     total             += 1
-                    datas["avg_fouls_for"]          += info.home_fouls or 0 if match.home == self else info.away_fouls or 0
-                    datas["avg_shots_for"]          += info.home_shots or 0 if match.home == self else info.away_shots or 0
-                    datas["avg_shots_target_for"]   += info.home_shots_on_target or 0 if match.home == self else info.away_shots_on_target or 0
-                    datas["avg_corners_for"]        += info.home_corners or 0 if match.home == self else info.away_corners or 0
-                    datas["avg_offside_for"]        += info.home_offsides or 0 if match.home == self else info.away_offsides or 0
-                    datas["avg_cards_for"]          += info.home_yellow_cards or 0 if match.home == self else info.away_yellow_cards or 0
+                    datas["avg_fouls_for"]          += (info.home_fouls or 0) if match.home == self else (info.away_fouls or 0)
+                    datas["avg_shots_for"]          += (info.home_shots or 0) if match.home == self else (info.away_shots or 0)
+                    datas["avg_shots_target_for"]   += (info.home_shots_on_target or 0) if match.home == self else (info.away_shots_on_target or 0)
+                    datas["avg_corners_for"]        += (info.home_corners or 0 )if match.home == self else (info.away_corners or 0)
+                    datas["avg_offside_for"]        += (info.home_offsides or 0) if match.home == self else (info.away_offsides or 0)
+                    datas["avg_cards_for"]          += (info.home_yellow_cards or 0) if match.home == self else (info.away_yellow_cards or 0)
 
-                    datas["avg_fouls_against"]          += info.home_fouls or 0 if match.away == self else info.home_fouls or 0
-                    datas["avg_shots_against"]          += info.home_shots or 0 if match.away == self else info.home_shots or 0
-                    datas["avg_shots_target_against"]   += info.home_shots_on_target or 0 if match.away == self else info.home_shots_on_target or 0
-                    datas["avg_corners_against"]        += info.home_corners or 0 if match.away == self else info.home_corners or 0
-                    datas["avg_offside_against"]        += info.home_offsides or 0 if match.away == self else info.home_offsides or 0
-                    datas["avg_cards_against"]          += info.home_yellow_cards or 0 if match.away == self else info.home_yellow_cards or 0
+                    datas["avg_fouls_against"]          += (info.home_fouls or 0) if match.away == self else (info.home_fouls or 0)
+                    datas["avg_shots_against"]          += (info.home_shots or 0) if match.away == self else (info.home_shots or 0)
+                    datas["avg_shots_target_against"]   += (info.home_shots_on_target or 0) if match.away == self else (info.home_shots_on_target or 0)
+                    datas["avg_corners_against"]        += (info.home_corners or 0 )if match.away == self else (info.home_corners or 0)
+                    datas["avg_offside_against"]        += (info.home_offsides or 0) if match.away == self else (info.home_offsides or 0)
+                    datas["avg_cards_against"]          += (info.home_yellow_cards or 0) if match.away == self else (info.home_yellow_cards or 0)
         
             for key in datas.keys():
-                datas[key] = round(datas[key] / total, 2)
+                datas[key] = round(datas[key] / total, 2) if total > 0 else 0
             
         return datas
 

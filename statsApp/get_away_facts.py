@@ -3,6 +3,12 @@ from .models import *
 from django.db.models import Avg, Sum, Q
 
 
+def main(edit):
+    for match in edit.edition_du_match.all():
+        if match.match_facts.all().count() == 0 :
+            function(match)
+           
+
 def function(match):
     
     MIN = 0.2

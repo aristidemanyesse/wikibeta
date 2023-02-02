@@ -12,7 +12,9 @@ class TeamAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', 'code', "pays", "logo"]
+    list_display = ['name', 'code', "pays", "logo", "created_at"]
+    list_editable = ['pays', "logo"]
+
 
 
 @admin.register(EditionTeam)

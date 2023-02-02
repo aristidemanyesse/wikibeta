@@ -19,7 +19,7 @@ countries = {
     "G1":"Greece",
     "I1":"Italia",
     "I2":"Italia",
-    "N1":"Norway",
+    "N1":"Netherlands",
     "P1":"Portugal",
     "SC0":"Scotland",
     "SC1":"Scotland",
@@ -68,7 +68,6 @@ def save_from_dir(path):
     file = path.split("/")[-1]
     edition = path.split("/")[-2]
     edition_, created = Edition.objects.get_or_create(name = edition)
-    
     country = countries.get(file.split(".")[0], None)
     if country is not None :
         #enregistrement des pays
@@ -89,12 +88,12 @@ def save_from_dir(path):
                 
                 compet             = get(row, header, "Div") or ""
                 if compet != "":
-                    competition_, created = Competition.objects.get_or_create(name = compet, code = compet, pays = pays)
+                    competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, defaults={'name': compet})
                     edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
             
                     
-                    home                    = get(row, header, "HomeTeam") or ""
-                    away                    = get(row, header, "AwayTeam") or ""
+                    home                    = get(row, header, "HomeTeam") or get(row, header, "HT") or ""
+                    away                    = get(row, header, "AwayTeam") or get(row, header, "AT") or ""
                     home_score              = get(row, header, "FTHG")
                     away_score              = get(row, header, "FTAG")
                     result                  = get(row, header, "FTR") or ""
@@ -126,7 +125,7 @@ def save_from_dir(path):
                     
                     team, created = Team.objects.get_or_create(name = away, pays = pays)
                     away, created = EditionTeam.objects.get_or_create(team = team, edition = edicompet)
-                    
+                                        
                     #enregistrement du match et des infos du match
                     match, created = Match.objects.get_or_create(
                         date              = parse(get(row, header, "Date") or "", settings={'DATE_ORDER':'DMY', 'TIMEZONE': 'UTC'}),
@@ -222,7 +221,7 @@ def save_from_file(path):
             
             compet             = get(row, header, "League") or ""
             if compet != "":
-                competition_, created = Competition.objects.get_or_create(name = compet, code = compet, pays = pays)
+                competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, defaults={'name': compet})
                 edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
         
                 
@@ -315,4 +314,3 @@ def save_from_file(path):
                                 away = float(get(row, header, code+"A"))
                                 )
                             
-

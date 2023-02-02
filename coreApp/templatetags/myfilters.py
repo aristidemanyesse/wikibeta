@@ -29,12 +29,22 @@ def ratio(nb, total):
     return "{}%".format(res)
 
 
+@register.filter('addition')
+def addition(a, b):
+    return  round(a+b, 2)
+
+
 
 @register.filter('taux')
 def taux(a, b):
     return int(round(((a or 0) / ((a or 0) + (b or 0))) * 100, 2)) if (a or 0) + (b or 0) > 0 else 0
 
 
+@register.filter('moyenne')
+def moyenne(a, b):
+    return  round(((a or 0) + (b or 0)) / 2, 2)
+
+    
 @register.filter('eval')
 def eavl(a):
     return eval(a)

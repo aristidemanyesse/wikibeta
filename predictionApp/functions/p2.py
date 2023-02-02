@@ -4,12 +4,13 @@ from fixtureApp.models import *
     
 def function(edition):
     for match in edition.edition_du_match.all():
-        predict(match)
+        if match.prediction_match.all().count() == 0 :
+            predict(match)
     
     
 def predict(match):
-    matchs = match.similaires_ppg()
-    if len(matchs) >= 14 :
+    matchs = match.similaires_ppg(20)
+    if len(matchs) >= 7 :
         moy = 0
         for x in matchs:
             result = x.get_result()

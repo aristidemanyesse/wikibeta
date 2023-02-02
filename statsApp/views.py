@@ -41,8 +41,9 @@ def statistiques(request):
             
         predictions = Prediction.objects.exclude(is_checked = None)
         success = predictions.filter(is_checked = True)
-        ratio = int((success.count() / predictions.count()) * 100)
-        decimal = int(((success.count() / predictions.count() * 100) - ratio) * 100)
+        count = predictions.count()
+        ratio = int((success.count() / count) * 100) if count > 0 else 0
+        decimal = int(((success.count() / count * 100) - ratio) * 100) if count > 0 else 0
         
         
         now = datetime.now() - timedelta()
@@ -60,7 +61,7 @@ def statistiques(request):
                 
             stats_pre[now] = predicts.count()
             stats_total[now] = total
-            stats_pct[now] = round(total / predicts.count() * 100)
+            stats_pct[now] = round(total / predicts.count() * 100) if predicts.count() > 0 else 0
             
             i-=1
         

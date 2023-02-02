@@ -32,6 +32,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 
 # Application definition
 
@@ -97,8 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "wiki"),
-        # 'NAME'      : os.getenv("DB_NAME", "wikibet"),
+        'NAME'      : os.getenv("DB_NAME", "wikibet"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,
@@ -135,11 +135,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # CRONJOBS
 CRONJOBS = [
-    # ('*/5 * * * *', 'myapp.cron.other_scheduled_job', ['arg1', 'arg2'], {'verbose': 0}),
-    # ('0   4 * * *', 'django.core.management.call_command', '>> /tmp/scheduled_job.log'),
+    # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
     ('0 */2 * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
     ('0 */2 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
-    ('0 */4 */2 * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    # ('0 */2 * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    # ('*/2 * * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
 ]
 
 

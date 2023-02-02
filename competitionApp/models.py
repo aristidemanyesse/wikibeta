@@ -52,7 +52,7 @@ class EditionCompetition(BaseModel):
     competition   = models.ForeignKey(Competition, on_delete = models.CASCADE, related_name="competition_edition")
     start_date    = models.DateField(null = True, blank=True)
     finish_date   = models.DateField(null = True, blank=True)
-    is_finished    = models.BooleanField(default=False, null = True, blank=True)
+    is_finished   = models.BooleanField(default=False, null = True, blank=True)
 
     class Meta:
         ordering = ["competition", '-start_date']
@@ -61,12 +61,12 @@ class EditionCompetition(BaseModel):
         return str(self.competition) +" - "+ str(self.edition)
     
     
-    def classement(self):
+    def classement(self, date):
         datas = []
         for team in self.edition_team.filter():
             cs = btts = ga = gs = 0
             win = draw = lose = 0
-            matchs = Match.objects.filter(is_finished = True).filter(Q(home = team) | Q(away = team)).order_by("-date")
+            matchs = Match.objects.filter(is_finished = True, date__lte = date).filter(Q(home = team) | Q(away = team)).order_by("-date")
             if len(matchs) > 0:
                 for match in matchs:
                     result = match.get_result()
@@ -257,6 +257,7 @@ class EditionCompetition(BaseModel):
     
 
 class Ranking(BaseModel):
+    date              = models.DateField( null = True, blank=True)
     edition       = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_rankings")
 
     def __str__(self):
@@ -294,16 +295,16 @@ class LigneRanking(BaseModel):
     
 
 class CompetitionStat(BaseModel):   
-    edition             = models.ForeignKey(EditionCompetition, on_delete = models.CASCADE, related_name="edition_stats")
-    ranking             = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="ranking_stats")
-    ppg                 = models.FloatField(null = True, blank=True)
-    avg_goals    = models.FloatField(null = True, blank=True)
+    edition             = models.ForeignKey(EditionCompetition, null = True, blank=True, on_delete = models.CASCADE, related_name="edition_stats")
+    ranking             = models.ForeignKey(Ranking, null = True, blank=True, on_delete = models.CASCADE, related_name="ranking_stats")
+    avg_goals           = models.FloatField(null = True, blank=True)
     avg_fouls           = models.FloatField(null = True, blank=True)
     avg_corners         = models.FloatField(null = True, blank=True)
     avg_shots           = models.FloatField(null = True, blank=True)
     avg_shots_target    = models.FloatField(null = True, blank=True)
     avg_offside         = models.FloatField(null = True, blank=True)
-    avg_cards           = models.FloatField(null = True, blank=True)
+    avg_yellow_cards    = models.FloatField(null = True, blank=True)
+    avg_red_cards       = models.FloatField(null = True, blank=True)
 
     def __str__(self):
-        return str(self.match)
+        return "Stats de "+str(self.edition)

@@ -17,6 +17,7 @@ import predictionApp.functions.p4 as p4
 import statsApp.get_home_facts as get_home_facts
 import statsApp.get_away_facts as get_away_facts
 
+    
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
     hour              = models.TimeField( null = True, blank=True)
@@ -24,6 +25,7 @@ class Match(BaseModel):
     away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
     edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
     is_finished       = models.BooleanField(default = False, null = True, blank=True)
+    is_predict       = models.BooleanField(default = False, null = True, blank=True)
     is_first_match    = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
@@ -45,9 +47,9 @@ class Match(BaseModel):
     
     def similaires_ppg(self, number = 100):
         matchs = []
-        date = self.date - timedelta(days = 3 * 12 * 30)
-        home = self.before_stat_match.filter(team = self.home).first()
-        away = self.before_stat_match.filter(team = self.away).first()
+        date = self.date - timedelta(days = 5 * 12 * 30)
+        home = self.get_home_before_stats()
+        away = self.get_away_before_stats()
         if home is not None:
             ppg_home = home.ppg
             ppg_away = away.ppg
@@ -66,9 +68,9 @@ class Match(BaseModel):
 
     def similaires_ppg2(self, number = 100):
         matchs = []
-        date = self.date - timedelta(days = 3 * 12 * 30)
-        home = self.before_stat_match.filter(team = self.home).first()
-        away = self.before_stat_match.filter(team = self.away).first()
+        date = self.date - timedelta(days = 5 * 12 * 30)
+        home = self.get_home_before_stats()
+        away = self.get_away_before_stats()
         if home is not None:
             ppg_home = home.ppg
             ppg_away = away.ppg
@@ -79,7 +81,6 @@ class Match(BaseModel):
                     if intervale2(ppg_away)[0] <= pa.ppg <= intervale2(ppg_away)[1] :
                         if bef.match not in matchs:
                             matchs.append(bef.match)
-                
         return matchs[:number]
 
         
@@ -89,14 +90,13 @@ class Match(BaseModel):
         matchs = []
         actual = self.get_odds()
         if actual is not None:
-            date = self.date - timedelta(days = 3 * 12 * 30)
+            date = self.date - timedelta(days = 5 * 12 * 30)
             odds = OddsMatch.objects.filter(match__is_finished = True, home__range = intervale(actual.home), match__edition__competition = self.edition.competition, match__date__lt = self.date, match__date__gte = date).exclude(id = self.id).order_by("-match__date")
             for odd in odds:
                 if intervale(odd.home) == intervale(actual.home):
                     befs = OddsMatch.objects.filter(away__range = intervale(actual.away), match = odd.match).exclude(id = odd.id)
                     if len(befs) == 1 and odd.match not in matchs:
                         matchs.append(odd.match)
-                    
         return matchs[:number]
     
     
@@ -148,84 +148,47 @@ class Goal(BaseModel):
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
     
+    try:
     
-    confrontations        = instance.confrontations_directes()
-    similaires_ppg        = instance.similaires_ppg(10)
-    similaires_ppg2       = instance.similaires_ppg2(10)
-    similaires_betting    = instance.similaires_betting(10)
-    
-    instance.before_stat_match.filter().delete()
-    
-    for team in [instance.home, instance.away]:
-        points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
-        datas = team.extra_info_stats(instance, edition = True)      
-        
-        BeforeMatchStat.objects.create(
-            match                       = instance,
-            team                        = instance.home if (instance.home == team) else instance.away,
-            ppg                         = ppg,
-            goals_scored                = scored,
-            avg_goals_scored            = avg_goals_scored,
-            goals_conceded              = conceded,
-            avg_goals_conceded          = avg_goals_conceded,
-            avg_fouls_for               = datas.get("avg_fouls_for", 0),
-            avg_fouls_against           = datas.get("avg_fouls_against", 0),
-            avg_corners_for             = datas.get("avg_corners_for", 0),
-            avg_corners_against         = datas.get("avg_corners_against", 0),
-            avg_shots_for               = datas.get("avg_shots_for", 0),
-            avg_shots_against           = datas.get("avg_shots_against", 0),
-            avg_shots_target_for        = datas.get("avg_shots_target_for", 0),
-            avg_shots_target_against    = datas.get("avg_shots_target_against", 0),
-            avg_offside_for             = datas.get("avg_offside_for", 0),
-            avg_offside_against         = datas.get("avg_offside_against", 0),
-            avg_cards_for               = datas.get("avg_cards_for", 0),
-            avg_cards_against           = datas.get("avg_cards_against", 0),
-            list_confrontations         = json.dumps([str(x.id) for x in confrontations]),
-            list_similaires_ppg         = json.dumps([str(x.id) for x in similaires_ppg]),
-            list_similaires_ppg2        = json.dumps([str(x.id) for x in similaires_ppg2]),
-            list_similaires_betting     = json.dumps([str(x.id) for x in similaires_betting])
-        )  
-            
-
-    if created:
-        #creation du before stat pour chaque equipe
-        for team in [instance.home, instance.away]:
-            points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
-            datas = team.extra_info_stats(instance, edition = True)      
-            
-            BeforeMatchStat.objects.create(
-                match                       = instance,
-                team                        = instance.home if (instance.home == team) else instance.away,
-                ppg                         = ppg,
-                goals_scored                = scored,
-                avg_goals_scored            = avg_goals_scored,
-                goals_conceded              = conceded,
-                avg_goals_conceded          = avg_goals_conceded,
-                avg_fouls_for               = datas.get("avg_fouls_for", 0),
-                avg_fouls_against           = datas.get("avg_fouls_against", 0),
-                avg_corners_for             = datas.get("avg_corners_for", 0),
-                avg_corners_against         = datas.get("avg_corners_against", 0),
-                avg_shots_for               = datas.get("avg_shots_for", 0),
-                avg_shots_against           = datas.get("avg_shots_against", 0),
-                avg_shots_target_for        = datas.get("avg_shots_target_for", 0),
-                avg_shots_target_against    = datas.get("avg_shots_target_against", 0),
-                avg_offside_for             = datas.get("avg_offside_for", 0),
-                avg_offside_against         = datas.get("avg_offside_against", 0),
-                avg_cards_for               = datas.get("avg_cards_for", 0),
-                avg_cards_against           = datas.get("avg_cards_against", 0),
-                list_confrontations         = json.dumps([str(x.id) for x in confrontations]),
-                list_similaires_ppg         = json.dumps([str(x.id) for x in similaires_ppg]),
-                list_similaires_ppg2        = json.dumps([str(x.id) for x in similaires_ppg2]),
-                list_similaires_betting     = json.dumps([str(x.id) for x in similaires_betting])
-            )    
-    
-        p0.predict(instance)
-        p1.predict(instance)
-        p2.predict(instance)
-        p3.predict(instance)
-        p4.predict(instance)
+        if created:
+            #creation du before stat pour chaque equipe
+            for team in [instance.home, instance.away]:
+                points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
+                datas = team.extra_info_stats(instance, edition = True)      
                 
-        get_home_facts.function(instance)
-        get_away_facts.function(instance)
+                stats = BeforeMatchStat.objects.create(
+                    match                       = instance,
+                    team                        = instance.home if (instance.home == team) else instance.away,
+                    ppg                         = ppg,
+                    goals_scored                = scored,
+                    avg_goals_scored            = avg_goals_scored,
+                    goals_conceded              = conceded,
+                    avg_goals_conceded          = avg_goals_conceded,
+                    avg_fouls_for               = datas.get("avg_fouls_for", 0),
+                    avg_fouls_against           = datas.get("avg_fouls_against", 0),
+                    avg_corners_for             = datas.get("avg_corners_for", 0),
+                    avg_corners_against         = datas.get("avg_corners_against", 0),
+                    avg_shots_for               = datas.get("avg_shots_for", 0),
+                    avg_shots_against           = datas.get("avg_shots_against", 0),
+                    avg_shots_target_for        = datas.get("avg_shots_target_for", 0),
+                    avg_shots_target_against    = datas.get("avg_shots_target_against", 0),
+                    avg_offside_for             = datas.get("avg_offside_for", 0),
+                    avg_offside_against         = datas.get("avg_offside_against", 0),
+                    avg_cards_for               = datas.get("avg_cards_for", 0),
+                    avg_cards_against           = datas.get("avg_cards_against", 0),
+                )
+
+            # get_home_facts.function(instance)
+            # get_away_facts.function(instance)
+            
+            # p0.predict(instance)
+            # p1.predict(instance)
+            # p2.predict(instance)
+            # p3.predict(instance)
+            # p4.predict(instance)
+                    
+            
+    except Exception as e:
+        print("----------error save match----------", e)
             
             
