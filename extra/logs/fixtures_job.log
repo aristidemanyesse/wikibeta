@@ -200,3 +200,325 @@ Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443
 ------------------------- 2023-02-02 08:00:02.093020
 ------------------------- 2023-02-02 10:00:04.262969
 ------------------------- 2023-02-02 12:00:07.201994
+------------------------- 2023-02-02 14:00:04.694854
+------------------------- 2023-02-02 16:00:03.343535
+------------------------- 2023-02-02 22:00:06.367305
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6d5be323e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-03 00:00:07.748345
+------------------------- 2023-02-03 02:00:04.406849
+------------------------- 2023-02-03 04:00:04.152125
+------------------------- 2023-02-03 06:00:05.359486
+------------------------- 2023-02-03 08:00:03.633756
+------------------------- 2023-02-03 10:00:02.985168
+------------------------- 2023-02-03 12:00:03.404034
+Enregistrement 2 pour  Newells Old Boys -VS- Velez Sarsfield 2023-02-03 00:00:00
+Enregistrement 2 pour  Tigre -VS- Rosario Central 2023-02-03 00:00:00
+Enregistrement 2 pour  Arsenal Sarandi -VS- Estudiantes L.P. 2023-02-04 00:00:00
+Enregistrement 2 pour  Sarmiento Junin -VS- Barracas Central 2023-02-04 00:00:00
+Enregistrement 2 pour  Belgrano -VS- River Plate 2023-02-04 00:00:00
+Enregistrement 2 pour  Argentinos Jrs -VS- Racing Club 2023-02-05 00:00:00
+Enregistrement 2 pour  Lanus -VS- San Lorenzo 2023-02-05 00:00:00
+Enregistrement 2 pour  Independiente -VS- Platense 2023-02-05 00:00:00
+Enregistrement 2 pour  Boca Juniors -VS- Central Cordoba 2023-02-05 00:00:00
+Enregistrement 2 pour  Atl. Tucuman -VS- Talleres Cordoba 2023-02-06 00:00:00
+Enregistrement 2 pour  Godoy Cruz -VS- Colon Santa Fe 2023-02-06 00:00:00
+Enregistrement 2 pour  Union de Santa Fe -VS- Instituto 2023-02-06 00:00:00
+Enregistrement 2 pour  Gimnasia L.P. -VS- Defensa y Justicia 2023-02-06 00:00:00
+Enregistrement 2 pour  Huracan -VS- Banfield 2023-02-07 00:00:00
+Enregistrement 2 pour  Necaxa -VS- Club Tijuana 2023-02-04 00:00:00
+Enregistrement 2 pour  Mazatlan FC -VS- Juarez 2023-02-04 00:00:00
+Enregistrement 2 pour  Club Leon -VS- Pachuca 2023-02-04 00:00:00
+Enregistrement 2 pour  Cruz Azul -VS- U.A.N.L.- Tigres 2023-02-05 00:00:00
+Enregistrement 2 pour  Santos Laguna -VS- Club America 2023-02-05 00:00:00
+Enregistrement 2 pour  U.N.A.M.- Pumas -VS- Atlas 2023-02-05 00:00:00
+Enregistrement 2 pour  Guadalajara Chivas -VS- Queretaro 2023-02-05 00:00:00
+Enregistrement 2 pour  Monterrey -VS- Toluca 2023-02-06 00:00:00
+Enregistrement 2 pour  Wisla Plock -VS- Warta Poznan 2023-02-03 00:00:00
+Enregistrement 2 pour  Widzew Lodz -VS- Jagiellonia 2023-02-03 00:00:00
+Enregistrement 2 pour  Rakow -VS- Piast Gliwice 2023-02-04 00:00:00
+Enregistrement 2 pour  Gornik Z. -VS- Lechia Gdansk 2023-02-04 00:00:00
+Enregistrement 2 pour  Zaglebie -VS- Legia 2023-02-04 00:00:00
+Enregistrement 2 pour  Radomiak Radom -VS- Stal Mielec 2023-02-05 00:00:00
+Enregistrement 2 pour  Lech Poznan -VS- Legnica 2023-02-05 00:00:00
+Enregistrement 2 pour  Pogon Szczecin -VS- Slask Wroclaw 2023-02-05 00:00:00
+Enregistrement 2 pour  Korona Kielce -VS- Cracovia 2023-02-06 00:00:00
+Enregistrement 2 pour  Chindia Targoviste -VS- UTA Arad 2023-02-03 00:00:00
+Enregistrement 2 pour  U Craiova 1948 -VS- U. Cluj 2023-02-03 00:00:00
+Enregistrement 2 pour  FC Hermannstadt -VS- FC Arges 2023-02-04 00:00:00
+Enregistrement 2 pour  FC Rapid Bucuresti -VS- FC Voluntari 2023-02-04 00:00:00
+Enregistrement 2 pour  Mioveni -VS- Sepsi Sf. Gheorghe 2023-02-05 00:00:00
+Enregistrement 2 pour  CFR Cluj -VS- FCSB 2023-02-05 00:00:00
+Enregistrement 2 pour  FC Botosani -VS- Petrolul 2023-02-06 00:00:00
+Enregistrement 2 pour  Farul Constanta -VS- Univ. Craiova 2023-02-06 00:00:00
+Enregistrement 2 pour  Grasshoppers -VS- Basel 2023-02-04 00:00:00
+Enregistrement 2 pour  St. Gallen -VS- Servette 2023-02-04 00:00:00
+Enregistrement 2 pour  Sion -VS- Zurich 2023-02-05 00:00:00
+Enregistrement 2 pour  Luzern -VS- Young Boys 2023-02-05 00:00:00
+Enregistrement 2 pour  Winterthur -VS- Lugano 2023-02-05 00:00:00
+------------------------- 2023-02-03 14:00:03.126575
+------------------------- 2023-02-03 16:00:03.549895
+------------------------- 2023-02-03 18:00:02.591607
+Enregistrement 1 pour  Oostende -VS- Anderlecht 2023-02-03 00:00:00
+Enregistrement 1 pour  Cercle Brugge -VS- Standard 2023-02-04 00:00:00
+Enregistrement 1 pour  Eupen -VS- Westerlo 2023-02-04 00:00:00
+Enregistrement 1 pour  Seraing -VS- Oud-Heverlee Leuven 2023-02-04 00:00:00
+Enregistrement 1 pour  St Truiden -VS- Kortrijk 2023-02-04 00:00:00
+Enregistrement 1 pour  Antwerp -VS- Club Brugge 2023-02-05 00:00:00
+Enregistrement 1 pour  Mechelen -VS- Charleroi 2023-02-05 00:00:00
+Enregistrement 1 pour  Gent -VS- Genk 2023-02-05 00:00:00
+Enregistrement 1 pour  St. Gilloise -VS- Waregem 2023-02-05 00:00:00
+Enregistrement 1 pour  Augsburg -VS- Leverkusen 2023-02-03 00:00:00
+Enregistrement 1 pour  Bochum -VS- Hoffenheim 2023-02-04 00:00:00
+Enregistrement 1 pour  Dortmund -VS- Freiburg 2023-02-04 00:00:00
+Enregistrement 1 pour  Ein Frankfurt -VS- Hertha 2023-02-04 00:00:00
+Enregistrement 1 pour  FC Koln -VS- RB Leipzig 2023-02-04 00:00:00
+Enregistrement 1 pour  Union Berlin -VS- Mainz 2023-02-04 00:00:00
+Enregistrement 1 pour  M'gladbach -VS- Schalke 04 2023-02-04 00:00:00
+Enregistrement 1 pour  Stuttgart -VS- Werder Bremen 2023-02-05 00:00:00
+Enregistrement 1 pour  Wolfsburg -VS- Bayern Munich 2023-02-05 00:00:00
+Enregistrement 1 pour  Paderborn -VS- Fortuna Dusseldorf 2023-02-03 00:00:00
+Enregistrement 1 pour  Sandhausen -VS- Darmstadt 2023-02-03 00:00:00
+Enregistrement 1 pour  Braunschweig -VS- Heidenheim 2023-02-04 00:00:00
+Enregistrement 1 pour  Kaiserslautern -VS- Holstein Kiel 2023-02-04 00:00:00
+Enregistrement 1 pour  Regensburg -VS- Bielefeld 2023-02-04 00:00:00
+Enregistrement 1 pour  Greuther Furth -VS- Nurnberg 2023-02-04 00:00:00
+Enregistrement 1 pour  Hansa Rostock -VS- Hamburg 2023-02-05 00:00:00
+Enregistrement 1 pour  Magdeburg -VS- Karlsruhe 2023-02-05 00:00:00
+Enregistrement 1 pour  St Pauli -VS- Hannover 2023-02-05 00:00:00
+Enregistrement 1 pour  Chelsea -VS- Fulham 2023-02-03 00:00:00
+Enregistrement 1 pour  Everton -VS- Arsenal 2023-02-04 00:00:00
+Enregistrement 1 pour  Aston Villa -VS- Leicester 2023-02-04 00:00:00
+Enregistrement 1 pour  Brentford -VS- Southampton 2023-02-04 00:00:00
+Enregistrement 1 pour  Brighton -VS- Bournemouth 2023-02-04 00:00:00
+Enregistrement 1 pour  Man United -VS- Crystal Palace 2023-02-04 00:00:00
+Enregistrement 1 pour  Wolves -VS- Liverpool 2023-02-04 00:00:00
+Enregistrement 1 pour  Newcastle -VS- West Ham 2023-02-04 00:00:00
+Enregistrement 1 pour  Nott'm Forest -VS- Leeds 2023-02-05 00:00:00
+Enregistrement 1 pour  Tottenham -VS- Man City 2023-02-05 00:00:00
+Enregistrement 1 pour  West Brom -VS- Coventry 2023-02-03 00:00:00
+Enregistrement 1 pour  Norwich -VS- Burnley 2023-02-04 00:00:00
+Enregistrement 1 pour  Rotherham -VS- Sheffield United 2023-02-04 00:00:00
+Enregistrement 1 pour  Huddersfield -VS- QPR 2023-02-04 00:00:00
+Enregistrement 1 pour  Hull -VS- Cardiff 2023-02-04 00:00:00
+Enregistrement 1 pour  Luton -VS- Stoke 2023-02-04 00:00:00
+Enregistrement 1 pour  Middlesbrough -VS- Blackpool 2023-02-04 00:00:00
+Enregistrement 1 pour  Millwall -VS- Sunderland 2023-02-04 00:00:00
+Enregistrement 1 pour  Preston -VS- Bristol City 2023-02-04 00:00:00
+Enregistrement 1 pour  Reading -VS- Watford 2023-02-04 00:00:00
+Enregistrement 1 pour  Swansea -VS- Birmingham 2023-02-04 00:00:00
+Enregistrement 1 pour  Blackburn -VS- Wigan 2023-02-06 00:00:00
+Enregistrement 1 pour  Accrington -VS- Lincoln 2023-02-04 00:00:00
+Enregistrement 1 pour  Bolton -VS- Cheltenham 2023-02-04 00:00:00
+Enregistrement 1 pour  Bristol Rvs -VS- Milton Keynes Dons 2023-02-04 00:00:00
+Enregistrement 1 pour  Cambridge -VS- Ipswich 2023-02-04 00:00:00
+Enregistrement 1 pour  Derby -VS- Morecambe 2023-02-04 00:00:00
+Enregistrement 1 pour  Exeter -VS- Charlton 2023-02-04 00:00:00
+Enregistrement 1 pour  Fleetwood Town -VS- Burton 2023-02-04 00:00:00
+Enregistrement 1 pour  Forest Green -VS- Peterboro 2023-02-04 00:00:00
+Enregistrement 1 pour  Oxford -VS- Shrewsbury 2023-02-04 00:00:00
+Enregistrement 1 pour  Port Vale -VS- Wycombe 2023-02-04 00:00:00
+Enregistrement 1 pour  Portsmouth -VS- Barnsley 2023-02-04 00:00:00
+Enregistrement 1 pour  Sheffield Weds -VS- Plymouth 2023-02-04 00:00:00
+Enregistrement 1 pour  Newport County -VS- Swindon 2023-02-04 00:00:00
+Enregistrement 1 pour  Bradford -VS- Mansfield 2023-02-04 00:00:00
+Enregistrement 1 pour  Carlisle -VS- Harrogate 2023-02-04 00:00:00
+Enregistrement 1 pour  Colchester -VS- Barrow 2023-02-04 00:00:00
+Enregistrement 1 pour  Crewe -VS- Grimsby 2023-02-04 00:00:00
+Enregistrement 1 pour  Doncaster -VS- Hartlepool 2023-02-04 00:00:00
+Enregistrement 1 pour  Gillingham -VS- Crawley Town 2023-02-04 00:00:00
+Enregistrement 1 pour  Leyton Orient -VS- AFC Wimbledon 2023-02-04 00:00:00
+Enregistrement 1 pour  Northampton -VS- Walsall 2023-02-04 00:00:00
+Enregistrement 1 pour  Salford -VS- Rochdale 2023-02-04 00:00:00
+Enregistrement 1 pour  Stockport -VS- Tranmere 2023-02-04 00:00:00
+Enregistrement 1 pour  Sutton -VS- Stevenage 2023-02-04 00:00:00
+Enregistrement 1 pour  Scunthorpe -VS- Barnet 2023-02-03 00:00:00
+Enregistrement 1 pour  Aldershot -VS- Dorking 2023-02-04 00:00:00
+Enregistrement 1 pour  Boreham Wood -VS- Chesterfield 2023-02-04 00:00:00
+Enregistrement 1 pour  Bromley -VS- Maidenhead 2023-02-04 00:00:00
+Enregistrement 1 pour  Eastleigh -VS- Woking 2023-02-04 00:00:00
+Enregistrement 1 pour  Oldham -VS- Halifax 2023-02-04 00:00:00
+Enregistrement 1 pour  Solihull -VS- Gateshead 2023-02-04 00:00:00
+Enregistrement 1 pour  Southend -VS- York 2023-02-04 00:00:00
+Enregistrement 1 pour  Torquay -VS- Notts County 2023-02-04 00:00:00
+Enregistrement 1 pour  Wealdstone -VS- Dag and Red 2023-02-04 00:00:00
+Enregistrement 1 pour  Yeovil -VS- Maidstone 2023-02-04 00:00:00
+Enregistrement 1 pour  Altrincham -VS- Wrexham 2023-02-04 00:00:00
+Enregistrement 1 pour  Paris SG -VS- Toulouse 2023-02-04 00:00:00
+Enregistrement 1 pour  Troyes -VS- Lyon 2023-02-04 00:00:00
+Enregistrement 1 pour  Rennes -VS- Lille 2023-02-04 00:00:00
+Enregistrement 1 pour  Clermont -VS- Monaco 2023-02-05 00:00:00
+Enregistrement 1 pour  Ajaccio -VS- Nantes 2023-02-05 00:00:00
+Enregistrement 1 pour  Auxerre -VS- Reims 2023-02-05 00:00:00
+Enregistrement 1 pour  Lorient -VS- Angers 2023-02-05 00:00:00
+Enregistrement 1 pour  Strasbourg -VS- Montpellier 2023-02-05 00:00:00
+Enregistrement 1 pour  Brest -VS- Lens 2023-02-05 00:00:00
+Enregistrement 1 pour  Marseille -VS- Nice 2023-02-05 00:00:00
+Enregistrement 1 pour  Caen -VS- Bastia 2023-02-03 00:00:00
+Enregistrement 1 pour  Dijon -VS- Niort 2023-02-03 00:00:00
+Enregistrement 1 pour  Le Havre -VS- Paris FC 2023-02-03 00:00:00
+Enregistrement 1 pour  Nimes -VS- Grenoble 2023-02-03 00:00:00
+Enregistrement 1 pour  Pau FC -VS- Bordeaux 2023-02-03 00:00:00
+Enregistrement 1 pour  Quevilly Rouen -VS- Guingamp 2023-02-03 00:00:00
+Enregistrement 1 pour  Rodez -VS- Sochaux 2023-02-03 00:00:00
+Enregistrement 1 pour  Valenciennes -VS- Laval 2023-02-03 00:00:00
+Enregistrement 1 pour  St Etienne -VS- Annecy 2023-02-04 00:00:00
+Enregistrement 1 pour  Amiens -VS- Metz 2023-02-06 00:00:00
+----------error save match---------- 'NoneType' object has no attribute 'ppg'
+Enregistrement 1 pour  OFI Crete -VS- Giannina 2023-02-04 00:00:00
+Errror 12 ----------- 'NoneType' object has no attribute 'ppg'
+------------------------- 2023-02-04 00:00:04.108125
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7497ca6d70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+Enregistrement 1 pour  Ionikos -VS- Aris 2023-02-04 00:00:00
+----------error save match---------- 'NoneType' object has no attribute 'ppg'
+Enregistrement 1 pour  Panathinaikos -VS- Lamia 2023-02-05 00:00:00
+Errror 12 ----------- 'NoneType' object has no attribute 'ppg'
+------------------------- 2023-02-04 02:00:02.322466
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb7cdc971c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+----------error save match---------- 'NoneType' object has no attribute 'ppg'
+Enregistrement 1 pour  Atromitos -VS- AEK 2023-02-05 00:00:00
+Errror 12 ----------- 'NoneType' object has no attribute 'ppg'
+------------------------- 2023-02-04 04:00:02.570126
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd8a319f160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+----------error save match---------- 'NoneType' object has no attribute 'ppg'
+Enregistrement 1 pour  Panetolikos -VS- Asteras Tripolis 2023-02-05 00:00:00
+Errror 12 ----------- 'NoneType' object has no attribute 'ppg'
+------------------------- 2023-02-04 06:00:02.270181
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fab12c7b190>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+Enregistrement 1 pour  PAOK -VS- Olympiakos 2023-02-05 00:00:00
+----------error save match---------- 'NoneType' object has no attribute 'ppg'
+Enregistrement 1 pour  Levadeiakos -VS- Volos NFC 2023-02-06 00:00:00
+Errror 12 ----------- 'NoneType' object has no attribute 'ppg'
+------------------------- 2023-02-04 08:00:03.272717
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd3ed29f190>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+Enregistrement 1 pour  Cremonese -VS- Lecce 2023-02-04 00:00:00
+Enregistrement 1 pour  Roma -VS- Empoli 2023-02-04 00:00:00
+Enregistrement 1 pour  Sassuolo -VS- Atalanta 2023-02-04 00:00:00
+Enregistrement 1 pour  Spezia -VS- Napoli 2023-02-05 00:00:00
+Enregistrement 1 pour  Torino -VS- Udinese 2023-02-05 00:00:00
+Enregistrement 1 pour  Fiorentina -VS- Bologna 2023-02-05 00:00:00
+Enregistrement 1 pour  Inter -VS- Milan 2023-02-05 00:00:00
+Enregistrement 1 pour  Verona -VS- Lazio 2023-02-06 00:00:00
+Enregistrement 1 pour  Monza -VS- Sampdoria 2023-02-06 00:00:00
+Enregistrement 1 pour  Salernitana -VS- Juventus 2023-02-07 00:00:00
+Enregistrement 1 pour  Modena -VS- Cagliari 2023-02-03 00:00:00
+Enregistrement 1 pour  Benevento -VS- Venezia 2023-02-04 00:00:00
+Enregistrement 1 pour  Cittadella -VS- Ascoli 2023-02-04 00:00:00
+Enregistrement 1 pour  Cosenza -VS- Ternana 2023-02-04 00:00:00
+Enregistrement 1 pour  Perugia -VS- Brescia 2023-02-04 00:00:00
+Enregistrement 1 pour  Pisa -VS- Sudtirol 2023-02-04 00:00:00
+Enregistrement 1 pour  Spal -VS- Bari 2023-02-04 00:00:00
+Enregistrement 1 pour  Como -VS- Frosinone 2023-02-04 00:00:00
+Enregistrement 1 pour  Palermo -VS- Reggina 2023-02-05 00:00:00
+Enregistrement 1 pour  Parma -VS- Genoa 2023-02-05 00:00:00
+Enregistrement 1 pour  For Sittard -VS- Sparta Rotterdam 2023-02-03 00:00:00
+Enregistrement 1 pour  Volendam -VS- AZ Alkmaar 2023-02-04 00:00:00
+Enregistrement 1 pour  FC Emmen -VS- Vitesse 2023-02-04 00:00:00
+Enregistrement 1 pour  Utrecht -VS- Heerenveen 2023-02-04 00:00:00
+Enregistrement 1 pour  Excelsior -VS- Waalwijk 2023-02-04 00:00:00
+Enregistrement 1 pour  Cambuur -VS- Ajax 2023-02-05 00:00:00
+Enregistrement 1 pour  Feyenoord -VS- PSV Eindhoven 2023-02-05 00:00:00
+Enregistrement 1 pour  Go Ahead Eagles -VS- Nijmegen 2023-02-05 00:00:00
+Enregistrement 1 pour  Groningen -VS- Twente 2023-02-05 00:00:00
+Enregistrement 1 pour  Santa Clara -VS- Boavista 2023-02-04 00:00:00
+Enregistrement 1 pour  Benfica -VS- Casa Pia 2023-02-04 00:00:00
+Enregistrement 1 pour  Estoril -VS- Guimaraes 2023-02-04 00:00:00
+Enregistrement 1 pour  Chaves -VS- Maritimo 2023-02-05 00:00:00
+Enregistrement 1 pour  Sp Braga -VS- Famalicao 2023-02-05 00:00:00
+Enregistrement 1 pour  Porto -VS- Vizela 2023-02-05 00:00:00
+Enregistrement 1 pour  Gil Vicente -VS- Arouca 2023-02-05 00:00:00
+Enregistrement 1 pour  Portimonense -VS- Pacos Ferreira 2023-02-06 00:00:00
+Enregistrement 1 pour  Rio Ave -VS- Sp Lisbon 2023-02-06 00:00:00
+Enregistrement 1 pour  Aberdeen -VS- Motherwell 2023-02-04 00:00:00
+Enregistrement 1 pour  Hearts -VS- Dundee United 2023-02-04 00:00:00
+Enregistrement 1 pour  Livingston -VS- Kilmarnock 2023-02-04 00:00:00
+Enregistrement 1 pour  Rangers -VS- Ross County 2023-02-04 00:00:00
+Enregistrement 1 pour  St Mirren -VS- Hibernian 2023-02-04 00:00:00
+Enregistrement 1 pour  St Johnstone -VS- Celtic 2023-02-05 00:00:00
+Enregistrement 1 pour  Queens Park -VS- Ayr 2023-02-03 00:00:00
+Enregistrement 1 pour  Arbroath -VS- Raith Rvs 2023-02-04 00:00:00
+Enregistrement 1 pour  Hamilton -VS- Dundee 2023-02-04 00:00:00
+Enregistrement 1 pour  Inverness C -VS- Morton 2023-02-04 00:00:00
+Enregistrement 1 pour  Partick -VS- Cove Rangers 2023-02-04 00:00:00
+Enregistrement 1 pour  Airdrie Utd -VS- Clyde 2023-02-04 00:00:00
+Enregistrement 1 pour  Alloa -VS- Peterhead 2023-02-04 00:00:00
+Enregistrement 1 pour  Dunfermline -VS- Montrose 2023-02-04 00:00:00
+Enregistrement 1 pour  Kelty Hearts -VS- Falkirk 2023-02-04 00:00:00
+Enregistrement 1 pour  Queen of Sth -VS- FC Edinburgh 2023-02-04 00:00:00
+Enregistrement 1 pour  Bonnyrigg Rose -VS- Annan Athletic 2023-02-04 00:00:00
+Enregistrement 1 pour  East Fife -VS- Stirling 2023-02-04 00:00:00
+Enregistrement 1 pour  Elgin -VS- Albion Rvs 2023-02-04 00:00:00
+Enregistrement 1 pour  Forfar -VS- Stranraer 2023-02-04 00:00:00
+Enregistrement 1 pour  Stenhousemuir -VS- Dumbarton 2023-02-04 00:00:00
+Enregistrement 1 pour  Ath Bilbao -VS- Cadiz 2023-02-03 00:00:00
+Enregistrement 1 pour  Espanol -VS- Osasuna 2023-02-04 00:00:00
+Enregistrement 1 pour  Elche -VS- Villarreal 2023-02-04 00:00:00
+Enregistrement 1 pour  Ath Madrid -VS- Getafe 2023-02-04 00:00:00
+Enregistrement 1 pour  Betis -VS- Celta 2023-02-04 00:00:00
+Enregistrement 1 pour  Mallorca -VS- Real Madrid 2023-02-05 00:00:00
+Enregistrement 1 pour  Girona -VS- Valencia 2023-02-05 00:00:00
+Enregistrement 1 pour  Sociedad -VS- Valladolid 2023-02-05 00:00:00
+Enregistrement 1 pour  Barcelona -VS- Sevilla 2023-02-05 00:00:00
+Enregistrement 1 pour  Vallecano -VS- Almeria 2023-02-06 00:00:00
+Enregistrement 1 pour  Malaga -VS- Oviedo 2023-02-03 00:00:00
+Enregistrement 1 pour  Huesca -VS- Mirandes 2023-02-04 00:00:00
+Enregistrement 1 pour  Leganes -VS- Sp Gijon 2023-02-04 00:00:00
+Enregistrement 1 pour  Tenerife -VS- Albacete 2023-02-04 00:00:00
+Enregistrement 1 pour  Alaves -VS- Eibar 2023-02-04 00:00:00
+Enregistrement 1 pour  Villarreal B -VS- Granada 2023-02-05 00:00:00
+Enregistrement 1 pour  Andorra -VS- Zaragoza 2023-02-05 00:00:00
+Enregistrement 1 pour  Cartagena -VS- Levante 2023-02-05 00:00:00
+Enregistrement 1 pour  Ponferradina -VS- Santander 2023-02-05 00:00:00
+Enregistrement 1 pour  Lugo -VS- Ibiza 2023-02-05 00:00:00
+Enregistrement 1 pour  Burgos -VS- Las Palmas 2023-02-06 00:00:00
+Enregistrement 1 pour  Ankaragucu -VS- Karagumruk 2023-02-04 00:00:00
+Enregistrement 1 pour  Sivasspor -VS- Besiktas 2023-02-04 00:00:00
+Enregistrement 1 pour  Antalyaspor -VS- Gaziantep 2023-02-04 00:00:00
+Enregistrement 1 pour  Istanbulspor -VS- Alanyaspor 2023-02-05 00:00:00
+Enregistrement 1 pour  Hatayspor -VS- Kasimpasa 2023-02-05 00:00:00
+Enregistrement 1 pour  Galatasaray -VS- Trabzonspor 2023-02-05 00:00:00
+Enregistrement 1 pour  Umraniyespor -VS- Ad. Demirspor 2023-02-06 00:00:00
+Enregistrement 1 pour  Fenerbahce -VS- Konyaspor 2023-02-06 00:00:00
+Enregistrement 1 pour  Giresunspor -VS- Kayserispor 2023-02-06 00:00:00
+------------------------- 2023-02-04 12:00:03.138170
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f07df57b100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-04 16:00:02.291547
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f75fce76d40>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-04 18:00:02.657269
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3c23e9f190>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-04 20:00:03.211748
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fca3cba3130>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-04 22:00:03.999994
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f2a49ca7220>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 00:00:06.064116
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5dc4b7b100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 02:00:02.989344
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f5b2657b190>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 04:00:02.985922
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7ff539d9b070>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 06:00:03.079067
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa78e272fe0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 08:00:03.169832
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8d472a7070>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 10:00:02.593769
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fda6109f100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 12:00:02.422311
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f9044ba7250>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 14:00:03.349122
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa9733a7160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 16:00:02.648381
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f046a3a31f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 18:00:02.186496
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f129769f100>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 20:00:04.124851
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8385a73160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-05 22:00:03.540816
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f2bae077190>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-06 00:00:04.323735
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6abd39f220>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-06 02:00:03.655159
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb94439b070>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-06 04:00:03.627852
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7ff22b57f070>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-06 06:00:02.700261
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1b000a3220>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+                                                     

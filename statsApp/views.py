@@ -14,6 +14,30 @@ import math
 # Create your views here.
 
 
+@render_to('statsApp/test.html')
+def test(request):
+    data1 = []
+    data2 = []
+    for match in Match.objects.filter(is_finished = True).order_by('-date')[:1000]:
+        extra = match.get_extra_info_match()
+        home_stats = match.get_home_before_stats()
+        away_stats = match.get_away_before_stats()
+        if extra is not None and home_stats is not None and away_stats is not None: 
+            pre = ((home_stats.avg_corners_for or 0) + (home_stats.avg_corners_against or 0) + (away_stats.avg_corners_for or 0) + (away_stats.avg_corners_against or 0)) / 2
+            out = (extra.home_corners or 0 )+ (extra.away_corners or 0)
+            if not pre == out == 0:
+                data1.append(round(pre))
+                data2.append(round(out))
+        
+        
+    ctx = {
+        "data1" : data1,
+        "data2" : data2,
+        }
+    return ctx
+
+
+
 @render_to('statsApp/index.html')
 def statistiques(request):
     if request.method == "GET":
@@ -78,6 +102,72 @@ def statistiques(request):
         }
         return ctx
     
+
+
+@render_to('statsApp/indextest.html')
+def statistiquestest(request):
+    if request.method == "GET":
+        datas = PredictionTest.objects.filter(is_checked = None)
+        for predict in datas:
+            predict.validity()
+              
+        modes = {}
+        for mode in ModePrediction.objects.all():
+            total = PredictionTest.objects.filter(mode = mode).exclude(is_checked = None)
+            modes[mode] = round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
+           
+        types = {}
+        for type in TypePrediction.objects.all():
+            total = PredictionTest.objects.filter(type = type).exclude(is_checked = None)
+            types[type] = round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
+            
+        
+        tableau = {}
+        for mode in ModePrediction.objects.all():
+            for type in TypePrediction.objects.all():
+                total = PredictionTest.objects.filter(type = type, mode = mode).exclude(is_checked = None)
+                tableau[mode, type] = round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
+            
+            
+        predictions = PredictionTest.objects.exclude(is_checked = None)
+        success = predictions.filter(is_checked = True)
+        count = predictions.count()
+        ratio = int((success.count() / count) * 100) if count > 0 else 0
+        decimal = int(((success.count() / count * 100) - ratio) * 100) if count > 0 else 0
+        
+        
+        now = datetime.now() - timedelta()
+        i = 24
+        stats_pre = {}
+        stats_total = {}
+        stats_pct = {}
+        while i > 0:
+            fin  = now
+            now = now - relativedelta(months=1)
+            predicts = PredictionTest.objects.filter(match__date__gte = now, match__date__lt = fin)
+            total = 0
+            for x in predicts:
+                total += 1 if x.is_checked else 0
+                
+            stats_pre[now] = predicts.count()
+            stats_total[now] = total
+            stats_pct[now] = round(total / predicts.count() * 100) if predicts.count() > 0 else 0
+            
+            i-=1
+        
+        ctx = {
+            "modes" : modes,
+            "types" : types,
+            "predictions" : predictions,
+            "tableau" : tableau,
+            "ratio" : ratio,
+            "decimal" : decimal,
+            "stats_pre" : stats_pre,
+            "stats_pct" : stats_pct,
+            "stats_total" : stats_total,
+        }
+        return ctx
+    
     
 
 
@@ -86,7 +176,7 @@ def statistiques(request):
 @render_to('statsApp/rechercher_cote.html')
 def rechercher_cote(request, home, away, draw):
     if request.method == "GET":
-        date = datetime.now() - timedelta(days = 12 * 30)
+        date = datetime.now() - timedelta(days =5 * 12 * 30)
         home = float(home)
         draw = float(draw)
         away = float(away)

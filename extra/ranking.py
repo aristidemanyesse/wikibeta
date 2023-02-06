@@ -16,10 +16,10 @@ def function( date = None):
     date = datetime.now().replace(tzinfo=utc) if date is None else date
     print("Ranking pour le -------------------------", date)
     try :
-        for edition in EditionCompetition.objects.filter().order_by("-edition__name"):
+        for edition in EditionCompetition.objects.filter(is_finished = False).order_by("-edition__name"):
             last = edition.edition_rankings.filter().first()
             
-            if (last is None and date.date() >= edition.start_date) or (last is not None and last.date < date.date() - timedelta(days=7) and  (edition.start_date <= date.date() <= edition.finish_date)):
+            if edition.start_date <= date.date() <= edition.finish_date:
             # if (not edition.is_finished and date.date() >= edition.start_date) or (edition.start_date <= date.date() <= edition.finish_date):
                 print("Ranking de --", edition)
                 datas = edition.classement(date.date())
@@ -87,7 +87,7 @@ def function( date = None):
                 
                 matchs = edition.edition_du_match.filter(is_finished = True)
                 teams = edition.edition_team.filter()
-                if len(matchs) == len(teams) *( len(teams) -1):
+                if len(matchs) == len(teams) * ( len(teams) -1):
                     edition.is_finished = True
                     edition.save()
 

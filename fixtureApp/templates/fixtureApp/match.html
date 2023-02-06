@@ -998,19 +998,19 @@
 $(function(){
 
     var radarData = {
-        labels: ["ppg", "MG", "MA", "Tirs", "Corners"],
+        labels: ["PPG", "MG", "MA"],
         datasets: [
             {
                 label: "{{match.home}}",
                 backgroundColor: "rgba(220,220,220,0.2)",
                 borderColor: "rgba(220,220,220,1)",
-                data: [{{match.get_home_before_stats.ppg}}, {{home_rank.avg_gs}}, {{home_rank.avg_ga}}, {{match.get_home_before_stats.avg_shots_for|rounded }}, {{match.get_home_before_stats.avg_corners_for|rounded }}]
+                data: [{{match.get_home_before_stats.ppg}}, {{home_rank.avg_gs}}, {{home_rank.avg_ga}}]
             },
             {
                 label: "{{match.away}}",
                 backgroundColor: "rgba(26,179,148,0.2)",
                 borderColor: "rgba(26,179,148,1)",
-                data: [{{match.get_away_before_stats.ppg}}, {{away_rank.avg_gs}}, {{away_rank.avg_ga}}, {{match.get_away_before_stats.avg_shots_for|rounded }}, {{match.get_away_before_stats.avg_corners_for|rounded }}]
+                data: [{{match.get_away_before_stats.ppg}}, {{away_rank.avg_gs}}, {{away_rank.avg_ga}}]
             }
         ]
     };

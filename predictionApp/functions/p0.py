@@ -26,7 +26,7 @@ def predict(match):
             pct = 95
         )
     
-    if home > GF and away > GF:
+    elif home > GF and away > GF:
         Prediction.objects.create(
             mode = ModePrediction.get("M0"),
             type = TypePrediction.get("btts"),
@@ -40,7 +40,7 @@ def predict(match):
             pct = 85
         )
         
-    if home < GA and away < GA:
+    elif home < GA and away < GA:
         Prediction.objects.create(
             mode = ModePrediction.get("M0"),
             type = TypePrediction.get("no_btts"),

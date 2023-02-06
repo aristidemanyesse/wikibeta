@@ -1,5 +1,6 @@
 from predictionApp.models import *
 from fixtureApp.models import *
+from competitionApp.models import *
         
 def function(edition):
     for match in edition.edition_du_match.all():
@@ -8,11 +9,22 @@ def function(edition):
     
     
 def predict(match):
-    matchs = match.similaires_betting(20)
-    if len(matchs) >= 10 :
+    matchs = match.similaires_betting(10)
+    datas = {"home":0, "away":0, "draw":0, "1_5":0, "2_5":0, "3_5":0}
+    if len(matchs) >= 5 :
         moy = 0
-        for x in matchs:
-            result = x.get_result()
+        for match in matchs:
+            result = match.get_result()
+            # datas["home"] += 1 if result.home_score > result.away_score else 0
+            # datas["away"] += 1 if result.home_score < result.away_score else 0
+            # datas["draw"] += 1 if result.home_score == result.away_score else 0
+            # datas["1_5"] += 1 if result.home_score + result.away_score > 1.5 else 0
+            # datas["2_5"] += 1 if result.home_score + result.away_score > 2.5 else 0
+            # datas["3_5"] += 1 if result.home_score + result.away_score < 3.5 else 0
+            
+            # home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
+            # away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+            
             moy += (result.home_score + result.away_score) / len(matchs)
         
         if (moy >= 2.7):

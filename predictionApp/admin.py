@@ -32,3 +32,13 @@ class PredictionAdmin(admin.ModelAdmin):
         ('match__date', DateFieldListFilter),
     )
     list_display = ["match", 'mode', 'type', 'pct', 'is_checked']
+
+
+@admin.register(PredictionTest)
+class PredictionTestAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'match__date'
+    list_filter = (
+        ('match__date', DateFieldListFilter),
+    )
+    list_display = ["match", 'mode', 'type', 'pct', 'is_checked']

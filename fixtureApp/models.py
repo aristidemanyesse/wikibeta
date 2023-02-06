@@ -25,8 +25,9 @@ class Match(BaseModel):
     away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
     edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
     is_finished       = models.BooleanField(default = False, null = True, blank=True)
-    is_predict       = models.BooleanField(default = False, null = True, blank=True)
     is_first_match    = models.BooleanField(default = False, null = True, blank=True)
+    is_predict        = models.BooleanField(default = False, null = True, blank=True)
+    is_facted         = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
         ordering = ['date', "hour", "home"]
@@ -149,14 +150,13 @@ class Goal(BaseModel):
 def sighandler(instance, created, **kwargs):
     
     try:
-    
+        #creation du before stat pour chaque equipe
         if created:
-            #creation du before stat pour chaque equipe
             for team in [instance.home, instance.away]:
                 points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
                 datas = team.extra_info_stats(instance, edition = True)      
                 
-                stats = BeforeMatchStat.objects.create(
+                BeforeMatchStat.objects.create(
                     match                       = instance,
                     team                        = instance.home if (instance.home == team) else instance.away,
                     ppg                         = ppg,
@@ -178,14 +178,20 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
 
-            # get_home_facts.function(instance)
-            # get_away_facts.function(instance)
+            get_home_facts.function(instance)
+            get_away_facts.function(instance)
             
-            # p0.predict(instance)
-            # p1.predict(instance)
-            # p2.predict(instance)
-            # p3.predict(instance)
-            # p4.predict(instance)
+            
+            if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and instance.away.get_last_matchs(instance, edition = True) > 3:
+                p0.predict(instance)
+                p1.predict(instance)
+                p2.predict(instance)
+                p3.predict(instance)
+                p4.predict(instance)
+            
+            instance.is_predicted = True
+            instance.is_facted = True
+            instance.save()
                     
             
     except Exception as e:

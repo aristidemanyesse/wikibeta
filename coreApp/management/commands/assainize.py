@@ -3,6 +3,7 @@ from bettingApp.models import *
 from fixtureApp.models import *
 from statsApp.models import *
 from competitionApp.models import *
+from predictionApp.models import *
 from dateparser import parse
 import threading
 import time
@@ -13,7 +14,22 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        Ranking.objects.all().delete()
+        PredictionTest.objects.all().delete()
+        # Prediction.objects.filter(mode = ModePrediction.get("M0"),
+        #     type = TypePrediction.get("corner_m12_5")).delete()
+        # for match in Match.objects.all():
+        #     if match.before_stat_match.filter().count() != 2:
+        #         # match.before_stat_match.filter().delete()
+        #         # match.prediction_match.filter().delete()
+        #         # match.match_facts.filter().delete()
+        #         match.delete()
+                
+                # print((match.get_result()).__dict__)
+                
+                # print(match.id, match, match.date)
+                # match.save()
+        
+        # Ranking.objects.all().delete()
         pass
         # Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()
         # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()

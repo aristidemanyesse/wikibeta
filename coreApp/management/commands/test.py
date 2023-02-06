@@ -27,19 +27,20 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        for match in Match.objects.filter(date__lte = datetime.datetime.now() - datetime.timedelta(days=3)).order_by('-date'):
-            while threading.active_count() >= 800:
-                print("processus en cours ---------------: ", threading.active_count())
-                time.sleep(5)
-            p = threading.Thread(target=main , args=(match,))
-            p.setDaemon(True)
-            p.start()
-            time.sleep(1)
+        print(Match.objects.filter(is_facted = True, is_predict =  True).count())
+        # for match in Match.objects.filter(date__lte = datetime.datetime.now() - datetime.timedelta(days=3)).order_by('-date'):
+        #     while threading.active_count() >= 800:
+        #         print("processus en cours ---------------: ", threading.active_count())
+        #         time.sleep(5)
+        #     p = threading.Thread(target=main , args=(match,))
+        #     p.setDaemon(True)
+        #     p.start()
+        #     time.sleep(1)
             
-        while threading.active_count() > 0:
-            print("en attente ---------------: ", threading.active_count())
-            time.sleep(30)
-        self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))  
+        # while threading.active_count() > 0:
+        #     print("en attente ---------------: ", threading.active_count())
+        #     time.sleep(30)
+        # self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))  
                                 
             
 

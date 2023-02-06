@@ -3,7 +3,7 @@ from competitionApp.models import *
 from django.http import HttpResponseRedirect
 from annoying.decorators import render_to
 import statsApp.get_recherche_facts as get_recherche_facts
-
+from datetime import datetime
 # Create your views here.
 
 
@@ -40,9 +40,9 @@ def competition_edition(request, pays, competition, edition):
         competition = edition.competition
         editions = [] or competition.competition_edition.filter()
         matchs_played = edition.edition_du_match.filter(is_finished = True).order_by('-date')
-        next_matchs = edition.edition_du_match.filter(is_finished = False)
+        next_matchs = edition.edition_du_match.filter(is_finished = False, date__gte = datetime.now())
         
-        rank = edition.edition_rankings.filter().order_by('-created_at').first()
+        rank = edition.edition_rankings.filter().order_by('-date').first()
         
         teams = edition.edition_team.filter()
         total_official_matchs = (len(teams)-1) * len(teams)
@@ -83,7 +83,7 @@ def competition_edition(request, pays, competition, edition):
             "teams":teams, 
             "facts":facts, 
             "rank":rank, 
-            "matchs10":matchs_played[:10], 
+            "matchs20":matchs_played[:20], 
             "ratio":ratio, 
             "victoires": victoires,
             "nuls": nuls,

@@ -12,7 +12,7 @@ class MatchAdmin(admin.ModelAdmin):
     list_filter = (
         ('date', DateFieldListFilter),
     )
-    list_display = ['date', "hour", 'home', "away", "is_finished", "edition"]
+    list_display = ["edition", 'date', "hour", 'home', "away", "is_finished", "is_predict", "is_facted",]
 
 
 

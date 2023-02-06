@@ -70,12 +70,12 @@ def match(request, id):
         inter = intersection(similaires_ppg, similaires_betting)
         
         
-        home_rank = LigneRanking.objects.filter(team = match.home, created_at__lte = match.date).order_by('-created_at').first()
-        away_rank = LigneRanking.objects.filter(team = match.away, created_at__lte = match.date).order_by('-created_at').first()
+        home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
                 
-        rank = match.edition.edition_rankings.filter(created_at__lte = match.date).order_by('-created_at').first()
+        rank = match.edition.edition_rankings.filter(date__lte = match.date).order_by('-date').first()
         
-        competitionstats = match.edition.edition_stats.filter(created_at__lte = match.date).order_by('-created_at').first()
+        competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
 
         ctx = {
             "match" : match,
