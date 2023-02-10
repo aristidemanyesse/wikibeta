@@ -182,7 +182,7 @@ def sighandler(instance, created, **kwargs):
             get_away_facts.function(instance)
             
             
-            if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and instance.away.get_last_matchs(instance, edition = True) > 3:
+            if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
                 p0.predict(instance)
                 p1.predict(instance)
                 p2.predict(instance)

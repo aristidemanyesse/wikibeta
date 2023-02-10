@@ -19,7 +19,7 @@ def function( date = None):
         for edition in EditionCompetition.objects.filter(is_finished = False).order_by("-edition__name"):
             last = edition.edition_rankings.filter().first()
             
-            if edition.start_date <= date.date() <= edition.finish_date:
+            if last.date + timedelta(days = 2) <= date.date() >= edition.start_date:
             # if (not edition.is_finished and date.date() >= edition.start_date) or (edition.start_date <= date.date() <= edition.finish_date):
                 print("Ranking de --", edition)
                 datas = edition.classement(date.date())

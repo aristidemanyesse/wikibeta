@@ -103,8 +103,8 @@
                                         <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                                         {% if match.is_finished %}
                                         <td class="text-center">
-                                            {% if match.home_half_score is not None %}
-                                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                            {% if result.home_half_score is not None %}
+                                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                                             {% endif %}
                                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                                         </td>
@@ -120,7 +120,7 @@
                                             <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
                                             <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                                         </td>
-                                        <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                                        <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                     </tr>
                                     {% endwith %}
                                 {% endfor %}

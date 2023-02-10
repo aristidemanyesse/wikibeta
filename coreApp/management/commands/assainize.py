@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
-        PredictionTest.objects.all().delete()
+        # PredictionTest.objects.all().delete()
         # Prediction.objects.filter(mode = ModePrediction.get("M0"),
         #     type = TypePrediction.get("corner_m12_5")).delete()
         # for match in Match.objects.all():
@@ -30,8 +30,8 @@ class Command(BaseCommand):
                 # match.save()
         
         # Ranking.objects.all().delete()
+        Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
         pass
-        # Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()
         # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()
         
         # for ligne in LigneRanking.objects.all():

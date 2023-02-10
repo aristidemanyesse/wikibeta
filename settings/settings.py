@@ -136,9 +136,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # CRONJOBS
 CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('0 */2 * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('0 */2 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
-    # ('0 */2 * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    ('0 */1 * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
+    ('0 */1 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
+    ('0 */1 * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
     # ('*/2 * * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
 ]
 

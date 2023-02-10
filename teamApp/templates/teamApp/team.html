@@ -505,7 +505,9 @@
                                     <td class="{% if match.home_score > match.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                                     <td class="text-center">
-                                        <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                        {% if result.home_half_score is not None %}
+                                            <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
+                                        {% endif %}
                                         <p class="no-margins text-center text-small">{{match.home_score}} - {{match.away_score}}</p>
                                     </td>
                                     <td class="text-left" width="10px"><label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label></td>
@@ -515,7 +517,7 @@
                                         <label class="label label-{% if match.home_score == match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.draw }}</label>
                                         <label class="label label-{% if match.home_score < match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.away }}</label>
                                     </td>
-                                    <td><a href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                                    <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

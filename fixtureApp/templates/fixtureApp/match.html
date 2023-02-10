@@ -32,7 +32,7 @@
                 {% with match.get_result as result %}
                     {% if match.is_finished %} 
                     <h1 class="display-1 bold">{{result.home_score}} - {{result.away_score}}</h1>
-                    {% if match.home_half_score is not None %}
+                    {% if result.home_half_score is not None %}
                         <h4 class="display-2">{{result.home_half_score}} - {{result.away_half_score}}</h4> 
                     {% endif %}
                     <h4 class="">{{match.date}}</h4> 
@@ -299,8 +299,8 @@
                                     <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' x.home %}">{{x.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ x.get_home_before_stats.ppg | couleur }}">{{ x.get_home_before_stats.ppg }}</label></td>
                                     <td class="text-center"  width="50">
-                                        {% if match.home_half_score is not None %}
-                                            <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                        {% if result.home_half_score is not None %}
+                                            <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                                         {% endif %}
                                         <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                                     </td>
@@ -344,8 +344,8 @@
                                     <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' x.home %}">{{x.home}}</a></td>
                                     <td class="text-right" width="10px"><label class="label label-{{ x.get_home_before_stats.ppg | couleur }}">{{ x.get_home_before_stats.ppg }}</label></td>
                                     <td class="text-center" width="50">
-                                        {% if match.home_half_score is not None %}
-                                            <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                                        {% if result.home_half_score is not None %}
+                                            <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                                         {% endif %}
                                         <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                                     </td>
@@ -426,8 +426,8 @@
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                             <td class="text-center" width="50px">
-                            {% if match.home_half_score is not None %}
-                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% if result.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
@@ -461,8 +461,8 @@
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                             <td class="text-center" width="50px">
-                            {% if match.home_half_score is not None %}
-                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% if result.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
@@ -495,8 +495,8 @@
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-center" width="50px">
-                            {% if match.home_half_score is not None %}
-                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% if result.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
@@ -534,8 +534,8 @@
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                             <td class="text-center" width="50px">
-                            {% if match.home_half_score is not None %}
-                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% if result.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
@@ -883,8 +883,8 @@
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
                             <td class="text-right" width="10px"><label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label></td>
                             <td class="text-center" width="50px">
-                            {% if match.home_half_score is not None %}
-                                <h6 class="no-margins text-center">{{match.home_half_score}} - {{match.away_half_score}}</h6>
+                            {% if result.home_half_score is not None %}
+                                <h6 class="no-margins text-center">{{result.home_half_score}} - {{result.away_half_score}}</h6>
                             {% endif %}
                             <p class="no-margins text-center text-small">{{result.home_score}} - {{result.away_score}}</p>
                             </td>
