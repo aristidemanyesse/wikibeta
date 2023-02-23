@@ -63,7 +63,7 @@
                         {% comment %} <br>
                         <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label> {% endcomment %}
                     </div>
-                    <div class="col-md-3 text-left border">
+                    <div class="col-md-3 text-left">
                         <img src="{{match.away.team.logo.url}}" style="width:90%" class="img-circle circle-border m-t-md" alt="profile">
                     </div>
                 </div>
@@ -77,6 +77,27 @@
 
 <div class="container">
     <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> D'entrée de jeu</h4>
+
+    <div class="row justify">
+        {% for score in match.predictionscore_match.filter %}
+            <div class="col-sm-2">
+                <div class="widget style1 bg-muted border text-center">
+                    <div class="row vertical-align">
+                        <div class="col-xs-4 text-left">
+                            <h2 class="no-margins font-bold">{{ score.home_score }}</h2>
+                        </div>
+                        <div class="col-xs-4">
+                            <h3 class="">_</h3>
+                        </div>
+                        <div class="col-xs-4 text-right">
+                            <h2 class="no-margins font-bold">{{ score.away_score }}</h2>
+                        </div>
+                    </div>
+                    <small>{{ score.pct }}%</small>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     
 
     <div class="m-t-sm">
@@ -164,11 +185,20 @@
                             </tr>
                             <tr>
                                 <td class="bold text-right">
-                                    <label class="label label-{{ match.get_home_before_stats.ppg | couleur }}">{{ match.get_home_before_stats.ppg }}</label>
+                                    <label class="label label-{{ stats_home.ppg | couleur }}">{{ stats_home.ppg }}</label>
                                 </td>
                                 <td class="bold text-center">PPG</td>
                                 <td class="bold text-left">
-                                    <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label>
+                                    <label class="label label-{{ stats_away.ppg | couleur }}">{{ stats_away.ppg }}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.points|rounded}}</label>
+                                </td>
+                                <td class="bold text-center">Fight points</td>
+                                 <td class="text-left">
+                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.points|rounded}}</label>
                                 </td>
                             </tr>
                             <tr>
@@ -185,15 +215,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_scored|rounded }}</td>
+                                <td class="bold text-right">{{ stats_home.avg_goals_scored|rounded }}</td>
                                 <td class="bold text-center">Moy. de buts marquées</td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_scored|rounded }}</td>
+                                <td class="bold text-left">{{ stats_away.avg_goals_scored|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                             <tr>
-                                <td class="bold text-right">{{ match.get_home_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-right">{{ stats_home.avg_goals_conceded|rounded }}</td>
                                 <td class="bold text-center">Moy. de buts concédés </td>
-                                <td class="bold text-left">{{ match.get_away_before_stats.avg_goals_conceded|rounded }}</td>
+                                <td class="bold text-left">{{ stats_away.avg_goals_conceded|rounded }}</td>
                                 <td><img src=""></td>
                             </tr>
                         </tbody>
@@ -314,12 +344,33 @@
                     </table>
 
                     <div class="text-center">
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but">ClSh = 10</button>
+                        {% with home_last_matchs|home as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires"><b>Win</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|draw as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|_12 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|plus_but:1.5 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|moins_but:3.5 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|btts as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with home_last_matchs|cs as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                        {% endwith %}
                     </div>
                 </div>
             </div>
@@ -358,12 +409,33 @@
                         </tbody>
                     </table>
                     <div class="text-center">
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                        <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                        {% with away_last_matchs|away as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires"><b>Win</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|draw as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|_12 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|plus_but:1.5 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|moins_but:3.5 as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|btts as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                        {% endwith %}
+
+                        {% with away_last_matchs|cs as elem %}
+                            <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                        {% endwith %}
                     </div>
                 </div>
             </div>
@@ -440,16 +512,33 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                {% with confrontations|draw as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with confrontations|_12 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with confrontations|plus_but:1.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with confrontations|moins_but:3.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with confrontations|btts as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with confrontations|cs as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                {% endwith %}
             </div>
         </div>
 
-        <div class="col-md-6 m-b-md" style="height: 450px">
+        <div class="col-md-6 m-b-md" style="height: 550px">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par PPG</h4>
 
             <table class="table small m-b-xs">
@@ -475,16 +564,34 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                {% with similaires_ppg|draw as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg|_12 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg|plus_but:1.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg|moins_but:3.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg|btts as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg|cs as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                {% endwith %}
             </div>
         </div>
 
-        <div class="col-md-6  m-b-md" style="height: 450px">
+
+        <div class="col-md-6  m-b-md" style="height: 550px">
             <h4 class="bg-primary p-xs"><i class="fa fa-pen"></i> Matchs similaires par cotes</h4>
 
             <table class="table small m-b-xs">
@@ -513,12 +620,29 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                {% with similaires_betting|draw as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_betting|_12 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_betting|plus_but:1.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_betting|moins_but:3.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_betting|btts as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_betting|cs as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                {% endwith %}
             </div>
         </div>
 
@@ -548,12 +672,29 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de victoires">Win = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls">Draw = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts">+1,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts">-3,5 = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent">BTTS = 10</button>
-                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.away}} n'a encaissé de but">ClSh = 10</button>
+                {% with similaires_ppg2|draw as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>Draw</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg2|_12 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de nuls"><b>12</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg2|plus_but:1.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au moins 2 buts"><b>+1,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg2|moins_but:3.5 as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs avec au plus 3 buts"><b>-3,5</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg2|btts as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs où les 2 équipes marquent"><b>BTTS</b> = {{elem|start0}}</label>
+                {% endwith %}
+
+                {% with similaires_ppg2|cs as elem %}
+                    <label class="label label-{% if elem > 7 %}primary{% elif elem <= 3 %}danger{% else %}default{% endif %} btn-sm" data-toggle="tooltip" data-placement="left" title="Total de matchs ou {{match.home}} n'a encaissé de but"><b>ClSh</b> = {{elem|start0}}</label>
+                {% endwith %}
             </div>
         </div>
     </div>    
@@ -574,19 +715,19 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_shots_for|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_shots_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">par match</h5>
-                                <small>{{ match.get_home_before_stats.avg_shots_target_for|rounded }} cadrées</small>
+                                <small>{{ stats_home.avg_shots_target_for|rounded }} cadrées</small>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_shots_against|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_shots_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
-                                <small>{{ match.get_home_before_stats.avg_shots_target_against|rounded }} cadrées</small>
+                                <small>{{ stats_home.avg_shots_target_against|rounded }} cadrées</small>
                             </div>
                             <div class="col-xs-4 ">
-                                <h1 class="no-margins bold">{{ match.get_home_before_stats.avg_shots_for|addition:match.get_home_before_stats.avg_shots_against }}</h1>
+                                <h1 class="no-margins bold">{{ stats_home.avg_shots_for|addition:stats_home.avg_shots_against }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
-                                <small>{{ match.get_home_before_stats.avg_shots_target_for|addition:match.get_home_before_stats.avg_shots_target_against }} cadrées</small>
+                                <small>{{ stats_home.avg_shots_target_for|addition:stats_home.avg_shots_target_against }} cadrées</small>
                             </div>
                         </div>
                     </div>
@@ -600,19 +741,19 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_shots_for|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_shots_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">par match</h5>
-                                <small>{{ match.get_away_before_stats.avg_shots_target_for|rounded }} cadrées</small>
+                                <small>{{ stats_away.avg_shots_target_for|rounded }} cadrées</small>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_shots_against|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_shots_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
-                                <small>{{ match.get_away_before_stats.avg_shots_target_against|rounded }} cadrées</small>
+                                <small>{{ stats_away.avg_shots_target_against|rounded }} cadrées</small>
                             </div>
                             <div class="col-xs-4">
-                                <h1 class="no-margins bold">{{ match.get_away_before_stats.avg_shots_against|addition:match.get_away_before_stats.avg_shots_for }}</h1>
+                                <h1 class="no-margins bold">{{ stats_away.avg_shots_against|addition:stats_away.avg_shots_for }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
-                                <small>{{ match.get_away_before_stats.avg_shots_target_for|addition:match.get_away_before_stats.avg_shots_target_against }} cadrées</small>
+                                <small>{{ stats_away.avg_shots_target_for|addition:stats_away.avg_shots_target_against }} cadrées</small>
                             </div>
                         </div>
                     </div>
@@ -651,15 +792,15 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_fouls_for|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_fouls_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_fouls_against|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_fouls_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">commises par match</h5>
                             </div>
                             <div class="col-xs-4 ">
-                                <h1 class="no-margins bold">{{ match.get_home_before_stats.avg_fouls_for|addition:match.get_home_before_stats.avg_fouls_against }}</h1>
+                                <h1 class="no-margins bold">{{ stats_home.avg_fouls_for|addition:stats_home.avg_fouls_against }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
                             </div>
                         </div>
@@ -674,15 +815,15 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_fouls_for|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_fouls_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_fouls_against|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_fouls_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">commises par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h1 class="no-margins bold">{{ match.get_away_before_stats.avg_fouls_against|addition:match.get_away_before_stats.avg_fouls_for }}</h1>
+                                <h1 class="no-margins bold">{{ stats_away.avg_fouls_against|addition:stats_away.avg_fouls_for }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
                             </div>
                         </div>
@@ -719,17 +860,22 @@
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
-                            <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_corners_for|rounded }}</h2>
+                            <div class="col-xs-3">
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_corners_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">corners par match</h5>
                             </div>
-                            <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_corners_against|rounded }}</h2>
+                            <div class="col-xs-3">
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_corners_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
                             </div>
-                            <div class="col-xs-4 ">
-                                <h1 class="no-margins bold">{{ match.get_home_before_stats.avg_corners_for|addition:match.get_home_before_stats.avg_corners_against }}</h1>
+                            <div class="col-xs-3 ">
+                                <h1 class="no-margins bold">{{ stats_home.avg_corners_for|addition:stats_home.avg_corners_against }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
+                            </div>
+                            <div class="col-xs-3">
+                                <br>
+                                <h3 class="no-margins text-primary">{{ stats_home.avg_corners_against|rounded }}</h3>
+                                <h6 class="font-bold no-margins">subies par match</h6>
                             </div>
                         </div>
                     </div>
@@ -742,17 +888,22 @@
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
-                            <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_corners_for|rounded }}</h2>
+                            <div class="col-xs-3">
+                                <h2 class="no-margins">{{ stats_away.avg_corners_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">corners par match</h5>
                             </div>
-                            <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_corners_against|rounded }}</h2>
+                            <div class="col-xs-3">
+                                <h2 class="no-margins">{{ stats_away.avg_corners_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">commises par match</h5>
                             </div>
-                            <div class="col-xs-4">
-                                <h1 class="no-margins bold">{{ match.get_away_before_stats.avg_corners_against|addition:match.get_away_before_stats.avg_corners_for }}</h1>
+                            <div class="col-xs-3">
+                                <h1 class="no-margins bold">{{ stats_away.avg_corners_against|addition:stats_away.avg_corners_for }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
+                            </div>
+                            <div class="col-xs-3">
+                                <br>
+                                <h3 class="no-margins text-primary">{{ stats_home.avg_corners_against|rounded }}</h3>
+                                <h6 class="font-bold no-margins">subies par match</h6>
                             </div>
                         </div>
                     </div>
@@ -791,15 +942,15 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_cards_for|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_cards_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins text-primary">{{ match.get_home_before_stats.avg_cards_against|rounded }}</h2>
+                                <h2 class="no-margins text-primary">{{ stats_home.avg_cards_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">commises par match</h5>
                             </div>
                             <div class="col-xs-4 ">
-                                <h1 class="no-margins bold">{{ match.get_home_before_stats.avg_cards_for|addition:match.get_home_before_stats.avg_cards_against }}</h1>
+                                <h1 class="no-margins bold">{{ stats_home.avg_cards_for|addition:stats_home.avg_cards_against }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
                             </div>
                         </div>
@@ -814,15 +965,15 @@
                     <div class="col-xs-10">
                         <div class="row">
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_cards_for|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_cards_for|rounded }}</h2>
                                 <h5 class="font-bold no-margins">subies par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h2 class="no-margins">{{ match.get_away_before_stats.avg_cards_against|rounded }}</h2>
+                                <h2 class="no-margins">{{ stats_away.avg_cards_against|rounded }}</h2>
                                 <h5 class="font-bold no-margins">commises par match</h5>
                             </div>
                             <div class="col-xs-4">
-                                <h1 class="no-margins bold">{{ match.get_away_before_stats.avg_cards_against|addition:match.get_away_before_stats.avg_cards_for }}</h1>
+                                <h1 class="no-margins bold">{{ stats_away.avg_cards_against|addition:stats_away.avg_cards_for }}</h1>
                                 <h5 class="font-bold no-margins">en moyenne par match</h5>
                             </div>
                         </div>
@@ -855,7 +1006,7 @@
             <div class="ibox">
                 <div class="ibox-content">
                     <h3 class="stat-percent no-margins">{{prediction.pct|rounded}}%</h3>
-                    <h5>{{prediction.type.code}}</h5>
+                    <h5>{{prediction.type.name}}</h5>
                     <div class="stat-percent font-bold text-navy">{{prediction.is_checked}}</div>
                     <small>{{prediction.mode}}</small>
                 </div>
@@ -876,7 +1027,7 @@
 
             <table class="table small m-b-xs">
                 <tbody>
-                    {% for match in inter %}
+                    {% for match in list_intercepts %}
                         {% with match.get_result as result %}
                         <tr>
                             <td class="bold">{{match.date.day}}/{{match.date.month}}/{{match.date.year}}</td>
@@ -998,19 +1149,19 @@
 $(function(){
 
     var radarData = {
-        labels: ["PPG", "MG", "MA"],
+        labels: ["PPG*", "PPG", "MG", "MA"],
         datasets: [
             {
                 label: "{{match.home}}",
                 backgroundColor: "rgba(220,220,220,0.2)",
                 borderColor: "rgba(220,220,220,1)",
-                data: [{{match.get_home_before_stats.ppg}}, {{home_rank.avg_gs}}, {{home_rank.avg_ga}}]
+                data: [{{home_rank.ppg|replacetojs}}, {{stats_home.ppg|replacetojs}}, {{home_rank.avg_gs|replacetojs}}, {{home_rank.avg_ga|replacetojs}}]
             },
             {
                 label: "{{match.away}}",
                 backgroundColor: "rgba(26,179,148,0.2)",
                 borderColor: "rgba(26,179,148,1)",
-                data: [{{match.get_away_before_stats.ppg}}, {{away_rank.avg_gs}}, {{away_rank.avg_ga}}]
+                data: [{{away_rank.ppg|replacetojs}}, {{stats_away.ppg|replacetojs}}, {{away_rank.avg_gs|replacetojs}}, {{away_rank.avg_ga|replacetojs}}]
             }
         ]
     };

@@ -1,53 +1,53 @@
 Country,League,Date,Time,Home,Away,PH,PD,PA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA
-Argentina,Liga Profesional,11/02/2023,00:30,Central Cordoba,Belgrano,2.64,3.08,3.04,2.7,3.15,3.06,2.56,3.03,2.93
-Argentina,Liga Profesional,11/02/2023,00:30,Colon Santa Fe,Sarmiento Junin,2.1,3.3,3.94,2.15,3.4,3.95,2.07,3.26,3.68
-Argentina,Liga Profesional,11/02/2023,20:00,Defensa y Justicia,Newells Old Boys,2.59,2.93,3.16,2.64,3.15,3.23,2.51,2.97,3.05
-Argentina,Liga Profesional,11/02/2023,20:00,San Lorenzo,Godoy Cruz,2.12,3.18,4.06,2.22,3.23,4.1,2.12,3.1,3.74
-Argentina,Liga Profesional,11/02/2023,22:15,Platense,Atl. Tucuman,2.85,3.04,2.75,2.92,3.14,2.81,2.8,3.03,2.67
-Argentina,Liga Profesional,12/02/2023,00:30,Talleres Cordoba,Boca Juniors,2.95,3.04,2.75,3.05,3.05,2.78,2.9,2.95,2.64
-Argentina,Liga Profesional,12/02/2023,00:30,Velez Sarsfield,Independiente,1.99,3.27,4.43,2.11,3.3,4.43,2,3.16,4.08
-Argentina,Liga Profesional,12/02/2023,20:00,Banfield,Gimnasia L.P.,2.15,3.08,3.91,2.2,3.17,4,2.13,3.06,3.72
-Argentina,Liga Profesional,12/02/2023,20:00,Rosario Central,Arsenal Sarandi,2.08,3.2,3.98,2.12,3.3,4.1,2.04,3.18,3.84
-Argentina,Liga Profesional,12/02/2023,22:15,River Plate,Argentinos Jrs,1.69,3.71,5.33,1.74,3.84,5.5,1.7,3.61,5.01
-Argentina,Liga Profesional,13/02/2023,00:30,Instituto,Huracan,2.94,2.94,2.75,3,3.04,2.8,2.87,2.94,2.64
-Argentina,Liga Profesional,13/02/2023,00:30,Racing Club,Tigre,2.1,3.47,3.56,2.14,3.57,3.7,2.07,3.4,3.47
-Argentina,Liga Profesional,13/02/2023,20:00,Barracas Central,Union de Santa Fe,2.72,3.1,2.83,2.8,3.18,2.89,2.68,3,2.76
-Argentina,Liga Profesional,13/02/2023,23:00,Estudiantes L.P.,Lanus,1.97,3.47,3.98,2.03,3.57,4.1,1.96,3.4,3.81
-Austria,Bundesliga,10/02/2023,19:30,Sturm Graz,Rapid Vienna,1.87,3.81,4.31,1.95,3.81,4.4,1.86,3.6,4.02
-Austria,Bundesliga,11/02/2023,16:00,Salzburg,A. Lustenau,1.18,8.3,14.17,1.2,8.4,15,1.17,7.63,13.61
-Austria,Bundesliga,11/02/2023,16:00,Wolfsberger AC,Tirol,2.07,3.77,3.55,2.08,3.88,3.6,2.01,3.68,3.4
-Austria,Bundesliga,12/02/2023,13:30,Altach,LASK,4.4,4.29,1.75,4.75,4.3,1.75,4.32,3.99,1.72
-Austria,Bundesliga,12/02/2023,13:30,Ried,Hartberg,2.18,3.62,3.4,2.18,3.62,3.6,2.1,3.47,3.31
-Austria,Bundesliga,12/02/2023,16:00,Austria Vienna,A. Klagenfurt,1.93,4.02,3.82,1.93,4.1,4.2,1.88,3.81,3.69
-Mexico,Liga MX,11/02/2023,01:00,Puebla,Mazatlan FC,1.78,3.86,4.79,1.83,3.88,4.8,1.77,3.65,4.34
-Mexico,Liga MX,11/02/2023,03:10,Club Tijuana,Atl. San Luis,1.96,3.68,4.03,1.97,3.76,4.2,1.89,3.54,3.84
-Mexico,Liga MX,11/02/2023,23:00,Club America,Necaxa,1.35,5.52,9.15,1.36,5.6,9.2,1.32,5.06,8.4
-Mexico,Liga MX,12/02/2023,01:05,Juarez,Santos Laguna,2.64,3.64,2.67,2.65,3.67,2.75,2.54,3.43,2.58
-Mexico,Liga MX,12/02/2023,01:05,U.A.N.L.- Tigres,U.N.A.M.- Pumas,1.55,4.39,6.36,1.57,4.5,6.4,1.52,4.13,5.87
-Mexico,Liga MX,12/02/2023,03:05,Pachuca,Guadalajara Chivas,1.9,3.72,4.27,1.95,3.78,4.33,1.88,3.51,3.93
-Mexico,Liga MX,12/02/2023,18:00,Toluca,Cruz Azul,2.39,3.48,3.11,2.46,3.54,3.13,2.31,3.34,2.92
-Poland,Ekstraklasa,10/02/2023,17:00,Stal Mielec,Rakow,6.98,3.93,1.56,7.1,4.2,1.58,6.33,3.92,1.52
-Poland,Ekstraklasa,10/02/2023,19:30,Lechia Gdansk,Widzew Lodz,2.86,3.33,2.61,2.89,3.44,2.7,2.73,3.22,2.55
-Poland,Ekstraklasa,11/02/2023,14:00,Slask Wroclaw,Korona Kielce,1.88,3.73,4.21,1.92,3.79,4.3,1.86,3.55,3.97
-Poland,Ekstraklasa,11/02/2023,16:30,Wisla Plock,Lech Poznan,3.85,3.53,2.04,4,3.7,2.06,3.61,3.46,1.98
-Poland,Ekstraklasa,11/02/2023,19:00,Jagiellonia,Pogon Szczecin,3.29,3.54,2.24,3.35,3.59,2.3,3.13,3.4,2.19
-Poland,Ekstraklasa,12/02/2023,11:30,Zaglebie,Piast Gliwice,2.3,3.3,3.25,2.4,3.38,3.34,2.3,3.18,3.07
-Poland,Ekstraklasa,12/02/2023,14:00,Gornik Z.,Radomiak Radom,2.03,3.45,3.82,2.08,3.57,3.91,2.01,3.32,3.66
-Poland,Ekstraklasa,12/02/2023,16:30,Legia,Cracovia,1.87,3.53,4.37,1.91,3.64,4.5,1.84,3.41,4.22
-Poland,Ekstraklasa,13/02/2023,18:00,Warta Poznan,Legnica,1.9,3.45,4.34,1.95,3.56,4.5,1.88,3.33,4.12
-Romania,Liga 1,10/02/2023,15:00,U. Cluj,Mioveni,2.02,3.13,4.29,2.04,3.28,4.4,1.98,3.1,4.03
-Romania,Liga 1,10/02/2023,18:00,FC Rapid Bucuresti,U Craiova 1948,2.01,3.2,4.26,2.05,3.28,4.33,1.98,3.16,3.92
-Romania,Liga 1,11/02/2023,12:30,UTA Arad,FC Botosani,2.2,3.29,3.5,2.27,3.34,3.5,2.17,3.17,3.34
-Romania,Liga 1,11/02/2023,18:00,Univ. Craiova,CFR Cluj,2.82,3.06,2.76,2.82,3.13,2.8,2.7,2.99,2.69
-Romania,Liga 1,12/02/2023,15:00,FC Arges,Farul Constanta,4.2,3.09,2.02,4.3,3.25,2.06,3.93,3.1,1.99
-Romania,Liga 1,12/02/2023,18:00,FC Voluntari,FCSB,4.62,3.39,1.83,4.75,3.47,1.95,4.2,3.32,1.86
-Romania,Liga 1,13/02/2023,15:00,Sepsi Sf. Gheorghe,Chindia Targoviste,1.6,3.62,6.26,1.71,3.72,6.5,1.6,3.57,5.71
-Romania,Liga 1,13/02/2023,18:00,Petrolul,FC Hermannstadt,2.78,3.07,2.71,2.85,3.13,2.76,2.7,2.98,2.67
-Switzerland,Super League,11/02/2023,17:00,Servette,Grasshoppers,1.9,3.85,4.01,1.9,3.93,4.01,1.85,3.76,3.87
-Switzerland,Super League,11/02/2023,19:30,Basel,Sion,1.72,4.24,4.58,1.74,4.3,4.8,1.7,3.98,4.46
-Switzerland,Super League,12/02/2023,13:15,Lugano,Luzern,2.36,3.81,2.8,2.47,3.87,2.83,2.38,3.57,2.74
-Switzerland,Super League,12/02/2023,15:30,Young Boys,St. Gallen,1.56,4.76,5.03,1.6,4.9,5.5,1.56,4.48,4.97
-Switzerland,Super League,12/02/2023,15:30,Zurich,Winterthur,1.6,4.1,5.59,1.62,4.3,5.75,1.58,4.1,5.28
+Japan,J1 League,24/02/2023,10:00,Shonan Bellmare,Yokohama FC,1.88,3.59,4.55,1.96,3.59,4.55,1.88,3.42,4.16
+Mexico,Liga MX,23/02/2023,02:05,Cruz Azul,Atlas,2.06,3.48,3.92,2.06,3.53,4,2,3.36,3.67
+Mexico,Liga MX,24/02/2023,02:05,Santos Laguna,Toluca,1.94,3.91,3.88,1.94,3.96,4,1.87,3.73,3.72
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,
 ,,,,,,,,,,,,,,

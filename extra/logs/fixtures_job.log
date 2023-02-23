@@ -1,0 +1,111 @@
+------------------------- 2023-02-21 15:00:02.747547
+	 ******** Blackburn -VS- Blackpool
+	 ******** Blackburn -VS- Blackpool
+Enregistrement 1 pour  Blackburn -VS- Blackpool 2023-02-21 00:00:00
+	 ******** Millwall -VS- Burnley
+	 ******** Millwall -VS- Burnley
+Enregistrement 1 pour  Millwall -VS- Burnley 2023-02-21 00:00:00
+	 ******** Norwich -VS- Birmingham
+	 ******** Norwich -VS- Birmingham
+Enregistrement 1 pour  Norwich -VS- Birmingham 2023-02-21 00:00:00
+	 ******** Rotherham -VS- Sunderland
+	 ******** Rotherham -VS- Sunderland
+Enregistrement 1 pour  Rotherham -VS- Sunderland 2023-02-21 00:00:00
+	 ******** Swansea -VS- Stoke
+	 ******** Swansea -VS- Stoke
+Enregistrement 1 pour  Swansea -VS- Stoke 2023-02-21 00:00:00
+	 ******** Fleetwood Town -VS- Cambridge
+	 ******** Fleetwood Town -VS- Cambridge
+Enregistrement 1 pour  Fleetwood Town -VS- Cambridge 2023-02-21 00:00:00
+	 ******** Morecambe -VS- Port Vale
+	 ******** Morecambe -VS- Port Vale
+Enregistrement 1 pour  Morecambe -VS- Port Vale 2023-02-21 00:00:00
+	 ******** Grimsby -VS- Harrogate
+	 ******** Grimsby -VS- Harrogate
+Enregistrement 1 pour  Grimsby -VS- Harrogate 2023-02-21 00:00:00
+	 ******** Hartlepool -VS- Newport County
+	 ******** Hartlepool -VS- Newport County
+Enregistrement 1 pour  Hartlepool -VS- Newport County 2023-02-21 00:00:00
+	 ******** Rochdale -VS- Stockport
+	 ******** Rochdale -VS- Stockport
+Enregistrement 1 pour  Rochdale -VS- Stockport 2023-02-21 00:00:00
+	 ******** Walsall -VS- Crewe
+	 ******** Walsall -VS- Crewe
+Enregistrement 1 pour  Walsall -VS- Crewe 2023-02-21 00:00:00
+	 ******** Barnet -VS- Altrincham
+	 ******** Barnet -VS- Altrincham
+Enregistrement 1 pour  Barnet -VS- Altrincham 2023-02-21 00:00:00
+	 ******** Chesterfield -VS- Wealdstone
+	 ******** Chesterfield -VS- Wealdstone
+Enregistrement 1 pour  Chesterfield -VS- Wealdstone 2023-02-21 00:00:00
+	 ******** Dag and Red -VS- Aldershot
+	 ******** Dag and Red -VS- Aldershot
+Enregistrement 1 pour  Dag and Red -VS- Aldershot 2023-02-21 00:00:00
+	 ******** Dorking -VS- Torquay
+	 ******** Dorking -VS- Torquay
+Enregistrement 1 pour  Dorking -VS- Torquay 2023-02-21 00:00:00
+	 ******** Gateshead -VS- Oldham
+	 ******** Gateshead -VS- Oldham
+Enregistrement 1 pour  Gateshead -VS- Oldham 2023-02-21 00:00:00
+	 ******** Halifax -VS- Solihull
+	 ******** Halifax -VS- Solihull
+Enregistrement 1 pour  Halifax -VS- Solihull 2023-02-21 00:00:00
+	 ******** Maidenhead -VS- Yeovil
+	 ******** Maidenhead -VS- Yeovil
+Enregistrement 1 pour  Maidenhead -VS- Yeovil 2023-02-21 00:00:00
+	 ******** Maidstone -VS- Eastleigh
+	 ******** Maidstone -VS- Eastleigh
+Enregistrement 1 pour  Maidstone -VS- Eastleigh 2023-02-21 00:00:00
+	 ******** Notts County -VS- Southend
+	 ******** Notts County -VS- Southend
+Enregistrement 1 pour  Notts County -VS- Southend 2023-02-21 00:00:00
+	 ******** Woking -VS- Bromley
+	 ******** Woking -VS- Bromley
+Enregistrement 1 pour  Woking -VS- Bromley 2023-02-21 00:00:00
+	 ******** Wrexham -VS- Scunthorpe
+	 ******** Wrexham -VS- Scunthorpe
+Enregistrement 1 pour  Wrexham -VS- Scunthorpe 2023-02-21 00:00:00
+	 ******** York -VS- Boreham Wood
+	 ******** York -VS- Boreham Wood
+Enregistrement 1 pour  York -VS- Boreham Wood 2023-02-21 00:00:00
+	 ******** Hamilton -VS- Inverness C
+	 ******** Hamilton -VS- Inverness C
+Enregistrement 1 pour  Hamilton -VS- Inverness C 2023-02-21 00:00:00
+	 ******** Albion Rvs -VS- Elgin
+	 ******** Albion Rvs -VS- Elgin
+Enregistrement 1 pour  Albion Rvs -VS- Elgin 2023-02-21 00:00:00
+----------error save match---------- 'NoneType' object has no attribute 'pts'
+Enregistrement 2 pour  Shonan Bellmare -VS- Yokohama FC 2023-02-24 00:00:00
+	 ******** Cruz Azul -VS- Atlas
+	 ******** Cruz Azul -VS- Atlas
+Enregistrement 2 pour  Cruz Azul -VS- Atlas 2023-02-23 00:00:00
+	 ******** Santos Laguna -VS- Toluca
+	 ******** Santos Laguna -VS- Toluca
+Enregistrement 2 pour  Santos Laguna -VS- Toluca 2023-02-24 00:00:00
+------------------------- 2023-02-21 16:00:02.930455
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f31073aece0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-21 17:00:02.562987
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f33ed873b50>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-21 18:00:02.813125
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6281247c70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-21 19:00:02.584919
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd810a5f310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-21 20:00:04.346545
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3675e3c1c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-22 00:00:03.080358
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb03ce4eb60>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-02-22 09:00:02.750409
+------------------------- 2023-02-22 10:00:02.187287
+------------------------- 2023-02-22 11:00:04.837214
+------------------------- 2023-02-22 12:00:03.289179
+------------------------- 2023-02-22 13:00:03.542030
+------------------------- 2023-02-22 14:00:02.472986
+------------------------- 2023-02-22 15:00:04.041914
+------------------------- 2023-02-22 16:00:03.475690
+------------------------- 2023-02-22 17:00:06.900985
+------------------------- 2023-02-23 10:00:03.698323
+------------------------- 2023-02-23 11:00:04.729561
+------------------------- 2023-02-23 12:00:04.139273
+------------------------- 2023-02-23 13:00:03.969200
+------------------------- 2023-02-23 14:00:02.935860
+------------------------- 2023-02-23 16:00:02.902867

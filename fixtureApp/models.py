@@ -17,6 +17,10 @@ import predictionApp.functions.p4 as p4
 import statsApp.get_home_facts as get_home_facts
 import statsApp.get_away_facts as get_away_facts
 
+
+def intersection(list1, list2):
+    return [value for value in list1 if value in list2]
+
     
 class Match(BaseModel):
     date              = models.DateField( null = True, blank=True)
@@ -99,6 +103,11 @@ class Match(BaseModel):
                     if len(befs) == 1 and odd.match not in matchs:
                         matchs.append(odd.match)
         return matchs[:number]
+        
+        
+    def similaires_intercepts(self, number = 10):
+        return intersection(self.similaires_ppg2(), self.similaires_betting())[:number]
+    
     
     
     def get_home_before_stats(self):
@@ -153,7 +162,7 @@ def sighandler(instance, created, **kwargs):
         #creation du before stat pour chaque equipe
         if created:
             for team in [instance.home, instance.away]:
-                points, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
+                pts, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
                 datas = team.extra_info_stats(instance, edition = True)      
                 
                 BeforeMatchStat.objects.create(
@@ -178,6 +187,15 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
 
+            for stats in [instance.get_home_before_stats(), instance.get_away_before_stats()]:
+                stats.points                     = stats.team.fight_points(instance)
+                stats.list_intercepts            = json.dumps([str(x.id) for x in instance.similaires_intercepts(10)])
+                stats.list_confrontations        = json.dumps([str(x.id) for x in instance.confrontations_directes(10)])
+                stats.list_similaires_ppg        = json.dumps([str(x.id) for x in instance.similaires_ppg(10)])
+                stats.list_similaires_ppg2       = json.dumps([str(x.id) for x in instance.similaires_ppg2(10)])
+                stats.list_similaires_betting    = json.dumps([str(x.id) for x in instance.similaires_betting(10)])
+                stats.save()
+                               
             get_home_facts.function(instance)
             get_away_facts.function(instance)
             
@@ -196,5 +214,4 @@ def sighandler(instance, created, **kwargs):
             
     except Exception as e:
         print("----------error save match----------", e)
-            
             

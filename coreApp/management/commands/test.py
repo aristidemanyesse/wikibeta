@@ -27,6 +27,7 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
+        Ranking
         print(Match.objects.filter(is_facted = True, is_predict =  True).count())
         # for match in Match.objects.filter(date__lte = datetime.datetime.now() - datetime.timedelta(days=3)).order_by('-date'):
         #     while threading.active_count() >= 800:

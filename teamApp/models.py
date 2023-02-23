@@ -2,12 +2,18 @@ from django.db import models
 from django.db.models import Avg, Sum, Q
 from coreApp.models import BaseModel
 from fixtureApp.models import Match
+import competitionApp
 
-    
+
 class Team(BaseModel):
-    name    = models.CharField(max_length = 255, null = True, blank=True)
     code    = models.CharField(max_length = 255, null = True, blank=True)
+    name    = models.CharField(max_length = 255, null = True, blank=True)
+    name2   = models.CharField(max_length = 255, null = True, blank=True)
+    abr   = models.CharField(max_length = 10, null = True, blank=True)
+    is_club = models.BooleanField(default= False, null = True, blank=True)
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
+    color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
+    color2  = models.CharField(max_length = 255, default="", null = True, blank=True)
     logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="", null = True, blank=True)
     
     class Meta:
@@ -29,27 +35,27 @@ class EditionTeam(BaseModel):
     
     
     def form(self, match):
-        if self in [match.home, match.away] :
+        if self.team in [match.home.team, match.away.team] :
             result = match.get_result()
             if result is not None:
                 if result.result == "D":
                     return "N"
                 elif result.result == "H":
-                    return "V" if (match.home == self) else "D"
+                    return "V" if (match.home.team == self.team) else "D"
                 elif result.result == "A":
-                    return "V" if (match.away == self) else "D"
+                    return "V" if (match.away.team == self.team) else "D"
     
     
     def points_for_this_macth(self, match):
-        if self in [match.home, match.away] :
+        if self.team in [match.home.team, match.away.team] :
             result = match.get_result()
             if result is not None:
                 if result.result == "D":
                     return 1
                 elif result.result == "H":
-                    return 3 if (match.home == self) else 0
+                    return 3 if (match.home.team == self.team) else 0
                 elif result.result == "A":
-                    return 3 if (match.away == self) else 0
+                    return 3 if (match.away.team == self.team) else 0
         
         
         
@@ -60,14 +66,16 @@ class EditionTeam(BaseModel):
             matchs = matchs.filter(edition = match.edition)
         return matchs[:EditionTeam.NB if number is None else number]
     
+    
 
     def get_last_form(self, match, number = None, edition = False):
         matchs = self.get_last_matchs(match, number, edition)
         return [self.form(x) for x in matchs]
     
     
+    
     def last_stats(self, match, number = None, edition = False):
-        total = points = scored =  conceded = 0
+        total = pts = scored =  conceded = 0
         matchs = self.get_last_matchs(match, number, edition)
         if len(matchs) == 0:
             return 0, 0, 0, 0, 0, 0
@@ -76,14 +84,39 @@ class EditionTeam(BaseModel):
             result = match.get_result()
             if result is not None:
                 total       += 1
-                points      += self.points_for_this_macth(match) or 0
+                pts         += self.points_for_this_macth(match) or 0
                 scored      += (result.home_score or 0) if match.home == self else (result.away_score or 0)
                 conceded    += (result.home_score or 0) if match.away == self else (result.away_score or 0)
         
-        return points, round((points / total), 2) if total > 0 else 0, scored, round((scored/total), 2) if total > 0 else 0, conceded, round((conceded/total), 2) if total > 0 else 0
+        return pts, round((pts / total), 2) if total > 0 else 0, scored, round((scored/total), 2) if total > 0 else 0, conceded, round((conceded/total), 2) if total > 0 else 0
+    
     
 
+    def fight_points(self, match):
+        points                    = 0
+        last_matchs               = self.get_last_matchs(match, number = 10, edition = True)
+        confrontations_directes   = match.confrontations_directes(number = 10)
+        stats                     = match.get_home_before_stats() if match.home == self else match.get_away_before_stats()
+        rank                      = competitionApp.models.LigneRanking.objects.filter(team = match.home if match.home == self else match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        
+        points += rank.pts
+        points += rank.ppg * 3
+        points += stats.ppg * 2
+        points += rank.avg_gs * 10
+        points += rank.avg_ga * -10
+        for x in confrontations_directes:
+            points += self.points_for_this_macth(x)
+        for x in last_matchs:
+            points += self.points_for_this_macth(x)
+        
+        #bonus a domicile
+        points += 10 if match.home == self else 0
 
+        return points
+        
+        
+        
+        
     def extra_info_stats(self, match, number = None, edition = False):
         matchs = self.get_last_matchs(match, number, edition)
         total = 0

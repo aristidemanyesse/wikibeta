@@ -517,7 +517,7 @@
                                         <label class="label label-{% if match.home_score == match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.draw }}</label>
                                         <label class="label label-{% if match.home_score < match.away_score %}primary{% else %}default{% endif %}">{{ match.get_bet365.away }}</label>
                                     </td>
-                                    <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                                    <td><a target="_blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -90,18 +90,6 @@ def function():
                                         away = float(get(row, header, code+"A"))
                                     )
                                     
-                                    
-                            confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
-                            similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
-                            similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
-                            similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
-                            
-                            for stats in [match.get_home_before_stats(), match.get_away_before_stats()]:
-                                stats.list_confrontations         = confrontations
-                                stats.list_similaires_ppg         = similaires_ppg
-                                stats.list_similaires_ppg2        = similaires_ppg2
-                                stats.list_similaires_betting     = similaires_betting
-                                stats.save()
                            
     except Exception as e:
         print("Errror 12 -----------", e)
@@ -186,17 +174,6 @@ def function():
                                         away = float(get(row, header, code+"A"))
                                     )
                                     
-                            confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
-                            similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
-                            similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
-                            similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
-                            
-                            for stats in [match.get_home_before_stats(), match.get_away_before_stats()]:
-                                stats.list_confrontations         = confrontations
-                                stats.list_similaires_ppg         = similaires_ppg
-                                stats.list_similaires_ppg2        = similaires_ppg2
-                                stats.list_similaires_betting     = similaires_betting
-                                stats.save()
                                 
     except Exception as e:
         print("Errror 7887 --------------------------------", e)                

@@ -18,9 +18,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:            
             
-            for match in Match.objects.exclude(is_facted = True, is_predict = True).order_by('-date')[:5000]:
+            for match in Match.objects.exclude(is_facted = True, is_predict = True).order_by('date')[:5000]:
                 print("START: Current active thread count ---------------: ", threading.active_count())
-                while threading.active_count() > 600:
+                while threading.active_count() > 300:
                     time.sleep(10)
                 
                 if match.match_facts.filter().count() == 0 :

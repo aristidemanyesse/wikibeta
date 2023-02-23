@@ -4,7 +4,7 @@ from competitionApp.models import *
 from django.db.models import Avg, Sum, Count
 import pytz, threading, time
 
-from extra.ranking import function
+from extra.ranking import function2
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -23,7 +23,6 @@ class Command(BaseCommand):
                 edit.save()
             matchs = edit.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
             if  matchs.first() is not None and matchs.last() is not None:
-                print(len(matchs), matchs.first().date, matchs.last().date) 
                 edit.start_date =   matchs.first().date  
                 edit.finish_date =   matchs.last().date  
                 edit.save()
@@ -31,19 +30,19 @@ class Command(BaseCommand):
         
         utc=pytz.UTC
         date = datetime.now().replace(tzinfo=utc)
-        while date >= datetime.now().replace(tzinfo=utc) - timedelta(weeks= 52 * 2):
+        while date >= datetime.now().replace(tzinfo=utc) - timedelta(weeks= 52 * 29):
             
-            print("START: Current active thread count ---------------: ", threading.active_count())
-            while threading.active_count() > 100:
+            print("START: Current process ---------------: ", threading.active_count())
+            while threading.active_count() > 500:
                 time.sleep(200)
 
             print("----------------", date)
-            p = threading.Thread(target=function, args=(date,))
+            p = threading.Thread(target=function2, args=(date,))
             p.setDaemon(True)
             p.start()
             time.sleep(0.5)
             
-            date = date - timedelta(days = 3)
+            date = date - timedelta(days = 7)
             
             
         while threading.active_count() > 0:

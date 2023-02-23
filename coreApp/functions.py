@@ -38,9 +38,34 @@ def moyenne_geometrique(a, b):
     return math.sqrt(a * b)
 
 
+def moyenne_but(atk, defe):
+    atk = round(atk, 1)
+    defe = round(defe, 1)
+    
+    if atk == defe:
+        avg = atk + (defe / 2)
+        
+    elif atk - defe >= 2:
+        avg = defe + (defe / (atk - defe))
+        
+    elif atk - defe > 0:
+        avg = defe + ((atk - defe) / 2)
+        
+    elif defe - atk >= 2 :
+        avg =  atk + ((2 * atk ) / defe)
+        
+    elif defe - atk > 0 :
+        avg =  atk / defe
+        
+    return avg
+
+
 
 def fish_law(avg, number):
     return round(((math.pow(avg, number) * math.exp(-avg)) / factorial(number)) * 100, 2)
+
+# def fish_law(avg, number):
+#     return round(((avg / number) / factorial(number)) * math.exp(-avg) * 100 , 2)
 
 
 def fish_law_moins(avg, but):

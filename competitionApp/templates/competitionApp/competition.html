@@ -215,7 +215,7 @@
                         <td >{{match.date | naturalday}} {{match.hour}}</td>
                         <td class="text-left"  colspan="3">
                             {% for pre in match.prediction_match.filter %}
-                                <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.mode }}:{{ pre.type.code }}</label>
+                                <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.type.name }}</label>
                             {% endfor %}
                         </td>
                         <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
@@ -239,7 +239,7 @@
                             <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
                             <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                         </td>
-                        <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                        <td><a target="_blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                     </tr>
                     {% endwith %}
                 {% endfor %}
@@ -258,7 +258,7 @@
                             <td >{{match.date | naturalday}} {{match.hour}}</td>
                             <td class="text-left"  colspan="3">
                                 {% for pre in match.prediction_match.filter %}
-                                    <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.mode }}:{{ pre.type.code }}</label>
+                                    <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.type.name }}</label>
                                 {% endfor %}
                             </td>
                             <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
@@ -282,7 +282,7 @@
                                 <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
                                 <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                             </td>
-                            <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                            <td><a target="_blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                         </tr>
                         {% endwith %}
                     {% endfor %}

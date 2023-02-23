@@ -16,43 +16,54 @@
 
 
 <div class="container">
-    <div class="row text-center">
-        <div class="col-xs-6 col-sm-2">
-            <a href="{% url 'fixtureApp:fixtures' av_hier.year av_hier.month av_hier.day %}" type="button" class="btn btn-default m-b-sm">Avant-hier {{av_hier.day|start0}}/{{av_hier.month|start0}}/{{av_hier.year}}</a>
-        </div>
+    <div class="justify">
 
-        <div class="col-xs-6 col-sm-2">
-            <a href="{% url 'fixtureApp:fixtures' hier.year hier.month hier.day %}" type="button" class="btn btn-default m-b-sm">Hier - {{hier.day|start0}}/{{hier.month|start0}}/{{hier.year}}</a>
-        </div>
-
-        <div class="col-sm-4 justify-center">
-            <div class="row m-b-sm">
-                {% comment %} <div class="col-xs-2">
-                    <a href="{% url 'fixtureApp:fixtures' date.year date.month date.day|add:-1 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-left"></i></button></a>
-                </div> {% endcomment %}
-                <div class="col-xs-12">
-                    <div class="input-group date">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="date" class="form-control" value="{{date.day|start0}}/{{date.month|start0}}/{{date.year}}">
-                    </div>
-                </div>
-                {% comment %} <div class="col-xs-2">
-                    <a href="{% url 'fixtureApp:fixtures' date.year date.month|start0 date.day|add:1|start0 %}" ><button class="btn btn-md btn-default"><i class="fa fa-chevron-right"></i></button></a>
-                </div> {% endcomment %}
-            </div>
-        </div>
         
-            <div class="col-xs-6 col-sm-2">
-                <a href="{% url 'fixtureApp:fixtures' demain.year demain.month demain.day %}" type="button" class="btn btn-default m-b-sm">Demain - {{demain.day|start0}}/{{demain.month|start0}}/{{demain.year}}</a>
+        <div class="input-group date ">
+            <button class="btn btn-default dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins"><i class="fa fa-calendar"></i></h1>
+                <small class="text-subtitle">choisir</small>
+            </button>
+            <span class=""><input type="hidden" name="date" class="form-control input-group-addon" value="{{date.day|start0}}/{{date.month|start0}}/{{date.year}}"></span>
         </div>
+    
+        <a class="no-link" href="{% url 'fixtureApp:fixtures' av_hier.year av_hier.month av_hier.day %}">
+            <button class="btn btn-{% if av_hier == date %}primary{% else %}default{% endif %} dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins">{{av_hier.day|start0}}</h1>
+                <small class="text-subtitle">Fev</small>
+            </button>
+        </a>
 
-        <div class="col-xs-6 col-sm-2">
-            <a href="{% url 'fixtureApp:fixtures' ap_demain.year ap_demain.month ap_demain.day %}" type="button" class="btn btn-default m-b-sm">Ap demain - {{ap_demain.day|start0}}/{{ap_demain.month|start0}}/{{ap_demain.year}}</a>
-        </div>
+        <a class="no-link" href="{% url 'fixtureApp:fixtures' hier.year hier.month hier.day %}">
+            <button class="btn btn-{% if hier == date %}primary{% else %}default{% endif %} dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins">{{hier.day|start0}}</h1>
+                <small class="text-subtitle">Fev</small>
+            </button>
+        </a>
+
+        <a class="no-link" href="{% url 'fixtureApp:fixtures' today.year today.month today.day %}">
+            <button class="btn btn-{% if today == date %}primary{% else %}default{% endif %} dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins">{{today.day|start0}}</h1>
+                <small class="text-subtitle">Aujourd'hui</small>
+            </button>
+        </a>
+
+        <a class="no-link" href="{% url 'fixtureApp:fixtures' demain.year demain.month demain.day %}">
+            <button class="btn btn-{% if demain == date %}primary{% else %}default{% endif %} dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins">{{demain.day|start0}}</h1>
+                <small class="text-subtitle">Fev</small>
+            </button>
+        </a>
+    
+        <a class="no-link" href="{% url 'fixtureApp:fixtures' ap_demain.year ap_demain.month ap_demain.day %}">
+            <button class="btn btn-{% if ap_demain == date %}primary{% else %}default{% endif %} dim btn-md-dim m-r-sm" type="button">
+                <h1 class="no-margins">{{ap_demain.day|start0}}</h1>
+                <small class="text-subtitle">Fev</small>
+            </button>
+        </a>
 
     </div>
-        
 </div>
-
 
 <div class="container">
     <div class="row">
@@ -94,9 +105,12 @@
                                     {% with match.get_result as result %}
                                     <tr>
                                         <td >{{match.date | naturalday}} {{match.hour}}</td>
-                                        <td class="text-left"  colspan="3">
+                                        <td class="text-left" style="width: 25%" colspan="3">
                                             {% for pre in match.prediction_match.filter %}
-                                                <label class="label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.mode }}:{{ pre.type.code }}</label>
+                                                <label class="m-b-md d-block label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.type.name }}</label>
+                                            {% endfor %}
+                                            {% for score in match.predictionscore_match.filter %}
+                                                <label class="m-b-md d-block label label-{% if score.is_checked %}primary{% elif score.is_checked == None %}default{% else %}danger{% endif %}">{{ score.home_score }} - {{ score.away_score }}</label>
                                             {% endfor %}
                                         </td>
                                         <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>
@@ -120,7 +134,7 @@
                                             <label class="label label-{% if match.is_finished and result.home_score == result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.draw }}</label>
                                             <label class="label label-{% if match.is_finished and result.home_score < result.away_score %}primary{% else %}default{% endif %}">{{ match.get_odds.away }}</label>
                                         </td>
-                                        <td><a target="blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
+                                        <td><a target="_blank" href="{% url 'fixtureApp:match' match.id %}"><i class="fa fa-eye"></i> stats</a></td>
                                     </tr>
                                     {% endwith %}
                                 {% endfor %}

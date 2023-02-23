@@ -15,6 +15,7 @@ $(function() {
         month = mydate.getUTCMonth()+1
 
         localStorage.setItem("date", mydate)
+        console.log(mydate)
         window.location.href = "/fixtures/" + mydate.getUTCFullYear() + "/" + month + "/" + mydate.getUTCDate() + "/" 
     });
 

@@ -27,7 +27,7 @@ class TypePrediction(BaseModel):
 
     @classmethod
     def get(cls, type):
-        return cls.objects.get(name = type)
+        return cls.objects.get(code = type)
     
     
 
@@ -129,4 +129,27 @@ class PredictionTest(BaseModel):
                 self.is_checked = (extra.home_corners or 0 )+ (extra.away_corners or 0) > 8.5
             if self.type == TypePrediction.get("corner_m12_5"):
                 self.is_checked = (extra.home_corners or 0 )+ (extra.away_corners or 0) < 12.5
+            self.save()
+            
+            
+
+
+class PredictionScore(BaseModel):
+    match         = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="predictionscore_match")
+    home_score    = models.IntegerField(default = 0.00, null = True, blank=True)
+    away_score    = models.IntegerField(default = 0, null = True, blank=True)
+    pct           = models.FloatField(default = 0, null = True, blank=True)
+    is_checked    = models.BooleanField(null = True, blank=True)
+
+    def __str__(self):
+        return str(self.match)+": "+str(self.pct)
+    
+    class Meta:
+        ordering = ['match', '-pct', 'is_checked']
+    
+    
+    def validity(self):
+        if self.match.is_finished:
+            result = self.match.get_result()
+            self.is_checked = (self.home_score == result.home_score and self.away_score == result.away_score)
             self.save()

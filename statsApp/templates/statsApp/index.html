@@ -16,7 +16,7 @@
             </div><br>
         </div>
         <div class="col-lg-3 text-center">
-            <h1 class="bold" style="font-size:150px; margin: 0">{{ratio}}<sup><small>{{decimal}}</small></sup></h1>
+            <h1 class="bold" style="font-size:150px; margin: 0">{{ratio}}<sup><small>{{decimal|start0}}</small></sup></h1>
             <h2 class="bold" style="margin: 0">{{predictions|length}} prédictions</h2>
         </div>
 
@@ -47,7 +47,7 @@
                 <div class="ibox bg-default">
                     <div class="ibox-content">
                         <h4 class="stat-percent bold no-margins">{{types|dict_value:type}}%</h4>
-                        <h4 class="no-margins">{{type.code}}</h4>
+                        <h4 class="no-margins">{{type.name}}</h4>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                             <tr>
                                 <th></th>
                                 {% for type in types %}
-                                    <th class="text-center">{{type.code}}</th>
+                                    <th class="text-center">{{type.name}}</th>
                                 {% endfor %}
                             </tr>
                         </thead>

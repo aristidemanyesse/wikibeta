@@ -8,8 +8,9 @@ from teamApp.models import *
 
 
 class Pays(BaseModel):
-    name    = models.CharField(max_length = 255, null = True, blank=True)
     code    = models.CharField(max_length = 255, null = True, blank=True)
+    name    = models.CharField(max_length = 255, null = True, blank=True)
+    abr    = models.CharField(max_length = 255, null = True, blank=True)
     flag    = models.ImageField(max_length = 255, upload_to = "static/images/pays/", default="", null = True, blank=True)
 
     class Meta:
@@ -21,11 +22,12 @@ class TypeCompetition(BaseModel):
         
 
 class Competition(BaseModel):
-    type    = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
-    name    = models.CharField(max_length = 255, default="", null = True, blank=True)
-    code    = models.CharField(max_length = 255, default="", null = True, blank=True)
-    pays    = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
-    logo    = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default="", null = True, blank=True)
+    identifiant   = models.CharField(max_length = 255, default="", null = True, blank=True)
+    name          = models.CharField(max_length = 255, default="", null = True, blank=True)
+    code          = models.CharField(max_length = 255, default="", null = True, blank=True)
+    pays          = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
+    logo          = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default="", null = True, blank=True)
+    type          = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     
     class Meta:
         ordering = ['name']
@@ -117,6 +119,8 @@ class EditionCompetition(BaseModel):
         
         datas = sorted(datas, reverse=True, key=lambda x: (x.get("pts"), x.get("gd"), x.get("win")))
         return datas
+    
+    
     
     
     def cs(self):

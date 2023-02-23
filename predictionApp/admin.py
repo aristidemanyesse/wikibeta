@@ -20,7 +20,8 @@ class TypePredictionhAdmin(admin.ModelAdmin):
     list_filter = (
         ('created_at', DateFieldListFilter),
     )
-    list_display = ['name', "code", 'description']
+    list_editable = ('name', 'description')
+    list_display = [ "code", 'name', 'description']
 
 
 
@@ -42,3 +43,12 @@ class PredictionTestAdmin(admin.ModelAdmin):
         ('match__date', DateFieldListFilter),
     )
     list_display = ["match", 'mode', 'type', 'pct', 'is_checked']
+
+@admin.register(PredictionScore)
+class PredictionScoreAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'match__date'
+    list_filter = (
+        ('match__date', DateFieldListFilter),
+    )
+    list_display = ["match", 'home_score', 'away_score', 'pct', 'is_checked']

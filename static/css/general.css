@@ -7,6 +7,20 @@ font-weight: bold;
     text-decoration: none;
 }
 
+.border{
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.justify{
+    display: flex; 
+    justify-content: space-around;
+}
+
 
 .span-form{
     display: inline-block;

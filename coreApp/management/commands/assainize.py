@@ -30,7 +30,7 @@ class Command(BaseCommand):
                 # match.save()
         
         # Ranking.objects.all().delete()
-        Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
+        # Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
         pass
         # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()
         
@@ -38,18 +38,19 @@ class Command(BaseCommand):
         #     ligne.level += 1
         #     ligne.save() 
         
-        # matchs = Match.objects.filter().order_by("-date")[:5000]
-        # for match in matchs:
-        #     while threading.active_count() >= 35:
-        #         time.sleep(30)
-        #     print(match, "en attente ---------------: ", threading.active_count())
-        #     p = threading.Thread(target=match.save)
-        #     p.setDaemon(True)
-        #     p.start()
+        stats = BeforeMatchStat.objects.filter(points = None).order_by("-match__date")[:5000]
+        for stat in stats:
+            while threading.active_count() >= 1500:
+                time.sleep(30)
+            print(stat, "en attente ---------------: ", threading.active_count())
+            p = threading.Thread(target=stat.save)
+            p.setDaemon(True)
+            p.start()
+            time.sleep(0.1)
     
-        # while threading.active_count() > 0:
-        #     print("en attente ---------------: ", threading.active_count())
-        #     time.sleep(10)
+        while threading.active_count() > 0:
+            print("en attente ---------------: ", threading.active_count())
+            time.sleep(10)
 
             
         # datas = Competition.objects.filter()

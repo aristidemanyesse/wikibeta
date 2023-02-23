@@ -1,6 +1,8 @@
 from django.db import models
 from django.db.models import Avg, Sum, Q
 from coreApp.models import BaseModel
+from annoying.decorators import signals
+import json
 
 
 class TypeFact(BaseModel):   
@@ -100,29 +102,37 @@ class Fact(BaseModel):
 
 
 class BeforeMatchStat(BaseModel):   
-    match                       = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="before_stat_match")
-    team                        = models.ForeignKey("teamApp.EditionTeam", null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
-    ppg                         = models.FloatField(null = True, blank=True)
-    goals_scored                = models.IntegerField(null = True, blank=True)
-    goals_conceded              = models.IntegerField(null = True, blank=True)
-    avg_goals_scored            = models.FloatField(null = True, blank=True)
-    avg_goals_conceded          = models.FloatField(null = True, blank=True)
-    avg_fouls_for               = models.FloatField(null = True, blank=True)
-    avg_fouls_against           = models.FloatField(null = True, blank=True)
-    avg_corners_for             = models.FloatField(null = True, blank=True)
-    avg_corners_against         = models.FloatField(null = True, blank=True)
-    avg_shots_for               = models.FloatField(null = True, blank=True)
-    avg_shots_against           = models.FloatField(null = True, blank=True)
-    avg_shots_target_for        = models.FloatField(null = True, blank=True)
-    avg_shots_target_against    = models.FloatField(null = True, blank=True)
-    avg_offside_for             = models.FloatField(null = True, blank=True)
-    avg_offside_against         = models.FloatField(null = True, blank=True)
-    avg_cards_for               = models.FloatField(null = True, blank=True)
-    avg_cards_against           = models.FloatField(null = True, blank=True)
-    list_confrontations         = models.TextField(default = "[]", null = True, blank=True)
-    list_similaires_ppg         = models.TextField(default = "[]", null = True, blank=True)
-    list_similaires_ppg2        = models.TextField(default = "[]", null = True, blank=True)
-    list_similaires_betting     = models.TextField(default = "[]", null = True, blank=True)
+    match                           = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="before_stat_match")
+    team                            = models.ForeignKey("teamApp.EditionTeam", null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
+    ppg                             = models.FloatField(null = True, blank=True)
+    points                          = models.FloatField(null = True, blank=True)
+    goals_scored                    = models.IntegerField(null = True, blank=True)
+    goals_conceded                  = models.IntegerField(null = True, blank=True)
+    avg_goals_scored                = models.FloatField(null = True, blank=True)
+    avg_goals_conceded              = models.FloatField(null = True, blank=True)
+    avg_fouls_for                   = models.FloatField(null = True, blank=True)
+    avg_fouls_against               = models.FloatField(null = True, blank=True)
+    nb_matchs_gt_avg_fouls          = models.FloatField(null = True, blank=True)
+    avg_corners_for                 = models.FloatField(null = True, blank=True)
+    avg_corners_against             = models.FloatField(null = True, blank=True)
+    nb_corners_gt_avg_fouls         = models.FloatField(null = True, blank=True)
+    avg_shots_for                   = models.FloatField(null = True, blank=True)
+    avg_shots_against               = models.FloatField(null = True, blank=True)
+    nb_shots_gt_avg_fouls           = models.FloatField(null = True, blank=True)
+    avg_shots_target_for            = models.FloatField(null = True, blank=True)
+    avg_shots_target_against        = models.FloatField(null = True, blank=True)
+    nb_shots_target_gt_avg_fouls    = models.FloatField(null = True, blank=True)
+    avg_offside_for                 = models.FloatField(null = True, blank=True)
+    avg_offside_against             = models.FloatField(null = True, blank=True)
+    nb_offside_gt_avg_fouls         = models.FloatField(null = True, blank=True)
+    avg_cards_for                   = models.FloatField(null = True, blank=True)
+    avg_cards_against               = models.FloatField(null = True, blank=True)
+    nb_cards_gt_avg_fouls           = models.FloatField(null = True, blank=True)
+    list_confrontations             = models.TextField(default = "[]", null = True, blank=True)
+    list_similaires_ppg             = models.TextField(default = "[]", null = True, blank=True)
+    list_similaires_ppg2            = models.TextField(default = "[]", null = True, blank=True)
+    list_similaires_betting         = models.TextField(default = "[]", null = True, blank=True)
+    list_intercepts                 = models.TextField(default = "[]", null = True, blank=True)
 
     def __str__(self):
         return str(self.match)
@@ -160,4 +170,22 @@ class ExtraInfosMatch(BaseModel):
     
     def __str__(self):
         return str(self.match) +" (extra infos)"
-    
+
+
+
+
+
+# connect to registered signal
+# @signals.post_save(sender=BeforeMatchStat)
+# def sighandler(instance, created, **kwargs):
+#     if created:
+#         match = instance.match                                                
+#         if instance.points is None:
+#             instance.points                     = instance.team.fight_points(match)
+#             instance.list_intercepts            = json.dumps([str(x.id) for x in match.similaires_intercepts(10)])
+#             instance.list_confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
+#             instance.list_similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
+#             instance.list_similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
+#             instance.list_similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
+#             instance.save()
+#             print("\t ********", instance)

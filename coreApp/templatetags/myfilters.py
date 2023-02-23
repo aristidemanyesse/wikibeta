@@ -87,6 +87,11 @@ def start0(number):
         return number
     except :
         return "00"
+    
+    
+@register.filter('replacetojs')
+def replacetojs(chaine):
+    return str(chaine).replace(',', '.')
 
 
 
