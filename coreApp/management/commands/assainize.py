@@ -14,6 +14,14 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
+        # bad = Competition.objects.get(id = "11525ab3-9628-41d8-bb1d-7eaddb336700")
+        # bon = Competition.objects.get(id = "56d269ec-e468-4771-a5fd-84cffbde876f")
+        
+        # for edit in bad.competition_edition.filter():
+        #     edit.competition = bon
+        #     edit.save()
+        
+        
         # PredictionTest.objects.all().delete()
         # Prediction.objects.filter(mode = ModePrediction.get("M0"),
         #     type = TypePrediction.get("corner_m12_5")).delete()
@@ -38,19 +46,23 @@ class Command(BaseCommand):
         #     ligne.level += 1
         #     ligne.save() 
         
-        stats = BeforeMatchStat.objects.filter(points = None).order_by("-match__date")[:5000]
+        stats = BeforeMatchStat.objects.filter(points = None).order_by("-match__date")[:1000]
         for stat in stats:
-            while threading.active_count() >= 1500:
+            while threading.active_count() >= 150:
                 time.sleep(30)
-            print(stat, "en attente ---------------: ", threading.active_count())
-            p = threading.Thread(target=stat.save)
-            p.setDaemon(True)
-            p.start()
-            time.sleep(0.1)
+            
+            try:
+                print(stat, "----------: ", threading.active_count())
+                p = threading.Thread(target=stat.mise_a_jour)
+                p.setDaemon(True)
+                p.start()
+                time.sleep(0.1)
+            except Exception as e:
+                print(e)
     
-        while threading.active_count() > 0:
+        while threading.active_count() > 1:
             print("en attente ---------------: ", threading.active_count())
-            time.sleep(10)
+            time.sleep(30)
 
             
         # datas = Competition.objects.filter()

@@ -106,7 +106,7 @@
                                     <tr>
                                         <td >{{match.date | naturalday}} {{match.hour}}</td>
                                         <td class="text-left" style="width: 25%" colspan="3">
-                                            {% for pre in match.prediction_match.filter %}
+                                            {% for pre in match.predictiontest_match.filter %}
                                                 <label class="m-b-md d-block label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.type.name }}</label>
                                             {% endfor %}
                                             {% for score in match.predictionscore_match.filter %}

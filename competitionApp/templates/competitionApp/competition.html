@@ -9,7 +9,6 @@
 
     <div class="row m-b-lg m-t-lg">
         <div class="col-md-6">
-
             <div class="profile-image">
                 <img src="{{competition.logo.url}}" class="img-circle circle-border m-b-md" alt="profile">
             </div>
@@ -19,7 +18,6 @@
                         <h1 class="no-margins">{{competition}}</h1>
                         <h3 class="m-t-sm">{{edition.edition}}</h3>
                         <h5 class="m-t-sm">{{competition.pays}}</h5>
-                        
                     </div>
                 </div>
             </div>
@@ -40,7 +38,12 @@
                         Du <strong>{{ edition.start_date | naturalday }}</strong>
                     </td>
                     <td>
-                        Au <strong>{{ edition.finish_date | naturalday }}</strong>
+                        Au <strong>{{ edition.finish_date }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong>Mise à jour : {{ rank.created_at | naturaltime }}</strong>
                     </td>
                 </tr>
                 <tr>

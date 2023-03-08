@@ -31,6 +31,9 @@ class Competition(BaseModel):
     
     class Meta:
         ordering = ['name']
+        
+    def __str__(self):
+        return str(self.pays)+" "+super().__str__()
 
 
 class Edition(BaseModel):

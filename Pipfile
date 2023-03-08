@@ -16,6 +16,8 @@ django-crontab = "*"
 django-annoying = "*"
 django-debug-toolbar = "*"
 dateutils = "*"
+numpy = "*"
+scipy = "*"
 
 [dev-packages]
 

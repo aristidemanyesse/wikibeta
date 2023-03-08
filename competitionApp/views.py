@@ -36,7 +36,7 @@ def competition(request, pays, competition):
 @render_to("competitionApp/competition.html")
 def competition_edition(request, pays, competition, edition):
     if request.method == "GET":
-        edition = [] or  EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
+        edition = EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
         competition = edition.competition
         editions = [] or competition.competition_edition.filter()
         matchs_played = edition.edition_du_match.filter(is_finished = True).order_by('-date')
@@ -75,6 +75,7 @@ def competition_edition(request, pays, competition, edition):
 
         
         ctx = {
+            "edition":edition,
             "editions":editions,
             "competition" : competition,
             "matchs": matchs_played, 

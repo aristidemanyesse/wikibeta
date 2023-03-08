@@ -136,6 +136,18 @@ class BeforeMatchStat(BaseModel):
 
     def __str__(self):
         return str(self.match)
+    
+    def mise_a_jour(self):
+        match = self.match                                                
+        if self.points is None:
+            self.points                     = self.team.fight_points(match)
+            self.list_intercepts            = json.dumps([str(x.id) for x in match.similaires_intercepts(10)])
+            self.list_confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
+            self.list_similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
+            self.list_similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
+            self.list_similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
+            self.save()
+
 
 
 class ResultMatch(BaseModel):
@@ -174,18 +186,13 @@ class ExtraInfosMatch(BaseModel):
 
 
 
-
-# connect to registered signal
-# @signals.post_save(sender=BeforeMatchStat)
-# def sighandler(instance, created, **kwargs):
-#     if created:
-#         match = instance.match                                                
-#         if instance.points is None:
-#             instance.points                     = instance.team.fight_points(match)
-#             instance.list_intercepts            = json.dumps([str(x.id) for x in match.similaires_intercepts(10)])
-#             instance.list_confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
-#             instance.list_similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
-#             instance.list_similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
-#             instance.list_similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])
-#             instance.save()
-#             print("\t ********", instance)
+# @signals.pre_save(sender=BeforeMatchStat)
+# def sighandler(instance, **kwargs):
+#     match = instance.match                                                
+#     if instance.points is None:
+#         instance.points                     = instance.team.fight_points(match)
+#         instance.list_intercepts            = json.dumps([str(x.id) for x in match.similaires_intercepts(10)])
+#         instance.list_confrontations        = json.dumps([str(x.id) for x in match.confrontations_directes(10)])
+#         instance.list_similaires_ppg        = json.dumps([str(x.id) for x in match.similaires_ppg(10)])
+#         instance.list_similaires_ppg2       = json.dumps([str(x.id) for x in match.similaires_ppg2(10)])
+#         instance.list_similaires_betting    = json.dumps([str(x.id) for x in match.similaires_betting(10)])

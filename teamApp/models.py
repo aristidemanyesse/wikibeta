@@ -10,7 +10,7 @@ class Team(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
     name2   = models.CharField(max_length = 255, null = True, blank=True)
     abr   = models.CharField(max_length = 10, null = True, blank=True)
-    is_club = models.BooleanField(default= False, null = True, blank=True)
+    # is_club = models.BooleanField(default= False, null = True, blank=True)
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
     color2  = models.CharField(max_length = 255, default="", null = True, blank=True)
@@ -75,42 +75,52 @@ class EditionTeam(BaseModel):
     
     
     def last_stats(self, match, number = None, edition = False):
-        total = pts = scored =  conceded = 0
-        matchs = self.get_last_matchs(match, number, edition)
-        if len(matchs) == 0:
-            return 0, 0, 0, 0, 0, 0
-        
-        for match in matchs:
-            result = match.get_result()
-            if result is not None:
-                total       += 1
-                pts         += self.points_for_this_macth(match) or 0
-                scored      += (result.home_score or 0) if match.home == self else (result.away_score or 0)
-                conceded    += (result.home_score or 0) if match.away == self else (result.away_score or 0)
-        
+        try:
+            total = pts = scored =  conceded = 0
+            matchs = self.get_last_matchs(match, number, edition)
+            if len(matchs) == 0:
+                return 0, 0, 0, 0, 0, 0
+            
+            for match in matchs:
+                result = match.get_result()
+                if result is not None:
+                    total       += 1
+                    pts         += self.points_for_this_macth(match) or 0
+                    scored      += (result.home_score or 0) if match.home == self else (result.away_score or 0)
+                    conceded    += (result.home_score or 0) if match.away == self else (result.away_score or 0)
+                    
+        except Exception as e:
+            print("Error last_stats ::: for ", match, match.date,  e)
+            
         return pts, round((pts / total), 2) if total > 0 else 0, scored, round((scored/total), 2) if total > 0 else 0, conceded, round((conceded/total), 2) if total > 0 else 0
     
     
 
     def fight_points(self, match):
-        points                    = 0
-        last_matchs               = self.get_last_matchs(match, number = 10, edition = True)
-        confrontations_directes   = match.confrontations_directes(number = 10)
-        stats                     = match.get_home_before_stats() if match.home == self else match.get_away_before_stats()
-        rank                      = competitionApp.models.LigneRanking.objects.filter(team = match.home if match.home == self else match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        try:
+            team = match.home if match.home == self else match.away
         
-        points += rank.pts
-        points += rank.ppg * 3
-        points += stats.ppg * 2
-        points += rank.avg_gs * 10
-        points += rank.avg_ga * -10
-        for x in confrontations_directes:
-            points += self.points_for_this_macth(x)
-        for x in last_matchs:
-            points += self.points_for_this_macth(x)
-        
-        #bonus a domicile
-        points += 10 if match.home == self else 0
+            points                    = 0
+            last_matchs               = self.get_last_matchs(match, number = 10, edition = True)
+            confrontations_directes   = match.confrontations_directes(number = 10)
+            stats                     = match.get_home_before_stats() if match.home == self else match.get_away_before_stats()
+            rank                      = team.team_lignes_rankings.filter(ranking__date__lte = match.date).order_by('-ranking__date').first()
+            
+            points += rank.pts
+            points += rank.ppg * 3
+            points += stats.ppg * 2
+            points += rank.avg_gs * 10
+            points += rank.avg_ga * -10
+            for x in confrontations_directes:
+                points += self.points_for_this_macth(x)
+            for x in last_matchs:
+                points += self.points_for_this_macth(x)
+            
+            #bonus a domicile
+            points += 10 if match.home == self else 0
+            
+        except Exception as e:
+            print("Error fight_points ::: for ", match, match.date,  e)
 
         return points
         
@@ -118,44 +128,48 @@ class EditionTeam(BaseModel):
         
         
     def extra_info_stats(self, match, number = None, edition = False):
-        matchs = self.get_last_matchs(match, number, edition)
-        total = 0
-        datas = {}
-        datas["avg_fouls_for"]          = 0
-        datas["avg_shots_for"]          = 0
-        datas["avg_shots_target_for"]   = 0
-        datas["avg_corners_for"]        = 0
-        datas["avg_offside_for"]        = 0
-        datas["avg_cards_for"]          = 0
-        
-        datas["avg_fouls_against"]          = 0
-        datas["avg_shots_against"]          = 0
-        datas["avg_shots_target_against"]   = 0
-        datas["avg_corners_against"]        = 0
-        datas["avg_offside_against"]        = 0
-        datas["avg_cards_against"]          = 0
+        try:
+            matchs = self.get_last_matchs(match, number, edition)
+            total = 0
+            datas = {}
+            datas["avg_fouls_for"]          = 0
+            datas["avg_shots_for"]          = 0
+            datas["avg_shots_target_for"]   = 0
+            datas["avg_corners_for"]        = 0
+            datas["avg_offside_for"]        = 0
+            datas["avg_cards_for"]          = 0
+            
+            datas["avg_fouls_against"]          = 0
+            datas["avg_shots_against"]          = 0
+            datas["avg_shots_target_against"]   = 0
+            datas["avg_corners_against"]        = 0
+            datas["avg_offside_against"]        = 0
+            datas["avg_cards_against"]          = 0
 
-        if len(matchs) > 0:
-            for match in matchs:
-                info = match.get_extra_info_match()
-                if info is not None:
-                    total             += 1
-                    datas["avg_fouls_for"]          += (info.home_fouls or 0) if match.home == self else (info.away_fouls or 0)
-                    datas["avg_shots_for"]          += (info.home_shots or 0) if match.home == self else (info.away_shots or 0)
-                    datas["avg_shots_target_for"]   += (info.home_shots_on_target or 0) if match.home == self else (info.away_shots_on_target or 0)
-                    datas["avg_corners_for"]        += (info.home_corners or 0 )if match.home == self else (info.away_corners or 0)
-                    datas["avg_offside_for"]        += (info.home_offsides or 0) if match.home == self else (info.away_offsides or 0)
-                    datas["avg_cards_for"]          += (info.home_yellow_cards or 0) if match.home == self else (info.away_yellow_cards or 0)
+            if len(matchs) > 0:
+                for match in matchs:
+                    info = match.get_extra_info_match()
+                    if info is not None:
+                        total             += 1
+                        datas["avg_fouls_for"]          += (info.home_fouls or 0) if match.home == self else (info.away_fouls or 0)
+                        datas["avg_shots_for"]          += (info.home_shots or 0) if match.home == self else (info.away_shots or 0)
+                        datas["avg_shots_target_for"]   += (info.home_shots_on_target or 0) if match.home == self else (info.away_shots_on_target or 0)
+                        datas["avg_corners_for"]        += (info.home_corners or 0 )if match.home == self else (info.away_corners or 0)
+                        datas["avg_offside_for"]        += (info.home_offsides or 0) if match.home == self else (info.away_offsides or 0)
+                        datas["avg_cards_for"]          += (info.home_yellow_cards or 0) if match.home == self else (info.away_yellow_cards or 0)
 
-                    datas["avg_fouls_against"]          += (info.home_fouls or 0) if match.away == self else (info.home_fouls or 0)
-                    datas["avg_shots_against"]          += (info.home_shots or 0) if match.away == self else (info.home_shots or 0)
-                    datas["avg_shots_target_against"]   += (info.home_shots_on_target or 0) if match.away == self else (info.home_shots_on_target or 0)
-                    datas["avg_corners_against"]        += (info.home_corners or 0 )if match.away == self else (info.home_corners or 0)
-                    datas["avg_offside_against"]        += (info.home_offsides or 0) if match.away == self else (info.home_offsides or 0)
-                    datas["avg_cards_against"]          += (info.home_yellow_cards or 0) if match.away == self else (info.home_yellow_cards or 0)
-        
-            for key in datas.keys():
-                datas[key] = round(datas[key] / total, 2) if total > 0 else 0
+                        datas["avg_fouls_against"]          += (info.home_fouls or 0) if match.away == self else (info.home_fouls or 0)
+                        datas["avg_shots_against"]          += (info.home_shots or 0) if match.away == self else (info.home_shots or 0)
+                        datas["avg_shots_target_against"]   += (info.home_shots_on_target or 0) if match.away == self else (info.home_shots_on_target or 0)
+                        datas["avg_corners_against"]        += (info.home_corners or 0 )if match.away == self else (info.home_corners or 0)
+                        datas["avg_offside_against"]        += (info.home_offsides or 0) if match.away == self else (info.home_offsides or 0)
+                        datas["avg_cards_against"]          += (info.home_yellow_cards or 0) if match.away == self else (info.home_yellow_cards or 0)
+            
+                for key in datas.keys():
+                    datas[key] = round(datas[key] / total, 2) if total > 0 else 0
+                    
+        except Exception as e:
+            print("Error extra_info_stats ::: for ", match, match.date,  e)
             
         return datas
 

@@ -1,111 +1,161 @@
-------------------------- 2023-02-21 15:00:02.747547
-	 ******** Blackburn -VS- Blackpool
-	 ******** Blackburn -VS- Blackpool
-Enregistrement 1 pour  Blackburn -VS- Blackpool 2023-02-21 00:00:00
-	 ******** Millwall -VS- Burnley
-	 ******** Millwall -VS- Burnley
-Enregistrement 1 pour  Millwall -VS- Burnley 2023-02-21 00:00:00
-	 ******** Norwich -VS- Birmingham
-	 ******** Norwich -VS- Birmingham
-Enregistrement 1 pour  Norwich -VS- Birmingham 2023-02-21 00:00:00
-	 ******** Rotherham -VS- Sunderland
-	 ******** Rotherham -VS- Sunderland
-Enregistrement 1 pour  Rotherham -VS- Sunderland 2023-02-21 00:00:00
-	 ******** Swansea -VS- Stoke
-	 ******** Swansea -VS- Stoke
-Enregistrement 1 pour  Swansea -VS- Stoke 2023-02-21 00:00:00
-	 ******** Fleetwood Town -VS- Cambridge
-	 ******** Fleetwood Town -VS- Cambridge
-Enregistrement 1 pour  Fleetwood Town -VS- Cambridge 2023-02-21 00:00:00
-	 ******** Morecambe -VS- Port Vale
-	 ******** Morecambe -VS- Port Vale
-Enregistrement 1 pour  Morecambe -VS- Port Vale 2023-02-21 00:00:00
-	 ******** Grimsby -VS- Harrogate
-	 ******** Grimsby -VS- Harrogate
-Enregistrement 1 pour  Grimsby -VS- Harrogate 2023-02-21 00:00:00
-	 ******** Hartlepool -VS- Newport County
-	 ******** Hartlepool -VS- Newport County
-Enregistrement 1 pour  Hartlepool -VS- Newport County 2023-02-21 00:00:00
-	 ******** Rochdale -VS- Stockport
-	 ******** Rochdale -VS- Stockport
-Enregistrement 1 pour  Rochdale -VS- Stockport 2023-02-21 00:00:00
-	 ******** Walsall -VS- Crewe
-	 ******** Walsall -VS- Crewe
-Enregistrement 1 pour  Walsall -VS- Crewe 2023-02-21 00:00:00
-	 ******** Barnet -VS- Altrincham
-	 ******** Barnet -VS- Altrincham
-Enregistrement 1 pour  Barnet -VS- Altrincham 2023-02-21 00:00:00
-	 ******** Chesterfield -VS- Wealdstone
-	 ******** Chesterfield -VS- Wealdstone
-Enregistrement 1 pour  Chesterfield -VS- Wealdstone 2023-02-21 00:00:00
-	 ******** Dag and Red -VS- Aldershot
-	 ******** Dag and Red -VS- Aldershot
-Enregistrement 1 pour  Dag and Red -VS- Aldershot 2023-02-21 00:00:00
-	 ******** Dorking -VS- Torquay
-	 ******** Dorking -VS- Torquay
-Enregistrement 1 pour  Dorking -VS- Torquay 2023-02-21 00:00:00
-	 ******** Gateshead -VS- Oldham
-	 ******** Gateshead -VS- Oldham
-Enregistrement 1 pour  Gateshead -VS- Oldham 2023-02-21 00:00:00
-	 ******** Halifax -VS- Solihull
-	 ******** Halifax -VS- Solihull
-Enregistrement 1 pour  Halifax -VS- Solihull 2023-02-21 00:00:00
-	 ******** Maidenhead -VS- Yeovil
-	 ******** Maidenhead -VS- Yeovil
-Enregistrement 1 pour  Maidenhead -VS- Yeovil 2023-02-21 00:00:00
-	 ******** Maidstone -VS- Eastleigh
-	 ******** Maidstone -VS- Eastleigh
-Enregistrement 1 pour  Maidstone -VS- Eastleigh 2023-02-21 00:00:00
-	 ******** Notts County -VS- Southend
-	 ******** Notts County -VS- Southend
-Enregistrement 1 pour  Notts County -VS- Southend 2023-02-21 00:00:00
-	 ******** Woking -VS- Bromley
-	 ******** Woking -VS- Bromley
-Enregistrement 1 pour  Woking -VS- Bromley 2023-02-21 00:00:00
-	 ******** Wrexham -VS- Scunthorpe
-	 ******** Wrexham -VS- Scunthorpe
-Enregistrement 1 pour  Wrexham -VS- Scunthorpe 2023-02-21 00:00:00
-	 ******** York -VS- Boreham Wood
-	 ******** York -VS- Boreham Wood
-Enregistrement 1 pour  York -VS- Boreham Wood 2023-02-21 00:00:00
-	 ******** Hamilton -VS- Inverness C
-	 ******** Hamilton -VS- Inverness C
-Enregistrement 1 pour  Hamilton -VS- Inverness C 2023-02-21 00:00:00
-	 ******** Albion Rvs -VS- Elgin
-	 ******** Albion Rvs -VS- Elgin
-Enregistrement 1 pour  Albion Rvs -VS- Elgin 2023-02-21 00:00:00
-----------error save match---------- 'NoneType' object has no attribute 'pts'
-Enregistrement 2 pour  Shonan Bellmare -VS- Yokohama FC 2023-02-24 00:00:00
-	 ******** Cruz Azul -VS- Atlas
-	 ******** Cruz Azul -VS- Atlas
-Enregistrement 2 pour  Cruz Azul -VS- Atlas 2023-02-23 00:00:00
-	 ******** Santos Laguna -VS- Toluca
-	 ******** Santos Laguna -VS- Toluca
-Enregistrement 2 pour  Santos Laguna -VS- Toluca 2023-02-24 00:00:00
-------------------------- 2023-02-21 16:00:02.930455
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f31073aece0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-21 17:00:02.562987
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f33ed873b50>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-21 18:00:02.813125
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6281247c70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-21 19:00:02.584919
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fd810a5f310>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-21 20:00:04.346545
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f3675e3c1c0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-22 00:00:03.080358
-Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb03ce4eb60>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
-------------------------- 2023-02-22 09:00:02.750409
-------------------------- 2023-02-22 10:00:02.187287
-------------------------- 2023-02-22 11:00:04.837214
-------------------------- 2023-02-22 12:00:03.289179
-------------------------- 2023-02-22 13:00:03.542030
-------------------------- 2023-02-22 14:00:02.472986
-------------------------- 2023-02-22 15:00:04.041914
-------------------------- 2023-02-22 16:00:03.475690
-------------------------- 2023-02-22 17:00:06.900985
-------------------------- 2023-02-23 10:00:03.698323
-------------------------- 2023-02-23 11:00:04.729561
-------------------------- 2023-02-23 12:00:04.139273
-------------------------- 2023-02-23 13:00:03.969200
-------------------------- 2023-02-23 14:00:02.935860
-------------------------- 2023-02-23 16:00:02.902867
+------------------------- 2023-03-08 00:10:03.300053
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa3e71745b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+Enregistrement 1 pour  Huddersfield -VS- Bristol City 2023-03-07 00:00:00
+Enregistrement 1 pour  Reading -VS- Sheffield United 2023-03-07 00:00:00
+Enregistrement 1 pour  West Brom -VS- Wigan 2023-03-07 00:00:00
+Enregistrement 1 pour  Barnsley -VS- Portsmouth 2023-03-07 00:00:00
+Enregistrement 1 pour  Cambridge -VS- Morecambe 2023-03-07 00:00:00
+Enregistrement 1 pour  Cheltenham -VS- Lincoln 2023-03-07 00:00:00
+Enregistrement 1 pour  Ipswich -VS- Accrington 2023-03-07 00:00:00
+Enregistrement 1 pour  Peterboro -VS- Shrewsbury 2023-03-07 00:00:00
+Enregistrement 1 pour  Wycombe -VS- Fleetwood Town 2023-03-07 00:00:00
+Enregistrement 1 pour  Plymouth -VS- Derby 2023-03-07 00:00:00
+Enregistrement 1 pour  Doncaster -VS- Harrogate 2023-03-07 00:00:00
+Enregistrement 1 pour  Grimsby -VS- Newport County 2023-03-07 00:00:00
+Enregistrement 1 pour  Stockport -VS- Gillingham 2023-03-07 00:00:00
+Enregistrement 1 pour  Bromley -VS- York 2023-03-07 00:00:00
+Enregistrement 1 pour  Dorking -VS- Barnet 2023-03-07 00:00:00
+Enregistrement 1 pour  Maidenhead -VS- Boreham Wood 2023-03-07 00:00:00
+Enregistrement 1 pour  Scunthorpe -VS- Altrincham 2023-03-07 00:00:00
+Enregistrement 1 pour  Southend -VS- Chesterfield 2023-03-07 00:00:00
+Enregistrement 1 pour  Yeovil -VS- Eastleigh 2023-03-07 00:00:00
+Enregistrement 1 pour  Celtic -VS- Hearts 2023-03-08 00:00:00
+Enregistrement 1 pour  Hibernian -VS- Rangers 2023-03-08 00:00:00
+Enregistrement 1 pour  Morton -VS- Ayr 2023-03-07 00:00:00
+Enregistrement 1 pour  Dumbarton -VS- Stirling 2023-03-07 00:00:00
+------------------------- 2023-03-08 00:20:02.204197
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1589794670>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+Enregistrement 1 pour  Sutton -VS- Crawley Town 2023-03-07 00:00:00
+Enregistrement 1 pour  Walsall -VS- Bradford 2023-03-07 00:00:00
+Enregistrement 1 pour  Dag and Red -VS- Wrexham 2023-03-07 00:00:00
+Enregistrement 1 pour  Gateshead -VS- Halifax 2023-03-07 00:00:00
+Enregistrement 1 pour  Oldham -VS- Woking 2023-03-07 00:00:00
+Enregistrement 1 pour  Solihull -VS- Torquay 2023-03-07 00:00:00
+Enregistrement 1 pour  Wealdstone -VS- Maidstone 2023-03-07 00:00:00
+Enregistrement 1 pour  Atromitos -VS- AEK 2023-03-08 00:00:00
+Enregistrement 1 pour  Livingston -VS- Dundee United 2023-03-08 00:00:00
+Enregistrement 1 pour  Dunfermline -VS- Falkirk 2023-03-07 00:00:00
+Enregistrement 2 pour  Wisla Plock -VS- Warta Poznan 2023-03-08 00:00:00
+------------------------- 2023-03-08 00:30:03.802185
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f94d6a92200>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 00:40:02.914521
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f85ad68c550>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 00:50:02.807587
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb82c163d60>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:00:04.081892
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fe740178670>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:10:02.183891
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fc586f82290>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:20:02.042773
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f67e8c7b2e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:30:02.574767
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f26fa779210>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:40:02.842739
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb03857bc70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 01:50:02.458917
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fc06af641f0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:00:02.358981
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb4c364b130>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:10:02.635229
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6f218adba0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:20:02.258237
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f94ae55e200>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:30:02.962582
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8a5246e140>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:40:02.744063
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1b73c4b670>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 02:50:02.738573
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fb270b63c70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:00:02.596060
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f198bc82200>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:10:03.003016
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fea8d970160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:20:02.246641
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1420f84520>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:30:02.998706
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f13660485b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:40:01.932530
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f59b2968520>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 03:50:02.464908
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f77f0d96050>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:00:03.004509
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7feb8bb7b430>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:10:01.963781
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f9ea3d67280>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:20:02.554376
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7ff490377880>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:30:02.165337
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f99b0078520>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:40:02.838130
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa97e681e70>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 04:50:02.280645
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f10c9169fc0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:00:03.225315
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f8f0ea5f6d0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:10:02.396955
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f91f0401210>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:20:02.904074
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fdef94b02b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:30:02.284370
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f95d2f702e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:40:02.885259
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f2c7caafa90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 05:50:02.521293
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f2bdbd47a30>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:00:03.305240
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f13a108e0e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:10:02.347728
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7ff958f90250>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:20:02.733566
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f129656a0e0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:30:01.963002
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f1889a8e740>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:40:02.042974
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fba12085fc0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 06:50:02.484043
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fa21d17dfc0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 07:00:03.352788
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6f29994520>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 07:10:02.259452
+Errror ------------ HTTPSConnectionPool(host='www.football-data.co.uk', port=443): Max retries exceeded with url: /fixtures.csv (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f6dea95df90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+------------------------- 2023-03-08 09:00:03.150161
+------------------------- 2023-03-08 09:10:03.080137
+------------------------- 2023-03-08 09:20:02.926632
+------------------------- 2023-03-08 09:30:03.872862
+------------------------- 2023-03-08 09:40:03.133698
+------------------------- 2023-03-08 09:50:03.799899
+------------------------- 2023-03-08 10:00:05.040623
+------------------------- 2023-03-08 10:10:05.033580
+------------------------- 2023-03-08 10:20:05.163293
+------------------------- 2023-03-08 10:30:05.191146
+------------------------- 2023-03-08 10:40:04.399469
+------------------------- 2023-03-08 10:50:03.524489
+------------------------- 2023-03-08 11:00:05.127659
+------------------------- 2023-03-08 11:10:04.274489
+------------------------- 2023-03-08 11:20:04.891003
+------------------------- 2023-03-08 11:30:05.164259
+------------------------- 2023-03-08 11:40:06.660840
+------------------------- 2023-03-08 11:50:07.007635
+------------------------- 2023-03-08 12:00:08.859142
+------------------------- 2023-03-08 12:10:05.771135
+------------------------- 2023-03-08 12:20:04.897158
+------------------------- 2023-03-08 12:30:06.151891
+------------------------- 2023-03-08 12:40:06.476794
+------------------------- 2023-03-08 12:50:07.121572
+------------------------- 2023-03-08 13:00:06.588939
+------------------------- 2023-03-08 13:10:07.540299
+------------------------- 2023-03-08 13:20:06.506441
+------------------------- 2023-03-08 13:30:06.427882
+------------------------- 2023-03-08 13:40:07.026034
+------------------------- 2023-03-08 13:50:05.959182
+------------------------- 2023-03-08 14:00:06.261830
+------------------------- 2023-03-08 14:10:04.421290
+------------------------- 2023-03-08 14:20:06.807605
+------------------------- 2023-03-08 14:30:05.130547
+------------------------- 2023-03-08 14:40:06.932324
+------------------------- 2023-03-08 14:50:05.199658
+------------------------- 2023-03-08 15:00:06.242266
+------------------------- 2023-03-08 15:10:04.771645
+------------------------- 2023-03-08 15:20:07.096484
+------------------------- 2023-03-08 15:30:04.807368
+------------------------- 2023-03-08 15:40:04.465368

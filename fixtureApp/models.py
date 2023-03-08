@@ -51,20 +51,24 @@ class Match(BaseModel):
     
     
     def similaires_ppg(self, number = 100):
-        matchs = []
-        date = self.date - timedelta(days = 5 * 12 * 30)
-        home = self.get_home_before_stats()
-        away = self.get_away_before_stats()
-        if home is not None:
-            ppg_home = home.ppg
-            ppg_away = away.ppg
-            befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
-            for bef in befores:
-                if bef.team == bef.match.home:
-                    pa = bef.match.before_stat_match.exclude(id = bef.id).first()
-                    if intervale(ppg_away)[0] <= pa.ppg <= intervale(ppg_away)[1] :
-                        if bef.match not in matchs:
-                            matchs.append(bef.match)
+        try:
+            matchs = []
+            date = self.date - timedelta(days = 5 * 12 * 30)
+            home = self.get_home_before_stats()
+            away = self.get_away_before_stats()
+            if home is not None:
+                ppg_home = home.ppg
+                ppg_away = away.ppg
+                befores = BeforeMatchStat.objects.filter(match__is_finished = True, ppg__range = intervale(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
+                for bef in befores:
+                    if bef.team == bef.match.home:
+                        pa = bef.match.before_stat_match.exclude(id = bef.id).first()
+                        if intervale(ppg_away)[0] <= pa.ppg <= intervale(ppg_away)[1] :
+                            if bef.match not in matchs:
+                                matchs.append(bef.match)
+                                
+        except Exception as e:
+            print("Error similaires_ppg ********", e)
                 
         return matchs[:number]
 
@@ -72,20 +76,25 @@ class Match(BaseModel):
 
 
     def similaires_ppg2(self, number = 100):
-        matchs = []
-        date = self.date - timedelta(days = 5 * 12 * 30)
-        home = self.get_home_before_stats()
-        away = self.get_away_before_stats()
-        if home is not None:
-            ppg_home = home.ppg
-            ppg_away = away.ppg
-            befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
-            for bef in befores:
-                if bef.team == bef.match.home:
-                    pa = bef.match.before_stat_match.exclude(id = bef.id).first()
-                    if intervale2(ppg_away)[0] <= pa.ppg <= intervale2(ppg_away)[1] :
-                        if bef.match not in matchs:
-                            matchs.append(bef.match)
+        try:
+            matchs = []
+            date = self.date - timedelta(days = 5 * 12 * 30)
+            home = self.get_home_before_stats()
+            away = self.get_away_before_stats()
+            if home is not None:
+                ppg_home = home.ppg
+                ppg_away = away.ppg
+                befores = BeforeMatchStat.objects.filter( match__is_finished = True, ppg__range = intervale2(ppg_home), match__edition__competition = self.edition.competition, match__date__range = [date, self.date - timedelta(days = 1)]).exclude(id = home.id).order_by("-match__date")
+                for bef in befores:
+                    if bef.team == bef.match.home:
+                        pa = bef.match.before_stat_match.exclude(id = bef.id).first()
+                        if intervale2(ppg_away)[0] <= pa.ppg <= intervale2(ppg_away)[1] :
+                            if bef.match not in matchs:
+                                matchs.append(bef.match)
+                                
+        except Exception as e:
+            print("Error similaires_ppg2 ********", e)
+            
         return matchs[:number]
 
         
@@ -195,17 +204,17 @@ def sighandler(instance, created, **kwargs):
                 stats.list_similaires_ppg2       = json.dumps([str(x.id) for x in instance.similaires_ppg2(10)])
                 stats.list_similaires_betting    = json.dumps([str(x.id) for x in instance.similaires_betting(10)])
                 stats.save()
-                               
+            
             get_home_facts.function(instance)
             get_away_facts.function(instance)
             
             
-            if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
-                p0.predict(instance)
-                p1.predict(instance)
-                p2.predict(instance)
-                p3.predict(instance)
-                p4.predict(instance)
+            # if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
+            #     p0.predict(instance)
+            #     p1.predict(instance)
+            #     p2.predict(instance)
+            #     p3.predict(instance)
+            #     p4.predict(instance)
             
             instance.is_predicted = True
             instance.is_facted = True
