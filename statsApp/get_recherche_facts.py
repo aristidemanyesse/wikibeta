@@ -46,7 +46,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -59,7 +59,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -97,7 +97,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -110,7 +110,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
        
@@ -146,7 +146,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -159,7 +159,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -196,7 +196,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -209,7 +209,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -246,7 +246,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -259,7 +259,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -296,7 +296,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -309,7 +309,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
                 
@@ -347,7 +347,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -360,7 +360,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
        
@@ -396,7 +396,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -409,7 +409,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -446,7 +446,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -459,7 +459,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -496,7 +496,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -509,7 +509,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
     
@@ -546,7 +546,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_min, 2)
+                    pct = round(taux_min, 2) * 100
                 )
                 facts.append(fact)
         
@@ -559,7 +559,7 @@ def function(matchs):
                     match = match,
                     total = k,
                     success = v,
-                    pct = round(taux_max, 2)
+                    pct = round(taux_max, 2) * 100
                 )
                 facts.append(fact)
                 

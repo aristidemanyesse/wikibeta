@@ -14,7 +14,7 @@ class Team(BaseModel):
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
     color2  = models.CharField(max_length = 255, default="", null = True, blank=True)
-    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="", null = True, blank=True)
+    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="static/images/teams/default.png", null = True, blank=True)
     
     class Meta:
         ordering = ['name']
@@ -60,10 +60,29 @@ class EditionTeam(BaseModel):
         
         
         
-    def get_last_matchs(self, match, number = None, edition = False):
+    def prev_match(self, match, edition = False):
         matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__lt = match.date, is_finished = True).exclude(id = match.id).order_by("-date")
         if edition:
             matchs = matchs.filter(edition = match.edition)
+        return matchs.first()
+    
+
+
+    def next_match(self, match, edition = False):
+        matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__gt = match.date).exclude(id = match.id).order_by("-date")
+        if edition:
+            matchs = matchs.filter(edition = match.edition)
+        return matchs.first()
+    
+    
+      
+    def get_last_matchs(self, match, number = None, edition = False, position = False):
+        matchs = Match.objects.filter((Q(home = self) | Q(away = self)), date__lt = match.date, is_finished = True).exclude(id = match.id).order_by("-date")
+        if edition:
+            matchs = matchs.filter(edition = match.edition)
+        if position:
+            matchs = matchs.filter(home = self) if self == match.home else matchs.filter(away = self)
+            
         return matchs[:EditionTeam.NB if number is None else number]
     
     

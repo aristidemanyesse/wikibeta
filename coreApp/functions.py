@@ -61,6 +61,24 @@ def moyenne_but(atk, defe):
 
 
 
+def calcul_p(a , b):
+    if a >= b:
+        t = (a-b)/(a+b)
+        return 0.5 + (t / 2)
+    else:
+        t = a / (a +b)
+        return t
+
+
+
+def bimodal_poisson(lambda_1, lambda_2, p, k):
+    prob = p*math.exp(-lambda_1)*(lambda_1**k)/math.factorial(k) + (1-p)*math.exp(-lambda_2)*(lambda_2**k)/math.factorial(k)
+    return round(prob, 2)
+
+
+
+
+
 def fish_law(avg, number):
     return round(((math.pow(avg, number) * math.exp(-avg)) / factorial(number)) * 100, 2)
 

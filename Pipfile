@@ -18,6 +18,14 @@ django-debug-toolbar = "*"
 dateutils = "*"
 numpy = "*"
 scipy = "*"
+sklearn = "*"
+tensorflow = "*"
+pandas = "*"
+scikit-learn = "*"
+matplotlib = "*"
+tensorrt = "*"
+pickles = "*"
+imgaug = "*"
 
 [dev-packages]
 

@@ -43,14 +43,35 @@
     <div class="container">
         <div class="row">
             {% for type in types %}
-            <div class="col-md-3 col-lg-2">
-                <div class="ibox bg-default">
-                    <div class="ibox-content">
-                        <h4 class="stat-percent bold no-margins">{{types|dict_value:type}}%</h4>
-                        <h4 class="no-margins">{{type.name}}</h4>
+                {% if tableau_nb|dict_value:type > 0 %}
+                <div  class="col-md-3 col-lg-2">
+                    <div class="ibox bg-default">
+                        <div class="ibox-content">
+                            <h4 class="stat-percent bold no-margins">{{types|dict_value:type}}%</h4>
+                            <h4 class="no-margins">{{type.name}}</h4>
+                        </div>
                     </div>
                 </div>
-            </div>
+                {% endif %} 
+            {% endfor %} 
+        </div>
+    </div>
+
+<hr>
+
+    <div class="container">
+        <div class="row">
+            {% for type in tableau_nb %}
+                {% if tableau_nb|dict_value:type > 0 %}
+                <div  class="col-md-3 col-lg-2">
+                    <div class="ibox bg-default">
+                        <div class="ibox-content">
+                            <h4 class="stat-percent bold no-margins">{{tableau_nb|dict_value:type}}</h4>
+                            <h4 class="no-margins">{{type.name}}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% endif %} 
             {% endfor %} 
         </div>
     </div>

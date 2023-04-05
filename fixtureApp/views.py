@@ -102,3 +102,21 @@ def match(request, id):
             "competitionstats"      : competitionstats,
         }
         return ctx
+
+
+
+
+
+
+@render_to('fixtureApp/index_test.html')
+def features_test(request, ):
+    if request.method == "GET":
+        type = TypePrediction.get("corner_m12_5")
+        datas = PredictionTest.objects.filter(is_checked = False, type = type).values_list('match__id')
+        matchs = Match.objects.filter(id__in = datas)
+        
+        ctx = {
+            "matchs"        : matchs,
+        }
+        return ctx
+    

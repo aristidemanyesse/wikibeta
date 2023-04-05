@@ -57,7 +57,7 @@ def predict(match):
     elif home > GF:
         Prediction.objects.create(
             mode = ModePrediction.get("M0"),
-            type = TypePrediction.get("But_Home"),
+            type = TypePrediction.get("HG"),
             match = match,
             pct = 85
         )
@@ -65,7 +65,7 @@ def predict(match):
     elif away > GF:
         Prediction.objects.create(
             mode = ModePrediction.get("M0"),
-            type = TypePrediction.get("But_Away"),
+            type = TypePrediction.get("AG"),
             match = match,
             pct = 85
         )

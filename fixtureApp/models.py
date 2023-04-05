@@ -44,6 +44,7 @@ class Match(BaseModel):
     def get_result(self):
         return self.result_match.filter().first()
        
+       
     
     def confrontations_directes(self, number = 50):
         matchs = Match.objects.filter(Q(home__team = self.home.team, away__team = self.away.team) | Q(home__team = self.away.team,  away__team = self.home.team)).filter(date__lt = self.date, is_finished = True).exclude(id = self.id).order_by("-date")        

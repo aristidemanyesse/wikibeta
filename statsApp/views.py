@@ -117,9 +117,11 @@ def statistiquestest(request):
             modes[mode] = round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
            
         types = {}
+        tableau_nb = {}
         for type in TypePrediction.objects.all():
             total = PredictionTest.objects.filter(type = type).exclude(is_checked = None)
             types[type] = round((total.filter(is_checked = True).count() / total.count()) *100, 2) if total.count() > 0 else 0
+            tableau_nb[type] = total.filter().count()
             
         
         tableau = {}
@@ -160,6 +162,7 @@ def statistiquestest(request):
             "types" : types,
             "predictions" : predictions,
             "tableau" : tableau,
+            "tableau_nb" : tableau_nb,
             "ratio" : ratio,
             "decimal" : decimal,
             "stats_pre" : stats_pre,

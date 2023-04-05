@@ -117,7 +117,7 @@ def function():
                 pays      = get(row, header, "Country") or ""
                 
                 if compet != "" and pays != "" :
-                    pays, created = Pays.objects.get_or_create(name = pays)
+                    pays, created = Pays.objects.get_or_create(name__iexact = pays.lower())
                     compet, created = Competition.objects.get_or_create(code = compet, pays = pays)
                     
                     edicompet = EditionCompetition.objects.filter(competition = compet).order_by("-edition__name").first()

@@ -33,7 +33,7 @@ class Competition(BaseModel):
         ordering = ['name']
         
     def __str__(self):
-        return str(self.pays)+" "+super().__str__()
+        return "...."
 
 
 class Edition(BaseModel):

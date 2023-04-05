@@ -8,7 +8,7 @@ register = template.Library()
 
 
 @register.filter('home')
-def method(matchs):
+def home(matchs):
     total = 0
     for item in matchs:
         result =  item.get_result()
@@ -17,7 +17,7 @@ def method(matchs):
 
 
 @register.filter('away')
-def method(matchs):
+def away(matchs):
     total = 0
     for item in matchs:
         result =  item.get_result()
@@ -26,7 +26,7 @@ def method(matchs):
 
 
 @register.filter('draw')
-def method(matchs):
+def draw(matchs):
     total = 0
     for item in matchs:
         result =  item.get_result()

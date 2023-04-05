@@ -40,29 +40,31 @@ class Command(BaseCommand):
         # Ranking.objects.all().delete()
         # Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
         pass
-        # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 1)).delete()
+        # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
+        
+        
         
         # for ligne in LigneRanking.objects.all():
         #     ligne.level += 1
         #     ligne.save() 
         
-        stats = BeforeMatchStat.objects.filter(points = None).order_by("-match__date")[:1000]
-        for stat in stats:
-            while threading.active_count() >= 150:
-                time.sleep(30)
+        # stats = BeforeMatchStat.objects.filter(points = None).order_by("?")[:1000]
+        # for stat in stats:
+        #     while threading.active_count() >= 250:
+        #         time.sleep(30)
             
-            try:
-                print(stat, "----------: ", threading.active_count())
-                p = threading.Thread(target=stat.mise_a_jour)
-                p.setDaemon(True)
-                p.start()
-                time.sleep(0.1)
-            except Exception as e:
-                print(e)
+        #     try:
+        #         print(stat, "----------: ", threading.active_count())
+        #         p = threading.Thread(target=stat.mise_a_jour)
+        #         p.setDaemon(True)
+        #         p.start()
+        #         time.sleep(0.01)
+        #     except Exception as e:
+        #         print(e)
     
-        while threading.active_count() > 1:
-            print("en attente ---------------: ", threading.active_count())
-            time.sleep(30)
+        # while threading.active_count() > 1:
+        #     print("en attente ---------------: ", threading.active_count())
+        #     time.sleep(30)
 
             
         # datas = Competition.objects.filter()
@@ -70,7 +72,12 @@ class Command(BaseCommand):
         #     comp.logo = "static/images/competitions/default.png"
         #     comp.save()
             
-        # datas = Team.objects.filter()
+        datas = Fact.objects.all()
+        for f in datas:
+            f.pct *= 100
+            f.save()
+            
+        # datas = Team.objects.filter(logo = "")
         # for comp in datas:
         #     comp.logo = "static/images/teams/default.png"
         #     comp.save()
