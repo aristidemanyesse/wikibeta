@@ -4,6 +4,6 @@ service cron start
 # yes | python manage.py makemigrations
 yes | python manage.py migrate
 python manage.py crontab add
-python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8888
 
 #gunicorn -b 0.0.0.0 --timeout 600 --log-level debug --env DJANGO_SETTINGS_MODULE=jmonitorp.settings jmonitorp.wsgi

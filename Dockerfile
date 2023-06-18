@@ -1,13 +1,16 @@
-FROM osgeo/gdal:ubuntu-small-3.3.1
+FROM ubuntu:22.04
 
 RUN apt update \
 && apt-get install -y cron \
 && apt-get install -y fuseiso \
 && apt-get install -y nano \
-&& apt update \
-&& apt-get install python3-pip -y --fix-missing
+&& apt-get install -y default-libmysqlclient-dev  -y \
+&& apt install python3-pip -y --fix-missing \
+&& apt-get install nano -y
 
+RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 COPY ./requirements.txt /wikibet/requirements.txt
+
 RUN pip3 install -r /wikibet/requirements.txt
 
 RUN pip3 install gunicorn

@@ -276,7 +276,7 @@ class Command(BaseCommand):
             # if avg1 + avg2 >= 10 and home_stats.avg_corners_for >= 6 and  away_stats.avg_corners_for >= 6 and abs(home_stats.points - away_stats.points) > min_points*2:
             #     PredictionTest.objects.create(
             #         mode = ModePrediction.get("M0"),
-            #         type = TypePrediction.get("corner_p7_5"),
+            #         type = TypePrediction.get("corner_p6_5"),
             #         match = match,
             #         pct = 85
             #     )
@@ -309,7 +309,7 @@ class Command(BaseCommand):
                     if home_stats.avg_corners_for + away_stats.avg_corners_against >= competitionstats.avg_corners and  home_stats.avg_corners_against + away_stats.avg_corners_for >= competitionstats.avg_corners:
                         PredictionTest.objects.create(
                             mode = ModePrediction.get("M0"),
-                            type = TypePrediction.get("corner_p7_5"),
+                            type = TypePrediction.get("corner_p6_5"),
                             match = match,
                             pct = 85
                         )

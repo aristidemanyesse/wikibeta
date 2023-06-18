@@ -31,13 +31,15 @@ class Command(BaseCommand):
         # Charger le modèle sauvegardé
         # model_charge = keras.models.load_model('./modeles/model1.h5')
 
-        matchs = Match.objects.filter(is_finished = True).order_by('-date')[:3000]
+        matchs = Match.objects.filter(is_finished = False).order_by('-date')[:3000]
         
         for nb, match in enumerate(matchs):
             if len( match.away.get_last_matchs(match, edition = True)) < 4 or len( match.home.get_last_matchs(match, edition = True)) < 4:
                 continue
             
             print(nb, match, match.date)
+            
+            
             
             
             competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
@@ -56,18 +58,28 @@ class Command(BaseCommand):
             home_stats = match.get_home_before_stats()
             away_stats = match.get_away_before_stats()
             
+            min_points = min(home_stats.points, away_stats.points)
             
 
             ############################################################################################################################
             # HOME NE PERD LE MATCH
             ############################################################################################################################
-            if pts_h >= pts_a * 1.8 and  home_stats.points > away_stats.points * 2.5:
+            if home_stats.points > away_stats.points * 3.5:
                 PredictionTest.objects.create(
                     mode = ModePrediction.get("M0"),
                     type = TypePrediction.get("1X"),
                     match = match,
                     pct = 85
                 )
+                
+            elif pts_h >= pts_a * 2 and  home_stats.points > away_stats.points * 2:
+                PredictionTest.objects.create(
+                    mode = ModePrediction.get("M0"),
+                    type = TypePrediction.get("1X"),
+                    match = match,
+                    pct = 85
+                )
+
 
 
 
@@ -84,47 +96,47 @@ class Command(BaseCommand):
             
             
 
-            # ############################################################################################################################
-            # # PLUS DE 1.5 BUTS DANS LE MATCH
-            # ############################################################################################################################
-            # p = footstats.plus_but(home_last_matchs, 1.5) + footstats.plus_but(away_last_matchs, 1.5)
-            # m = footstats.moins_but(home_last_matchs, 3.5) + footstats.moins_but(away_last_matchs, 3.5)
-            # if (p >= 16 and m <= 12) or (home_rank.p1_5 + away_rank.p1_5) / 2 >= 82:
-            #     PredictionTest.objects.create(
-            #         mode = ModePrediction.get("M0"),
-            #         type = TypePrediction.get("p1_5"),
-            #         match = match,
-            #         pct = round((p / 20 ), 2) * 100
-            #     )
+            ############################################################################################################################
+            # PLUS DE 1.5 BUTS DANS LE MATCH
+            ############################################################################################################################
+            p = footstats.plus_but(home_last_matchs, 1.5) + footstats.plus_but(away_last_matchs, 1.5)
+            m = footstats.moins_but(home_last_matchs, 3.5) + footstats.moins_but(away_last_matchs, 3.5)
+            if (p >= 16 and m < 12) and (home_rank.p1_5 + away_rank.p1_5) / 2 >= 85 or abs(home_stats.points - away_stats.points) >= 2.8 * min_points:
+                PredictionTest.objects.create(
+                    mode = ModePrediction.get("M0"),
+                    type = TypePrediction.get("p1_5"),
+                    match = match,
+                    pct = round((p / 20 ), 2) * 100
+                )
             
             
 
-            # ############################################################################################################################
-            # # MOINS DE 3.5 BUTS DANS LE MATCH
-            # ############################################################################################################################
-            # p = footstats.plus_but(home_last_matchs, 1.5) + footstats.plus_but(away_last_matchs, 1.5)
-            # m = footstats.moins_but(home_last_matchs, 3.5) + footstats.moins_but(away_last_matchs, 3.5)
-            # if (m >= 16 and p <= 10) or (home_rank.m3_5 + away_rank.m3_5) / 2 >= 82:
-            #     PredictionTest.objects.create(
-            #         mode = ModePrediction.get("M0"),
-            #         type = TypePrediction.get("m3_5"),
-            #         match = match,
-            #         pct = round((m / 20 ), 2) * 100
-            #     )
-            #     # PredictionTest.objects.create(
-            #     #     mode = ModePrediction.get("M0"),
-            #     #     type = TypePrediction.get("m1_5_MT"),
-            #     #     match = match,
-            #     #     pct = 85
-            #     # )
+            ############################################################################################################################
+            # MOINS DE 3.5 BUTS DANS LE MATCH
+            ############################################################################################################################
+            p = footstats.plus_but(home_last_matchs, 1.5) + footstats.plus_but(away_last_matchs, 1.5)
+            m = footstats.moins_but(home_last_matchs, 3.5) + footstats.moins_but(away_last_matchs, 3.5)
+            if (m >= 16 and p <= 10) or (home_rank.m3_5 + away_rank.m3_5) / 2 >= 82:
+                PredictionTest.objects.create(
+                    mode = ModePrediction.get("M0"),
+                    type = TypePrediction.get("m3_5"),
+                    match = match,
+                    pct = round((m / 20 ), 2) * 100
+                )
+                # PredictionTest.objects.create(
+                #     mode = ModePrediction.get("M0"),
+                #     type = TypePrediction.get("m1_5_MT"),
+                #     match = match,
+                #     pct = 85
+                # )
                 
-            # if pts_h * 2  <= pts_a and away_stats.points > home_stats.points * 2:
-            #     PredictionTest.objects.create(
-            #         mode = ModePrediction.get("M0"),
-            #         type = TypePrediction.get("m3_5"),
-            #         match = match,
-            #         pct = 85
-            #     )
+            if pts_h * 2  <= pts_a and away_stats.points > home_stats.points * 2:
+                PredictionTest.objects.create(
+                    mode = ModePrediction.get("M0"),
+                    type = TypePrediction.get("m3_5"),
+                    match = match,
+                    pct = 85
+                )
             
             
 
@@ -190,7 +202,7 @@ class Command(BaseCommand):
                 ############################################################################################################################
                 # MOINS DE 12.5 CORNERS DANS LE MATCH
                 ############################################################################################################################
-                if avg_home + avg_away < 8.5:
+                if avg_home + avg_away < 9:
                     PredictionTest.objects.create(
                         mode = ModePrediction.get("M0"),
                         type = TypePrediction.get("corner_m12_5"),
@@ -199,16 +211,42 @@ class Command(BaseCommand):
                     )
 
                     
-            #     ############################################################################################################################
-            #     # PLUS DE 7.5 CORNERS DANS LE MATCH
-            #     ############################################################################################################################                   
-            #     if  avg_home + avg_away > 12 and total_home >= 10 and total_away >= 10:
-            #         PredictionTest.objects.create(
-            #             mode = ModePrediction.get("M0"),
-            #             type = TypePrediction.get("corner_p7_5"),
-            #             match = match,
-            #             pct = 85
-            #         )
+                ############################################################################################################################
+                # PLUS DE 7.5 CORNERS DANS LE MATCH
+                ############################################################################################################################                   
+                if  avg_home + avg_away > 12 and total_home >= 11 and total_away >= 11:
+                    PredictionTest.objects.create(
+                        mode = ModePrediction.get("M0"),
+                        type = TypePrediction.get("corner_p6_5"),
+                        match = match,
+                        pct = 85
+                    )
+                   
+            
+                    
+                ############################################################################################################################
+                # HOME CORNERS NE PERD PAS LE MATCH
+                ############################################################################################################################                   
+                if home_stats.points > away_stats.points * 3.5:
+                    PredictionTest.objects.create(
+                        mode = ModePrediction.get("M0"),
+                        type = TypePrediction.get("1C"),
+                        match = match,
+                        pct = 85
+                    )
+                   
+            
+                    
+                ############################################################################################################################
+                # AWAY CORNERS NE PERD PAS LE MATCH
+                ############################################################################################################################                   
+                if home_stats.points < away_stats.points * 3.5:
+                    PredictionTest.objects.create(
+                        mode = ModePrediction.get("M0"),
+                        type = TypePrediction.get("2C"),
+                        match = match,
+                        pct = 85
+                    )
                    
             
             
@@ -636,7 +674,7 @@ class Command(BaseCommand):
 #             if avg1 + avg2 >= 12:
 #                 PredictionTest.objects.create(
 #                     mode = ModePrediction.get("M0"),
-#                     type = TypePrediction.get("corner_p7_5"),
+#                     type = TypePrediction.get("corner_p6_5"),
 #                     match = match,
 #                     pct = 85
 #                 )
@@ -663,7 +701,7 @@ class Command(BaseCommand):
 #                     if home_stats.avg_corners_for + away_stats.avg_corners_against >= competitionstats.avg_corners and  home_stats.avg_corners_against + away_stats.avg_corners_for >= competitionstats.avg_corners:
 #                         PredictionTest.objects.create(
 #                             mode = ModePrediction.get("M0"),
-#                             type = TypePrediction.get("corner_p7_5"),
+#                             type = TypePrediction.get("corner_p6_5"),
 #                             match = match,
 #                             pct = 85
 #                         )

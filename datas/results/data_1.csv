@@ -1,102 +1,120 @@
 Country,League,Season,Date,Time,Home,Away,HG,AG,Res,PH,PD,PA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA
-Argentina,Liga Profesional,2023,31/03/2023,00:00,Defensa y Justicia,Velez Sarsfield,0,0,D,2.7,2.99,3.04,2.75,3.17,3.13,2.61,2.99,2.89
-Argentina,Liga Profesional,2023,31/03/2023,01:30,Argentinos Jrs,Godoy Cruz,3,0,H,1.65,3.6,6.5,1.8,3.8,6.75,1.61,3.55,6.16
-Argentina,Liga Profesional,2023,31/03/2023,23:00,Estudiantes L.P.,Newells Old Boys,3,0,H,2.47,2.96,3.44,2.48,3.1,3.53,2.36,2.96,3.3
-Argentina,Liga Profesional,2023,31/03/2023,23:00,Rosario Central,Gimnasia L.P.,3,1,H,2.27,3.15,3.63,2.34,3.2,3.72,2.24,3.04,3.47
-Argentina,Liga Profesional,2023,01/04/2023,01:30,River Plate,Union de Santa Fe,1,0,H,1.4,4.73,9.71,1.44,4.9,9.71,1.38,4.58,8.37
-Argentina,Liga Profesional,2023,01/04/2023,19:30,Barracas Central,Boca Juniors,0,3,A,4.34,3.34,1.98,4.57,3.42,2.05,4.05,3.24,1.97
-Argentina,Liga Profesional,2023,01/04/2023,23:00,San Lorenzo,Independiente,0,0,D,2.31,2.82,4.05,2.31,3.05,4.34,2.22,2.84,3.82
-Argentina,Liga Profesional,2023,01/04/2023,23:30,Racing Club,Huracan,2,1,H,2.22,3.16,3.73,2.25,3.4,3.75,2.17,3.1,3.55
-Argentina,Liga Profesional,2023,02/04/2023,01:30,Tigre,Lanus,2,1,H,2.3,3.27,3.43,2.34,3.45,3.5,2.23,3.22,3.27
-Argentina,Liga Profesional,2023,02/04/2023,20:30,Instituto,Talleres Cordoba,0,3,A,3.08,3.06,2.62,3.08,3.2,2.7,2.95,3,2.55
-Argentina,Liga Profesional,2023,02/04/2023,23:00,Colon Santa Fe,Atl. Tucuman,0,0,D,2.51,3.09,3.21,2.52,3.26,3.37,2.42,3.08,3.06
-Argentina,Liga Profesional,2023,03/04/2023,01:30,Banfield,Platense,0,2,A,1.96,3.31,4.49,2.01,3.4,4.86,1.94,3.18,4.24
-Argentina,Liga Profesional,2023,04/04/2023,00:00,Belgrano,Sarmiento Junin,0,0,D,2.13,3.07,4.19,2.17,3.18,4.33,2.1,3,3.94
-Argentina,Liga Profesional,2023,04/04/2023,01:30,Central Cordoba,Arsenal Sarandi,1,0,H,2.01,3.28,4.3,2.2,3.3,4.3,2.03,3.18,3.91
-Austria,Bundesliga,2022/2023,31/03/2023,18:30,Hartberg,A. Lustenau,0,1,A,2.15,3.5,3.59,2.17,3.62,3.62,2.08,3.43,3.4
-Austria,Bundesliga,2022/2023,01/04/2023,16:00,Altach,Tirol,1,0,H,3.13,3.46,2.39,3.13,3.46,2.57,2.84,3.34,2.4
-Austria,Bundesliga,2022/2023,01/04/2023,16:00,Wolfsberger AC,Ried,1,0,H,1.9,3.77,4.22,1.91,3.92,4.4,1.85,3.63,4
-Austria,Bundesliga,2022/2023,02/04/2023,13:30,A. Klagenfurt,Salzburg,0,3,A,12.59,6.53,1.24,13.6,6.8,1.43,12.13,6.22,1.22
-Austria,Bundesliga,2022/2023,02/04/2023,13:30,Austria Vienna,LASK,2,2,D,2.66,3.45,2.76,2.66,3.55,2.76,2.56,3.38,2.64
-Austria,Bundesliga,2022/2023,02/04/2023,16:00,Sturm Graz,Rapid Vienna,3,1,H,1.81,3.83,4.66,1.89,3.83,4.66,1.78,3.65,4.34
-Denmark,Superliga,2022/2023,31/03/2023,18:00,Odense,Midtjylland,1,3,A,2.92,3.51,2.46,3.02,3.65,2.51,2.84,3.49,2.38
-Denmark,Superliga,2022/2023,02/04/2023,13:00,Horsens,Aalborg,0,4,A,2.74,3.23,2.79,2.8,3.32,2.85,2.62,3.16,2.75
-Denmark,Superliga,2022/2023,02/04/2023,13:00,Lyngby,Silkeborg,1,1,D,2.47,3.54,2.89,3,3.64,2.92,2.48,3.43,2.74
-Denmark,Superliga,2022/2023,02/04/2023,15:00,Brondby,Viborg,0,3,A,2.16,3.56,3.45,2.19,3.62,3.6,2.12,3.45,3.36
-Denmark,Superliga,2022/2023,02/04/2023,17:00,FC Copenhagen,Nordsjaelland,2,1,H,1.88,3.67,4.33,1.92,3.92,4.4,1.85,3.64,4.11
-Denmark,Superliga,2022/2023,03/04/2023,18:00,Aarhus,Randers FC,1,1,D,2,3.34,4.24,2.02,3.48,4.54,1.96,3.33,3.98
-Ireland,Premier Division,2023,31/03/2023,19:45,Cork City,Drogheda,1,1,D,2.23,3.52,3.34,2.27,3.55,3.45,2.17,3.29,3.26
-Ireland,Premier Division,2023,31/03/2023,19:45,Dundalk,Shamrock Rovers,0,4,A,4.74,3.95,1.75,5.25,3.97,2.05,4.63,3.64,1.72
-Ireland,Premier Division,2023,31/03/2023,19:45,Shelbourne,Derry City,0,1,A,3.74,3.06,2.28,4.2,3.15,2.33,3.57,2.92,2.22
-Ireland,Premier Division,2023,31/03/2023,19:45,St. Patricks,UC Dublin,3,0,H,1.31,5.72,10.07,1.33,5.8,11,1.3,5.17,9.14
-Ireland,Premier Division,2023,01/04/2023,19:45,Sligo Rovers,Bohemians,0,1,A,2.99,3.18,2.61,3.09,3.23,2.64,2.9,3.08,2.46
-Japan,J1 League,2023,31/03/2023,11:00,Kashiwa Reysol,Urawa Reds,0,3,A,3.92,3.51,2.08,3.92,3.56,2.2,3.72,3.35,2.01
-Japan,J1 League,2023,01/04/2023,06:00,Albirex Niigata,Nagoya Grampus,1,3,A,3.94,3.16,2.19,4.08,3.25,2.3,3.59,3.09,2.17
-Japan,J1 League,2023,01/04/2023,06:00,Kyoto,Vissel Kobe,0,3,A,4.09,3.54,1.99,4.29,3.56,2.15,4,3.31,1.96
-Japan,J1 League,2023,01/04/2023,06:00,Yokohama FC,Avispa Fukuoka,1,1,D,3.34,3.19,2.41,3.36,3.21,2.42,3.2,3.08,2.34
-Japan,J1 League,2023,01/04/2023,07:00,Kashima Antlers,Sanfrecce Hiroshima,1,2,A,2.64,3.35,2.86,2.64,3.4,2.86,2.55,3.22,2.77
-Japan,J1 League,2023,01/04/2023,07:00,Sagan Tosu,FC Tokyo,1,0,H,4.24,3.6,1.94,4.4,3.7,2.3,4.01,3.41,1.93
-Japan,J1 League,2023,01/04/2023,07:00,Shonan Bellmare,Gamba Osaka,4,1,H,2.07,3.5,3.85,2.13,3.57,4.1,2.02,3.38,3.67
-Japan,J1 League,2023,01/04/2023,08:00,Cerezo Osaka,Yokohama F. Marinos,2,1,H,2.78,3.68,2.52,2.83,3.68,2.53,2.74,3.47,2.43
-Japan,J1 League,2023,01/04/2023,11:00,Hokkaido Consadole Sapporo,Kawasaki Frontale,3,4,A,2.45,3.65,2.89,3,3.66,2.89,2.43,3.54,2.71
-Mexico,Liga MX,2022/2023,01/04/2023,02:05,Necaxa,Santos Laguna,0,0,D,2.8,3.61,2.54,2.88,3.69,2.54,2.71,3.46,2.41
-Mexico,Liga MX,2022/2023,01/04/2023,04:00,Juarez,Puebla,0,2,A,1.72,3.89,5.21,2.3,3.9,5.4,1.74,3.6,4.7
-Mexico,Liga MX,2022/2023,02/04/2023,00:00,Pachuca,Cruz Azul,0,2,A,2.01,3.55,4.02,2.02,3.62,4.27,1.95,3.39,3.79
-Mexico,Liga MX,2022/2023,02/04/2023,02:05,Club America,Club Leon,2,2,D,1.72,4.15,4.78,1.75,4.3,4.8,1.68,3.97,4.47
-Mexico,Liga MX,2022/2023,02/04/2023,02:15,Monterrey,Club Tijuana,4,0,H,1.51,4.39,7.18,1.54,4.5,7.37,1.49,4.12,6.36
-Mexico,Liga MX,2022/2023,02/04/2023,04:10,Atlas,Guadalajara Chivas,3,3,D,2.54,3.16,3.16,2.65,3.3,3.27,2.42,3.1,2.97
-Mexico,Liga MX,2022/2023,02/04/2023,19:00,Toluca,U.A.N.L.- Tigres,3,2,H,2.27,3.68,3.17,2.45,3.69,3.17,2.23,3.47,2.97
-Mexico,Liga MX,2022/2023,03/04/2023,00:00,Atl. San Luis,Mazatlan FC,2,1,H,1.56,4.17,6.63,2.01,4.3,6.8,1.55,3.95,5.94
-Mexico,Liga MX,2022/2023,03/04/2023,02:05,Queretaro,U.N.A.M.- Pumas,1,0,H,2.87,3.48,2.55,2.96,3.52,2.58,2.73,3.34,2.46
-Poland,Ekstraklasa,2022/2023,31/03/2023,17:00,Zaglebie,Warta Poznan,0,0,D,2.56,3.13,3.1,2.75,3.24,3.11,2.5,3.02,2.92
-Poland,Ekstraklasa,2022/2023,31/03/2023,19:30,Piast Gliwice,Gornik Zabrze,1,0,H,2.31,3.11,3.6,2.34,3.25,3.8,2.24,3.04,3.39
-Poland,Ekstraklasa,2022/2023,01/04/2023,14:00,Korona Kielce,Legnica,1,0,H,1.97,3.46,4.18,2.21,3.6,4.18,1.97,3.34,3.8
-Poland,Ekstraklasa,2022/2023,01/04/2023,16:30,Legia,Rakow,3,1,H,3.8,3.28,2.15,3.8,3.28,2.28,3.49,3.11,2.16
-Poland,Ekstraklasa,2022/2023,01/04/2023,19:00,Lechia Gdansk,Slask Wroclaw,0,0,D,2.15,3.36,3.68,2.32,3.42,3.68,2.13,3.25,3.38
-Poland,Ekstraklasa,2022/2023,02/04/2023,11:30,Wisla Plock,Radomiak Radom,1,1,D,3.02,3.21,2.56,3.02,3.35,2.8,2.83,3.16,2.48
-Poland,Ekstraklasa,2022/2023,02/04/2023,14:00,Cracovia,Widzew Lodz,1,1,D,2.61,3.12,3.04,2.66,3.22,3.45,2.52,3.03,2.89
-Poland,Ekstraklasa,2022/2023,02/04/2023,16:30,Lech Poznan,Pogon Szczecin,2,2,D,1.93,3.7,4.02,2.04,3.78,4.02,1.91,3.53,3.75
-Poland,Ekstraklasa,2022/2023,03/04/2023,18:00,Stal Mielec,Jagiellonia,1,1,D,2.5,3.36,2.97,2.52,3.47,2.98,2.41,3.28,2.83
-Romania,Liga 1,2022/2023,31/03/2023,19:00,U Craiova 1948,Petrolul,0,1,A,1.78,3.55,4.94,1.9,3.9,5,1.75,3.51,4.5
-Romania,Liga 1,2022/2023,01/04/2023,10:00,UTA Arad,U. Cluj,2,0,H,2.03,3.26,4.08,2.4,3.3,4.09,2.13,3.08,3.52
-Romania,Liga 1,2022/2023,01/04/2023,15:00,FC Hermannstadt,FC Botosani,1,1,D,2.38,2.88,3.6,2.4,3.15,3.6,2.29,2.94,3.3
-Romania,Liga 1,2022/2023,01/04/2023,19:45,FC Rapid Bucuresti,Farul Constanta,1,1,D,2.34,3.16,3.33,2.55,3.25,3.35,2.28,3.08,3.16
-Romania,Liga 1,2022/2023,02/04/2023,11:30,FC Arges,FC Voluntari,0,2,A,3.89,3.16,2.12,4.3,3.38,2.45,3.62,3.06,2.1
-Romania,Liga 1,2022/2023,02/04/2023,19:00,Univ. Craiova,CFR Cluj,1,1,D,2.61,3.13,2.93,2.65,3.2,2.95,2.53,3.02,2.82
-Romania,Liga 1,2022/2023,03/04/2023,15:30,Mioveni,Chindia Targoviste,0,1,A,3.39,2.9,2.48,3.41,3.1,2.5,3.13,2.89,2.42
-Romania,Liga 1,2022/2023,03/04/2023,18:30,Sepsi Sf. Gheorghe,FCSB,1,2,A,3.11,3.39,2.33,3.4,3.6,2.4,3,3.31,2.26
-Russia,Premier League,2022/2023,01/04/2023,12:00,Dynamo Moscow,Sochi,0,2,A,1.99,3.87,3.66,2.04,3.91,3.78,1.97,3.76,3.57
-Russia,Premier League,2022/2023,01/04/2023,12:00,Nizhny Novgorod,Lokomotiv Moscow,0,4,A,3.18,3.21,2.45,3.18,3.48,2.48,3.01,3.25,2.42
-Russia,Premier League,2022/2023,01/04/2023,14:30,Spartak Moscow,Akhmat Grozny,0,0,D,1.52,4.73,5.97,1.56,4.9,6.4,1.53,4.58,5.7
-Russia,Premier League,2022/2023,01/04/2023,17:00,Zenit,Ural,2,0,H,1.31,5.81,9.89,1.36,5.81,9.9,1.33,5.38,8.87
-Russia,Premier League,2022/2023,02/04/2023,12:00,Khimki,Krasnodar,0,6,A,4.25,3.88,1.84,4.4,4.08,1.86,4.19,3.86,1.79
-Russia,Premier League,2022/2023,02/04/2023,12:00,Krylya Sovetov,Orenburg,1,1,D,1.98,3.9,3.69,2.03,3.9,3.72,1.97,3.76,3.54
-Russia,Premier League,2022/2023,02/04/2023,14:30,Fakel Voronezh,CSKA Moscow,0,2,A,4.42,3.65,1.87,4.78,3.9,1.9,4.27,3.61,1.85
-Russia,Premier League,2022/2023,02/04/2023,17:00,FK Rostov,Torpedo Moscow,2,1,H,1.41,4.86,8.18,1.59,4.86,8.4,1.44,4.52,7.31
-Sweden,Allsvenskan,2023,01/04/2023,14:00,Malmo FF,Kalmar,1,0,H,1.63,4.11,5.76,1.68,4.33,5.8,1.62,3.97,5.28
-Sweden,Allsvenskan,2023,01/04/2023,16:30,Djurgarden,Brommapojkarna,3,1,H,1.32,5.91,9.28,1.32,6.4,11,1.28,5.7,9.78
-Sweden,Allsvenskan,2023,02/04/2023,14:00,Hammarby,Degerfors,3,1,H,1.31,6.01,9.69,1.32,6.25,11,1.29,5.66,9.75
-Sweden,Allsvenskan,2023,02/04/2023,14:00,Norrkoping,Sirius,1,1,D,1.93,3.71,4.14,1.95,4.02,4.2,1.88,3.65,3.94
-Sweden,Allsvenskan,2023,02/04/2023,16:30,Goteborg,Varnamo,0,1,A,2.04,3.61,3.82,2.06,3.7,3.95,1.98,3.53,3.7
-Sweden,Allsvenskan,2023,02/04/2023,16:30,Halmstad,AIK,2,1,H,3.26,3.19,2.46,3.69,3.4,2.46,3.27,3.16,2.29
-Sweden,Allsvenskan,2023,03/04/2023,18:00,Mjallby,Varberg,2,2,D,1.68,3.67,6.04,1.9,3.68,6.04,1.69,3.51,5.46
-Sweden,Allsvenskan,2023,03/04/2023,18:10,Elfsborg,Hacken,0,2,A,2.43,3.8,2.83,2.6,3.88,2.85,2.39,3.66,2.72
-Switzerland,Super League,2022/2023,01/04/2023,17:00,Servette,Young Boys,2,1,H,3.43,3.53,2.18,3.8,3.9,2.2,3.37,3.5,2.07
-Switzerland,Super League,2022/2023,01/04/2023,19:30,Basel,Winterthur,2,0,H,1.52,4.51,6.31,1.53,4.6,6.5,1.5,4.27,6
-Switzerland,Super League,2022/2023,02/04/2023,13:15,Grasshoppers,Lugano,2,1,H,3,3.45,2.44,3.07,3.54,2.6,2.87,3.38,2.38
-Switzerland,Super League,2022/2023,02/04/2023,15:30,Luzern,Sion,1,2,A,1.51,4.53,6.42,1.77,4.75,6.7,1.49,4.43,5.88
-Switzerland,Super League,2022/2023,02/04/2023,15:30,St. Gallen,Zurich,2,2,D,2.22,3.79,3.13,2.3,3.83,3.25,2.19,3.6,3.01
-USA,MLS,2023,02/04/2023,00:30,Atlanta Utd,New York Red Bulls,1,0,H,2.1,3.61,3.54,2.17,3.65,3.63,2.09,3.48,3.41
-USA,MLS,2023,02/04/2023,00:30,Columbus Crew,Real Salt Lake,4,0,H,1.58,4.32,6.09,1.9,4.6,6.3,1.57,4.08,5.76
-USA,MLS,2023,02/04/2023,00:30,FC Cincinnati,Inter Miami,1,0,H,1.64,4.24,5.41,1.7,4.4,5.8,1.6,4.15,5.26
-USA,MLS,2023,02/04/2023,00:30,Los Angeles Galaxy,Seattle Sounders,1,2,A,2.52,3.55,2.86,2.7,3.63,3.1,2.45,3.47,2.77
-USA,MLS,2023,02/04/2023,00:30,New England Revolution,New York City,1,1,D,2.48,3.49,2.96,2.55,3.67,3.15,2.39,3.4,2.89
-USA,MLS,2023,02/04/2023,00:30,Orlando City,Nashville SC,0,2,A,2.54,3.38,2.96,2.64,3.39,3.09,2.45,3.25,2.92
-USA,MLS,2023,02/04/2023,00:30,Philadelphia Union,Sporting Kansas City,0,0,D,1.67,4.28,5.08,1.72,4.34,5.25,1.64,4.05,5.02
-USA,MLS,2023,02/04/2023,00:30,Toronto FC,Charlotte,2,2,D,2.03,3.67,3.78,2.05,3.69,4.05,1.99,3.54,3.67
-USA,MLS,2023,02/04/2023,01:30,Chicago Fire,DC United,0,0,D,1.98,3.8,3.83,2.03,3.82,4.15,1.93,3.62,3.79
-USA,MLS,2023,02/04/2023,01:30,FC Dallas,Portland Timbers,1,1,D,1.68,4.07,5.5,1.72,4.1,5.8,1.66,3.91,5.05
-USA,MLS,2023,02/04/2023,01:30,St. Louis City,Minnesota United,0,1,A,1.86,3.79,4.39,1.88,3.89,4.59,1.82,3.73,4.15
-USA,MLS,2023,02/04/2023,02:30,Colorado Rapids,Los Angeles FC,0,0,D,3.34,3.72,2.18,3.69,3.76,2.2,3.31,3.56,2.1
-USA,MLS,2023,02/04/2023,03:30,San Jose Earthquakes,Houston Dynamo,2,1,H,1.9,3.75,4.22,1.94,3.84,4.3,1.87,3.64,4.01
-USA,MLS,2023,02/04/2023,03:30,Vancouver Whitecaps,CF Montreal,5,0,H,2.08,3.78,3.53,2.15,3.81,3.54,2.08,3.61,3.33
+Argentina,Liga Profesional,2023,09/06/2023,19:30,Barracas Central,Rosario Central,0,0,D,2.78,3.15,2.82,2.94,3.27,2.93,2.67,3.09,2.75
+Argentina,Liga Profesional,2023,10/06/2023,00:00,Independiente,Sarmiento Junin,2,0,H,2.15,3.05,4.17,2.17,3.15,4.54,2.11,2.99,3.95
+Argentina,Liga Profesional,2023,10/06/2023,23:00,Platense,Tigre,1,0,H,2.83,2.96,2.94,2.93,2.96,3.03,2.75,2.81,2.9
+Argentina,Liga Profesional,2023,11/06/2023,00:00,Boca Juniors,Lanus,1,1,D,2.71,2.85,3.19,2.88,2.93,3.26,2.69,2.83,2.96
+Argentina,Liga Profesional,2023,11/06/2023,01:30,Talleres Cordoba,Arsenal Sarandi,1,0,H,1.32,5.27,11.08,1.35,5.3,11.5,1.32,4.95,10.23
+Argentina,Liga Profesional,2023,12/06/2023,18:00,Newells Old Boys,Union de Santa Fe,1,1,D,1.8,3.35,5.53,1.9,3.44,5.6,1.78,3.26,5.17
+Argentina,Liga Profesional,2023,12/06/2023,21:00,San Lorenzo,Central Cordoba,0,0,D,1.72,3.31,6.45,1.78,3.38,6.55,1.73,3.2,5.81
+Argentina,Liga Profesional,2023,12/06/2023,23:15,Banfield,River Plate,1,4,A,4.75,3.66,1.81,5.31,3.82,1.86,4.54,3.57,1.78
+Argentina,Liga Profesional,2023,13/06/2023,01:45,Instituto,Racing Club,1,1,D,2.23,3.06,3.87,2.4,3.13,3.87,2.26,2.97,3.55
+Argentina,Liga Profesional,2023,13/06/2023,01:45,Velez Sarsfield,Argentinos Jrs,0,1,A,2.85,2.89,2.97,3.09,2.93,3.01,2.84,2.79,2.85
+Argentina,Liga Profesional,2023,13/06/2023,22:00,Colon Santa Fe,Estudiantes L.P.,1,0,H,3.68,3.14,2.26,3.92,3.28,2.3,3.52,3.1,2.2
+Argentina,Liga Profesional,2023,13/06/2023,22:00,Defensa y Justicia,Belgrano,2,0,H,1.76,3.57,5.3,1.78,3.75,5.5,1.72,3.5,5.18
+Argentina,Liga Profesional,2023,14/06/2023,00:30,Atl. Tucuman,Godoy Cruz,2,1,H,2.28,3.08,3.69,2.5,3.13,3.85,2.28,2.96,3.52
+Argentina,Liga Profesional,2023,14/06/2023,00:30,Gimnasia L.P.,Huracan,1,0,H,2.99,2.79,2.94,3.02,2.91,3.13,2.87,2.76,2.85
+Austria,Bundesliga,2022/2023,11/06/2023,16:00,Austria Vienna,A. Lustenau,5,0,H,1.54,4.66,5.93,1.54,4.82,6.52,1.49,4.45,5.83
+Brazil,Serie A,2023,10/06/2023,20:00,Coritiba,Santos,0,0,D,2.57,2.96,3.32,2.62,3.02,3.32,2.53,2.89,3.12
+Brazil,Serie A,2023,10/06/2023,22:30,Atletico-MG,Bragantino,1,1,D,1.82,3.43,5.3,1.84,3.67,5.4,1.79,3.39,4.87
+Brazil,Serie A,2023,10/06/2023,22:30,Bahia,Cruzeiro,2,2,D,2.87,3.27,2.68,2.87,3.32,2.75,2.77,3.17,2.6
+Brazil,Serie A,2023,10/06/2023,22:30,Corinthians,Cuiaba,1,1,D,1.82,3.29,5.68,1.82,3.46,6.2,1.74,3.26,5.57
+Brazil,Serie A,2023,11/06/2023,01:00,Botafogo RJ,Fortaleza,2,0,H,2.27,3.25,3.59,2.28,3.35,3.71,2.21,3.2,3.39
+Brazil,Serie A,2023,11/06/2023,15:00,America MG,Athletico-PR,2,2,D,2.65,3.28,2.9,2.66,3.37,3.08,2.53,3.18,2.85
+Brazil,Serie A,2023,11/06/2023,20:00,Internacional,Vasco,2,1,H,1.83,3.55,4.98,1.9,3.61,5.21,1.8,3.41,4.68
+Brazil,Serie A,2023,11/06/2023,20:00,Sao Paulo,Palmeiras,0,2,A,3.19,3.25,2.47,3.24,3.46,2.47,3.06,3.21,2.37
+Brazil,Serie A,2023,11/06/2023,22:30,Flamengo RJ,Gremio,3,0,H,1.61,4.2,5.82,1.65,4.32,6,1.59,4,5.49
+Brazil,Serie A,2023,11/06/2023,22:30,Goias,Fluminense,2,2,D,3.49,3.3,2.28,3.68,3.38,2.28,3.45,3.22,2.18
+China,Super League,2023,09/06/2023,10:30,Henan Songshan Longmen,Zhejiang Professional,2,2,D,2.65,3.29,2.76,3.12,3.67,2.76,2.57,3.29,2.61
+China,Super League,2023,09/06/2023,12:35,Dalian Pro,Beijing Guoan,2,2,D,4.15,3.68,1.87,4.5,3.92,1.93,3.93,3.55,1.84
+China,Super League,2023,09/06/2023,12:35,Meizhou Hakka,Cangzhou,2,3,A,2.35,3.32,3.15,2.52,3.46,3.15,2.31,3.3,2.93
+China,Super League,2023,09/06/2023,12:35,Shanghai Port,Nantong Zhiyun,2,1,H,1.18,6.72,16.33,1.22,7.75,19,1.16,6.82,14.8
+China,Super League,2023,09/06/2023,12:35,Wuhan Three Towns,Shandong Taishan,1,1,D,2.34,3.48,3.04,2.56,3.65,3.13,2.28,3.41,2.89
+Denmark,Superliga,2022/2023,09/06/2023,18:00,Viborg,Midtjylland,0,1,A,2.73,3.54,2.6,2.96,3.68,2.64,2.7,3.49,2.47
+Finland,Veikkausliiga,2023,11/06/2023,14:00,AC Oulu,Inter Turku,1,1,D,2.76,3.39,2.7,2.85,3.4,2.7,2.68,3.24,2.56
+Finland,Veikkausliiga,2023,11/06/2023,14:00,Ilves,Honka,1,1,D,3.04,2.98,2.76,3.04,3.16,2.8,2.86,2.93,2.62
+Finland,Veikkausliiga,2023,11/06/2023,16:30,HJK,KTP,1,0,H,1.35,5.4,9.36,1.38,5.45,9.5,1.32,5.06,8.62
+Finland,Veikkausliiga,2023,11/06/2023,16:30,Lahti,Haka,1,0,H,3,3.39,2.5,3,3.4,2.52,2.89,3.27,2.39
+Finland,Veikkausliiga,2023,11/06/2023,16:30,Mariehamn,SJK,0,2,A,3.66,3.48,2.14,4.15,3.6,2.19,3.55,3.34,2.05
+Finland,Veikkausliiga,2023,11/06/2023,16:30,VPS,KuPS,0,2,A,4.32,3.39,1.99,4.65,3.52,2.02,4.02,3.3,1.93
+Ireland,Premier Division,2023,09/06/2023,19:45,Cork City,Dundalk,1,2,A,2.74,3.14,2.86,2.82,3.3,2.88,2.64,3.05,2.72
+Ireland,Premier Division,2023,09/06/2023,19:45,Derry City,Bohemians,0,0,D,1.96,3.28,4.56,2.02,3.34,4.61,1.93,3.13,4.23
+Ireland,Premier Division,2023,09/06/2023,19:45,Drogheda,St. Patricks,2,1,H,3.34,3.58,2.19,3.66,3.8,2.24,3.2,3.45,2.12
+Ireland,Premier Division,2023,09/06/2023,19:45,Shelbourne,Sligo Rovers,1,1,D,2.4,3.17,3.33,2.41,3.4,4.1,2.29,3.1,3.2
+Ireland,Premier Division,2023,09/06/2023,20:00,Shamrock Rovers,UC Dublin,4,0,H,1.06,16.88,33.19,1.14,19,41,1.05,12.98,30.1
+Japan,J1 League,2023,10/06/2023,08:00,Yokohama F. Marinos,Kashiwa Reysol,4,3,H,1.64,4.68,4.87,1.69,4.71,5,1.63,4.32,4.57
+Japan,J1 League,2023,10/06/2023,11:00,Cerezo Osaka,Vissel Kobe,2,1,H,3.39,3.56,2.21,3.41,3.57,2.32,3.25,3.4,2.17
+Japan,J1 League,2023,10/06/2023,11:00,Sagan Tosu,Hokkaido Consadole Sapporo,1,1,D,3.54,4.02,2.01,3.78,4.05,2.04,3.47,3.79,1.96
+Japan,J1 League,2023,11/06/2023,06:00,Albirex Niigata,Kyoto,1,3,A,2.35,3.56,3.12,2.35,3.56,3.59,2.26,3.35,3.11
+Japan,J1 League,2023,11/06/2023,08:00,Nagoya Grampus,Avispa Fukuoka,2,1,H,1.81,3.5,5.27,1.83,3.57,5.27,1.78,3.37,4.9
+Japan,J1 League,2023,11/06/2023,10:00,Gamba Osaka,FC Tokyo,3,1,H,2.43,3.31,3.14,2.54,3.42,3.2,2.4,3.23,2.97
+Japan,J1 League,2023,11/06/2023,10:00,Kashima Antlers,Shonan Bellmare,1,0,H,1.79,3.63,5.07,1.81,3.85,5.37,1.77,3.51,4.71
+Japan,J1 League,2023,11/06/2023,10:30,Yokohama FC,Urawa Reds,0,0,D,6.62,4.37,1.53,7.05,4.5,1.56,6.29,4.19,1.5
+Japan,J1 League,2023,11/06/2023,11:00,Kawasaki Frontale,Sanfrecce Hiroshima,1,0,H,2.55,3.38,2.95,2.55,3.46,3.17,2.4,3.27,2.94
+Norway,Eliteserien,2023,11/06/2023,16:00,Aalesund,Tromso,2,3,A,2.57,3.18,3.1,2.57,3.33,3.2,2.37,3.17,3.05
+Norway,Eliteserien,2023,11/06/2023,16:00,Bodo/Glimt,Ham-Kam,3,0,H,1.16,9.01,16.88,1.18,9.01,17,1.15,8.02,14.72
+Norway,Eliteserien,2023,11/06/2023,16:00,Haugesund,Sandefjord,3,2,H,2.15,3.39,3.73,2.17,3.57,3.73,2.07,3.36,3.51
+Norway,Eliteserien,2023,11/06/2023,16:00,Odd,Molde,1,0,H,5.75,4.34,1.6,5.82,4.34,1.65,5.22,4.1,1.59
+Norway,Eliteserien,2023,11/06/2023,16:00,Sarpsborg 08,Viking,1,3,A,2.16,4.1,3.11,2.16,4.1,3.25,2.1,3.84,3.05
+Norway,Eliteserien,2023,11/06/2023,16:00,Stabaek,Rosenborg,2,2,D,2.92,3.29,2.6,3,3.33,2.6,2.9,3.17,2.47
+Norway,Eliteserien,2023,11/06/2023,16:00,Valerenga,Stromsgodset,0,1,A,1.64,4.38,5.2,1.69,4.5,5.4,1.62,4.15,4.93
+Norway,Eliteserien,2023,11/06/2023,18:15,Brann,Lillestrom,2,2,D,1.56,4.67,5.83,1.58,4.75,6,1.53,4.37,5.58
+Russia,Premier League,2022/2023,07/06/2023,13:00,Yenisey,Fakel Voronezh,0,1,A,3.47,3.23,2.24,3.7,3.44,2.24,3.47,3.24,2.16
+Russia,Premier League,2022/2023,07/06/2023,16:00,Rodina Moscow,Nizhny Novgorod,0,3,A,3.92,3.24,2.14,4.26,3.34,2.14,3.84,3.17,2.07
+Russia,Premier League,2022/2023,10/06/2023,12:30,Nizhny Novgorod,Rodina Moscow,0,2,A,1.53,4.12,6.48,1.57,4.33,7.49,1.52,4.06,6.56
+Russia,Premier League,2022/2023,10/06/2023,15:30,Fakel Voronezh,Yenisey,2,0,H,1.49,4.31,6.82,1.54,4.64,7.2,1.47,4.36,6.68
+Sweden,Allsvenskan,2023,09/06/2023,18:00,Hammarby,Brommapojkarna,2,1,H,1.6,4.29,5.74,1.67,4.33,6.57,1.6,4.08,5.29
+Sweden,Allsvenskan,2023,10/06/2023,14:00,Kalmar,Degerfors,2,1,H,1.65,4.11,5.48,1.7,4.11,5.48,1.65,3.91,5.09
+Sweden,Allsvenskan,2023,10/06/2023,14:00,Varnamo,Malmo FF,1,3,A,5.47,3.91,1.69,6.09,4.29,1.7,5.28,3.88,1.64
+Sweden,Allsvenskan,2023,10/06/2023,16:30,Varberg,Halmstad,1,2,A,2.88,3.08,2.83,2.88,3.26,2.83,2.76,3.04,2.71
+Sweden,Allsvenskan,2023,11/06/2023,14:00,AIK,Elfsborg,1,2,A,4.16,3.65,1.94,4.35,3.74,2.02,3.88,3.53,1.93
+Sweden,Allsvenskan,2023,11/06/2023,14:00,Sirius,Goteborg,2,0,H,2.17,3.75,3.34,2.19,3.78,3.61,2.11,3.57,3.28
+Sweden,Allsvenskan,2023,11/06/2023,16:30,Djurgarden,Norrkoping,2,2,D,1.55,4.33,6.4,1.57,4.5,6.75,1.52,4.2,6.2
+Sweden,Allsvenskan,2023,11/06/2023,16:30,Hacken,Mjallby,3,0,H,1.4,5.3,7.63,1.43,5.3,7.63,1.39,4.96,7.15
+USA,MLS,2023,11/06/2023,00:30,Atlanta Utd,DC United,3,1,H,1.97,3.96,3.71,2.01,3.96,3.8,1.95,3.77,3.56
+USA,MLS,2023,11/06/2023,00:30,CF Montreal,Minnesota United,4,0,H,2.42,3.6,2.97,2.48,3.61,2.98,2.38,3.44,2.86
+USA,MLS,2023,11/06/2023,00:30,Charlotte,Seattle Sounders,3,3,D,2.66,3.3,2.88,2.73,3.36,2.9,2.62,3.19,2.74
+USA,MLS,2023,11/06/2023,00:30,New England Revolution,Inter Miami,3,1,H,1.36,5.6,8.51,1.47,5.8,10,1.33,5.27,8.52
+USA,MLS,2023,11/06/2023,00:30,Orlando City,Colorado Rapids,2,0,H,1.77,3.93,4.77,1.8,3.96,5.09,1.74,3.77,4.54
+USA,MLS,2023,11/06/2023,00:30,Toronto FC,Nashville SC,1,1,D,2.45,3.36,3.11,2.61,3.44,3.14,2.41,3.3,2.93
+USA,MLS,2023,11/06/2023,01:30,Chicago Fire,Columbus Crew,1,2,A,2.37,3.77,2.93,2.43,3.83,2.96,2.35,3.62,2.8
+USA,MLS,2023,11/06/2023,01:30,Houston Dynamo,Los Angeles FC,4,0,H,3.25,3.78,2.2,3.3,3.78,2.25,3.15,3.58,2.16
+USA,MLS,2023,11/06/2023,01:30,Sporting Kansas City,Austin FC,4,1,H,1.93,3.96,3.89,1.95,3.99,4,1.89,3.77,3.77
+USA,MLS,2023,11/06/2023,02:30,Real Salt Lake,New York City,0,0,D,2.2,3.63,3.34,2.24,3.68,3.6,2.11,3.5,3.32
+USA,MLS,2023,11/06/2023,03:30,San Jose Earthquakes,Philadelphia Union,2,1,H,3.16,3.46,2.37,3.25,3.56,2.54,3,3.4,2.31
+USA,MLS,2023,11/06/2023,03:30,Vancouver Whitecaps,FC Cincinnati,1,1,D,2.11,3.67,3.56,2.2,3.74,3.56,2.1,3.57,3.29
+USA,MLS,2023,11/06/2023,18:00,St. Louis City,Los Angeles Galaxy,1,1,D,2.09,3.93,3.38,2.11,4.04,3.52,2.04,3.81,3.25
+USA,MLS,2023,12/06/2023,03:00,Portland Timbers,FC Dallas,1,0,H,2.43,2.99,3.54,2.44,3.56,3.8,2.31,2.94,3.5
+USA,MLS,2023,15/06/2023,03:30,Los Angeles FC,Houston Dynamo,0,1,A,1.58,4.49,5.69,1.62,4.7,6.16,1.54,4.4,5.51
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,

@@ -73,7 +73,7 @@ class Prediction(BaseModel):
                 self.is_checked = result.home_score > 0 and result.away_score > 0
             if self.type == TypePrediction.get("no_btts"):
                 self.is_checked = (result.home_score > 0 and result.away_score == 0) or (result.home_score == 0 and result.away_score > 0)
-            if self.type == TypePrediction.get("corner_p7_5"):
+            if self.type == TypePrediction.get("corner_p6_5"):
                 self.is_checked = (extra.home_corners or 0 )+ (extra.away_corners or 0) > 8.5
             if self.type == TypePrediction.get("corner_m12_5"):
                 self.is_checked = (extra.home_corners or 0 )+ (extra.away_corners or 0) < 12.5
@@ -103,47 +103,76 @@ class PredictionTest(BaseModel):
                 if self.type == TypePrediction.get("p0_5_MT"):
                     if result.home_half_score is not None:
                         self.is_checked = (result.home_half_score + result.away_half_score) > 0.5
+                        
                 if self.type == TypePrediction.get("p1_5"):
                     self.is_checked = (result.home_score + result.away_score) > 1.5
+                    
                 if self.type == TypePrediction.get("p2_5"):
                     self.is_checked = (result.home_score + result.away_score) > 2.5
+                    
                 if self.type == TypePrediction.get("p3_5"):
                     self.is_checked = (result.home_score + result.away_score) > 3.5
-                if self.type == TypePrediction.get("m1_5"):
-                    self.is_checked = (result.home_score + result.away_score) < 1.5
+                    
                 if self.type == TypePrediction.get("m1_5_MT"):
                     if result.home_half_score is not None:
                         self.is_checked = (result.home_half_score + result.away_half_score) < 1.5
-                if self.type == TypePrediction.get("m2_5"):
-                    self.is_checked = (result.home_score + result.away_score) < 2.5
+                        
                 if self.type == TypePrediction.get("m3_5"):
                     self.is_checked = (result.home_score + result.away_score) < 3.5
+                    
+                if self.type == TypePrediction.get("1"):
+                    self.is_checked = result.home_score > result.away_score
+
                 if self.type == TypePrediction.get("1X"):
                     self.is_checked = result.home_score >= result.away_score
+
                 if self.type == TypePrediction.get("12"):
                     self.is_checked = result.home_score != result.away_score
+
                 if self.type == TypePrediction.get("X"):
                     self.is_checked = result.home_score == result.away_score
+
+                if self.type == TypePrediction.get("2"):
+                    self.is_checked = result.home_score < result.away_score
+
                 if self.type == TypePrediction.get("X2"):
                     self.is_checked = result.home_score <= result.away_score
+
                 if self.type == TypePrediction.get("2_OR_m3_5"):
                     self.is_checked = result.home_score < result.away_score or (result.home_score + result.away_score) < 3.5
+                    
                 if self.type == TypePrediction.get("HG"):
                     self.is_checked = result.home_score > 0
+                    
                 if self.type == TypePrediction.get("AG"):
                     self.is_checked =result.away_score > 0
+
                 if self.type == TypePrediction.get("HG|2"):
                     self.is_checked = not result.home_score > 1.5
+
                 if self.type == TypePrediction.get("AG|2"):
                     self.is_checked = not result.away_score > 1.5
+
                 if self.type == TypePrediction.get("btts"):
                     self.is_checked = result.home_score > 0 and result.away_score > 0
+
                 if self.type == TypePrediction.get("no_btts"):
                     self.is_checked = (result.home_score > 0 and result.away_score == 0) or (result.home_score == 0 and result.away_score > 0)
-                if self.type == TypePrediction.get("corner_p7_5"):
-                    self.is_checked = extra.home_corners + extra.away_corners > 7.5
-                if self.type == TypePrediction.get("corner_m12_5"):
-                    self.is_checked = extra.home_corners + extra.away_corners < 12.5
+
+                    
+                if extra.home_corners is not None  and extra.home_corners + extra.away_corners > 0:
+                    if self.type == TypePrediction.get("corner_p6_5"):
+                        self.is_checked = extra.home_corners + extra.away_corners > 6.5
+
+                    if self.type == TypePrediction.get("corner_m12_5"):
+                        self.is_checked = extra.home_corners + extra.away_corners < 12.5
+
+                    if self.type == TypePrediction.get("1C"):
+                        self.is_checked = extra.home_corners >= extra.away_corners
+
+                    if self.type == TypePrediction.get("2C"):
+                        self.is_checked = extra.home_corners <= extra.away_corners
+
                 self.save()
                 
         except Exception as e:
