@@ -98,7 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "wikibet"),
+        'NAME'      : os.getenv("DB_NAME", "dev"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,

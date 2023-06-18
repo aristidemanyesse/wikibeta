@@ -1,4 +1,0 @@
-Hyperparameters: {'layer_sizes': [1024, 32, 8], 'epochs': 50, 'batch_size': 64}
-Validation loss: 1.3185957670211792
-Validation mean absolute error: 0.8576216697692871
-Validation mean squared error: 1.3185957670211792
