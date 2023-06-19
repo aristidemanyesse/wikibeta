@@ -19,39 +19,24 @@ class Command(BaseCommand):
         try:            
             
             while True:
-                for match in Match.objects.filter(is_facted = True).exclude(is_predict = True).order_by('date')[:500]:
+                for match in Match.objects.filter(is_compared = True).exclude(is_facted = True).order_by('date')[:5000]:
                     print("START: Current active thread count ---------------: ", threading.active_count())
                     while threading.active_count() > 300:
                         time.sleep(10)
-                        
-                        p = threading.Thread(target=p0.predict, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
-                        
-                        p = threading.Thread(target=p1.predict, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
-                        
-                        p = threading.Thread(target=p2.predict, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
-                        
-                        p = threading.Thread(target=p3.predict, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
-
-                        p = threading.Thread(target=p4.predict, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
                     
-                    match.is_predict = True
+                    if match.match_facts.filter().count() == 0 :
+                        p = threading.Thread(target=get_home_facts.function, args=(match,))
+                        p.setDaemon(True)
+                        p.start()
+                        time.sleep(0.01)
+                        
+                        p = threading.Thread(target=get_away_facts.function, args=(match,))
+                        p.setDaemon(True)
+                        p.start()
+                        time.sleep(0.01)
+                        
+                    match.is_facted = True
                     match.save()
-                    
                     print(match)
                         
                 while threading.active_count() > 1:

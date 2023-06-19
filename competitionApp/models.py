@@ -63,7 +63,7 @@ class EditionCompetition(BaseModel):
         ordering = ["competition", '-start_date']
 
     def __str__(self):
-        return str(self.competition) +" - "+ str(self.edition)
+        return str(self.competition) +" @ "+ str(self.edition)
     
     
     def classement(self, date):

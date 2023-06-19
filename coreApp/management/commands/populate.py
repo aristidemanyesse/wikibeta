@@ -27,26 +27,28 @@ class Command(BaseCommand):
             list_files = sorted(list_files)         
             for x in list_files:
                 if os.path.isdir(f"{dir}/{x}") : 
+                    continue
                     files = [file for file in os.listdir(f"{dir}/{x}") if not os.path.isdir(f"{dir}/{x}/{file}")]
                     for file in files:
                         print("processus en cours ---------------: ", threading.active_count())
-                        while threading.active_count() >= 1000:
-                            time.sleep(25)
+                        if threading.active_count() >= 150:
+                            time.sleep(30)
                         path = f"{dir}/{x}/{file}"
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)
                         p.start()
-                        time.sleep(4)
+                        time.sleep(1)
                 
-                # else:
-                #     print("processus en cours ---------------: ", threading.active_count())
-                #     while threading.active_count() >= 1000:
-                #         time.sleep(25)
-                #     path = f"{dir}/{x}"
-                #     p = threading.Thread(target=save_from_file , args=(path,))
-                #     p.setDaemon(True)
-                #     p.start()
-                #     time.sleep(4)
+                else:
+                    print("processus en cours ---------------: ", threading.active_count())
+                    while threading.active_count() >= 150:
+                        time.sleep(25)
+                    path = f"{dir}/{x}"
+                    p = threading.Thread(target=save_from_file , args=(path,))
+                    p.setDaemon(True)
+                    p.start()
+                    time.sleep(1)
+                    
                     
 
             while threading.active_count() > 1:

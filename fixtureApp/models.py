@@ -31,6 +31,7 @@ class Match(BaseModel):
     is_finished       = models.BooleanField(default = False, null = True, blank=True)
     is_first_match    = models.BooleanField(default = False, null = True, blank=True)
     is_predict        = models.BooleanField(default = False, null = True, blank=True)
+    is_compared       = models.BooleanField(default = False, null = True, blank=True)
     is_facted         = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
@@ -171,15 +172,7 @@ def sighandler(instance, created, **kwargs):
     try:
         #creation du before stat pour chaque equipe
         if created:
-            edition = instance.edition
-            matchs = edition.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
-            if  matchs.first() is not None and matchs.last() is not None:
-                edition.start_date =   matchs.first().date  
-                edition.finish_date =   matchs.last().date  
-                edition.save()
-                
             for team in [instance.home, instance.away]:
-                test = team.last_stats(instance, edition = True)
                 pts, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
                 datas = team.extra_info_stats(instance, edition = True)      
                 
@@ -204,15 +197,6 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_for               = datas.get("avg_cards_for", 0),
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
-
-            for stats in [instance.get_home_before_stats(), instance.get_away_before_stats()]:
-                stats.points                     = stats.team.fight_points(instance)
-                stats.list_intercepts            = json.dumps([str(x.id) for x in instance.similaires_intercepts(10)])
-                stats.list_confrontations        = json.dumps([str(x.id) for x in instance.confrontations_directes(10)])
-                stats.list_similaires_ppg        = json.dumps([str(x.id) for x in instance.similaires_ppg(10)])
-                stats.list_similaires_ppg2       = json.dumps([str(x.id) for x in instance.similaires_ppg2(10)])
-                stats.list_similaires_betting    = json.dumps([str(x.id) for x in instance.similaires_betting(10)])
-                stats.save()
             
             
     except Exception as e:
