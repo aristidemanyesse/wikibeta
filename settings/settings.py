@@ -98,7 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "dev"),
+        'NAME'      : os.getenv("DB_NAME", "rev"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,
@@ -162,6 +162,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/'
+MEDIA_ROOT = '/media/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

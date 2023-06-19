@@ -13,7 +13,7 @@
             <div class="col-md-5">
                 <div class="row">
                     <div class="col-md-3 text-right">
-                        <img src="{{match.home.team.logo.url}}" style="width:90%" class="img-circle circle-border m-t-md" alt="profile">
+                        <img src="{{match.home.team.logo.url |default_if_none:'#'}}" style="width:90%" class="img-circle circle-border m-t-md" alt="profile">
                     </div>
                     <div class="col-md-9 text-right">
                         <h1 class="bold">{{match.home}} ({{home_rank.level}})</h1>
@@ -64,7 +64,7 @@
                         <label class="label label-{{ match.get_away_before_stats.ppg | couleur }}">{{ match.get_away_before_stats.ppg }}</label> {% endcomment %}
                     </div>
                     <div class="col-md-3 text-left">
-                        <img src="{{match.away.team.logo.url}}" style="width:90%" class="img-circle circle-border m-t-md" alt="profile">
+                        <img src="{{match.away.team.logo.url |default_if_none:'#'}}" style="width:90%" class="img-circle circle-border m-t-md" alt="profile">
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
                             {% if ligne.team == match.home or ligne.team == match.away %}
                                 <tr>
                                     <td>{{ligne.level|start0}}</td>
-                                    <td><img style="width:20px" src="{{ligne.team.team.logo.url}}" class="" alt="profile"></td>
+                                    <td><img style="width:20px" src="{{ligne.team.team.logo.url |default_if_none:'#'}}" class="" alt="profile"></td>
                                     <td class="bold text-left">{{ligne.team}}</td>
                                     <td class="border-left bold text-primary">{{ligne.pts}}</td>
                                     <td class="border-left">{{ligne.win}}</td>
@@ -710,7 +710,7 @@
             <div class="widget text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.home.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.home.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -736,7 +736,7 @@
             <div class="widget border-top text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.away.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.away.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -764,7 +764,7 @@
         <div class="col-sm-4">
             <div class="widget  p-sm text-center">
                 <div class="m-b-md">
-                    <img src="{{match.edition.competition.logo.url}}" style="height:75px" class="" alt="profile">
+                    <img src="{{match.edition.competition.logo.url |default_if_none:'#'}}" style="height:75px" class="" alt="profile">
                     <img src="{% static "images/icons/shots.png" %}" style="height:75px" class="" alt="profile">
                     <br><h1 class="m-xs">{{competitionstats.avg_shots|rounded}}</h1>
                     <h3 class="font-bold no-margins">Moyenne de la compétition</h3>
@@ -787,7 +787,7 @@
             <div class="widget text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.home.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.home.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -810,7 +810,7 @@
             <div class="widget border-top text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.away.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.away.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -835,7 +835,7 @@
         <div class="col-sm-4">
             <div class="widget  p-sm text-center">
                 <div class="m-b-md">
-                    <img src="{{match.edition.competition.logo.url}}" style="height:75px" class="" alt="profile">
+                    <img src="{{match.edition.competition.logo.url |default_if_none:'#'}}" style="height:75px" class="" alt="profile">
                     <img src="{% static "images/icons/area.png" %}" style="height:75px" class="" alt="profile">
                     <br><h1 class="m-xs">{{competitionstats.avg_fouls|rounded}}</h1>
                     <h3 class="font-bold no-margins">Moyenne de la compétition</h3>
@@ -856,7 +856,7 @@
             <div class="widget text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.home.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.home.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -884,7 +884,7 @@
             <div class="widget border-top text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.away.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.away.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -915,7 +915,7 @@
         <div class="col-sm-4">
             <div class="widget  p-sm text-center">
                 <div class="m-b-md">
-                    <img src="{{match.edition.competition.logo.url}}" style="height:75px" class="" alt="profile">
+                    <img src="{{match.edition.competition.logo.url |default_if_none:'#'}}" style="height:75px" class="" alt="profile">
                     <img src="{% static "images/icons/corner.png" %}" style="height:75px" class="" alt="profile">
                     <br><h1 class="m-xs">{{competitionstats.avg_corners|rounded}}</h1>
                     <h3 class="font-bold no-margins">Moyenne de la compétition</h3>
@@ -937,7 +937,7 @@
             <div class="widget text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.home.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.home.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -960,7 +960,7 @@
             <div class="widget border-top text-center">
                 <div class="row">
                     <div class="col-xs-2">
-                        <img src="{{match.away.team.logo.url}}" style="height:50px" class="img-circle circle-border" alt="profile">
+                        <img src="{{match.away.team.logo.url |default_if_none:'#'}}" style="height:50px" class="img-circle circle-border" alt="profile">
                     </div>
                     <div class="col-xs-10">
                         <div class="row">
@@ -985,7 +985,7 @@
         <div class="col-sm-4">
             <div class="widget  p-sm text-center">
                 <div class="m-b-md">
-                    <img src="{{match.edition.competition.logo.url}}" style="height:75px" class="" alt="profile">
+                    <img src="{{match.edition.competition.logo.url |default_if_none:'#'}}" style="height:75px" class="" alt="profile">
                     <img src="{% static "images/icons/cards.jpg" %}" style="height:75px" class="" alt="profile">
                     <br><h1 class="m-xs">{{competitionstats.avg_yellow_cards|rounded}}</h1>
                     <h3 class="font-bold no-margins">Moyenne de la compétition</h3>

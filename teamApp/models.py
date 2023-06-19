@@ -14,7 +14,7 @@ class Team(BaseModel):
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
     color2  = models.CharField(max_length = 255, default="", null = True, blank=True)
-    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="static/images/teams/default.png", null = True, blank=True)
+    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="media/images/teams/default.png", null = True, blank=True)
     
     class Meta:
         ordering = ['name']
@@ -125,11 +125,13 @@ class EditionTeam(BaseModel):
             stats                     = match.get_home_before_stats() if match.home == self else match.get_away_before_stats()
             rank                      = team.team_lignes_rankings.filter(ranking__date__lte = match.date).order_by('-ranking__date').first()
             
-            points += rank.pts
-            points += rank.ppg * 3
-            points += stats.ppg * 2
-            points += rank.avg_gs * 10
-            points += rank.avg_ga * -10
+            if rank is not None :
+                points += rank.pts
+                points += rank.ppg * 3
+                points += stats.ppg * 2
+                points += rank.avg_gs * 10
+                points += rank.avg_ga * -10
+                
             for x in confrontations_directes:
                 points += self.points_for_this_macth(x)
             for x in last_matchs:

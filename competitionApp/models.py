@@ -10,8 +10,8 @@ from teamApp.models import *
 class Pays(BaseModel):
     code    = models.CharField(max_length = 255, null = True, blank=True)
     name    = models.CharField(max_length = 255, null = True, blank=True)
-    abr    = models.CharField(max_length = 255, null = True, blank=True)
-    flag    = models.ImageField(max_length = 255, upload_to = "static/images/pays/", default="", null = True, blank=True)
+    abr     = models.CharField(max_length = 255, null = True, blank=True)
+    flag    = models.ImageField(max_length = 255, upload_to = "static/images/pays/", default='media/images/pays/default.png', null = True, blank=True)
 
     class Meta:
         ordering = ['name']
@@ -26,7 +26,7 @@ class Competition(BaseModel):
     name          = models.CharField(max_length = 255, default="", null = True, blank=True)
     code          = models.CharField(max_length = 255, default="", null = True, blank=True)
     pays          = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
-    logo          = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default="", null = True, blank=True)
+    logo          = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default='media/images/competitions/default.png', null = True, blank=True)
     type          = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     
     class Meta:
@@ -315,3 +315,5 @@ class CompetitionStat(BaseModel):
 
     def __str__(self):
         return "Stats de "+str(self.edition)
+
+
