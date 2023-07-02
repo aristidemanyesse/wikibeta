@@ -3,7 +3,7 @@ from django.db.models import Avg, Sum, Q
 from coreApp.models import BaseModel
 from fixtureApp.models import Match
 import competitionApp
-
+from datetime import datetime
 
 class Team(BaseModel):
     code    = models.CharField(max_length = 255, null = True, blank=True)
@@ -207,42 +207,50 @@ class EditionTeam(BaseModel):
 
 
     
-    def plus_but(self, nb):
-        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
+    def plus_but(self, nb, date = datetime.today()):
+        matchs = Match.objects.filter(is_finished = True, date__lte = date).exclude(is_posted = True).filter(Q(home = self) | Q(away = self))
         total = 0
         for match in matchs:
             result = match.get_result()
+            if result is None:
+                continue
             if result.home_score + result.away_score > nb:
                 total += 1
         return total
 
 
-    def moins_but(self, nb):
-        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
+    def moins_but(self, nb, date = datetime.today()):
+        matchs = Match.objects.filter(is_finished = True, date__lte = date).exclude(is_posted = True).filter(Q(home = self) | Q(away = self))
         total = 0
         for match in matchs:
             result = match.get_result()
+            if result is None:
+                continue
             if result.home_score + result.away_score < nb:
                 total += 1
         return total
     
     
-    def ht_plus_but(self, nb):
-        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
+    def ht_plus_but(self, nb, date = datetime.today()):
+        matchs = Match.objects.filter(is_finished = True, date__lte = date).exclude(is_posted = True).filter(Q(home = self) | Q(away = self))
         total = 0
         for match in matchs:
             result = match.get_result()
+            if result is None:
+                continue
             if result.home_half_score is not None :
                 if result.home_half_score + result.away_half_score > nb:
                     total += 1
         return total
 
 
-    def ht_moins_but(self, nb):
-        matchs = Match.objects.filter(is_finished = True).filter(Q(home = self) | Q(away = self)).order_by("-date")
+    def ht_moins_but(self, nb, date = datetime.today()):
+        matchs = Match.objects.filter(is_finished = True, date__lte = date).exclude(is_posted = True).filter(Q(home = self) | Q(away = self))
         total = 0
         for match in matchs:
             result = match.get_result()
+            if result is None:
+                continue
             if result.home_half_score is not None :
                 if result.home_half_score + result.away_half_score < nb:
                     total += 1

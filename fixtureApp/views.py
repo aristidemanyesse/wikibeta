@@ -26,13 +26,12 @@ def fixtures(request, year, month, day):
             
         date = datetime(year, month, day).date()
         datas = {}
-        for edition in EditionCompetition.objects.filter(is_finished=False):
+        for edition in EditionCompetition.objects.filter(start_date__lte = date, finish_date__gte = date):
             matchs = Match.objects.filter(date = date, edition = edition)
             if len(matchs) > 0 :
                 datas[edition] = matchs
         
         today = datetime.now().date()
-        print(today, date)
         ctx = {
             "av_hier"     : today - timedelta(days=2),
             "hier"        : today - timedelta(days=1),
@@ -111,7 +110,7 @@ def match(request, id):
 @render_to('fixtureApp/index_test.html')
 def features_test(request, ):
     if request.method == "GET":
-        type = TypePrediction.get("1")
+        type = TypePrediction.get("m3_5")
         datas = PredictionTest.objects.filter(is_checked = False, type = type).values_list('match__id')
         matchs = Match.objects.filter(id__in = datas)
         

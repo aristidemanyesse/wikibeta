@@ -123,6 +123,9 @@ class Command(BaseCommand):
             # z = np.array([3, 5, 7, 9, 11])
             
             result = match.get_result()
+if result is None:
+                test += 1
+                continue
             pts_h, ppg_h, scored_h, avg_goals_scored_h, conceded_h, avg_goals_conceded_h = match.home.last_stats(match, edition = True, number = 7)
             pts_a, ppg_a, scored_a, avg_goals_scored_a, conceded_a, avg_goals_conceded_a = match.away.last_stats(match, edition = True, number = 7)
             

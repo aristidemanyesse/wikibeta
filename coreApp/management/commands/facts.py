@@ -17,23 +17,24 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:            
-            
+            # Match.objects.filter().update(is_facted = False)
+            # Fact.objects.filter().delete()
             while True:
-                for match in Match.objects.filter(is_compared = True).exclude(is_facted = True).order_by('date')[:5000]:
+                for match in Match.objects.filter(is_compared = True).exclude(is_facted = True).order_by('date')[:100]:
                     print("START: Current active thread count ---------------: ", threading.active_count())
                     while threading.active_count() > 300:
                         time.sleep(10)
                     
-                    if match.match_facts.filter().count() == 0 :
-                        p = threading.Thread(target=get_home_facts.function, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
+                    p1 = threading.Thread(target=get_home_facts.function, args=(match,))
+                    p1.setDaemon(True)
+                    p1.start()
+                    time.sleep(0.01)
+                    
+                    p2 = threading.Thread(target=get_away_facts.function, args=(match,))
+                    p2.setDaemon(True)
+                    p2.start()
+                    time.sleep(0.01)
                         
-                        p = threading.Thread(target=get_away_facts.function, args=(match,))
-                        p.setDaemon(True)
-                        p.start()
-                        time.sleep(0.01)
                         
                     match.is_facted = True
                     match.save()

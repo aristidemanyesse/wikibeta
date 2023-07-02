@@ -40,6 +40,9 @@ def plus_but(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_score + result.away_score > nb:
             total += 1
     return total
@@ -51,6 +54,9 @@ def moins_but(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_score + result.away_score < nb:
             total += 1
     return total
@@ -62,6 +68,9 @@ def plus_but_first_half(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None :
             if result.home_half_score + result.away_half_score > nb:
                 total += 1
@@ -74,6 +83,9 @@ def moins_but_first_half(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None :
             if result.home_half_score + result.away_half_score < nb:
                 total += 1
@@ -86,6 +98,9 @@ def plus_but_first_half(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None :
             if result.home_score - result.home_half_score + result.away_score - result.away_half_score > nb:
                 total += 1
@@ -98,6 +113,9 @@ def moins_but_first_half(matchs, nb):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None :
             if result.home_score - result.home_half_score + result.away_score - result.away_half_score < nb:
                 total += 1
@@ -111,6 +129,9 @@ def cs(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_score == 0 or  result.away_score == 0:
             total +=1
     return total
@@ -121,6 +142,9 @@ def first_half_cs(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None:
             if result.home_half_score == 0 or result.away_half_score == 0:
                 total +=1
@@ -133,6 +157,9 @@ def second_half_cs(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                test += 1
+                continue
         if result.home_half_score is not None:
             if result.home_score - result.home_half_score == 0 or result.away_score - result.away_half_score == 0:
                 total +=1
@@ -145,6 +172,8 @@ def btts(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+            continue
         if result.home_score > 0 and result.away_score > 0:
             total +=1
     return total
@@ -156,6 +185,8 @@ def first_half_btts(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+                continue
         if result.home_half_score is not None:
             if result.home_half_score > 0 and  result.away_half_score > 0:
                 total +=1
@@ -168,6 +199,8 @@ def second_half_btts(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+            continue
         if result.home_half_score is not None:
             if result.home_score - result.home_half_score > 0 and  result.away_score -result.away_half_score > 0:
                 total +=1
@@ -180,6 +213,8 @@ def _12(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+            continue
         if result.home_score !=  result.away_score:
             total +=1
     return total
@@ -192,6 +227,8 @@ def first_half_12(matchs):
     total = 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+            continue
         if result.home_half_score is not None :
             if result.home_half_score !=  result.away_half_score:
                 total +=1
@@ -201,10 +238,13 @@ def first_half_12(matchs):
     
 @register.filter('second_half_12')
 def second_half_12(matchs):
-    total = 0
+    total, test = 0, 0
     for match in matchs:
         result = match.get_result()
+        if result is None:
+            test += 1
+            continue
         if result.home_half_score is not None :
             if result.home_score - result.home_half_score !=  result.away_score - result.away_half_score:
                 total +=1
-    return round(total* 100/len(matchs),2) if len(matchs) > 0 else None
+    return round(total* 100/(len(matchs) - test) ,2) if (len(matchs) - test)  > 0 else None

@@ -39,15 +39,11 @@ class Command(BaseCommand):
         
         # Ranking.objects.all().delete()
         # Match.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
-        pass
+
         # Competition.objects.filter(created_at__gte = datetime.now() - timedelta(hours= 5)).delete()
         
         
-        
-        # for ligne in LigneRanking.objects.all():
-        #     ligne.level += 1
-        #     ligne.save() 
-        
+
         # stats = BeforeMatchStat.objects.filter(points = None).order_by("?")[:1000]
         # for stat in stats:
         #     while threading.active_count() >= 250:
@@ -72,10 +68,10 @@ class Command(BaseCommand):
         #     comp.logo = "static/images/competitions/default.png"
         #     comp.save()
             
-        datas = Fact.objects.all()
-        for f in datas:
-            f.pct *= 100
-            f.save()
+        # datas = Fact.objects.all()
+        # for f in datas:
+        #     f.pct *= 100
+        #     f.save()
             
         # datas = Team.objects.filter(logo = "")
         # for comp in datas:
@@ -106,24 +102,20 @@ class Command(BaseCommand):
         # OddsMatch.objects.filter(home = 0).delete() 
         
         
-        # for match in Match.objects.filter(is_finished = True):
-        #     result = match.get_result()
+        for match in Match.objects.filter(is_finished = True):
+            result = match.get_result()
+
             
-        #     if result is None or result.home_score is None or result.away_score is None:
-        #         match.delete()
-        #         continue
-            
-        #     home_before = match.get_home_before_stats()
-        #     away_before = match.get_away_before_stats()
-        #     if home_before is None or away_before is None:
-        #         match.delete()
-        #         continue
+            if result is None or result.home_score is None or result.away_score is None:
+                match.is_posted = True
+                match.save()
+                continue
                 
-        #     elif result.away_score == result.home_score == 0:
-        #         result.home_half_score = 0
-        #         result.away_half_score = 0
-        #         result.result_half = "D"
-        #         result.save()
+            elif result.away_score == result.home_score == 0:
+                result.home_half_score = 0
+                result.away_half_score = 0
+                result.result_half = "D"
+                result.save()
                 
 
   

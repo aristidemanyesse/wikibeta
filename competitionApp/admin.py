@@ -40,7 +40,7 @@ class EditionCompetitionAdmin(admin.ModelAdmin):
     list_filter = (
         ('start_date', DateFieldListFilter),
     )
-    list_display = ['competition', 'edition',  'start_date', 'finish_date', "is_finished"]
+    list_display = ['competition', 'edition', "pays",  'start_date', 'finish_date', "total", "is_finished"]
 
 
 

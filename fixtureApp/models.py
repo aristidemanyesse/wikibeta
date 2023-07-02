@@ -23,16 +23,17 @@ def intersection(list1, list2):
 
     
 class Match(BaseModel):
-    date              = models.DateField( null = True, blank=True)
-    hour              = models.TimeField( null = True, blank=True)
-    home              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
-    away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
-    edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
-    is_finished       = models.BooleanField(default = False, null = True, blank=True)
-    is_first_match    = models.BooleanField(default = False, null = True, blank=True)
-    is_predict        = models.BooleanField(default = False, null = True, blank=True)
-    is_compared       = models.BooleanField(default = False, null = True, blank=True)
-    is_facted         = models.BooleanField(default = False, null = True, blank=True)
+    date           = models.DateField( null = True, blank=True)
+    hour           = models.TimeField( null = True, blank=True)
+    home           = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
+    away           = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
+    edition        = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
+    is_finished    = models.BooleanField(default = False, null = True, blank=True)
+    is_posted      = models.BooleanField(default = False)
+    is_first_match = models.BooleanField(default = False, null = True, blank=True)
+    is_predict     = models.BooleanField(default = False, null = True, blank=True)
+    is_compared    = models.BooleanField(default = False, null = True, blank=True)
+    is_facted      = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
         ordering = ['date', "hour", "home"]
@@ -172,6 +173,15 @@ def sighandler(instance, created, **kwargs):
     try:
         #creation du before stat pour chaque equipe
         if created:
+            
+            edition = instance.edition
+            matchs = edition.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
+            if  matchs.first() is not None and matchs.last() is not None:
+                edition.start_date =   matchs.first().date  
+                edition.finish_date =   matchs.last().date  
+                edition.save()
+                
+                
             for team in [instance.home, instance.away]:
                 pts, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
                 datas = team.extra_info_stats(instance, edition = True)      
@@ -198,6 +208,38 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
             
+            
+            
+            list_intercepts            = json.dumps([str(x.id) for x in instance.similaires_intercepts(10)])
+            list_confrontations        = json.dumps([str(x.id) for x in instance.confrontations_directes(10)])
+            list_similaires_ppg        = json.dumps([str(x.id) for x in instance.similaires_ppg(10)])
+            list_similaires_ppg2       = json.dumps([str(x.id) for x in instance.similaires_ppg2(10)])
+            list_similaires_betting    = json.dumps([str(x.id) for x in instance.similaires_betting(10)])
+            for stats in [instance.get_home_before_stats(), instance.get_away_before_stats()]:
+                stats.points                     = stats.team.fight_points(instance)
+                stats.list_intercepts            = list_intercepts
+                stats.list_confrontations        = list_confrontations
+                stats.list_similaires_ppg        = list_similaires_ppg
+                stats.list_similaires_ppg2       = list_similaires_ppg2
+                stats.list_similaires_betting    = list_similaires_betting
+                stats.save()
+
+            
+            get_home_facts.function(instance)
+            get_away_facts.function(instance)
+            
+            
+            # if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
+            #     p0.predict(instance)
+            #     p1.predict(instance)
+            #     p2.predict(instance)
+            #     p3.predict(instance)
+            #     p4.predict(instance)
+            
+            instance.is_predicted = False
+            instance.is_compared = True
+            instance.is_facted = True
+            instance.save()
             
     except Exception as e:
         print("----------error save match----------", e)

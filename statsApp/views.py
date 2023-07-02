@@ -18,7 +18,7 @@ import math
 def test(request):
     data1 = []
     data2 = []
-    for match in Match.objects.filter(is_finished = True).order_by('-date')[:1000]:
+    for match in Match.objects.filter(is_finished = True).exclude(is_posted = True).order_by('-date')[:1000]:
         extra = match.get_extra_info_match()
         home_stats = match.get_home_before_stats()
         away_stats = match.get_away_before_stats()

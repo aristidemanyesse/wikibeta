@@ -27,9 +27,9 @@ class Command(BaseCommand):
         try:            
             
             while True:
-                for match in Match.objects.exclude(is_compared = True).order_by('date')[:500]:
+                for match in Match.objects.filter(date__year__lte = 2011).exclude(is_compared = True).order_by('date')[:100]:
                     print("START: Current active thread count ---------------: ", threading.active_count())
-                    while threading.active_count() > 300:
+                    while threading.active_count() > 150:
                         time.sleep(10)
                     
                     p = threading.Thread(target=function, args=(match,))

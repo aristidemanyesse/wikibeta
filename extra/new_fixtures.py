@@ -46,8 +46,8 @@ def function():
                 if compet != "":
                     edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
 
-                    home      = get(row, header, "HomeTeam") or ""
-                    away      = get(row, header, "AwayTeam") or ""
+                    home      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    away      = get(row, header, "AwayTeam").replace("/", "-") or ""
                     
                     if home != "" and away != "":
                         #enregistrement des équipes
@@ -129,8 +129,8 @@ def function():
                         edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
 
 
-                    home      = get(row, header, "Home") or ""
-                    away      = get(row, header, "Away") or ""
+                    home      = get(row, header, "Home").replace("/", "-") or ""
+                    away      = get(row, header, "Away").replace("/", "-") or ""
                     
                     if home != "" and away != "":
                         #enregistrement des équipes

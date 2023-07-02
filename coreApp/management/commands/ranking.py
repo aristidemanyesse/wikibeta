@@ -11,15 +11,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        # for ranking in Ranking.objects.all().order_by('edition'):
-        #     if ranking.edition.edition_team.all().count() != ranking.ranking_lignes.all().count():
-        #         print(ranking)
-        #         ranking.delete()
+        for ranking in Ranking.objects.all().order_by('edition'):
+            if ranking.ranking_lignes.all().count() == 0:
+                print(ranking)
+                ranking.delete()
         
-        # datas = EditionCompetition.objects.filter()
+        # datas = EditionCompetition.objects.filter(is_finished=False)
         # for edit in datas:
         #     teams = edit.edition_team.filter()
-        #     if len(edit.edition_du_match.filter()) == len(teams) * (len(teams)-1) :
+        #     if len(edit.edition_du_match.filter()) == len(teams) * (len(teams)-1) or edit.start_date.year < 2022  or edit.finish_date.year < 2023:
         #         edit.is_finished = True
         #         edit.save()
                 
@@ -31,41 +31,41 @@ class Command(BaseCommand):
         #         edit.start_date =   matchs.first().date  
         #         edit.finish_date =   matchs.last().date  
         #         edit.save()
+        #     print(edit)
                 
-        
-        # utc=pytz.UTC
-        # date = datetime.now().replace(tzinfo=utc) - timedelta(weeks = 52 * 0)
-        # while datetime.now().replace(tzinfo=utc) - timedelta(weeks = 52 * 30) <= date <= datetime.now().replace(tzinfo=utc) - timedelta(weeks = 52 * 0): #ca s'arrete en fevrier 2019, 52 * 4
+        utc=pytz.UTC
+        date = datetime(1993,7,22)
+        while date <= datetime.today(): #ca s'arrete en fevrier 2019, 52 * 4
             
-        #     print("START: Current process ---------------: ", threading.active_count())
-        #     while threading.active_count() > 500:
-        #         time.sleep(200)
+            print("START: Current process ---------------: ", threading.active_count())
+            while threading.active_count() > 50:
+                time.sleep(200)
 
-        #     print("----------------", date)
-        #     p = threading.Thread(target=function2, args=(date,))
-        #     p.setDaemon(True)
-        #     p.start()
-        #     time.sleep(0.5)
+            print("----------------", date)
+            p = threading.Thread(target=function2, args=(date,))
+            p.setDaemon(True)
+            p.start()
+            time.sleep(0.5)
             
-        #     date = date - timedelta(days = 7)
+            date = date + timedelta(days = 7)
             
             
-        # while threading.active_count() > 1:
-        #     print("en attente ---------------: ", threading.active_count())
-        #     time.sleep(30)
-        # self.stdout.write(self.style.SUCCESS('List des matchs initialisée avec succes !'))  
+        while threading.active_count() > 1:
+            print("en attente ---------------: ", threading.active_count())
+            time.sleep(30)
+        self.stdout.write(self.style.SUCCESS('List des ranking initialisée avec succes !'))  
                 
         
-        for edi in EditionCompetition.objects.all():
-            print("rrrrrrrrrrr", edi)
-            ranking = Ranking.objects.create(
-                date = edi.start_date,
-                edition = edi,
-            )
+        # for edi in EditionCompetition.objects.all():
+        #     print("rrrrrrrrrrr", edi)
+        #     ranking = Ranking.objects.create(
+        #         date = edi.start_date,
+        #         edition = edi,
+        #     )
             
-            for team in edi.edition_team.all():
-                LigneRanking.objects.create(
-                    team = team,
-                    ranking = ranking,
-                    level = 1
-                )
+        #     for team in edi.edition_team.all():
+        #         LigneRanking.objects.create(
+        #             team = team,
+        #             ranking = ranking,
+        #             level = 1
+        #         )

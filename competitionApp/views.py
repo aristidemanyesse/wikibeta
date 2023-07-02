@@ -39,7 +39,7 @@ def competition_edition(request, pays, competition, edition):
         edition = EditionCompetition.objects.get(competition__pays__name = pays, competition__name = competition, edition__name = edition)
         competition = edition.competition
         editions = [] or competition.competition_edition.filter()
-        matchs_played = edition.edition_du_match.filter(is_finished = True).order_by('-date')
+        matchs_played = edition.edition_du_match.filter(is_finished = True).exclude(is_posted = True).order_by('-date')
         next_matchs = edition.edition_du_match.filter(is_finished = False, date__gte = datetime.now())
         
         rank = edition.edition_rankings.filter().order_by('-date').first()

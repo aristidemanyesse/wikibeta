@@ -34,16 +34,27 @@ class Command(BaseCommand):
             "p1_5":"Plus de 1,5but dans le match",
             "p2_5":"Plus de 2,5buts dans le match",
             "p3_5":"Plus de 3,5buts dans le match",
+        
+            "p0_5_MT":"Plus de 0,5buts à la mi-temps",
+            
+            "1":"Voictoire de l'equipe à domicile",
+            "2":"Voictoire de l'equipe à l'extérieur",
             "1X":"Equipe à domicile ne perd pas",
             "X2":"Equipe à l'exterieur ne perd pas",
             "12":"Pas de nul dans le match",
             "X":"Match nul",
+            
             "HG":"But de l'equipe à domicile",
+            "HG|2":"Pas plus de 1 But pour l'equipe à domicile",
             "AG":"But de l'equipe à l'exterieur",
+            "AG|2":"Pas plus de 1 But pour l'equipe à l'exterieur",
             "btts":"But pour les deux equipes",
             "no_btts":"Les deux équipes ne marquent pas",
+            
             "corner_p6_5":"Plus de 8,5 corners dans le match",
             "corner_m12_5":"Moins de 12,5 corners dans le match",
+            "1C":"Voictoire de l'equipe à domicile aux corners",
+            "2X":"Voictoire de l'equipe à l'extérieur aux corners",
         }
         for x in datas:
             TypePrediction.objects.get_or_create(
