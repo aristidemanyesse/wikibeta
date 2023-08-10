@@ -61,7 +61,7 @@ class Fact(BaseModel):
                     sentence = "Aucun but concédé lors des {} derniers matchs".format(self.total)
                     
             if self.type.name == "p1_5":
-                sentence = "Total d'au moins 2 buts lors des {} derniers matchs".format(self.total)
+                sentence = "Au moins 2 buts lors des {} derniers matchs".format(self.total)
                 if self.pct == 0:
                     sentence = "Aucun match avec au moins 2 buts lors des {} derniers matchs".format(self.total)         
                        
@@ -86,17 +86,17 @@ class Fact(BaseModel):
             if self.type.name == "CS":
                 sentence = "{} clean sheets sur les {} derniers matchs".format(self.success, self.total)
             if self.type.name == "GS":
-                sentence = "{} matchs sur les {} derniers où ils ont marqué au moins 1 but".format(self.success, self.total)
+                sentence = "Au moins 1 but marqué lors de {} des {} derniers matchs".format(self.success, self.total)
             if self.type.name == "GC":
-                sentence = "{} matchs sur les {} derniers où ils ont encaissé au moins 1 but".format(self.success, self.total)
+                sentence = "Au moins 1 but encaissé lors de {} des {} derniers matchs".format(self.success, self.total)
             if self.type.name == "p1_5":
-                sentence = "{} des {} derniers matchs avec un total d'au moins de 2 buts ".format(self.success, self.total)
+                sentence = "Au moins 2 buts lors de {} des {} derniers matchs".format(self.success, self.total)
             if self.type.name == "m3_5":
-                sentence = "{} des {} derniers matchs avec un total d'au plus de 3 buts ".format(self.success, self.total)
+                sentence = "Pas plus de 3 buts lors de {} des {} derniers matchs".format(self.success, self.total)
             if self.type.name == "TGS":
-                sentence = "Total de {} buts marqués lors des {} derniers matchs".format(self.success, self.total)
+                sentence = "{} buts marqués lors des {} derniers matchs".format(self.success, self.total)
             if self.type.name == "TGC":
-                sentence = "Total de {} buts encaissés lors des {} derniers matchs".format(self.success, self.total)
+                sentence = "{} buts encaissés lors des {} derniers matchs".format(self.success, self.total)
             
         return "{} {} {}".format(prefixe, sentence, suffixe)
 
@@ -163,6 +163,7 @@ class ResultMatch(BaseModel):
         return str(self.match)+"==>"+str(self.home_score)+"-"+str(self.away_score)
     
     
+    
 class ExtraInfosMatch(BaseModel):
     match                   = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="extra_info_match")
     home_shots              = models.IntegerField(default = 0, null = True, blank=True)
@@ -183,6 +184,22 @@ class ExtraInfosMatch(BaseModel):
     def __str__(self):
         return str(self.match) +" (extra infos)"
 
+
+
+    
+
+class TeamProfileMatch(BaseModel):
+    date              = models.DateField( null = True, blank=True)
+    team        = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="team_profile")
+    match       = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="match_profile")
+    dynamic     = models.FloatField(default = 0.0, null = True, blank=True)
+    attack      = models.FloatField(default = 0.0, null = True, blank=True)
+    defense     = models.FloatField(default = 0.0, null = True, blank=True)
+    pression    = models.FloatField(default = 0.0, null = True, blank=True)
+    clean       = models.FloatField(default = 0.0, null = True, blank=True)
+    
+    def __str__(self):
+        return str(self.team)
 
 
 

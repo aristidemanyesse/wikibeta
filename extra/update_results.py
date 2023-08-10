@@ -13,7 +13,7 @@ def function():
     print("-------------------------", datetime.now())
 
     try:
-        url = ['https://www.football-data.co.uk/mmz4281/2223/Latest_Results.csv', "https://www.football-data.co.uk/new/Latest_Results.csv"]
+        url = ['https://www.football-data.co.uk/mmz4281/2324/Latest_Results.csv', "https://www.football-data.co.uk/new/Latest_Results.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
             with open(os.path.join(settings.BASE_DIR, 'datas/results/data_{}.csv'.format(i)), 'wb') as file:

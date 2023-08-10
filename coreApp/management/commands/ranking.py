@@ -10,11 +10,12 @@ class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
 
     def handle(self, *args, **options):
-        
-        for ranking in Ranking.objects.all().order_by('edition'):
-            if ranking.ranking_lignes.all().count() == 0:
-                print(ranking)
-                ranking.delete()
+        # Ranking.objects.all().delete()
+        # for ranking in Ranking.objects.all().order_by('edition'):
+        #     pass
+        #     if ranking.ranking_lignes.all().count() == 0:
+        #         print(ranking)
+        #         ranking.delete()
         
         # datas = EditionCompetition.objects.filter(is_finished=False)
         # for edit in datas:
@@ -34,7 +35,8 @@ class Command(BaseCommand):
         #     print(edit)
                 
         utc=pytz.UTC
-        date = datetime(1993,7,22)
+        # date = datetime(1993,7,22)
+        date = datetime(2023,8,1)
         while date <= datetime.today(): #ca s'arrete en fevrier 2019, 52 * 4
             
             print("START: Current process ---------------: ", threading.active_count())
@@ -47,7 +49,7 @@ class Command(BaseCommand):
             p.start()
             time.sleep(0.5)
             
-            date = date + timedelta(days = 7)
+            date = date - timedelta(days = 3)
             
             
         while threading.active_count() > 1:

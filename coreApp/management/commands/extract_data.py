@@ -88,7 +88,7 @@ def save_from_dir(path):
                 
                 compet             = get(row, header, "Div") or ""
                 if compet != "":
-                    competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, defaults={'name': compet})
+                    competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, type= TypeCompetition.objects.get(etiquette = TypeCompetition.FULL), defaults={'name': compet})
                     edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
             
                     
@@ -219,9 +219,9 @@ def save_from_file(path):
                 continue
             edition_, created = Edition.objects.get_or_create(name = edition)
             
-            compet             = get(row, header, "League") or ""
+            compet = get(row, header, "League") or ""
             if compet != "":
-                competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, defaults={'name': compet})
+                competition_, created = Competition.objects.get_or_create(code = compet, pays = pays, type= TypeCompetition.objects.get(etiquette = TypeCompetition.PARTIAL), defaults={'name': compet})
                 edicompet, created = EditionCompetition.objects.get_or_create(edition = edition_, competition = competition_)
         
                 

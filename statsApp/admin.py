@@ -59,3 +59,13 @@ class FactAdmin(admin.ModelAdmin):
         ('match__date', DateFieldListFilter),
     )
     list_display = ['match', 'type', "all_matches", "full_time", "team", "total", "success", "pct"]
+
+
+@admin.register(TeamProfileMatch)
+class TeamProfileMatchAdmin(admin.ModelAdmin):
+    empty_value_display = '-'
+    date_hierarchy = 'match__date'
+    list_filter = (
+        ('match__date', DateFieldListFilter),
+    )
+    list_display = ["date", 'match', 'team', "dynamic", "attack", "defense", "pression", "clean"]

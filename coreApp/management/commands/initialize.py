@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-import os, time
+from competitionApp.models import TypeCompetition
 from settings import settings
 from .extract_data import save_from_dir, save_from_file
 from bettingApp.models import Bookmaker
@@ -25,6 +25,16 @@ class Command(BaseCommand):
         user.is_superuser = True
         user.is_staff = True
         user.save()
+        
+        
+        TypeCompetition.objects.get_or_create(
+            name = "full",
+            etiquette = "FULL"
+        )
+        TypeCompetition.objects.get_or_create(
+            name = "partial",
+            etiquette = "PARTIAL"
+        )
         
         
         datas = {
@@ -103,3 +113,6 @@ class Command(BaseCommand):
                 name = x, 
                 description = datas[x], 
             )
+            
+            
+            

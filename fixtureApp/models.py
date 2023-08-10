@@ -34,6 +34,7 @@ class Match(BaseModel):
     is_predict     = models.BooleanField(default = False, null = True, blank=True)
     is_compared    = models.BooleanField(default = False, null = True, blank=True)
     is_facted      = models.BooleanField(default = False, null = True, blank=True)
+    is_stated      = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
         ordering = ['date', "hour", "home"]
@@ -173,7 +174,6 @@ def sighandler(instance, created, **kwargs):
     try:
         #creation du before stat pour chaque equipe
         if created:
-            
             edition = instance.edition
             matchs = edition.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
             if  matchs.first() is not None and matchs.last() is not None:
@@ -207,6 +207,7 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_for               = datas.get("avg_cards_for", 0),
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
+            instance.is_stated = True
             
             
             
@@ -223,10 +224,12 @@ def sighandler(instance, created, **kwargs):
                 stats.list_similaires_ppg2       = list_similaires_ppg2
                 stats.list_similaires_betting    = list_similaires_betting
                 stats.save()
+            instance.is_compared = True
 
             
             get_home_facts.function(instance)
             get_away_facts.function(instance)
+            instance.is_facted = True
             
             
             # if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
@@ -236,9 +239,7 @@ def sighandler(instance, created, **kwargs):
             #     p3.predict(instance)
             #     p4.predict(instance)
             
-            instance.is_predicted = False
-            instance.is_compared = True
-            instance.is_facted = True
+            # instance.is_predicted = False
             instance.save()
             
     except Exception as e:

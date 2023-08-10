@@ -72,6 +72,11 @@ def match(request, id):
         
         home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
         away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        
+        home_profile = match.match_profile.filter(team = match.home).order_by('-date').first()
+        away_profile = match.match_profile.filter(team = match.away).order_by('-date').first()
+        print(home_profile)
+        print(away_profile)
                 
         rank = match.edition.edition_rankings.filter(date__lte = match.date).order_by('-date').first()
         competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
@@ -96,6 +101,8 @@ def match(request, id):
             "rank"                  : rank,
             "home_rank"             : home_rank,
             "away_rank"             : away_rank,
+            "home_profile"          : home_profile,
+            "away_profile"          : away_profile,
             "stats_home"            : stats_home,
             "stats_away"            : stats_away,
             "competitionstats"      : competitionstats,
@@ -110,7 +117,8 @@ def match(request, id):
 @render_to('fixtureApp/index_test.html')
 def features_test(request, ):
     if request.method == "GET":
-        type = TypePrediction.get("m3_5")
+        # type = TypePrediction.get("m3_5")
+        type = TypePrediction.get("p1_5")
         datas = PredictionTest.objects.filter(is_checked = False, type = type).values_list('match__id')
         matchs = Match.objects.filter(id__in = datas)
         

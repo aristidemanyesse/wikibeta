@@ -1149,19 +1149,19 @@
 $(function(){
 
     var radarData = {
-        labels: ["PPG*", "PPG", "MG", "MA"],
+        labels: ["DYN", "ATK", "DEF", "PRE", "CLN"],
         datasets: [
             {
                 label: "{{match.home}}",
-                backgroundColor: "rgba(220,220,220,0.2)",
-                borderColor: "rgba(220,220,220,1)",
-                data: [{{home_rank.ppg|replacetojs}}, {{stats_home.ppg|replacetojs}}, {{home_rank.avg_gs|replacetojs}}, {{home_rank.avg_ga|replacetojs}}]
+                backgroundColor: "rgba(20,20,255,0.2)",
+                borderColor: "rgba(20,20,255,1)",
+                data: [{{home_profile.dynamic|replacetojs}}, {{home_profile.attack|replacetojs}}, {{home_profile.defense|replacetojs}}, {{home_profile.pression|replacetojs}}, {{home_profile.clean|replacetojs}}]
             },
             {
                 label: "{{match.away}}",
                 backgroundColor: "rgba(26,179,148,0.2)",
                 borderColor: "rgba(26,179,148,1)",
-                data: [{{away_rank.ppg|replacetojs}}, {{stats_away.ppg|replacetojs}}, {{away_rank.avg_gs|replacetojs}}, {{away_rank.avg_ga|replacetojs}}]
+                data: [{{away_profile.dynamic|replacetojs}}, {{away_profile.attack|replacetojs}}, {{away_profile.defense|replacetojs}}, {{away_profile.pression|replacetojs}}, {{away_profile.clean|replacetojs}}]
             }
         ]
     };

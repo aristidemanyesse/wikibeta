@@ -20,33 +20,23 @@ def function(instance):
         stats.save()
         
     
-class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
-
-    def handle(self, *args, **options):
-        try:            
+def handle():
+    try:            
+        
+        for match in Match.objects.filter(is_compared = False).order_by('-date')[:20]:
+            while threading.active_count() > 105:
+                time.sleep(10)
             
-            while True:
-                for match in Match.objects.filter(date__year__lte = 2011).exclude(is_compared = True).order_by('date')[:100]:
-                    print("START: Current active thread count ---------------: ", threading.active_count())
-                    while threading.active_count() > 150:
-                        time.sleep(10)
-                    
-                    p = threading.Thread(target=function, args=(match,))
-                    p.setDaemon(True)
-                    p.start()
-                    time.sleep(0.1)
-                    match.is_compared = True
-                    match.save()
-                    
-                    print(match)
-                        
-                    
-                while threading.active_count() > 1:
-                    print("en attente ---------------: ", threading.active_count())
-                    time.sleep(25)
-                self.stdout.write(self.style.SUCCESS('List des matchs facted avec succes !'))    
-                    
-        except Exception as e:
-            print(e)
-            
+            p = threading.Thread(target=function, args=(match,))
+            p.setDaemon(True)
+            p.start()
+            time.sleep(0.1)
+            match.is_compared = True
+            match.save()
+            print(match, match.date)
+                
+        while threading.active_count() > 1:
+            print("en attente ---------------: ", threading.active_count())
+            time.sleep(25)
+    except Exception as e:
+        print(e)

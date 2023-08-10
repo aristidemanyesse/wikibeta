@@ -68,10 +68,6 @@ class Command(BaseCommand):
         #     comp.logo = "static/images/competitions/default.png"
         #     comp.save()
             
-        # datas = Fact.objects.all()
-        # for f in datas:
-        #     f.pct *= 100
-        #     f.save()
             
         # datas = Team.objects.filter(logo = "")
         # for comp in datas:
@@ -79,43 +75,43 @@ class Command(BaseCommand):
         #     comp.save()
 
             
-        # datas = EditionCompetition.objects.filter()
-        # for edit in datas:
-        #     teams = edit.edition_team.filter()
-        #     if len(edit.edition_du_match.filter()) == len(teams) * (len(teams)-1) :
-        #         edit.is_finished = True
-        #         edit.save()
+        datas = EditionCompetition.objects.filter()
+        for edit in datas:
+            # teams = edit.edition_team.filter()
+            # if len(edit.edition_du_match.filter()) == len(teams) * (len(teams)-1) :
+            #     edit.is_finished = True
+            #     edit.save()
                 
-        #     if edit.finish_date is not None and edit.finish_date <= (datetime.now() - timedelta(days = 365)).date() :
-        #         edit.is_finished = True
-        #         edit.save()
-        #     matchs = edit.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
-        #     if  matchs.first() is not None and matchs.last() is not None:
-        #         print(len(matchs), matchs.first().date, matchs.last().date) 
-        #         edit.start_date =   matchs.first().date  
-        #         edit.finish_date =   matchs.last().date  
-        #         edit.save()
+            if edit.finish_date is not None and edit.finish_date <= (datetime.now() - timedelta(days = 180)).date() :
+                edit.is_finished = True
+                edit.save()
+            # matchs = edit.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
+            # if  matchs.first() is not None and matchs.last() is not None:
+            #     print(len(matchs), matchs.first().date, matchs.last().date) 
+            #     edit.start_date =   matchs.first().date  
+            #     edit.finish_date =   matchs.last().date  
+            #     edit.save()
             
         #     # break
         # Competition.objects.filter(name = None).delete() 
-        # # ResultMatch.objects.filter(match__away_score = None, match__home_score = None, result = "").delete() 
+        # ResultMatch.objects.filter(match__away_score = None, match__home_score = None, result = "").delete() 
         # OddsMatch.objects.filter(home = 0).delete() 
         
         
-        for match in Match.objects.filter(is_finished = True):
-            result = match.get_result()
+        # for match in Match.objects.filter(is_finished = True):
+        #     result = match.get_result()
 
             
-            if result is None or result.home_score is None or result.away_score is None:
-                match.is_posted = True
-                match.save()
-                continue
+        #     if result is None or result.home_score is None or result.away_score is None:
+        #         match.is_posted = True
+        #         match.save()
+        #         continue
                 
-            elif result.away_score == result.home_score == 0:
-                result.home_half_score = 0
-                result.away_half_score = 0
-                result.result_half = "D"
-                result.save()
+        #     elif result.away_score == result.home_score == 0:
+        #         result.home_half_score = 0
+        #         result.away_half_score = 0
+        #         result.result_half = "D"
+        #         result.save()
                 
 
   

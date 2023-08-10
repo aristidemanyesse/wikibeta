@@ -98,7 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "rev"),
+        'NAME'      : os.getenv("DB_NAME", "wikibet"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,
@@ -138,8 +138,10 @@ CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
     ('*/10 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
     ('0 */1 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
-    ('0 */3 * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
-    # ('*/2 * * * *', 'extra.ranking.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    ('35 */1 * * *', 'extra.ranking.function2', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    ('*/1 * * * *', 'coreApp.management.commands.compare.Command.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log" ))),
+    ('*/10 * * * *', 'coreApp.management.commands.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/facts.log" ))),
+    ('*/10 * * * *', 'coreApp.management.commands.compare.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log"))),
 ]
 
 

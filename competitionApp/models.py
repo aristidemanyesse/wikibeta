@@ -18,7 +18,11 @@ class Pays(BaseModel):
 
 
 class TypeCompetition(BaseModel):
-    name    = models.CharField(max_length = 255, null = True, blank=True)
+    FULL = "FULL"
+    PARTIAL = "PARTIAL"
+    
+    name        = models.CharField(max_length = 255, null = True, blank=True)
+    etiquette   = models.CharField(max_length = 255, null = True, blank=True)
         
 
 class Competition(BaseModel):
