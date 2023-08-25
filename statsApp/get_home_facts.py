@@ -11,10 +11,10 @@ def main(edit):
             
 def function(match):
     
-    MIN_MATCH = 5
+    MIN_MATCH = 6
     
-    MIN = 0.25
-    MAX = 0.75
+    MIN = 0.2
+    MAX = 0.8
     MIN_GOAL = 1
     MAX_GOAL = 2
     #Home

@@ -16,7 +16,7 @@ import os, time
 
 def handle():
     try:      
-        for match in Match.objects.filter(is_compared = True).exclude(is_facted = True).order_by('date')[:20]:
+        for match in Match.objects.filter(is_compared = True).exclude(is_facted = True).order_by('date')[:60]:
             print("START: Current active thread count ---------------: ", threading.active_count())
             while threading.active_count() > 501:
                 time.sleep(10)
@@ -31,10 +31,9 @@ def handle():
             p2.start()
             time.sleep(0.01)
                 
-                
             match.is_facted = True
             match.save()
-            print(match)
+            print(match, match.date)
         
         while threading.active_count() > 1:
             print("en attente ---------------: ", threading.active_count())

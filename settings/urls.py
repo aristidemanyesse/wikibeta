@@ -35,25 +35,7 @@ urlpatterns = [
     path('team/', include('teamApp.urls')),
     path('predicition/', include('predictionApp.urls')),
     path('stats/', include('statsApp.urls')),
-    # path('', home),
-    # path('auth/', include('authApp.urls')),
-    # path('core/', include('coreApp.urls')),
-    # path('home/', include('fixtureApp.urls')),
-
-    # path('boutique/', include('fixtureApp.urls_boutique')),
-    # path('fabrique/', include('fixtureApp.urls_fabrique')),
-    # path('manager/', include('fixtureApp.urls_manager')),
-
-    # path('tresorerie/', include('comptabilityApp.urls')),
-
-    # path('fiches/', include('ficheApp.urls')),
-    # path('administration/', include('administrationApp.urls')),
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-# handler404 = 'auth.views.handler404'
-# handler400 = 'auth.views.handler400'
-# handler500 = 'auth.views.handler500'
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

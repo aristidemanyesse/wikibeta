@@ -16,11 +16,11 @@ def function():
         url = ['https://www.football-data.co.uk/mmz4281/2324/Latest_Results.csv', "https://www.football-data.co.uk/new/Latest_Results.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
-            with open(os.path.join(settings.BASE_DIR, 'datas/results/data_{}.csv'.format(i)), 'wb') as file:
+            with open(os.path.join(settings.BASE_DIR, 'ressources/results/data_{}.csv'.format(i)), 'wb') as file:
                 file.write(response.content)
         
         
-        file = os.path.join(settings.BASE_DIR, "datas/results/data_0.csv")
+        file = os.path.join(settings.BASE_DIR, "ressources/results/data_0.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0
@@ -37,6 +37,12 @@ def function():
                 compet    = get(row, header, "Div") or ""
                 if compet != "" :
                     edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
+                    if edicompet is not None:
+                        if edicompet.is_finished :
+                            edicompet = EditionCompetition.objects.create(competition = compet, edition = Edition.objects.create(name = edicompet.edition.next()))
+                    else:
+                        edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
+                        edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
 
                     home      = get(row, header, "HomeTeam") or ""
                     away      = get(row, header, "AwayTeam") or ""
@@ -139,7 +145,7 @@ def function():
             
     try:   
 
-        file = os.path.join(settings.BASE_DIR, "datas/results/data_1.csv")
+        file = os.path.join(settings.BASE_DIR, "ressources/results/data_1.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0

@@ -15,7 +15,7 @@ class Command(BaseCommand):
             
             dir = "/home/aristide/Téléchargements/wikibet-data"  
             # FOR ALL BOOKMAKERS ##
-            with open("datas/bookmakers.txt",'rt', encoding='utf-8' ) as file:
+            with open("ressources/bookmakers.txt",'rt', encoding='utf-8' ) as file:
                 for line in file:
                     code, name = line.split(" = ")
                     name = name.replace("home win odds", "").replace("draw odds", "").replace("away win odds", "")

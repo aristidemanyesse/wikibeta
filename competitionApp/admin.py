@@ -41,7 +41,6 @@ class EditionCompetitionAdmin(admin.ModelAdmin):
         ('start_date', DateFieldListFilter),
     )
     list_display = ['competition', 'edition', "pays",  'start_date', 'finish_date', "total", "is_finished"]
-    list_editable = ["is_finished"]
 
 
 

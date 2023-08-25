@@ -136,12 +136,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # CRONJOBS
 CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('*/10 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('0 */1 * * *', 'extra.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
-    ('35 */1 * * *', 'extra.ranking.function2', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
-    ('*/1 * * * *', 'coreApp.management.commands.compare.Command.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log" ))),
-    ('*/10 * * * *', 'coreApp.management.commands.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/facts.log" ))),
-    ('*/10 * * * *', 'coreApp.management.commands.compare.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log"))),
+    ('*/10 * * * *', 'coreApp.management.cron.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
+    ('0 */1 * * *', 'coreApp.management.cron.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
+    ('35 */1 * * *', 'coreApp.management.cron.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
+    ('*/10 * * * *', 'coreApp.management.cron.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/facts.log" ))),
+    ('*/10 * * * *', 'coreApp.management.cron.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log"))),
 ]
 
 

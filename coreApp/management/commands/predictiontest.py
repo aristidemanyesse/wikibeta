@@ -36,23 +36,29 @@ def predict(match):
                 m = footstats.moins_but(home_last_matchs, 2.5) + footstats.moins_but(away_last_matchs, 2.5)
                 # p4 = footstats.plus_but(home_last_matchs, 3.5) + footstats.plus_but(away_last_matchs, 3.5)
                 
-                if p + m  >= 15 :
-                    ############################################################################################################################
-                    # PLUS DE 1.5 BUTS DANS LE MATCH
-                    ############################################################################################################################
-                    if (p > m+1) and (home_rank.avg_gs + away_rank.avg_gs) >= 2.8:
-                        PredictionTest.objects.create(
-                            mode = ModePrediction.get("M0"),
-                            type = TypePrediction.get("p1_5"),
-                            match = match,
-                            pct = round((p / 20 ), 2) * 100
-                        )
+                if p + m  >= 10 :
+                    # ############################################################################################################################
+                    # # PLUS DE 1.5 BUTS DANS LE MATCH
+                    # ############################################################################################################################
+                    # a, b = match.edition.plus_but(1.5)
+                    # ratio = a / b
+                    
+                    # if (p > m+1) and (home_rank.avg_gs + away_rank.avg_gs) >= 2.3 and ratio > 0.55:
+                    #     PredictionTest.objects.create(
+                    #         mode = ModePrediction.get("M0"),
+                    #         type = TypePrediction.get("p1_5"),
+                    #         match = match,
+                    #         pct = round((p / 20 ), 2) * 100
+                    #     )
                 
                 
                     ############################################################################################################################
                     # MOINS DE 3.5 BUTS DANS LE MATCH
                     ############################################################################################################################
-                    if (m > p+1) and (home_rank.avg_ga + away_rank.avg_ga) <= 2  and (home_rank.avg_gs + away_rank.avg_gs) < 3:
+                    a, b = match.edition.moins_but(3.5)
+                    ratio = a / b
+                    
+                    if (m >= p+1)  and (home_rank.avg_gs + away_rank.avg_gs) < 2.5 and ratio > 0.55: #and (home_rank.avg_ga + away_rank.avg_ga) <= 2.5  and (home_rank.avg_gs + away_rank.avg_gs) < 2.5
                         PredictionTest.objects.create(
                             mode = ModePrediction.get("M0"),
                             type = TypePrediction.get("m3_5"),
@@ -72,7 +78,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             PredictionTest.objects.all().delete()            
-            for match in Match.objects.filter(is_facted = True).exclude(is_predict = True).order_by('date')[:5000]:
+            for match in Match.objects.filter(is_facted = True).exclude(is_predict = True).order_by('date')[:1000]:
                 print("START: Current active thread count ---------------: ", threading.active_count())
                 while threading.active_count() > 300:
                     time.sleep(10)

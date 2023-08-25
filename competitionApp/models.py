@@ -270,7 +270,7 @@ class EditionCompetition(BaseModel):
             if result is not None:
                 if result.home_score + result.away_score > nb:
                     total += 1
-        return total
+        return total, matchs.count()
 
 
     def moins_but(self, nb):
@@ -284,7 +284,7 @@ class EditionCompetition(BaseModel):
             if result is not None:
                 if result.home_score + result.away_score < nb:
                     total += 1
-        return total
+        return total, matchs.count()
     
     
     def ht_plus_but(self, nb):

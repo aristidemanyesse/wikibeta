@@ -6,17 +6,11 @@ from coreApp.functions import *
 from statsApp.models import *
 from bettingApp.models import *
 from datetime import datetime, timedelta, time
-import json
-
-import predictionApp.functions.p0 as p0
-import predictionApp.functions.p1 as p1
-import predictionApp.functions.p2 as p2
-import predictionApp.functions.p3 as p3
-import predictionApp.functions.p4 as p4
 
 import statsApp.get_home_facts as get_home_facts
 import statsApp.get_away_facts as get_away_facts
 
+from coreApp.management.crons.before_stats_match import function as before_stats_match
 
 def intersection(list1, list2):
     return [value for value in list1 if value in list2]
@@ -170,7 +164,6 @@ class Goal(BaseModel):
 # connect to registered signal
 @signals.post_save(sender=Match)
 def sighandler(instance, created, **kwargs):
-    
     try:
         #creation du before stat pour chaque equipe
         if created:
@@ -210,36 +203,13 @@ def sighandler(instance, created, **kwargs):
             instance.is_stated = True
             
             
-            
-            list_intercepts            = json.dumps([str(x.id) for x in instance.similaires_intercepts(10)])
-            list_confrontations        = json.dumps([str(x.id) for x in instance.confrontations_directes(10)])
-            list_similaires_ppg        = json.dumps([str(x.id) for x in instance.similaires_ppg(10)])
-            list_similaires_ppg2       = json.dumps([str(x.id) for x in instance.similaires_ppg2(10)])
-            list_similaires_betting    = json.dumps([str(x.id) for x in instance.similaires_betting(10)])
-            for stats in [instance.get_home_before_stats(), instance.get_away_before_stats()]:
-                stats.points                     = stats.team.fight_points(instance)
-                stats.list_intercepts            = list_intercepts
-                stats.list_confrontations        = list_confrontations
-                stats.list_similaires_ppg        = list_similaires_ppg
-                stats.list_similaires_ppg2       = list_similaires_ppg2
-                stats.list_similaires_betting    = list_similaires_betting
-                stats.save()
+            before_stats_match(instance)
             instance.is_compared = True
-
             
             get_home_facts.function(instance)
             get_away_facts.function(instance)
             instance.is_facted = True
             
-            
-            # if len(instance.home.get_last_matchs(instance, edition = True)) > 3 and len(instance.away.get_last_matchs(instance, edition = True)) > 3:
-            #     p0.predict(instance)
-            #     p1.predict(instance)
-            #     p2.predict(instance)
-            #     p3.predict(instance)
-            #     p4.predict(instance)
-            
-            # instance.is_predicted = False
             instance.save()
             
     except Exception as e:

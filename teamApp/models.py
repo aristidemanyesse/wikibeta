@@ -10,11 +10,10 @@ class Team(BaseModel):
     name    = models.CharField(max_length = 255, null = True, blank=True)
     name2   = models.CharField(max_length = 255, null = True, blank=True)
     abr   = models.CharField(max_length = 10, null = True, blank=True)
-    # is_club = models.BooleanField(default= False, null = True, blank=True)
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
     color2  = models.CharField(max_length = 255, default="", null = True, blank=True)
-    logo    = models.ImageField(max_length = 255, upload_to = "static/images/teams/", default="media/images/teams/default.png", null = True, blank=True)
+    logo    = models.ImageField(max_length = 255, upload_to = "images/teams/", default="images/teams/default.png", null = True, blank=True)
     
     class Meta:
         ordering = ['name']
@@ -113,37 +112,73 @@ class EditionTeam(BaseModel):
             
         return pts, round((pts / total), 2) if total > 0 else 0, scored, round((scored/total), 2) if total > 0 else 0, conceded, round((conceded/total), 2) if total > 0 else 0
     
-    
-
-    def fight_points(self, match):
-        try:
-            team = match.home if match.home == self else match.away
         
-            points                    = 0
-            last_matchs               = self.get_last_matchs(match, number = 10, edition = True)
-            confrontations_directes   = match.confrontations_directes(number = 10)
-            stats                     = match.get_home_before_stats() if match.home == self else match.get_away_before_stats()
-            rank                      = team.team_lignes_rankings.filter(ranking__date__lte = match.date).order_by('-ranking__date').first()
+        
+        
+    def elo_score(self, match):
+        try:
+            K = 25
             
-            if rank is not None :
-                points += rank.pts
-                points += rank.ppg * 3
-                points += stats.ppg * 2
-                points += rank.avg_gs * 10
-                points += rank.avg_ga * -10
+            result = match.get_result()
+            self_previous_match = self.prev_match(match, edition = True)
+            if self_previous_match is None:
+                return 1500
+            self_stats = self_previous_match.get_home_before_stats() if self == self_previous_match.home else self_previous_match.get_away_before_stats()
+            
+            bon_off, bon_def = 0, 0
+            if self == match.home:
+                if result.home_score > result.away_score:
+                    res = 1
+                elif result.home_score < result.away_score:
+                    res = 0
+                    bon_def = (result.away_score - result.home_score == 1)
+                else:
+                    res = 0.5
+                bon_off = (result.home_score >= 3)
                 
-            for x in confrontations_directes:
-                points += self.points_for_this_macth(x)
-            for x in last_matchs:
-                points += self.points_for_this_macth(x)
+            elif self == match.away:
+                if result.home_score > result.away_score:
+                    res = 0
+                    bon_def = (result.home_score - result.away_score == 1)
+                elif result.home_score < result.away_score:
+                    res = 1
+                else:
+                    res = 0.5
+                bon_off = (result.away_score >= 3)
+                
             
-            #bonus a domicile
-            points += 10 if match.home == self else 0
+            new_elo = (self_stats.score_elo or 1500) + K * (res - (self_stats.probabilite_elo or 0))
+            new_elo += (K * 1/5) if bon_off else 0
+            new_elo += (K * 1/5) if bon_def else 0
+            
+            return new_elo
             
         except Exception as e:
-            print("Error fight_points ::: for ", match, match.date,  e)
-
-        return points
+            print("Error elo_score ::: for ", match, match.date,  e)
+            
+            
+        
+    def expected_goals(self, match):
+        try:
+            result = match.get_result()
+            self_previous_match = self.prev_match(match, edition = True)
+            if self_previous_match is None:
+                return 1, 1 # gs et gs expected
+            self_stats = self_previous_match.get_home_before_stats() if self == self_previous_match.home else self_previous_match.get_away_before_stats()
+            
+            total_gs_expected, total_ga_expected = 0, 0
+            if self == match.home:
+                total_gs_expected += (result.home_score / self_stats.gs_expected) if self_stats.gs_expected is not None and self_stats.gs_expected > 0 else 1
+                total_ga_expected += (result.away_score / self_stats.ga_expected) if self_stats.ga_expected is not None and self_stats.ga_expected > 0 else 1
+                
+            elif self == match.away:
+                total_gs_expected += (result.away_score / self_stats.gs_expected) if self_stats.gs_expected is not None and self_stats.gs_expected > 0 else 1
+                total_ga_expected += (result.home_score / self_stats.ga_expected) if self_stats.ga_expected is not None and self_stats.ga_expected > 0 else 1
+                
+            return total_gs_expected, total_ga_expected
+            
+        except Exception as e:
+            print("Error expected_goals ::: for ", match, match.date,  e)
         
         
         
