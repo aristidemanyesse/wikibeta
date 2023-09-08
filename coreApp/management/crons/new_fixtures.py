@@ -21,14 +21,14 @@ def function():
         url = ['https://www.football-data.co.uk/fixtures.csv', "https://www.football-data.co.uk/new_league_fixtures.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
-            with open(os.path.join(settings.BASE_DIR, 'ressources/fixtures/data_{}.csv'.format(i)), 'wb') as file:
+            with open(os.path.join(settings.BASE_DIR, 'media/fixtures/data_{}.csv'.format(i)), 'wb') as file:
                 file.write(response.content)
     except Exception as e:
         print("Errror ------------", e)
     
     
     try:
-        file = os.path.join(settings.BASE_DIR, "ressources/fixtures/data_0.csv")
+        file = os.path.join(settings.BASE_DIR, "media/fixtures/data_0.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0
@@ -98,7 +98,7 @@ def function():
 
 
     try:
-        file = os.path.join(settings.BASE_DIR, "ressources/fixtures/data_1.csv")
+        file = os.path.join(settings.BASE_DIR, "media/fixtures/data_1.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0

@@ -98,7 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "wikibet"),
+        'NAME'      : os.getenv("DB_NAME", "wiki"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,
@@ -136,11 +136,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # CRONJOBS
 CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('*/10 * * * *', 'coreApp.management.cron.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('0 */1 * * *', 'coreApp.management.cron.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/results_job.log" ))),
-    ('35 */1 * * *', 'coreApp.management.cron.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/ranking.log" ))),
-    ('*/10 * * * *', 'coreApp.management.cron.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/facts.log" ))),
-    ('*/10 * * * *', 'coreApp.management.cron.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/comp.log"))),
+    ('*/10 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
+    ('*/10 * * * *', 'coreApp.management.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/results_job.log" ))),
+    
+    ('*/5 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
+    ('*/7 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
+    
+    ('*/10 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    ('*/6 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    
+    ('*/9 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
+    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
+    
+    ('1-59/2 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
+    ('*/2 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
+    
+    ('0 */1 * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
 ]
 
 
@@ -163,7 +174,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",

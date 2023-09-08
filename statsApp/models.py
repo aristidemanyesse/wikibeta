@@ -102,6 +102,8 @@ class Fact(BaseModel):
 
 
 class BeforeMatchStat(BaseModel):   
+    SCORE_ELO_FACTOR = 30
+    
     match                           = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="before_stat_match")
     team                            = models.ForeignKey("teamApp.EditionTeam", null = True, blank=True, on_delete = models.CASCADE, related_name="team_stat_match")
     ppg                             = models.FloatField(default=0.0, null = True, blank=True)
@@ -109,6 +111,7 @@ class BeforeMatchStat(BaseModel):
     probabilite_elo                 = models.FloatField(default=0.0, null = True, blank=True)
     gs_expected                     = models.FloatField(default=0.0, null = True, blank=True)
     ga_expected                     = models.FloatField(default=0.0, null = True, blank=True)
+    expected_goals                  = models.TextField(default = "{}", null = True, blank=True)
     goals_scored                    = models.IntegerField(null = True, blank=True)
     goals_conceded                  = models.IntegerField(null = True, blank=True)
     avg_goals_scored                = models.FloatField(null = True, blank=True)

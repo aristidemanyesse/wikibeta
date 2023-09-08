@@ -11,7 +11,7 @@ class Pays(BaseModel):
     code    = models.CharField(max_length = 255, null = True, blank=True)
     name    = models.CharField(max_length = 255, null = True, blank=True)
     abr     = models.CharField(max_length = 255, null = True, blank=True)
-    flag    = models.ImageField(max_length = 255, upload_to = "static/images/pays/", default='media/images/pays/default.png', null = True, blank=True)
+    flag    = models.ImageField(max_length = 255, upload_to = "images/pays/", default='images/pays/default.png', null = True, blank=True)
 
     class Meta:
         ordering = ['name']
@@ -30,7 +30,7 @@ class Competition(BaseModel):
     name          = models.CharField(max_length = 255, default="", null = True, blank=True)
     code          = models.CharField(max_length = 255, default="", null = True, blank=True)
     pays          = models.ForeignKey(Pays, on_delete = models.CASCADE, null = True, blank=True, related_name="pays_de_competition")
-    logo          = models.ImageField(max_length = 255, upload_to = "static/images/competitions/", default='media/images/competitions/default.png', null = True, blank=True)
+    logo          = models.ImageField(max_length = 255, upload_to = "images/competitions/", default='images/competitions/default.png', null = True, blank=True)
     type          = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     
     class Meta:
@@ -83,7 +83,7 @@ class EditionCompetition(BaseModel):
             for team in self.edition_team.filter():
                 cs , btts , ga , gs = 0, 0, 0, 0
                 win , draw , lose = 0, 0, 0
-                matchs = Match.objects.filter(is_finished = True, is_posted = False, date__lte = date).filter(Q(home = team) | Q(away = team)).order_by("-date")
+                matchs = Match.objects.filter(is_finished = True, is_posted = False, date__lt = date).filter(Q(home = team) | Q(away = team)).order_by("-date")
                 if len(matchs) > 0:
                     for match in matchs:
                         try:

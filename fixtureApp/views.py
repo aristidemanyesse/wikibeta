@@ -79,19 +79,6 @@ def match(request, id):
         rank = match.edition.edition_rankings.filter(date__lte = match.date).order_by('-date').first()
         competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
         extra_infos = match.get_extra_info_match()
-        
-        
-        h_macths = match.home.get_last_matchs(match, number = 38, edition = True)[::-1]
-        enc, total  = 0, 0
-        moy = 1
-        for i,  m in enumerate(h_macths):
-            result = m.get_result()
-            enc = result.away_score if m.home == match.home else result.home_score
-            print(m, moy, enc)
-            total += enc
-            moy = total / (i+1)
-        print(m, moy, enc)
-        # away_last_matchs = match.away.get_last_matchs(match, number = 38, edition = True)
 
         ctx = {
             "match"                 : match,
@@ -128,8 +115,8 @@ def match(request, id):
 @render_to('fixtureApp/index_test.html')
 def features_test(request, ):
     if request.method == "GET":
-        type = TypePrediction.get("m3_5")
-        # type = TypePrediction.get("p1_5")
+        # type = TypePrediction.get("1X")
+        type = TypePrediction.get("12")
         datas = PredictionTest.objects.filter(is_checked = False, type = type).values_list('match__id')
         matchs = Match.objects.filter(id__in = datas)
         

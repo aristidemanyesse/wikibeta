@@ -194,11 +194,38 @@
                             </tr>
                             <tr>
                                 <td class="text-right">
-                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.points|rounded}}</label>
+                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.score_elo|rounded}}</label>
                                 </td>
-                                <td class="bold text-center">Fight points</td>
+                                <td class="bold text-center">Score Elo</td>
                                  <td class="text-left">
-                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.points|rounded}}</label>
+                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.score_elo|rounded}}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.probabilite_elo|rounded}}</label>
+                                </td>
+                                <td class="bold text-center">Probabilité Elo</td>
+                                 <td class="text-left">
+                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.probabilite_elo|rounded}}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.gs_expected|rounded:3}}</label>
+                                </td>
+                                <td class="bold text-center">Goals Expected  Elo</td>
+                                 <td class="text-left">
+                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.gs_expected|rounded:3}}</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">
+                                    <label class="label label-{{stats_home.points|form_couleur}}">{{stats_home.ga_expected|rounded:3}}</label>
+                                </td>
+                                <td class="bold text-center">Conceded Expected Elo</td>
+                                 <td class="text-left">
+                                     <label class="label label-{{stats_away.points|form_couleur}}">{{stats_away.ga_expected|rounded:3}}</label>
                                 </td>
                             </tr>
                             <tr>

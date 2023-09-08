@@ -7,28 +7,24 @@ from statsApp.models import *
 from bettingApp.models import *
 from datetime import datetime, timedelta, time
 
-import statsApp.get_home_facts as get_home_facts
-import statsApp.get_away_facts as get_away_facts
-
-from coreApp.management.crons.before_stats_match import function as before_stats_match
-
 def intersection(list1, list2):
     return [value for value in list1 if value in list2]
 
     
 class Match(BaseModel):
-    date           = models.DateField( null = True, blank=True)
-    hour           = models.TimeField( null = True, blank=True)
-    home           = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
-    away           = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
-    edition        = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
-    is_finished    = models.BooleanField(default = False, null = True, blank=True)
-    is_posted      = models.BooleanField(default = False)
-    is_first_match = models.BooleanField(default = False, null = True, blank=True)
-    is_predict     = models.BooleanField(default = False, null = True, blank=True)
-    is_compared    = models.BooleanField(default = False, null = True, blank=True)
-    is_facted      = models.BooleanField(default = False, null = True, blank=True)
-    is_stated      = models.BooleanField(default = False, null = True, blank=True)
+    date              = models.DateField( null = True, blank=True)
+    hour              = models.TimeField( null = True, blank=True)
+    home              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="home_match")
+    away              = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="away_match")
+    edition           = models.ForeignKey("competitionApp.EditionCompetition", on_delete = models.CASCADE, related_name="edition_du_match")
+    is_finished       = models.BooleanField(default = False, null = True, blank=True)
+    is_posted         = models.BooleanField(default = False)
+    is_first_match    = models.BooleanField(default = False, null = True, blank=True)
+    is_predict        = models.BooleanField(default = False, null = True, blank=True)
+    is_compared       = models.BooleanField(default = False, null = True, blank=True)
+    is_compared_elo   = models.BooleanField(default = False, null = True, blank=True)
+    is_facted         = models.BooleanField(default = False, null = True, blank=True)
+    is_stated         = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:
         ordering = ['date', "hour", "home"]
@@ -167,14 +163,7 @@ def sighandler(instance, created, **kwargs):
     try:
         #creation du before stat pour chaque equipe
         if created:
-            edition = instance.edition
-            matchs = edition.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
-            if  matchs.first() is not None and matchs.last() is not None:
-                edition.start_date =   matchs.first().date  
-                edition.finish_date =   matchs.last().date  
-                edition.save()
-                
-                
+
             for team in [instance.home, instance.away]:
                 pts, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
                 datas = team.extra_info_stats(instance, edition = True)      
@@ -200,17 +189,17 @@ def sighandler(instance, created, **kwargs):
                     avg_cards_for               = datas.get("avg_cards_for", 0),
                     avg_cards_against           = datas.get("avg_cards_against", 0),
                 )
-            instance.is_stated = True
+            # instance.is_stated = True
             
             
-            before_stats_match(instance)
-            instance.is_compared = True
+            # before_stats_match(instance)
+            # instance.is_compared = True
             
-            get_home_facts.function(instance)
-            get_away_facts.function(instance)
-            instance.is_facted = True
+            # get_home_facts.function(instance)
+            # get_away_facts.function(instance)
+            # instance.is_facted = True
             
-            instance.save()
+            # instance.save()
             
     except Exception as e:
         print("----------error save match----------", e)

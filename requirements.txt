@@ -1,97 +1,97 @@
 -i https://pypi.org/simple
-absl-py==1.4.0
-asgiref==3.6.0
+absl-py==1.4.0; python_version >= '3.6'
+asgiref==3.6.0; python_version >= '3.7'
 astunparse==1.6.3
-attrs==22.2.0
-cachetools==5.3.0
-certifi==2022.12.7
-charset-normalizer==3.1.0
-click==8.1.3
+attrs==22.2.0; python_version >= '3.6'
+cachetools==5.3.0; python_version ~= '3.7'
+certifi==2022.12.7; python_version >= '3.6'
+charset-normalizer==3.1.0; python_version >= '3.7'
+click==8.1.3; python_version >= '3.7'
 click-plugins==1.1.1
-cligj==0.7.2
-contourpy==1.0.7
-cycler==0.11.0
+cligj==0.7.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3' and python_version < '4'
+contourpy==1.0.7; python_version >= '3.8'
+cycler==0.11.0; python_version >= '3.6'
 dateparser==1.1.7
 dateutils==0.6.12
 dbutils==3.0.2
 django==4.1.7
 django-annoying==0.10.6
 django-crontab==0.7.1
-django-db-connection-pool==1.2.2
+django-db-connection-pool[mysql]==1.2.2
 django-debug-toolbar==3.8.1
-fiona==1.9.1
+fiona==1.9.1; python_version >= '3.7'
 flatbuffers==23.3.3
-fonttools==4.39.0
-gast==0.4.0
+fonttools==4.39.0; python_version >= '3.8'
+gast==0.4.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 geopandas==0.12.2
-google-auth==2.16.2
-google-auth-oauthlib==0.4.6
+google-auth==2.16.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'
+google-auth-oauthlib==0.4.6; python_version >= '3.6'
 google-pasta==0.2.0
-greenlet==2.0.2
-grpcio==1.51.3
-h5py==3.8.0
-idna==3.4
-imageio==2.26.0
+greenlet==2.0.2; platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32')))))
+grpcio==1.51.3; python_version >= '3.7'
+h5py==3.8.0; python_version >= '3.7'
+idna==3.4; python_version >= '3.5'
+imageio==2.26.0; python_version >= '3.7'
 imgaug==0.4.0
-joblib==1.2.0
-keras==2.11.0
-kiwisolver==1.4.4
-lazy-loader==0.1
+joblib==1.2.0; python_version >= '3.7'
+keras==2.11.0; python_version >= '3.7'
+kiwisolver==1.4.4; python_version >= '3.7'
+lazy-loader==0.1; python_version >= '3.7'
 libclang==15.0.6.1
-markdown==3.4.1
-markupsafe==2.1.2
+markdown==3.4.1; python_version >= '3.7'
+markupsafe==2.1.2; python_version >= '3.7'
 matplotlib==3.7.1
 munch==2.5.0
 mysqlclient==2.1.1
-networkx==3.0
+networkx==3.0; python_version >= '3.8'
 numpy==1.24.2
-nvidia-cublas-cu12==12.1.0.26
-nvidia-cuda-runtime-cu12==12.1.55
-nvidia-cudnn-cu12==8.8.1.3
-oauthlib==3.2.2
-opencv-python==4.7.0.72
-opt-einsum==3.3.0
-packaging==23.0
+nvidia-cublas-cu12==12.1.0.26; python_version >= '3'
+nvidia-cuda-runtime-cu12==12.1.55; python_version >= '3'
+nvidia-cudnn-cu12==8.8.1.3; python_version >= '3'
+oauthlib==3.2.2; python_version >= '3.6'
+opencv-python==4.7.0.72; python_version >= '3.6'
+opt-einsum==3.3.0; python_version >= '3.5'
+packaging==23.0; python_version >= '3.7'
 pandas==1.5.3
 pickles==0.1.1
 pillow==9.4.0
-protobuf==3.19.6
+protobuf==3.19.6; python_version >= '3.5'
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-pymysql==1.0.2
-pyparsing==3.0.9
-pyproj==3.4.1
-python-dateutil==2.8.2
+pymysql==1.0.2; python_version >= '3.6'
+pyparsing==3.0.9; python_full_version >= '3.6.8'
+pyproj==3.4.1; python_version >= '3.8'
+python-dateutil==2.8.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 pytz==2022.7.1
-pytz-deprecation-shim==0.1.0.post0
-pywavelets==1.4.1
-regex==2022.10.31
+pytz-deprecation-shim==0.1.0.post0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'
+pywavelets==1.4.1; python_version >= '3.8'
+regex==2022.10.31; python_version >= '3.6'
 requests==2.28.2
-requests-oauthlib==1.3.1
-rsa==4.9
-scikit-image==0.20.0
+requests-oauthlib==1.3.1; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+rsa==4.9; python_version >= '3.6'
+scikit-image==0.20.0; python_version >= '3.8'
 scikit-learn==1.2.2
 scipy==1.10.1
-setuptools==67.6.0
-shapely==2.0.1
-six==1.16.0
+setuptools==67.6.0; python_version >= '3.7'
+shapely==2.0.1; python_version >= '3.7'
+six==1.16.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 sklearn==0.0.post1
-sqlalchemy==2.0.6
-sqlparse==0.4.3
-tensorboard==2.11.2
-tensorboard-data-server==0.6.1
+sqlalchemy==2.0.6; python_version >= '3.7'
+sqlparse==0.4.3; python_version >= '3.5'
+tensorboard==2.11.2; python_version >= '3.7'
+tensorboard-data-server==0.6.1; python_version >= '3.6'
 tensorboard-plugin-wit==1.8.1
 tensorflow==2.11.0
-tensorflow-estimator==2.11.0
-tensorflow-io-gcs-filesystem==0.31.0
+tensorflow-estimator==2.11.0; python_version >= '3.7'
+tensorflow-io-gcs-filesystem==0.31.0; platform_machine != 'arm64' or platform_system != 'Darwin'
 tensorrt==8.6.0
-termcolor==2.2.0
-threadpoolctl==3.1.0
-tifffile==2023.3.15
-typing-extensions==4.5.0
-tzdata==2022.7
-tzlocal==4.2
-urllib3==1.26.15
-werkzeug==2.2.3
-wheel==0.40.0
-wrapt==1.15.0
+termcolor==2.2.0; python_version >= '3.7'
+threadpoolctl==3.1.0; python_version >= '3.6'
+tifffile==2023.3.15; python_version >= '3.8'
+typing-extensions==4.5.0; python_version >= '3.7'
+tzdata==2022.7; python_version >= '3.6'
+tzlocal==4.2; python_version >= '3.6'
+urllib3==1.26.15; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5'
+werkzeug==2.2.3; python_version >= '3.7'
+wheel==0.40.0; python_version >= '3.7'
+wrapt==1.15.0; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'

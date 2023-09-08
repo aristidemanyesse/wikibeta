@@ -15,7 +15,7 @@ class Command(BaseCommand):
             
             dir = "/home/aristide/Téléchargements/wikibet-data"  
             # FOR ALL BOOKMAKERS ##
-            with open("ressources/bookmakers.txt",'rt', encoding='utf-8' ) as file:
+            with open("media/bookmakers.txt",'rt', encoding='utf-8' ) as file:
                 for line in file:
                     code, name = line.split(" = ")
                     name = name.replace("home win odds", "").replace("draw odds", "").replace("away win odds", "")
@@ -30,8 +30,8 @@ class Command(BaseCommand):
                     files = [file for file in os.listdir(f"{dir}/{x}") if not os.path.isdir(f"{dir}/{x}/{file}")]
                     for file in files:
                         print("processus en cours ---------------: ", threading.active_count())
-                        if threading.active_count() >= 160:
-                            time.sleep(35)
+                        while threading.active_count() >= 160:
+                            time.sleep(30)
                         path = f"{dir}/{x}/{file}"
                         p = threading.Thread(target=save_from_dir , args=(path,))
                         p.setDaemon(True)

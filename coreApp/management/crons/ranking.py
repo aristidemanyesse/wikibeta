@@ -1,18 +1,18 @@
 from django.core.management.base import BaseCommand, CommandError
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from competitionApp.models import *
 from django.db.models import Avg, Sum, Count
-import pytz, threading, time
-
+import pytz, threading, time, os
+from settings.settings import MEDIA_ROOT
 
 utc=pytz.UTC
 
-def function2( date = None):
-    date = datetime.now().replace(tzinfo=utc) if date is None else date
+def function( date = None):
+    date = datetime.now().replace(tzinfo=utc).date() if date is None else date
     print("Ranking pour le -------------------------", date)
     try :
-        for edition in EditionCompetition.objects.filter(start_date__lte = date.date(), finish_date__gte = date.date()).order_by("-edition__name"):
-            last = edition.edition_rankings.filter(date__range = [date.date() - timedelta(days = 1), date.date()+ timedelta(days = 1)]).count()
+        for edition in EditionCompetition.objects.filter(start_date__lte = date, finish_date__gte = date).order_by("-edition__name"):
+            last = edition.edition_rankings.filter(date__range = [date - timedelta(days = 1), date+ timedelta(days = 1)]).count()
             
             if last == 0:
                 print("Ranking de --", edition)
@@ -21,7 +21,7 @@ def function2( date = None):
                     date = date
                 )
                 
-                datas = edition.classement(date.date())
+                datas = edition.classement(date)
                 for i, line in enumerate(datas):
                     LigneRanking.objects.create(
                         ranking   = rank,
@@ -47,7 +47,7 @@ def function2( date = None):
                     )
                 
                 
-                extra = ExtraInfosMatch.objects.filter(match__is_finished = True, match__edition = edition, match__date__lte = date).aggregate(
+                extra = ExtraInfosMatch.objects.filter(match__is_finished = True, match__edition = edition, match__date__lt = date).aggregate(
                     Avg("home_shots"), Avg("away_shots"), 
                     Avg("home_shots_on_target"), Avg("away_shots_on_target"),
                     Avg("home_corners"), Avg("away_corners"), 
@@ -58,7 +58,7 @@ def function2( date = None):
                 )
                 
     
-                result = ResultMatch.objects.filter(match__is_finished = True, match__edition = edition, match__date__lte = date).aggregate(
+                result = ResultMatch.objects.filter(match__is_finished = True, match__edition = edition, match__date__lt = date).aggregate(
                     Avg("home_score"), Avg("away_score"),
                 )
                 CompetitionStat.objects.create(
@@ -81,24 +81,29 @@ def function2( date = None):
         
         
 
-def handle(self, *args, **options):           
-    date = datetime(2023,8,1)
-    while date <= datetime.today(): #ca s'arrete en fevrier 2019, 52 * 4
+def handle(): 
+    print("--------------------------------", datetime.now())  
+    with open(os.path.join(MEDIA_ROOT, "date_ranking.txt"), "r+") as file:
+        date_string = file.read()
+        mydate = datetime.strptime(date_string, '%Y-%m-%d').date() if date_string else datetime(1993,7,23)
         
-        print("START: Current process ---------------: ", threading.active_count())
-        while threading.active_count() > 50:
-            time.sleep(200)
+        if mydate < datetime.now().date():
+            while threading.active_count() > 50:
+                time.sleep(200)
 
-        print("----------------", date)
-        p = threading.Thread(target=function2, args=(date,))
-        p.setDaemon(True)
-        p.start()
-        time.sleep(0.5)
+            p = threading.Thread(target=function, args=(mydate,))
+            p.setDaemon(True)
+            p.start()
+            time.sleep(0.5)
+            
+            while threading.active_count() > 1:
+                print("en attente ---------------: ", threading.active_count())
+                time.sleep(30)
+            
+            mydate += timedelta(days=3)
+            file.seek(0)  # Se positionner au début du fichier pour écrire
+            file.write(mydate.strftime('%Y-%m-%d'))
+            file.truncate()
         
-        date = date - timedelta(days = 3)
-        
-    while threading.active_count() > 1:
-        print("en attente ---------------: ", threading.active_count())
-        time.sleep(30)
-    self.stdout.write(self.style.SUCCESS('List des ranking initialisée avec succes !'))  
+
             

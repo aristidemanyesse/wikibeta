@@ -1,5 +1,4 @@
-import math
-
+import math, json
 
 
 def intervale(number):
@@ -71,9 +70,22 @@ def calcul_p(a , b):
 
 
 
-def bimodal_poisson(lambda_1, lambda_2, p, k):
-    prob = p*math.exp(-lambda_1)*(lambda_1**k)/math.factorial(k) + (1-p)*math.exp(-lambda_2)*(lambda_2**k)/math.factorial(k)
-    return round(prob, 2)
+def bimodal_poisson(lambda_1, lambda_2):
+    tab = {}
+    for k in range(10):
+        tab[k] = round((math.exp(-lambda_1)*(lambda_1**k)/math.factorial(k) + math.exp(-lambda_2)*(lambda_2**k)/math.factorial(k)) / 2, 4)
+    return tab
+
+
+def cal_expecded_goal(probabilite, real_goal, expected_goals):
+    proba = 1 - json.loads(expected_goals).get(str(real_goal), 0)
+    # Calcul des probabilités de victoire pour chaque équipe en utilisant les cotes Elo   
+    if probabilite - 0.1 <= real_goal <= probabilite + 0.1:
+        return probabilite + (( proba * probabilite / 2) if probabilite < real_goal else  (-proba * probabilite / 2))
+    elif real_goal > probabilite + 0.1 :
+        return probabilite + ( proba * probabilite / 2)
+    elif real_goal < probabilite + 0.1:
+        return probabilite - ( proba * probabilite / 2)
 
 
 

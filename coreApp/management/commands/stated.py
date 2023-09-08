@@ -5,14 +5,6 @@ import os, time, json
 
 
 def function(instance):
-    edition = instance.edition
-    matchs = edition.edition_du_match.filter(deleted = False).order_by("date").exclude(date = None)
-    if  matchs.first() is not None and matchs.last() is not None:
-        edition.start_date =   matchs.first().date  
-        edition.finish_date =   matchs.last().date  
-        edition.save()
-        
-        
     for team in [instance.home, instance.away]:
         pts, ppg, scored, avg_goals_scored, conceded, avg_goals_conceded = team.last_stats(instance, edition = True)
         datas = team.extra_info_stats(instance, edition = True)      

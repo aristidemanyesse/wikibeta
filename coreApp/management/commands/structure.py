@@ -13,6 +13,7 @@ class Command(BaseCommand):
         dir = "/home/aristide/Téléchargements/wikibet-data"  
         year = 1993
         dirs = [x for x in os.listdir(dir) if os.path.isdir(f"{dir}/{x}")]
+        print(dirs)
         for directory in dirs:
             nb = re.findall('\d+', directory)
             if len(nb) == 0:

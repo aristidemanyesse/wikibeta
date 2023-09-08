@@ -7,7 +7,6 @@ from settings import settings
 from dateparser import parse
 from coreApp.management.commands.extract_data import get, save_from_file
 from datetime import datetime
-import time
 
 def function():
     print("-------------------------", datetime.now())
@@ -16,11 +15,11 @@ def function():
         url = ['https://www.football-data.co.uk/mmz4281/2324/Latest_Results.csv', "https://www.football-data.co.uk/new/Latest_Results.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
-            with open(os.path.join(settings.BASE_DIR, 'ressources/results/data_{}.csv'.format(i)), 'wb') as file:
+            with open(os.path.join(settings.BASE_DIR, 'media/results/data_{}.csv'.format(i)), 'wb') as file:
                 file.write(response.content)
         
         
-        file = os.path.join(settings.BASE_DIR, "ressources/results/data_0.csv")
+        file = os.path.join(settings.BASE_DIR, "media/results/data_0.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0
@@ -144,8 +143,8 @@ def function():
             
             
     try:   
-
-        file = os.path.join(settings.BASE_DIR, "ressources/results/data_1.csv")
+        print("------------------------------------------------", datetime.now())
+        file = os.path.join(settings.BASE_DIR, "media/results/data_1.csv")
         with open(file ,'rt', encoding = 'ISO-8859-1') as f:
             data = csv.reader(f)
             i = 0
@@ -190,8 +189,9 @@ def function():
                         hour              = get(row, header, "Time") or None,
                         home              = home,
                         away              = away,
-                        edition           = edicompet
-                        ).first()
+                        edition           = edicompet,
+                        is_finished = False
+                    ).first()
                     
                     if match is not None:
                         home_score              = get(row, header, "HG")

@@ -11,13 +11,13 @@ def main(edit):
             
 def function(match):
     
-    MIN_MATCH = 6
+    MIN_MATCH = 7
     
     MIN = 0.2
     MAX = 0.8
     MIN_GOAL = 1
     MAX_GOAL = 2
-    #Home
+    #Home jkdhkj
     edition = match.edition
     matchs_home = fixtureApp.models.Match.objects.filter(edition = edition, is_finished=True, date__gte = edition.start_date, date__lt = match.date , home = match.home).order_by('-date')
     matchs_home_all = match.home.get_last_matchs(match, 20, edition = True)
