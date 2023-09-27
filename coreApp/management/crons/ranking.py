@@ -96,14 +96,15 @@ def handle():
             p.start()
             time.sleep(0.5)
             
-            while threading.active_count() > 1:
-                print("en attente ---------------: ", threading.active_count())
-                time.sleep(30)
-            
             mydate += timedelta(days=3)
             file.seek(0)  # Se positionner au début du fichier pour écrire
             file.write(mydate.strftime('%Y-%m-%d'))
             file.truncate()
+            
+            while threading.active_count() > 1:
+                print("en attente ---------------: ", threading.active_count())
+                time.sleep(30)
+            
         
 
             

@@ -98,7 +98,7 @@ DATABASES = {
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
-        'NAME'      : os.getenv("DB_NAME", "wiki"),
+        'NAME'      : os.getenv("DB_NAME", "wikibet"),
         'POOL_OPTIONS' : {
             'POOL_SIZE': 1000,
             'MAX_OVERFLOW': 100,
@@ -134,24 +134,24 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # CRONJOBS
+CRONTAB_DJANGO_PROJECT_NAME = "wikibet_crons"
 CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('*/10 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
+    ('*/5 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
     ('*/10 * * * *', 'coreApp.management.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/results_job.log" ))),
     
-    ('*/5 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
-    ('*/7 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
+    ('*/4 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    ('*/7 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    ('*/9 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
     
-    ('*/10 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
-    ('*/6 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
-    
+    ('*/4 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
+    ('*/7 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
     ('*/9 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
-    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
     
-    ('1-59/2 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
     ('*/2 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
+    ('*/6 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
     
-    ('0 */1 * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
+    ('*/5 * * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
 ]
 
 

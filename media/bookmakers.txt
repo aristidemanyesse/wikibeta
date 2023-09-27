@@ -1,0 +1,9 @@
+B365H = Bet365 home win odds
+B365D = Bet365 draw odds
+B365A = Bet365 away win odds
+AvgH = Moyenne home win odds
+AvgD = Moyenne draw odds
+AvgA = Moyenne away win odds
+PH = Pinnacle home win odds
+PD = Pinnacle draw odds
+PA = Pinnacle away win odds

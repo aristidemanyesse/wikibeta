@@ -17,7 +17,25 @@ import os, time
 import numpy as np
 from scipy.stats import poisson, skellam
 
-
+class Score:
+    score = ""
+    home = 0
+    away = 0
+    total = 0
+    proba = 0
+    
+    def __init__(self, home, away, c) -> None:
+        self.score = f"{home}-{away}"
+        self.home = home
+        self.away = away
+        self.total = home + away
+        self.proba = c
+        
+    def __str__(self) -> str:
+        return self.score + "---" + self.proba
+    
+    
+    
 def predict(match):
     try:
         home_last_matchs = match.home.get_last_matchs(match, number = 10, edition = True)
@@ -26,39 +44,125 @@ def predict(match):
         if not (len(home_last_matchs) > 3 and len(away_last_matchs) > 3):
             match.is_predict = True
             match.save()
+            return 0
             
         home_stats = match.get_home_before_stats()
         away_stats = match.get_away_before_stats()
         
         home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
         away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        
+        p = footstats.plus_but(home_last_matchs, 2.5) + footstats.plus_but(away_last_matchs, 2.5)
+        m = footstats.moins_but(home_last_matchs, 2.5) + footstats.moins_but(away_last_matchs, 2.5)
 
         
         if home_stats is not None and away_stats is not None:
             
-            # if (home_stats.score_elo >= 1600 and away_stats.score_elo >= 1600):
-            #     PredictionTest.objects.create(
-            #         mode = ModePrediction.get("M0"),
-            #         type = TypePrediction.get("p1_5"),
-            #         match = match,
-            #         pct = 0.80
-            #     )
-                
-            if (home_stats.ga_expected < 0.7 and away_stats.ga_expected < 0.7):
-                PredictionTest.objects.create(
-                    mode = ModePrediction.get("M0"),
-                    type = TypePrediction.get("m3_5"),
-                    match = match,
-                    pct = 0.80
-                )
-                
-            if (home_stats.ga_expected > 0.7 and away_stats.ga_expected > 0.7):
+            # if p + m  >= 10 :
+            #     count = 0
+            #     for x in [home_stats.ga_expected, home_stats.ga_expected, away_stats.ga_expected, away_stats.ga_expected]:
+            #         if x >= 1:
+            #             count += 1
+                        
+            #     if (p > m+1) and (home_rank.avg_gs + away_rank.avg_gs) >= 2.3:
+            #         PredictionTest.objects.create(
+            #             mode = ModePrediction.get("M0"),
+            #             type = TypePrediction.get("p1_5"),
+            #             match = match,
+            #             pct = 0.80
+            #         )
+                    
+            #     if (m >= p+1)  and (home_rank.avg_gs + away_rank.avg_gs) < 2.5:
+            #         PredictionTest.objects.create(
+            #             mode = ModePrediction.get("M0"),
+            #             type = TypePrediction.get("m3_5"),
+            #             match = match,
+            #             pct = 0.80
+            #         )
+                    
+                    
+            scores_exacts = []
+            for home, p in json.loads(home_stats.expected_goals).items():
+                for away, j in json.loads(away_stats.expected_goals).items():
+                    s = Score(int(home), int(away), round(p*j, 3))
+                    scores_exacts.append(s)
+            scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
+            
+            # plus, moins, _12 = False, False, False
+            # for sc_bon in scores_exacts[:1]:
+            #     if sc_bon.score == "0-0":
+            #         moins = True
+            #         # PredictionTest.objects.create(
+            #         #     mode = ModePrediction.get("M0"),
+            #         #     type = TypePrediction.get("m3_5"),
+            #         #     match = match,
+            #         #     pct = 0.80
+            #         # )
+            #         for sc in scores_exacts:
+            #             if sc.total < 3.5:
+            #                 sc.proba += sc.proba *0.8
+                            
+            #     if sc_bon.score == "1-1":
+            #         _12 = True
+            #         for sc in scores_exacts:
+            #             if sc.home != sc.away:
+            #                 sc.proba += sc.proba *0.8
+            #             if sc.total < 3.5:
+            #                 sc.proba += sc.proba *0.8
+                            
+            #     if sc_bon.score == "0-1":
+            #         for sc in scores_exacts:
+            #             if sc.home < sc.away:
+            #                 sc.proba += sc.proba *0.8
+            #             if sc.total < 3.5:
+            #                 sc.proba += sc.proba *0.8
+                            
+            #     if sc_bon.score == "1-0":
+            #         for sc in scores_exacts:
+            #             if sc.home > sc.away:
+            #                 sc.proba += sc.proba *0.8
+                            
+            #     else:
+            #         plus = True
+            #         # PredictionTest.objects.create(
+            #         #     mode = ModePrediction.get("M0"),
+            #         #     type = TypePrediction.get("p1_5"),
+            #         #     match = match,
+            #         #     pct = 0.80
+            #         # )
+            #         for sc in scores_exacts:
+            #             if sc.total > 1.5:
+            #                 sc.proba += sc.proba *0.8
+            
+            scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
+            
+            if "2-1" in [sc.score for sc in scores_exacts[:2]]:
                 PredictionTest.objects.create(
                     mode = ModePrediction.get("M0"),
                     type = TypePrediction.get("p1_5"),
                     match = match,
                     pct = 0.80
                 )
+                    
+            elif "1-1" not in [sc.score for sc in scores_exacts[:2]]:
+                PredictionTest.objects.create(
+                    mode = ModePrediction.get("M0"),
+                    type = TypePrediction.get("12"),
+                    match = match,
+                    pct = 0.80
+                )
+                
+            else:
+                t = 0
+                for sc in scores_exacts[:2]:
+                    t   += sc.total
+                if t < 2.5:
+                    PredictionTest.objects.create(
+                        mode = ModePrediction.get("M0"),
+                        type = TypePrediction.get("m3_5"),
+                        match = match,
+                        pct = 0.80
+                    )
                 
             # if (home_stats.probabilite_elo > 0.6):
             #     PredictionTest.objects.create(
@@ -168,7 +272,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             PredictionTest.objects.all().delete()            
-            for match in Match.objects.filter(is_compared = True).exclude(is_predict = True).order_by('date')[:1000]:
+            for match in Match.objects.exclude(is_predict = True).order_by('date')[:3000]:
                 print("START: Current active thread count ---------------: ", threading.active_count())
                 while threading.active_count() > 300:
                     time.sleep(10)

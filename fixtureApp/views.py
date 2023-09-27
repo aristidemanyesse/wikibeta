@@ -9,6 +9,23 @@ from predictionApp.models import *
 from competitionApp.models import *
 # Create your views here.
 
+class Score:
+    score = ""
+    home = 0
+    away = 0
+    total = 0
+    proba = 0
+    
+    def __init__(self, home, away, c) -> None:
+        self.score = f"{home}-{away}"
+        self.home = home
+        self.away = away
+        self.total = home + away
+        self.proba = c
+        
+    def __str__(self) -> str:
+        return self.score + "---" + self.proba
+    
 
 @render_to('fixtureApp/index.html')
 def home(request):
@@ -19,6 +36,8 @@ def home(request):
 
 @render_to('fixtureApp/index.html')
 def fixtures(request, year, month, day):
+    # Match.objects.filter(created_at__gte = datetime.today() - timedelta(days=2)).delete()
+    # Team.objects.filter(created_at__gte = datetime.today() - timedelta(days=2)).delete()
     if request.method == "GET":
         datas = Prediction.objects.filter(is_checked = None)
         for predict in datas:
@@ -79,6 +98,45 @@ def match(request, id):
         rank = match.edition.edition_rankings.filter(date__lte = match.date).order_by('-date').first()
         competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
         extra_infos = match.get_extra_info_match()
+        
+        scores_exacts = []
+        for home, p in json.loads(stats_home.expected_goals).items():
+            for away, j in json.loads(stats_away.expected_goals).items():
+                s = Score(int(home), int(away), round(p*j, 3))
+                scores_exacts.append(s)
+        scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
+        
+        for sc_bon in scores_exacts[:1]:
+            if sc_bon.score == "0-0":
+                for sc in scores_exacts:
+                    if sc.total < 3.5:
+                        sc.proba += sc.proba *0.8
+                        
+            if sc_bon.score == "1-1":
+                for sc in scores_exacts:
+                    if sc.home != sc.away:
+                        sc.proba += sc.proba *0.8
+                    if sc.total < 3.5:
+                        sc.proba += sc.proba *0.8
+                        
+            if sc_bon.score == "0-1":
+                for sc in scores_exacts:
+                    if sc.home < sc.away:
+                        sc.proba += sc.proba *0.8
+                    if sc.total < 3.5:
+                        sc.proba += sc.proba *0.8
+                        
+            if sc_bon.score == "1-0":
+                for sc in scores_exacts:
+                    if sc.home > sc.away:
+                        sc.proba += sc.proba *0.8
+                        
+            else:
+                for sc in scores_exacts:
+                    if sc.total > 1.5:
+                        sc.proba += sc.proba *0.8
+        
+        scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
 
         ctx = {
             "match"                 : match,
@@ -104,6 +162,7 @@ def match(request, id):
             "stats_home"            : stats_home,
             "stats_away"            : stats_away,
             "competitionstats"      : competitionstats,
+            "scores_exacts"      : scores_exacts[:5],
         }
         return ctx
 
@@ -116,7 +175,7 @@ def match(request, id):
 def features_test(request, ):
     if request.method == "GET":
         # type = TypePrediction.get("1X")
-        type = TypePrediction.get("12")
+        type = TypePrediction.get("p1_5")
         datas = PredictionTest.objects.filter(is_checked = False, type = type).values_list('match__id')
         matchs = Match.objects.filter(id__in = datas)
         

@@ -11,6 +11,7 @@ class PaysAdmin(admin.ModelAdmin):
         ('created_at', DateFieldListFilter),
     )
     list_display = ['name', "flag", 'code']
+    list_editable = ["code", "flag"]
 
 
 

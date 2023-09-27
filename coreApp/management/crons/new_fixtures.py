@@ -1,5 +1,5 @@
 import requests, os, csv, time
-from django.core.management.base import BaseCommand, CommandError
+from media.similarity import SIMILARIIES
 from predictionApp.models import *
 from settings import settings
 from competitionApp.models import *
@@ -18,7 +18,7 @@ def function():
     print("-------------------------", datetime.now())
     
     try:
-        url = ['https://www.football-data.co.uk/fixtures.csv', "https://www.football-data.co.uk/new_league_fixtures.csv"]
+        url = ["https://www.football-data.co.uk/fixtures.csv", "https://www.football-data.co.uk/new_league_fixtures.csv"]
         for i, u in enumerate(url):
             response = requests.get(u)
             with open(os.path.join(settings.BASE_DIR, 'media/fixtures/data_{}.csv'.format(i)), 'wb') as file:
@@ -46,15 +46,24 @@ def function():
                 if compet != "":
                     edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
 
-                    home      = get(row, header, "HomeTeam").replace("/", "-") or ""
-                    away      = get(row, header, "AwayTeam").replace("/", "-") or ""
+                    # home      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    # away      = get(row, header, "AwayTeam").replace("/", "-") or ""
+                    
+                    home_      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    away_      = get(row, header, "AwayTeam").replace("/", "-") or ""
+                    home = SIMILARIIES.get(home_, home_)
+                    away = SIMILARIIES.get(away_, away_)
                     
                     if home != "" and away != "":
                         #enregistrement des équipes
                         home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
+                        home.name = home_
+                        home.save()
                         home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                         
                         away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
+                        away.name = away_
+                        away.save()
                         away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
                                                 
                         #enregistrement du match et des infos du match
@@ -127,16 +136,24 @@ def function():
                         edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
                         edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
 
-
                     home      = get(row, header, "Home").replace("/", "-") or ""
                     away      = get(row, header, "Away").replace("/", "-") or ""
+
+                    # home_      = get(row, header, "Home").replace("/", "-") or ""
+                    # away_      = get(row, header, "Away").replace("/", "-") or ""
+                    # home = SIMILARIIES.get(home_, home_)
+                    # away = SIMILARIIES.get(away_, away_)
                     
                     if home != "" and away != "":
                         #enregistrement des équipes
                         home, created = Team.objects.get_or_create(name = home, pays = pays )
+                        # home.name = home_
+                        # home.save()
                         home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                         
                         away, created = Team.objects.get_or_create(name = away, pays = pays )
+                        # away.name = away_
+                        # away.save()
                         away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
 
                         #enregistrement du match et des infos du match                      

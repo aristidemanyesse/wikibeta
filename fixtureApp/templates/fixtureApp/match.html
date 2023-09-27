@@ -229,6 +229,13 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td class="text-left" colspan="5">
+                                    {% for score in scores_exacts %}
+                                    <label class="label label-{{stats_away.points|form_couleur}}">{{score.score}}</label>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            <tr>
                                  <td class="text-right">
                                     {% for x in home_last_forms %}
                                     <label class="label label-{{x|form_couleur}}">{{x}}</label>

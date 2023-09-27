@@ -12,7 +12,7 @@ import os, time
 def handle():
     try:    
         print("--------------------------------", datetime.now())   
-        for match in Match.objects.filter(is_facted = False).order_by('date')[:50]:
+        for match in Match.objects.filter(is_facted = False).order_by('date')[:20]:
             print("START: Current active thread count ---------------: ", threading.active_count())
             while threading.active_count() > 501:
                 time.sleep(10)

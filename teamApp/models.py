@@ -12,7 +12,7 @@ class Team(BaseModel):
     code    = models.CharField(max_length = 255, null = True, blank=True)
     name    = models.CharField(max_length = 255, null = True, blank=True)
     name2   = models.CharField(max_length = 255, null = True, blank=True)
-    abr   = models.CharField(max_length = 10, null = True, blank=True)
+    abr     = models.CharField(max_length = 10, null = True, blank=True)
     pays    = models.ForeignKey("competitionApp.Pays", on_delete = models.CASCADE, related_name="pays_du_team")
     color1  = models.CharField(max_length = 255, default="", null = True, blank=True)
     color2  = models.CharField(max_length = 255, default="", null = True, blank=True)

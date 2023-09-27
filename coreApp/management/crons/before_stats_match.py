@@ -36,10 +36,9 @@ def handle():
     #     print(stat.match)
     #     stat.match.is_compared = False
     #     stat.match.save()
-        
     try:    
         print("--------------------------------", datetime.now()) 
-        for match in Match.objects.filter(is_compared = False).order_by('date')[:3]:
+        for match in Match.objects.filter(is_compared = False).order_by('date')[:20]:
             print("START: Current active thread count ---------------: ", threading.active_count())
             while threading.active_count() > 501:
                 time.sleep(10)
@@ -67,6 +66,7 @@ def handle():
 
 
 def compared_elo(instance):
+    
     try:
         home_stats, away_stats = instance.get_home_before_stats(), instance.get_away_before_stats()
         for stats in [home_stats, away_stats]:
