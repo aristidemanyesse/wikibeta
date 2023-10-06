@@ -9,12 +9,9 @@ class PaysType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "utilisateur__id": ("exact",),
-            "propagating": ("exact", ),
-            "is_finished": ("exact", ),
-            "is_satisfied": ("exact", ),
+            "code": ("exact",),
+            "name": ("icontains", ),
         }
-
 
 
 class TypeCompetitionType(DjangoSerializerType):
@@ -24,11 +21,8 @@ class TypeCompetitionType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "demande__id": ("exact",),
-            "is_valided": ("exact", ),
-            "propagated": ("exact", ),
-            "officine__id": ("exact",),
-            "officine__circonscription__id": ("exact",),
+            "name": ("exact",),
+            "etiquette": ("icontains", ),
         }
 
 
@@ -39,9 +33,11 @@ class CompetitionType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "demande__id": ("exact",),
-            "produit__id": ("exact",),
-            "status": ("exact", ),
+            "identifiant": ("exact",),
+            "code": ("exact",),
+            "name": ("icontains",),
+            "pays__id": ("exact",),
+            "type__id": ("exact",),
         }
 
 
@@ -52,9 +48,7 @@ class EditionType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "demande__id": ("exact",),
-            "demande__demande__id": ("exact",),
-            "demande__officine__id": ("exact",),
+            "name": ("icontains",),
         }
 
 
@@ -65,7 +59,45 @@ class EditionCompetitionType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "reponse__id": ("exact",),
-            "produit__id": ("exact",),
-            "status": ("exact", ),
+            "edition__id": ("exact",),
+            "competition__id": ("exact",),
+            "start_date": ("lt", "lte", "gt", "gte" ),
+            "finish_date": ("lt", "lte", "gt", "gte" ),
+            "is_finished": ("exact", ),
+        }
+
+
+class CompetitionStatType(DjangoSerializerType):
+    class Meta:
+        serializer_class = CompetitionStatSerializer
+        description = " Type definition for a single CompetitionStat "
+        filter_fields = {
+            "id": ("exact", ),
+            "deleted": ("exact", ),
+            "edition__id": ("exact",),
+            "ranking__id": ("exact",),
+        }
+
+
+class RankingType(DjangoSerializerType):
+    class Meta:
+        serializer_class = RankingSerializer
+        description = " Type definition for a single Ranking "
+        filter_fields = {
+            "id": ("exact", ),
+            "deleted": ("exact", ),
+            "edition__id": ("exact",),
+            "date": ("lt", "lte", "gt", "gte" ),
+        }
+
+
+class LigneRankingType(DjangoSerializerType):
+    class Meta:
+        serializer_class = LigneRankingSerializer
+        description = " Type definition for a single LigneRanking "
+        filter_fields = {
+            "id": ("exact", ),
+            "deleted": ("exact", ),
+            "ranking__id": ("exact",),
+            "team__id": ("exact",),
         }

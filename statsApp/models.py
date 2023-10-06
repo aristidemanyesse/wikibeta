@@ -8,6 +8,8 @@ import json
 class TypeFact(BaseModel):   
     name    = models.CharField(max_length = 255, null = True, blank=True)
     description    = models.CharField(max_length = 255, null = True, blank=True)
+    
+    
 
 class Fact(BaseModel):       
     type        = models.ForeignKey(TypeFact , null = True, blank=True, on_delete = models.CASCADE, related_name="type_facts")
@@ -184,7 +186,7 @@ class ExtraInfosMatch(BaseModel):
     
 
 class TeamProfileMatch(BaseModel):
-    date              = models.DateField( null = True, blank=True)
+    date        = models.DateField( null = True, blank=True)
     team        = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="team_profile")
     match       = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="match_profile")
     dynamic     = models.FloatField(default = 0.0, null = True, blank=True)

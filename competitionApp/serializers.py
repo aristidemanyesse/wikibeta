@@ -28,3 +28,19 @@ class EditionCompetitionSerializer(ModelSerializer):
     class Meta:
         model = EditionCompetition
         fields = '__all__'
+
+
+class RankingSerializer(ModelSerializer):
+    class Meta:
+        model = Ranking
+        fields = '__all__'
+
+class LigneRankingSerializer(ModelSerializer):
+    class Meta:
+        model = LigneRanking
+        fields = '__all__'
+
+class CompetitionStatSerializer(ModelSerializer):
+    class Meta:
+        model = CompetitionStat
+        fields = '__all__'

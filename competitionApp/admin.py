@@ -24,6 +24,7 @@ class CompetitionAdmin(admin.ModelAdmin):
     )
     list_display = ['code', "name" ,"type","pays", "logo"]
     list_editable = ["name", "logo"]
+    search_fields = ['name', "pays__name"]
 
 
 

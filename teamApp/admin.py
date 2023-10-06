@@ -14,6 +14,7 @@ class TeamAdmin(admin.ModelAdmin):
     )
     list_display = ['name', 'code', "pays", "logo", "created_at"]
     list_editable = ['pays', "logo"]
+    search_fields = ['name', "pays__name"]
 
 
 
