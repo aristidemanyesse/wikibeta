@@ -5,7 +5,7 @@ from settings import settings
 from competitionApp.models import *
 from fixtureApp.models import *
 from dateparser import parse
-from coreApp.management.commands.extract_data import get, save_from_file
+from coreApp.management.commands.extract_data import get
 from datetime import datetime
 
 
@@ -46,24 +46,24 @@ def function():
                 if compet != "":
                     edicompet = EditionCompetition.objects.filter(competition__code = compet).order_by("-edition__name").first()
 
-                    # home      = get(row, header, "HomeTeam").replace("/", "-") or ""
-                    # away      = get(row, header, "AwayTeam").replace("/", "-") or ""
+                    home      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    away      = get(row, header, "AwayTeam").replace("/", "-") or ""
                     
-                    home_      = get(row, header, "HomeTeam").replace("/", "-") or ""
-                    away_      = get(row, header, "AwayTeam").replace("/", "-") or ""
-                    home = SIMILARIIES.get(home_, home_)
-                    away = SIMILARIIES.get(away_, away_)
+                    # home_      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    # away_      = get(row, header, "AwayTeam").replace("/", "-") or ""
+                    # home = SIMILARIIES.get(home_, home_)
+                    # away = SIMILARIIES.get(away_, away_)
                     
                     if home != "" and away != "":
                         #enregistrement des équipes
                         home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
-                        home.name = home_
-                        home.save()
+                        # home.name = home_
+                        # home.save()
                         home, created = EditionTeam.objects.get_or_create(team = home, edition = edicompet)
                         
                         away, created = Team.objects.get_or_create(name = away, pays = edicompet.competition.pays )
-                        away.name = away_
-                        away.save()
+                        # away.name = away_
+                        # away.save()
                         away, created = EditionTeam.objects.get_or_create(team = away, edition = edicompet)
                                                 
                         #enregistrement du match et des infos du match

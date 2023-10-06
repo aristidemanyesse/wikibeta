@@ -32,6 +32,13 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+]
+
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 
 # Application definition
@@ -45,7 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django_crontab',
-    "debug_toolbar",
+    "corsheaders",
     'coreApp',
     'competitionApp',
     'teamApp',
@@ -58,12 +65,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'settings.urls'
@@ -93,17 +100,12 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 DATABASES = {
     
     'default': {
-        'ENGINE'    : 'dj_db_conn_pool.backends.mysql',
+        'ENGINE'    : 'django.db.backends.mysql',
         'HOST'      : os.getenv("DB_HOST", "0.0.0.0"),
         'PORT'      : os.getenv("DB_PORT", 3306),
         'USER'      : os.getenv("DB_USER", "root"),
         'PASSWORD'  : os.getenv("DB_PASSWORD", "12345678"),
         'NAME'      : os.getenv("DB_NAME", "wikibet"),
-        'POOL_OPTIONS' : {
-            'POOL_SIZE': 1000,
-            'MAX_OVERFLOW': 100,
-            'RECYCLE': 24 * 60 * 60
-        }
     },
     
     
@@ -140,20 +142,23 @@ CRONJOBS = [
     ('*/5 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
     ('*/10 * * * *', 'coreApp.management.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/results_job.log" ))),
     
-    ('*/4 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
-    ('*/7 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
-    ('*/9 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    ('*/5 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
+    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
+    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
     
-    ('*/4 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
-    ('*/7 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
-    ('*/9 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
-    
-    ('*/2 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
     ('*/6 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
     
-    ('*/5 * * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
+    ('*/10 * * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
 ]
 
+
+GRAPHENE = {
+    'SCHEMA_INDENT': 4,
+    "SCHEMA": "settings.schemas.schema",
+    'MIDDLEWARE': [
+        'graphene_django_extras.ExtraGraphQLDirectiveMiddleware'
+    ]
+}
 
 
 # Internationalization

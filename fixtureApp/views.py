@@ -36,8 +36,9 @@ def home(request):
 
 @render_to('fixtureApp/index.html')
 def fixtures(request, year, month, day):
-    # Match.objects.filter(created_at__gte = datetime.today() - timedelta(days=2)).delete()
-    # Team.objects.filter(created_at__gte = datetime.today() - timedelta(days=2)).delete()
+    # Match.objects.filter(created_at__gte = datetime.today() - timedelta(days=20)).update(is_compared = False)
+    # Team.objects.filter(created_at__gte = datetime.today() - timedelta(days=3)).delete()
+    # Ranking.objects.filter(date__gte = datetime.today() - timedelta(days=30)).update(deleted = True)
     if request.method == "GET":
         datas = Prediction.objects.filter(is_checked = None)
         for predict in datas:
@@ -83,14 +84,14 @@ def match(request, id):
         stats_home = match.get_home_before_stats()
         stats_away = match.get_away_before_stats()
         
-        confrontations        = Match.objects.filter(id__in = eval(stats_home.list_confrontations)).order_by("-date")
-        similaires_ppg        = Match.objects.filter(id__in = eval(stats_home.list_similaires_ppg)).order_by("-date")
-        similaires_ppg2       = Match.objects.filter(id__in = eval(stats_home.list_similaires_ppg2)).order_by("-date")
-        similaires_betting    = Match.objects.filter(id__in = eval(stats_home.list_similaires_betting)).order_by("-date")
-        list_intercepts       = Match.objects.filter(id__in = eval(stats_home.list_intercepts)).order_by("-date")
+        confrontations        = Match.objects.filter(deleted = False, id__in = eval(stats_home.list_confrontations)).order_by("-date")
+        similaires_ppg        = Match.objects.filter(deleted = False, id__in = eval(stats_home.list_similaires_ppg)).order_by("-date")
+        similaires_ppg2       = Match.objects.filter(deleted = False, id__in = eval(stats_home.list_similaires_ppg2)).order_by("-date")
+        similaires_betting    = Match.objects.filter(deleted = False, id__in = eval(stats_home.list_similaires_betting)).order_by("-date")
+        list_intercepts       = Match.objects.filter(deleted = False, id__in = eval(stats_home.list_intercepts)).order_by("-date")
         
-        home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
-        away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date, deleted = False, ranking__deleted = False).order_by('-ranking__date').first()
+        away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date, deleted = False, ranking__deleted = False).order_by('-ranking__date').first()
         
         home_profile = match.match_profile.filter(team = match.home).order_by('-date').first()
         away_profile = match.match_profile.filter(team = match.away).order_by('-date').first()

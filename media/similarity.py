@@ -4,32 +4,36 @@ SIMILARIIES = {
     # "Solihull Moors" : "Solihull",
     # "York City" : "York",
     # "AFC Fylde" : "Fylde",
+
+ 
+
+    # "Braga": "Sp Braga",
+
+    # "Nizhny Novgorod": "Pari NN",
+
+
+    # "Volos NFC" :"Volos",
+
+    # "Milan": "AC Milan",
+    # "Roma": "AS Roma",
+
+    # "Ath Madrid": "Atl. Madrid",
+    # "Cadiz": "Cadiz CF",
+    # "Granada": "Granada CF",
+    # "Sociedad": "Real Sociedad",
+    # "Vallecano": "Rayo Vallecano",
+    # "Celta": "Celta Vigo",
+
+    # "Adana Demirspor": "Ad. Demirspor",
+    # "Istanbulspor":  "Istanbulspor AS",
+    # "Buyuksehyr":  "Basaksehyr",
     
-    # "AC Ajaccio" : "Ajaccio",
-    
-    # "Cercle Brugge KV" : "Cercle Brugge",
-    # "RWDM" : "RWD Molenbeek",
-    # "Royale Union SG" : "St. Gilloise",
-    
-    # "AEK Athens FC" : "AEK",
-    # "Olympiakos Piraeus" : "Olympiakos",
-    # "Volos" : "Volos NFC",
-    
-    # "Braga" : "Sp Braga",
-    
-    # "Nizhny Novgorod" : "Pari NN",
-    
-    # "AC Milan" : "Milan",
-    # "AS Roma" : "Roma",
-    
-    # "Atl. Madrid" : "Ath Madrid",
-    # "Cadiz CF" : "Cadiz",
-    # "Granada CF" : "Granada",
-    # "Real Sociedad" : "Sociedad",
-    # "Rayo Vallecano" : "Vallecano",
-    # "Celta Vigo" : "Celta",
-    
-    # "Adana Demirspor" : "Ad. Demirspor",
-    # "Istanbulspor AS" : "Istanbulspor",
-    # "Basaksehyr" : "Buyuksehyr",
+    #    "Ajaccio": "AC Ajaccio",
+
+    # "Cercle Brugge":  "Cercle Brugge KV",
+    # "RWD Molenbeek": "RWDM",
+    # "St. Gilloise": "Royale Union SG",
+
+    # "AEK": "AEK Athens FC",
+    # "Olympiakos": "Olympiakos Piraeus",
 }

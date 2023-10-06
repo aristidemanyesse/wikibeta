@@ -1,5 +1,6 @@
 import requests, os, csv
 from django.core.management.base import BaseCommand, CommandError
+from media.similarity import SIMILARIIES
 from predictionApp.models import *
 from competitionApp.models import *
 from fixtureApp.models import *
@@ -43,8 +44,9 @@ def function():
                         edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
                         edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
 
-                    home      = get(row, header, "HomeTeam") or ""
-                    away      = get(row, header, "AwayTeam") or ""
+                    home      = get(row, header, "HomeTeam").replace("/", "-") or ""
+                    
+                    away     = get(row, header, "AwayTeam").replace("/", "-") or ""
                         
                     #enregistrement des équipes
                     home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
@@ -59,7 +61,8 @@ def function():
                         hour              = get(row, header, "Time") or None,
                         home              = home,
                         away              = away,
-                        edition           = edicompet
+                        edition           = edicompet,
+                        is_finished = False
                     ).first()
                     
                     if match is not None:
@@ -173,8 +176,9 @@ def function():
                         edit, created = Edition.objects.get_or_create(name = "{}-{}".format(datetime.now().year, datetime.now().year+1))
                         edicompet = EditionCompetition.objects.create(competition = compet, edition = edit)
                         
-                    home                    = get(row, header, "Home") or ""
-                    away                    = get(row, header, "Away") or ""
+                    home      = get(row, header, "Home").replace("/", "-") or ""
+                    
+                    away      = get(row, header, "Away").replace("/", "-") or ""
                         
                     #enregistrement des équipes
                     home, created = Team.objects.get_or_create(name = home, pays = edicompet.competition.pays )
