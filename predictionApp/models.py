@@ -99,7 +99,7 @@ class PredictionTest(BaseModel):
             if self.match.is_finished:
                 result = self.match.get_result()
                 extra = self.match.get_extra_info_match()
-                
+                                
                 if self.type.code == "p0_5_MT":
                     if result.home_half_score is not None:
                         self.is_checked = (result.home_half_score + result.away_half_score) > 0.5
@@ -157,18 +157,48 @@ class PredictionTest(BaseModel):
                     self.is_checked = (result.home_score > 0 and result.away_score == 0) or (result.home_score == 0 and result.away_score > 0)
 
                     
-                elif extra.home_corners is not None  and extra.home_corners + extra.away_corners > 0:
-                    if self.type.code == "corner_p6_5":
-                        self.is_checked = extra.home_corners + extra.away_corners > 6.5
 
-                    elif self.type.code == "corner_m12_5":
-                        self.is_checked = extra.home_corners + extra.away_corners < 12.5
+                elif self.type.code == "corner_p6_5":
+                    self.is_checked = extra.home_corners + extra.away_corners > 6.5
 
-                    elif self.type.code == "1C":
-                        self.is_checked = extra.home_corners >= extra.away_corners
+                elif self.type.code == "corner_m12_5":
+                    self.is_checked = extra.home_corners + extra.away_corners < 12.5
+                # elif self.type.code == "corner_m12_5":
+                #     self.is_checked = extra.home_corners < 8.5 and extra.away_corners < 8.5
 
-                    elif self.type.code == "2C":
-                        self.is_checked = extra.home_corners <= extra.away_corners
+                elif self.type.code == "1C":
+                    self.is_checked = extra.home_corners >= extra.away_corners
+
+                elif self.type.code == "2C":
+                    self.is_checked = extra.home_corners <= extra.away_corners
+
+
+                elif self.type.code == "foul_p20_5":
+                    self.is_checked = extra.home_fouls + extra.away_fouls > 20.5
+
+                elif self.type.code == "foul_m30_5":
+                    self.is_checked = extra.home_fouls + extra.away_fouls < 30.5
+
+
+                elif self.type.code == "shoot_target_p6_5":
+                    self.is_checked = extra.home_shots_on_target + extra.away_shots_on_target > 5.5
+
+                elif self.type.code == "shoot_target_m11_5":
+                    self.is_checked = extra.home_shots_on_target + extra.away_shots_on_target < 11.5
+
+
+                elif self.type.code == "shoot_p20_5":
+                    self.is_checked = extra.home_shots + extra.away_shots > 20.5
+
+                elif self.type.code == "shoot_m30_5":
+                    self.is_checked = extra.home_shots + extra.away_shots < 30.5
+
+
+                elif self.type.code == "card_p2_5":
+                    self.is_checked = extra.home_yellow_cards + extra.away_yellow_cards > 2.5
+
+                elif self.type.code == "card_m5_5":
+                    self.is_checked = extra.home_yellow_cards + extra.away_yellow_cards < 5.5
 
                 self.save()
                 
@@ -186,7 +216,8 @@ class PredictionScore(BaseModel):
     is_checked    = models.BooleanField(null = True, blank=True)
 
     def __str__(self):
-        return str(self.match)+": "+str(self.pct)
+        return f"{self.home_score}-{self.away_score} == {self.pct}"
+        # return str(self.match)+": "+str(self.pct)
     
     class Meta:
         ordering = ['match', '-pct', 'is_checked']

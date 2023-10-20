@@ -58,7 +58,7 @@ def predict(match):
             if p >= 85:
                 Prediction.objects.create(
                     mode = ModePrediction.get("M2"),
-                    type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
+                    type = TypePrediction.get("{}".format("1X" if ppg_home >= ppg_away else "X2" )),
                     match = match,
                     pct = p
                 )

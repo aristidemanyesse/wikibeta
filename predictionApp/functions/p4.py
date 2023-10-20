@@ -28,7 +28,7 @@ def predict(match):
                 # home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
                 # away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
                 
-                moy += (result.home_score + result.away_score) / len(matchs)
+                # moy += (result.home_score + result.away_score) / len(matchs)
             
             if (moy >= 2.7):
                 for x in [1.5, 2.5, 3.5]:
@@ -71,7 +71,7 @@ def predict(match):
             if p >= 85:
                 Prediction.objects.create(
                     mode = ModePrediction.get("M4"),
-                    type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
+                    type = TypePrediction.get("{}".format("1X" if ppg_home >= ppg_away else "X2" )),
                     match = match,
                     pct = p
                 )

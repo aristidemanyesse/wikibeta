@@ -9,10 +9,10 @@ class MatchType(DjangoSerializerType):
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
-            "date": ("lt", "lte", "gt", "gte" ),
-            "home__id": ("exact", ),
-            "away__id": ("exact", ),
-            "edition__id": ("exact", ),
+            "date": ("exact", "lt", "lte", "gt", "gte" ),
+            "home": ("exact", ),
+            "away": ("exact", ),
+            "edition": ("exact", ),
             "is_finished": ("exact", ),
             "is_predict": ("exact", ),
         }

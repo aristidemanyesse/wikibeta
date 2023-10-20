@@ -1,5 +1,4 @@
-import requests, os, csv, time
-from media.similarity import SIMILARIIES
+import requests, os, csv
 from predictionApp.models import *
 from settings import settings
 from competitionApp.models import *

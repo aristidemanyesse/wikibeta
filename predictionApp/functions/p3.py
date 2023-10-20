@@ -9,57 +9,74 @@ def function(edition):
     
     
 def predict(match):
-    matchs = match.similaires_ppg2(20)
-    if len(matchs) >= 10 :
-        moy = 0
-        for x in matchs:
-            result = x.get_result()
-            moy += (result.home_score + result.away_score) / len(matchs)
-            
-        if (moy >= 2.7):
-            for x in [1.5, 2.5, 3.5]:
-                p = fish_law_plus(moy, x)
-                if p >= 85:
-                    Prediction.objects.create(
-                        mode = ModePrediction.get("M3"),
-                        type = TypePrediction.get("p{}".format(str(x).replace(".", "_"))),
-                        match = match,
-                        pct = p
-                    )
+    scores = match.predictionscore_match.filter()
+    list_scores = []
+    for score in scores :
+        list_scores.append("{}:{}".format(score.home_score, score.away_score))
+    print(list_scores)
+    if list_scores in ["0:0", "0:1", "1:0", "1:1"]:
+        PredictionTest.objects.create(
+            mode = ModePrediction.get("M3"),
+            type = TypePrediction.get("m3_5"),
+            match = match,
+            pct = 0.8
+        )
+    
+    test = True
+    for score in scores :
+        if not (score.home_score > 0 and score.away_score > 0):
+            test = False
+            break
+    if test:
+        PredictionTest.objects.create(
+            mode = ModePrediction.get("M3"),
+            type = TypePrediction.get("btts"),
+            match = match,
+            pct = 0.8
+        )
+    
+    test = True
+    total = 0
+    for score in scores :
+        total += score.home_score + score.away_score
+        if not (score.home_score + score.away_score > 1.5):
+            test = False
+            break
+    if test or total >= 6:
+        PredictionTest.objects.create(
+            mode = ModePrediction.get("M3"),
+            type = TypePrediction.get("p1_5"),
+            match = match,
+            pct = 0.8
+        )
+    
+    test = True
+    for score in scores :
+        if not (score.home_score > 0):
+            test = False
+            break
+    if test:
+        PredictionTest.objects.create(
+            mode = ModePrediction.get("M3"),
+            type = TypePrediction.get("HG"),
+            match = match,
+            pct = 0.8
+        )
+    
                 
-                
-        if (moy <= 2):
-            for x in [1.5, 2.5, 3.5]:
-                p = fish_law_moins(moy, x)
-                if p >= 85:
-                    Prediction.objects.create(
-                        mode = ModePrediction.get("M3"),
-                        type = TypePrediction.get("m{}".format(str(x).replace(".", "_"))),
-                        match = match,
-                        pct = p
-                    )
-                    
-        total = 0     
-        for x in matchs:
-            ppg_home = x.get_home_before_stats().ppg
-            ppg_away = x.get_away_before_stats().ppg
-            
-            result = x.get_result()
-            
-            if ppg_home == ppg_away :
-                total += 1
-            elif ppg_home > ppg_away and result.home_score >= result.away_score :
-                total += 1
-            elif ppg_home < ppg_away and result.home_score <= result.away_score :
-                total += 1
-        
-        p = (total / len(matchs)) * 100
-        if p >= 85:
-            Prediction.objects.create(
-                mode = ModePrediction.get("M3"),
-                type = TypePrediction.get("VN_{}".format("Home" if ppg_home >= ppg_away else "Away" )),
-                match = match,
-                pct = p
-            )
+    
+    test = True
+    for score in scores :
+        if not (score.away_score > 0):
+            test = False
+            break
+    if test:
+        PredictionTest.objects.create(
+            mode = ModePrediction.get("M3"),
+            type = TypePrediction.get("AG"),
+            match = match,
+            pct = 0.8
+        )
+    
                 
                 

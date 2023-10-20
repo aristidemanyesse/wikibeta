@@ -12,7 +12,8 @@ def function( date = None):
     print("Ranking pour le -------------------------", date)
     try :
         for edition in EditionCompetition.objects.filter(start_date__lte = date, finish_date__gte = date).order_by("-edition__name"):
-            last = edition.edition_rankings.filter(date__range = [date - timedelta(days = 1), date+ timedelta(days = 1)], deleted = False).count()
+            # last = edition.edition_rankings.filter(date__range = [date - timedelta(days = 1), date+ timedelta(days = 1)], deleted = False).count()
+            last = edition.edition_rankings.filter(date__gte = date - timedelta(days = 1), deleted = False).count()
             
             if last == 0:
                 print("Ranking de --", edition)
@@ -96,7 +97,7 @@ def handle():
             p.start()
             time.sleep(0.5)
             
-            mydate += timedelta(days=3)
+            mydate += timedelta(days=1)
             file.seek(0)  # Se positionner au début du fichier pour écrire
             file.write(mydate.strftime('%Y-%m-%d'))
             file.truncate()

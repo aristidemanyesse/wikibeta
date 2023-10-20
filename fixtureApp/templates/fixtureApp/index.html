@@ -110,7 +110,7 @@
                                                 <label class="m-b-md d-block label label-{% if pre.is_checked %}primary{% elif pre.is_checked == None %}default{% else %}danger{% endif %}">{{ pre.type.name }}</label>
                                             {% endfor %}
                                             {% for score in match.predictionscore_match.filter %}
-                                                <label class="m-b-md d-block label label-{% if score.is_checked %}primary{% elif score.is_checked == None %}default{% else %}danger{% endif %}">{{ score.home_score }} - {{ score.away_score }}</label>
+                                                <label class="m-b-md d-block label label-{% if score.is_checked %}primary{% elif score.is_checked == None %}default{% else %}danger{% endif %}">{{ score.home_score }} - {{ score.away_score }}  :  {{ score.pct|rounded }}</label>
                                             {% endfor %}
                                         </td>
                                         <td class="{% if result.home_score > result.away_score %}bold{% endif %} text-right"><a class="no-link" href="{% url 'teamApp:team' match.home %}">{{match.home}}</a></td>

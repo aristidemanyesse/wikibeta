@@ -1,5 +1,4 @@
 import requests, os, csv
-from django.core.management.base import BaseCommand, CommandError
 from media.similarity import SIMILARIIES
 from predictionApp.models import *
 from competitionApp.models import *

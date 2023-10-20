@@ -28,16 +28,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+# INTERNAL_IPS = [
+#     "127.0.0.1",
+# ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://sub.example.com",
-    "http://localhost:8080",
-    "http://127.0.0.1:9000",
-]
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOWED_ORIGINS = [
+#     "https://example.com",
+#     "https://sub.example.com",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:9000",
+# ]
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django_crontab',
     "corsheaders",
+    'graphene_django',
+    
+    
     'coreApp',
     'competitionApp',
     'teamApp',

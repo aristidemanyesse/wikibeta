@@ -14,17 +14,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        print("Super admin registered")
-        user = User(
-            username = "admin",
-            email = "",
-            first_name = "Super",
-            last_name = "Administrateur",
-        )
-        user.set_password("12345678")
-        user.is_superuser = True
-        user.is_staff = True
-        user.save()
+        # print("Super admin registered")
+        # user = User(
+        #     username = "admin",
+        #     email = "",
+        #     first_name = "Super",
+        #     last_name = "Administrateur",
+        # )
+        # user.set_password("12345678")
+        # user.is_superuser = True
+        # user.is_staff = True
+        # user.save()
         
         
         TypeCompetition.objects.get_or_create(
@@ -65,6 +65,19 @@ class Command(BaseCommand):
             "corner_m12_5":"Moins de 12,5 corners dans le match",
             "1C":"Voictoire de l'equipe à domicile aux corners",
             "2X":"Voictoire de l'equipe à l'extérieur aux corners",
+            
+            
+            "foul_p20_5":"Plus de 20,5 fautes dans le match",
+            "foul_m30_5":"Moins de 30,5 fautes dans le match",
+            
+            "shoot_p20_5":"Plus de 11,5 tirs dans le match",
+            "shoot_m30_5":"Moins de 30,5 tirs dans le match",
+            
+            "shoot_target_p6_5":"Plus de 6,5 tirs cadrés dans le match",
+            "shoot_target_m11_5":"Moins de 11,5 tirs cadrés dans le match",
+            
+            "card_p2_5":"Plus de 2,5 fautes dans le match",
+            "card_m5_5":"Moins de 5,5 fautes dans le match",
         }
         for x in datas:
             TypePrediction.objects.get_or_create(

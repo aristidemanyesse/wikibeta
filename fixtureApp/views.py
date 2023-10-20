@@ -100,44 +100,6 @@ def match(request, id):
         competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
         extra_infos = match.get_extra_info_match()
         
-        scores_exacts = []
-        for home, p in json.loads(stats_home.expected_goals).items():
-            for away, j in json.loads(stats_away.expected_goals).items():
-                s = Score(int(home), int(away), round(p*j, 3))
-                scores_exacts.append(s)
-        scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
-        
-        for sc_bon in scores_exacts[:1]:
-            if sc_bon.score == "0-0":
-                for sc in scores_exacts:
-                    if sc.total < 3.5:
-                        sc.proba += sc.proba *0.8
-                        
-            if sc_bon.score == "1-1":
-                for sc in scores_exacts:
-                    if sc.home != sc.away:
-                        sc.proba += sc.proba *0.8
-                    if sc.total < 3.5:
-                        sc.proba += sc.proba *0.8
-                        
-            if sc_bon.score == "0-1":
-                for sc in scores_exacts:
-                    if sc.home < sc.away:
-                        sc.proba += sc.proba *0.8
-                    if sc.total < 3.5:
-                        sc.proba += sc.proba *0.8
-                        
-            if sc_bon.score == "1-0":
-                for sc in scores_exacts:
-                    if sc.home > sc.away:
-                        sc.proba += sc.proba *0.8
-                        
-            else:
-                for sc in scores_exacts:
-                    if sc.total > 1.5:
-                        sc.proba += sc.proba *0.8
-        
-        scores_exacts = sorted(scores_exacts, key=lambda x: -x.proba)
 
         ctx = {
             "match"                 : match,
@@ -163,7 +125,6 @@ def match(request, id):
             "stats_home"            : stats_home,
             "stats_away"            : stats_away,
             "competitionstats"      : competitionstats,
-            "scores_exacts"      : scores_exacts[:5],
         }
         return ctx
 
