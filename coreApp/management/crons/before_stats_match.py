@@ -1,7 +1,7 @@
 import threading, time, json
 from datetime import datetime
 from coreApp.functions import bimodal_poisson
-from statsApp.models import BeforeMatchStat
+from statsApp.models import BeforeMatchStat, TeamProfileMatch
 from fixtureApp.models import Match
 
 def compared(instance):
@@ -19,6 +19,16 @@ def compared(instance):
             stats.list_similaires_ppg2                          = list_similaires_ppg2
             stats.list_similaires_betting                       = list_similaires_betting
             stats.save()
+            
+            TeamProfileMatch.objects.create(
+                team        = stats.team,
+                match       = instance,
+                dynamique   = stats.team.dynamique(instance),
+                attack      = stats.team.attaque(instance),
+                defense     = stats.team.defense(instance),
+                maitrise    = stats.team.maitrise(instance),
+                ranking     = 21 - stats.team.team_lignes_rankings.filter(deleted = False).order_by("-ranking__date").first().level
+            )
         
         print(instance, instance.date)
     
@@ -28,14 +38,6 @@ def compared(instance):
         
         
 def handle():
-    # Match.objects.filter(is_compared_elo = True).update(is_compared_elo = False)
-    # Match.objects.filter(is_compared = True).update(is_compared = False)
-    # print("textxet")
-    
-    # for stat in BeforeMatchStat.objects.filter(score_elo__lte = 1300, match__is_compared = True):
-    #     print(stat.match)
-    #     stat.match.is_compared = False
-    #     stat.match.save()
     try:    
         print("--------------------------------", datetime.now()) 
         for match in Match.objects.filter(is_compared = False).order_by('-date')[:20]:

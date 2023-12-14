@@ -157,7 +157,10 @@ class ResultMatch(BaseModel):
     result_half       = models.CharField(max_length = 255, null = True, blank=True)
 
     def __str__(self):
-        return str(self.match)+"==>"+str(self.home_score)+"-"+str(self.away_score)
+        return str(self.match.home)+" "+str(self.home_score)+"-"+str(self.away_score)+" " +str(self.match.away)
+    
+    def total(self):
+        return self.home_score + self.away_score
     
     
     
@@ -181,19 +184,16 @@ class ExtraInfosMatch(BaseModel):
     def __str__(self):
         return str(self.match) +" (extra infos)"
 
-
-
     
 
 class TeamProfileMatch(BaseModel):
-    date        = models.DateField( null = True, blank=True)
     team        = models.ForeignKey("teamApp.EditionTeam", on_delete = models.CASCADE, related_name="team_profile")
     match       = models.ForeignKey("fixtureApp.Match", on_delete = models.CASCADE, related_name="match_profile")
-    dynamic     = models.FloatField(default = 0.0, null = True, blank=True)
+    dynamique   = models.FloatField(default = 0.0, null = True, blank=True)
+    maitrise   = models.FloatField(default = 0.0, null = True, blank=True)
     attack      = models.FloatField(default = 0.0, null = True, blank=True)
     defense     = models.FloatField(default = 0.0, null = True, blank=True)
-    pression    = models.FloatField(default = 0.0, null = True, blank=True)
-    clean       = models.FloatField(default = 0.0, null = True, blank=True)
+    ranking     = models.FloatField(default = 0.0, null = True, blank=True)
     
     def __str__(self):
         return str(self.team)

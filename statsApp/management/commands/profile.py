@@ -53,7 +53,7 @@ class Command(BaseCommand):
                             vn += 1 if (x.away == team) else 0
                             
                 
-                dynamic = win + (vn * 0.5 )+ (5 - round(rank.level / 4)+1)
+                dynamique = win + (vn * 0.5 )+ (5 - round(rank.level / 4)+1)
                 
                 
                 #ATK
@@ -91,7 +91,7 @@ class Command(BaseCommand):
                 
                 utc=pytz.UTC
                 date = datetime.now().replace(tzinfo=utc)
-                TeamProfileMatch.objects.create(date = date, team=team, match=match, dynamic=dynamic, pression= pression, attack = attack, defense=defense, clean=clean)
+                TeamProfileMatch.objects.create(date = date, team=team, match=match, dynamique=dynamique, pression= pression, attack = attack, defense=defense, clean=clean)
                 
                 
                 

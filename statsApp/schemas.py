@@ -71,5 +71,5 @@ class TeamProfileMatchType(DjangoSerializerType):
             "deleted": ("exact", ),
             "match__id": ("exact",),
             "team__id": ("exact",),
-            "date": ("lt", "lte", "gt", "gte" ),
+            "match__date": ("lt", "lte", "gt", "gte" ),
         }

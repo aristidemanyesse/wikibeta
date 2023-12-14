@@ -24,6 +24,7 @@ class Match(BaseModel):
     is_compared       = models.BooleanField(default = False, null = True, blank=True)
     is_compared_elo   = models.BooleanField(default = False, null = True, blank=True)
     is_facted         = models.BooleanField(default = False, null = True, blank=True)
+    is_profiled         = models.BooleanField(default = False, null = True, blank=True)
     is_stated         = models.BooleanField(default = False, null = True, blank=True)
 
     class Meta:

@@ -68,4 +68,4 @@ class TeamProfileMatchAdmin(admin.ModelAdmin):
     list_filter = (
         ('match__date', DateFieldListFilter),
     )
-    list_display = ["date", 'match', 'team', "dynamic", "attack", "defense", "pression", "clean"]
+    list_display = ['match', 'team', "dynamique", "attack", "defense", "maitrise", "ranking"]

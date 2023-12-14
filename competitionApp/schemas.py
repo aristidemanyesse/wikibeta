@@ -1,6 +1,6 @@
 from graphene_django_extras import  DjangoSerializerType
 from .serializers import *
-
+from graphene_django_extras.paginations import LimitOffsetGraphqlPagination
 
 class PaysType(DjangoSerializerType):
     class Meta:
@@ -94,10 +94,12 @@ class RankingType(DjangoSerializerType):
 class LigneRankingType(DjangoSerializerType):
     class Meta:
         serializer_class = LigneRankingSerializer
+        pagination = LimitOffsetGraphqlPagination(default_limit=25, ordering="-ranking__created_at")
         description = " Type definition for a single LigneRanking "
         filter_fields = {
             "id": ("exact", ),
             "deleted": ("exact", ),
             "ranking__id": ("exact",),
+            "ranking__date": ("exact", "lt", "lte", "gt", "gte"),
             "team__id": ("exact",),
         }

@@ -1,242 +1,185 @@
-from django.core.management.base import BaseCommand, CommandError
-import predictionApp.functions.p0 as p0
-import predictionApp.functions.p1 as p1
-import predictionApp.functions.p2 as p2
-import predictionApp.functions.p3 as p3
-import predictionApp.functions.p4 as p4
+from math import sqrt
 from competitionApp.models import *
 from predictionApp.models import *
-from coreApp.templatetags import footstats
-# from tensorflow import keras
 
-import statsApp.get_home_facts as get_home_facts
-import statsApp.get_away_facts as get_away_facts
-import math
-import threading
-import os, time
-import numpy as np
-
-
-
-def predict(match):
-    
+def predictscore(match):
     try:
         if len( match.away.get_last_matchs(match, edition = True)) < 4 or len( match.home.get_last_matchs(match, edition = True)) < 4:
-            return
+            return []
         
-        print( match, match.date, match.get_result())
-        
-        # competitionstats = match.edition.edition_stats.filter(ranking__date__lte = match.date).order_by('-created_at').first()
-        home_last_matchs = match.home.get_last_matchs(match, number = 10, edition = True)
-        away_last_matchs = match.away.get_last_matchs(match, number = 10, edition = True)
-        
-        pts_h, ppg, scored, avg_goals_scored_h, conceded, avg_goals_conceded_h = match.home.last_stats(match, edition = True, number = 5)
-        pts_a, ppg, scored, avg_goals_scored_a, conceded, avg_goals_conceded_a = match.away.last_stats(match, edition = True, number = 5)
-        
-        home_facts = match.match_facts.filter(team = match.home)
-        away_facts = match.match_facts.filter(team = match.away)
-        
-        home_rank = LigneRanking.objects.filter(team = match.home, ranking__date__lte = match.date).order_by('-ranking__date').first()
-        away_rank = LigneRanking.objects.filter(team = match.away, ranking__date__lte = match.date).order_by('-ranking__date').first()
+        home = match.home.get_team_profile(match)
+        away = match.away.get_team_profile(match)
+        if home is None or away is None:
+            return []
         
         home_stats = match.get_home_before_stats()
         away_stats = match.get_away_before_stats()
+        compet =  match.edition.edition_stats.filter(ranking__date__lte = match.date).first()
         
-
-
-        stats_home = match.get_home_before_stats()
-        stats_away = match.get_away_before_stats()
+        
         scores_exacts = []
-        for home, p in json.loads(stats_home.expected_goals).items():
-            for away, j in json.loads(stats_away.expected_goals).items():
+        for i in range(0, 7):
+            for j in range(0, 7):
                 s = PredictionScore(
-                    home_score = int(home),
-                    away_score = int(away),
-                    pct =  round(p*j, 6)
+                    home_score = i,
+                    away_score = j,
                 )
                 scores_exacts.append(s)
-        scores_exacts = sorted(scores_exacts, key=lambda x: -x.pct)
-
-        ############################################################################################################################
-        # HOME NE PERD LE MATCH
-        ############################################################################################################################
-        if (home_stats.probabilite_elo > 0.6):
-            for score in scores_exacts :
-                if score.home_score >= score.away_score:
-                    score.pct *= 2
-                else:
-                    score.pct *= (1+home_stats.probabilite_elo)
-    
-
-
-
-        ############################################################################################################################
-        # AWAY NE PERD LE MATCH
-        ############################################################################################################################
-        if (away_stats.probabilite_elo > 0.6):
-            for score in scores_exacts :
-                if score.home_score <= score.away_score:
-                    score.pct *= 1.8
-                else:
-                    score.pct *= (1+away_stats.probabilite_elo)
+                
         
-
-        p = footstats.plus_but(home_last_matchs, 2.5) + footstats.plus_but(away_last_matchs, 2.5)
-        m = footstats.moins_but(home_last_matchs, 2.5) + footstats.moins_but(away_last_matchs, 2.5)
-
-        ############################################################################################################################
-        # PLUS DE 1.5 BUTS DANS LE MATCH
-        ############################################################################################################################
-        if (p > m+1) and (home_rank.avg_gs + away_rank.avg_gs) >= 2.8 :
-            for score in scores_exacts :
-                if score.home_score + score.away_score > 2.5:
-                    score.pct *= 1.85
-                else:
-                    score.pct /= 1.5
+        scores_exacts = [ x for x in scores_exacts if x.home_score <= round(compet.avg_goals)+3 ]
+        scores_exacts = [ x for x in scores_exacts if x.away_score <= round(compet.avg_goals)+2 ]
+        scores_exacts = [ x for x in scores_exacts if abs(x.away_score - x.home_score) <= round(compet.avg_goals)*2 ]
+        
+        
+        if max(home.attack, home.defense, home.dynamique, away.attack, away.defense, away.dynamique ) ==  away.defense:
+            scores_exacts = [ x for x in scores_exacts if x.total() < 6.5 ]
+        if max(home.attack, home.defense, home.dynamique, away.attack, away.defense, away.dynamique ) ==  home.defense:
+            scores_exacts = [ x for x in scores_exacts if x.total() < 6.5 ]
+            scores_exacts = [ x for x in scores_exacts if not x.home_score == x.away_score >=4 ]
+        
+        if (home.defense < 8 and away.defense < 7):
+            scores_exacts = [ x for x in scores_exacts if x.total() >= 1 ]
+        if (home.dynamique >= 12  and  away.defense <= 5):
+            scores_exacts = [ x for x in scores_exacts if x.away_score <= x.home_score ]
+        if (home.dynamique > 12):
+            scores_exacts = [ x for x in scores_exacts if  x.away_score <= 3 ]
             
-        if  home_stats.ppg >= 2 and away_stats.ppg >= 2 and ((home_rank.avg_ga + away_rank.avg_ga) >= 2.5):
-            for score in scores_exacts :
-                if score.home_score + score.away_score > 2.5:
-                    score.pct *= 1.80
-                else:
-                    score.pct /= 1.5
-
+        scores_exacts = [ x for x in scores_exacts if  x.away_score <= home_stats.avg_goals_scored + 2 ]
         
-        
-        ############################################################################################################################
-        # MOINS DE 3.5 BUTS DANS LE MATCH
-        ############################################################################################################################
-        if (m > p+1) and (home_rank.avg_ga + away_rank.avg_ga) <= 2  and (home_rank.avg_gs + away_rank.avg_gs) < 3 :
-            for score in scores_exacts :
-                if score.home_score + score.away_score < 2.5:
-                    score.pct *= 1.80
-                    
-                    
-        if  home_stats.ppg >= 2 and away_stats.ppg >= 2 and (0.40 < home_stats.probabilite_elo < 0.6):
-            for score in scores_exacts :
-                if score.home_score + score.away_score < 2.5:
-                    score.pct *= 1.80
-                else:
-                    score.pct /= 1.5
-        
-        
-        
-
-        # ############################################################################################################################
-        # # HOME VA MARQUER AU MOINS UN BUT
-        # ############################################################################################################################
-        if avg_goals_scored_h >= 1.5 and avg_goals_conceded_a >= 1.2 :
-            for score in scores_exacts :
-                if score.home_score  > 0:
-                    score.pct *= 1.85
-                else:
-                    score.pct /= 1.5
-        
-
-
-
-        btts = footstats.btts(home_last_matchs) + footstats.btts(away_last_matchs)
-        cs = footstats.cs(home_last_matchs) + footstats.cs(away_last_matchs)
-        
-        if btts > ((len(home_last_matchs) + len (away_last_matchs)) / 2):
-            for score in scores_exacts :
-                if score.home_score  > 0 and score.away_score > 0:
-                    score.pct *= 1.85
-                    
-                    
-        
-        if btts > ((len(home_last_matchs) + len (away_last_matchs)) / 2):
-            for score in scores_exacts :
-                if score.home_score  != score.away_score:
-                    score.pct *= 1.85
+        if (away.dynamique < 10):
+            scores_exacts = [ x for x in scores_exacts if  x.away_score <= 3 ]
+        if (away_stats.avg_goals_conceded > 2 or  home_stats.avg_goals_scored > 2):
+            scores_exacts = [ x for x in scores_exacts if x.total() >= 1 ]
+        if (home_stats.avg_goals_scored >= 2):
+            scores_exacts = [ x for x in scores_exacts if x.total() >= 1 ]
+        if (home_stats.avg_goals_scored >= 1.8 and away_stats.avg_goals_scored >= 1.8):
+            scores_exacts = [ x for x in scores_exacts if x.total() >= 1 ]
             
-                    
         
-        # if home_stats.ga_expected >= 2:
-        #     for score in scores_exacts :
-        #         if score.away_score >= 2:
-        #             score.pct *= 1.8
-        
-        # if home_stats.gs_expected <= 0.8:
-        #     for score in scores_exacts :
-        #         if score.home_score >= 2:
-        #             score.pct /= 1.5
-                    
-                    
-        # if away_stats.ga_expected >= 2:
-        #     for score in scores_exacts :
-        #         if score.home_score >= 2:
-        #             score.pct *= 1.8
-                    
-        # if away_stats.gs_expected <= 0.8:
-        #     for score in scores_exacts :
-        #         if score.away_score >= 2:
-        #             score.pct /= 1.5
+        if (away_stats.avg_goals_conceded < 1 and home_stats.avg_goals_conceded < 1):
+            scores_exacts = [ x for x in scores_exacts if x.total() < 5 ]
             
+            
+        x = scores_exacts[0]
+        if x.total() == 0:
+            scores_exacts = [ x for x in scores_exacts if x.total() < 5.5 ]
+            scores_exacts = [ x for x in scores_exacts if x.home_score <= 3 and x.away_score <= 3 ]
+            
+            
+        calcul = {"p1_5": 0,  "m3_5": 0, "home": 0, "away": 0, "nul":0, "cs": 0, "btts": 0}
+        for x in scores_exacts:
+            if x.home_score > x.away_score:
+                calcul["home"] += 1
+            if x.home_score < x.away_score:
+                calcul["away"] += 1
+            if x.home_score == x.away_score:
+                calcul["nul"] += 1
+            if x.total() > 2.5:
+                calcul["p1_5"] += 1
+            if x.total() < 2.5:
+                calcul["m3_5"] += 1
+            if x.home_score > 0 and x.away_score > 0:
+                calcul["btts"] += 1
+            else:
+                calcul["cs"] += 1
+
+            
+        GF = 2.2
+        before_home = match.home.get_before_stats(match)
+        before_away = match.away.get_before_stats(match)
+        home_u = sqrt(before_home.avg_goals_scored * before_away.avg_goals_conceded)
+        away_u = sqrt(before_home.avg_goals_conceded * before_away.avg_goals_scored)
+        
+        if (before_home.avg_goals_scored + before_away.avg_goals_conceded + before_home.avg_goals_conceded + before_away.avg_goals_scored) / 4 > GF:
+            scores_exacts = [ x for x in scores_exacts if x.total() >= 1]       
+        if home_u > GF:
+            scores_exacts = [ x for x in scores_exacts if x.home_score >= 1]
+            
+        if away_u > GF:
+            scores_exacts = [ x for x in scores_exacts if x.away_score >= 1]
+
+            
+        calcul = {"p1_5": 0,  "m3_5": 0, "home": 0, "away": 0, "nul":0, "cs": 0, "btts": 0}
+        for x in scores_exacts:
+            if x.home_score > x.away_score:
+                calcul["home"] += 1
+            if x.home_score < x.away_score:
+                calcul["away"] += 1
+            if x.home_score == x.away_score:
+                calcul["nul"] += 1
+            if x.total() > 2.5:
+                calcul["p1_5"] += 1
+            if x.total() < 2.5:
+                calcul["m3_5"] += 1
+            if x.home_score > 0 and x.away_score > 0:
+                calcul["btts"] += 1
+            else:
+                calcul["cs"] += 1          
+        
+        if calcul["nul"] == 0:
+            scores_exacts = [ x for x in scores_exacts if x.home_score != x.away_score ] 
+            scores_exacts = [ x for x in scores_exacts if x.home_score >= x.away_score  <= 2] 
+        home_binomial = bimodal_poisson(home_stats.avg_goals_scored, away_stats.avg_goals_conceded)
+        away_binomial = bimodal_poisson(away_stats.avg_goals_scored, home_stats.avg_goals_conceded)
+        for x in scores_exacts:
+            x.pct = round(home_binomial.get(x.home_score) * away_binomial.get(x.away_score), 2)
 
         
+        for x in scores_exacts:
+            if x.home_score > x.away_score:
+                x.pct *= (1 + calcul["home"]/len(scores_exacts))
+            if x.home_score < x.away_score:
+                x.pct *= (1 + calcul["away"]/len(scores_exacts))
+            if x.home_score == x.away_score:
+                x.pct *= (1 + calcul["nul"]/len(scores_exacts))
+            if x.total() > 1.5:
+                x.pct *= (1 + calcul["p1_5"]/len(scores_exacts))
+            if x.total() < 3.5:
+                x.pct *= (1 + calcul["m3_5"]/len(scores_exacts))
+            if x.home_score > 0 and x.away_score > 0:
+                x.pct *= (1 + calcul["btts"]/len(scores_exacts))
+            else:
+                x.pct *= (1 + calcul["cs"]/len(scores_exacts))
+                
+            if (home.defense < 8 and away.defense < 7):
+                if x.total() > 1.5:
+                    x.pct *= 1.9
+            if (home.dynamique >= 12  and  away.defense <= 5):
+                if x.home_score > x.away_score:
+                    x.pct *= 1.90
+                    
+            if (before_home.avg_goals_scored + before_away.avg_goals_conceded + before_home.avg_goals_conceded + before_away.avg_goals_scored) / 4 > GF:
+                if x.total() > 1.5:
+                    x.pct *= 1.9    
+            if home_u > GF:
+                if x.home_score > 0:
+                    x.pct *= 1.90
+                
+            if away_u > GF:
+                if x.away_score > 0:
+                    x.pct *= 1.90
 
-        
-        scores_exacts = sorted(scores_exacts, key=lambda x: -x.pct)
-        for score in scores_exacts[:3]:
-            print(score)
-            score.match = match
-            score.save()
- 
-        
-        
+            if home.dynamique > away.dynamique and home.attack > away.attack:
+                if x.home_score > x.away_score:
+                    x.pct *= 1.6
+                    
+            if home.dynamique < away.dynamique and home.attack < away.attack:
+                if x.total() <= 3:
+                    x.pct *= 1.6
+
+            if away.defense > home.defense:
+                if abs(x.home_score - x.away_score) <= 2:
+                    x.pct *= 1.4
+                    
+            if away.attack + home.attack > 15 and away.defense + home.defense > 26:
+                if x.total() <= 3:
+                    x.pct *= 1.4
+                
+        scores_exacts = sorted(scores_exacts, key=lambda x: -x.pct)[:6]
+        # scores_exacts = [ x for x in scores_exacts if x.pct > 0.14]
+
+        return scores_exacts
     
     except Exception as e:
         print(e)
-
-
-class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
-
-    def handle(self, *args, **options):
-        try:
-            PredictionScore.objects.all().delete()            
-            # PredictionTest.objects.all().delete()            
-            for match in Match.objects.filter().order_by('-date')[:1000]:
-                print("START: Current active thread count ---------------: ", threading.active_count())
-                while threading.active_count() > 200:
-                    time.sleep(30)
-                    
-                p = threading.Thread(target=predict, args=(match,))
-                p.setDaemon(True)
-                p.start()
-                time.sleep(0.1)
-                
-                # p = threading.Thread(target=p1.predict, args=(match,))
-                # p.setDaemon(True)
-                # p.start()
-                # time.sleep(0.01)
-                
-                # p = threading.Thread(target=p2.predict, args=(match,))
-                # p.setDaemon(True)
-                # p.start()
-                # time.sleep(0.01)
-                
-                # p = threading.Thread(target=p3.predict, args=(match,))
-                # p.setDaemon(True)
-                # p.start()
-                # time.sleep(0.01)
-
-                # p = threading.Thread(target=p4.predict, args=(match,))
-                # p.setDaemon(True)
-                # p.start()
-                # time.sleep(0.01)
-                
-                # match.is_predict = True
-                # match.save()
-                    
-            while threading.active_count() > 1:
-                print("en attente ---------------: ", threading.active_count())
-                time.sleep(25)
-            self.stdout.write(self.style.SUCCESS('List des matchs facted avec succes !'))    
-                
-        except Exception as e:
-            print(e)
-            
-     
-

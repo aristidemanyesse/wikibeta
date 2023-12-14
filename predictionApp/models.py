@@ -99,6 +99,7 @@ class PredictionTest(BaseModel):
             if self.match.is_finished:
                 result = self.match.get_result()
                 extra = self.match.get_extra_info_match()
+                
                                 
                 if self.type.code == "p0_5_MT":
                     if result.home_half_score is not None:
@@ -156,15 +157,15 @@ class PredictionTest(BaseModel):
                 elif self.type.code == "no_btts":
                     self.is_checked = (result.home_score > 0 and result.away_score == 0) or (result.home_score == 0 and result.away_score > 0)
 
-                    
+                
 
                 elif self.type.code == "corner_p6_5":
                     self.is_checked = extra.home_corners + extra.away_corners > 6.5
 
-                elif self.type.code == "corner_m12_5":
-                    self.is_checked = extra.home_corners + extra.away_corners < 12.5
                 # elif self.type.code == "corner_m12_5":
-                #     self.is_checked = extra.home_corners < 8.5 and extra.away_corners < 8.5
+                #     self.is_checked = extra.home_corners + extra.away_corners < 12.5
+                elif self.type.code == "corner_m12_5":
+                    self.is_checked = extra.home_corners < 8.5 and extra.away_corners < 8.5
 
                 elif self.type.code == "1C":
                     self.is_checked = extra.home_corners >= extra.away_corners
@@ -216,11 +217,13 @@ class PredictionScore(BaseModel):
     is_checked    = models.BooleanField(null = True, blank=True)
 
     def __str__(self):
-        return f"{self.home_score}-{self.away_score} == {self.pct}"
+        return f"{self.home_score}-{self.away_score}"
+        # return f"{self.home_score}-{self.away_score} = {round(self.pct, 2)}"
         # return str(self.match)+": "+str(self.pct)
     
     class Meta:
         ordering = ['match', '-pct', 'is_checked']
+        
     
     
     def validity(self):
@@ -228,3 +231,7 @@ class PredictionScore(BaseModel):
             result = self.match.get_result()
             self.is_checked = (self.home_score == result.home_score and self.away_score == result.away_score)
             self.save()
+            
+    
+    def total(self):
+        return self.home_score + self.away_score

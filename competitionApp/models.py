@@ -5,7 +5,7 @@ from coreApp.functions import *
 from fixtureApp.models import *
 from bettingApp.models import *
 from teamApp.models import *
-
+import numpy as np
 
 class Pays(BaseModel):
     code    = models.CharField(max_length = 255, null = True, blank=True)
@@ -34,7 +34,7 @@ class Competition(BaseModel):
     type          = models.ForeignKey(TypeCompetition, on_delete = models.CASCADE, null = True, blank=True, related_name="type_de_competition")
     
     class Meta:
-        ordering = ['name']
+        ordering = ["type__etiquette", "pays", 'name']
         
     def __str__(self):
         return self.name
@@ -143,6 +143,16 @@ class EditionCompetition(BaseModel):
             print("Error ranking out", e)
     
     
+    def series(self):
+        matchs = self.edition_du_match.filter(is_finished = True).exclude(is_posted = True)
+        series = []
+        for match in matchs:
+            result = match.get_result()
+            if result is None:
+                continue
+            series.append(result.home_score + result.away_score)
+        return series
+    
     
     
     def cs(self):
@@ -155,6 +165,7 @@ class EditionCompetition(BaseModel):
             if result.home_score == 0 or  result.away_score == 0:
                 total +=1
         return total
+    
     
     def half_cs(self):
         matchs = self.edition_du_match.filter(is_finished = True).exclude(is_posted = True)
@@ -348,7 +359,7 @@ class LigneRanking(BaseModel):
     m3_5      = models.FloatField(default = 0.0, null = True, blank=True)
     
     class Meta:
-        ordering = ['level']
+        ordering = ['-ranking__date', "level"]
 
     def __str__(self):
         return "Rang - " + str(self.team)

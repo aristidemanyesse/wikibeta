@@ -30,4 +30,4 @@ class RootMutations(
     pass
 
 
-schema = graphene.Schema(query=RootQuery, mutation=RootMutations,  directives=all_directives)
+schema = graphene.Schema(query=RootQuery, mutation=RootMutations, directives=all_directives)

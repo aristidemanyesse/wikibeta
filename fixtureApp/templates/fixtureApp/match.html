@@ -1183,19 +1183,19 @@
 $(function(){
 
     var radarData = {
-        labels: ["DYN", "ATK", "DEF", "PRE", "CLN"],
+        labels: ["DYN", "ATK", "DEF", "MAI", "RAN"],
         datasets: [
             {
                 label: "{{match.home}}",
                 backgroundColor: "rgba(20,20,255,0.2)",
                 borderColor: "rgba(20,20,255,1)",
-                data: [{{home_profile.dynamic|replacetojs}}, {{home_profile.attack|replacetojs}}, {{home_profile.defense|replacetojs}}, {{home_profile.pression|replacetojs}}, {{home_profile.clean|replacetojs}}]
+                data: [{{home_profile.dynamique|replacetojs}}, {{home_profile.attack|replacetojs}}, {{home_profile.defense|replacetojs}}, {{home_profile.maitrise|replacetojs}}, {{home_profile.ranking|replacetojs}}]
             },
             {
                 label: "{{match.away}}",
                 backgroundColor: "rgba(26,179,148,0.2)",
                 borderColor: "rgba(26,179,148,1)",
-                data: [{{away_profile.dynamic|replacetojs}}, {{away_profile.attack|replacetojs}}, {{away_profile.defense|replacetojs}}, {{away_profile.pression|replacetojs}}, {{away_profile.clean|replacetojs}}]
+                data: [{{away_profile.dynamique|replacetojs}}, {{away_profile.attack|replacetojs}}, {{away_profile.defense|replacetojs}}, {{away_profile.maitrise|replacetojs}}, {{away_profile.ranking|replacetojs}}]
             }
         ]
     };

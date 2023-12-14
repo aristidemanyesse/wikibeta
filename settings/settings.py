@@ -143,22 +143,23 @@ AUTH_PASSWORD_VALIDATORS = [
 CRONTAB_DJANGO_PROJECT_NAME = "wikibet_crons"
 CRONJOBS = [
     # ('*/3 * * * *', 'extra.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "extra/logs/fixtures_job.log" ))),
-    ('*/5 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
+    ('*/10 * * * *', 'coreApp.management.crons.new_fixtures.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/fixtures_job.log" ))),
     ('*/10 * * * *', 'coreApp.management.crons.update_results.function', '>> {}'.format(os.path.join(BASE_DIR, "logs/results_job.log" ))),
     
     ('*/5 * * * *', 'coreApp.management.crons.facts.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/facts.log" ))),
-    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
-    ('*/5 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
+    ('*/6 * * * *', 'coreApp.management.crons.before_stats_match.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/before_stats_match.log"))),
+    ('*/7 * * * *', 'coreApp.management.crons.before_stats_match.handle2', '>> {}'.format(os.path.join(BASE_DIR, "logs/compared_elo.log"))),
+    ('*/5 * * * *', 'coreApp.management.crons.team_profile.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/team_profile.log"))),
+    ('*/15 * * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
     
-    ('*/6 * * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
+    ('0 */1 * * *', 'coreApp.management.crons.ranking.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/ranking.log" ))),
     
-    ('*/10 * * * *', 'coreApp.management.crons.schedule_competition.handle', '>> {}'.format(os.path.join(BASE_DIR, "logs/schedule_competition.log" ))),
 ]
 
 
 GRAPHENE = {
-    'SCHEMA_INDENT': 4,
     "SCHEMA": "settings.schemas.schema",
+    'SCHEMA_INDENT': 4,
     'MIDDLEWARE': [
         'graphene_django_extras.ExtraGraphQLDirectiveMiddleware'
     ]

@@ -87,6 +87,26 @@ class EditionTeam(BaseModel):
             
         return matchs[:EditionTeam.NB if number is None else number]
     
+      
+    def get_last_home_matchs(self, match, number = None, edition = False, position = False):
+        matchs = Match.objects.filter(home = self, date__lt = match.date, is_finished = True).exclude(id = match.id).order_by("-date")
+        if edition:
+            matchs = matchs.filter(edition = match.edition)
+        if position:
+            matchs = matchs.filter(home = self) if self == match.home else matchs.filter(away = self)
+            
+        return matchs[:EditionTeam.NB if number is None else number]
+      
+      
+    def get_last_away_matchs(self, match, number = None, edition = False, position = False):
+        matchs = Match.objects.filter(home = self, date__lt = match.date, is_finished = True).exclude(id = match.id).order_by("-date")
+        if edition:
+            matchs = matchs.filter(edition = match.edition)
+        if position:
+            matchs = matchs.filter(away = self) if self == match.home else matchs.filter(away = self)
+            
+        return matchs[:EditionTeam.NB if number is None else number]
+    
     
 
     def get_last_form(self, match, number = None, edition = False):
@@ -237,6 +257,93 @@ class EditionTeam(BaseModel):
 
     def get_extra_info(self, match):
         return match.extra_match.filter(team = self).first()
+
+    def get_team_profile(self, match):
+        return self.team_profile.filter(match = match).first()
+    
+    
+    def dynamique(self, match, number = 6):
+        part = 11.667 / 21
+        base = suite_v = suite_n = 0
+        for i, mat in enumerate(self.get_last_matchs(match, number = number, edition = True)):
+            result = mat.get_result()
+            if result.home_score == result.away_score:
+                suite_v = 0
+                suite_n += 1
+                base += (part * (6 - i)) / (1.5 if suite_n > 0 else 2)
+            elif ((result.home_score > result.away_score and mat.home == self) or (result.home_score < result.away_score and mat.away == self)) :
+                base += part * (6 - i) if suite_v == 0 else part * 6
+                suite_v += 1
+            else:
+                suite_v = suite_n = 0
+        return min(20, max(0, round(base , 2)))
+
+
+
+
+    def attaque(self, match, number = 6):
+        part = 0.27
+        serie = []
+        for i, mat in enumerate(self.get_last_matchs(match, number = number, edition = True)):
+            result = mat.get_result()
+            serie.append(result.home_score if mat.home == self else result.away_score)
+        
+        total = 0
+        series = 0
+        for i, score in enumerate(serie):
+            total += part * (6-i) * score  + (part if series == 1 else 0)
+            series = 0 if score == 0 else 1
+            
+        return min(20, max(0, round(total , 2)))
+        
+        
+    
+    def defense(self, match, number = 6):
+        part = 0.27
+        serie = []
+        for i, mat in enumerate(self.get_last_matchs(match, number = number, edition = True)):
+            result = mat.get_result()
+            serie.append(result.home_score if mat.home != self else result.away_score)
+        
+        total = 0
+        series = 0
+        for i, score in enumerate(serie):
+            total += part * (6-i) * score  + (part if series == 1 else 0)
+            series = 0 if score == 0 else 1
+        return min(20, max(0, round(20 - total , 2)))     
+        
+    
+    
+    def maitrise(self, match, number = 6):
+        total = 0
+        serie = []
+        results = []
+        for i, mat in enumerate(self.get_last_matchs(match, number = number, edition = True)):
+            result = mat.get_result()
+            serie.append(result.home_score if mat.home != self else result.away_score)
+            results.append(1 if ((result.home_score > result.away_score and mat.home == self) or (result.home_score < result.away_score and mat.away == self)) else 0 if result.home_score == result.away_score else -1)
+        
+        if len(serie) > 0:
+            part = 0.5
+            series = 1 if serie[0] == 0 else 0
+            for i, score in enumerate(serie):
+                if score <= 2:
+                    part = part / (score+1)
+                    total += part + ((6-i) * part  if series == 1 else 0)
+                    series = 1 if score == 0 else 0
+
+                    
+            series = 1 if results[0] != -1 else 0
+            for i, res in enumerate(results):
+                if res == 1:
+                    part = 0.28
+                    total += part + ((6-i) * part if series == 1 else 0)
+                    series = 0 if res == -1 else 1
+                elif res == 0:
+                    part = 0.14
+                    total += part + ((6-i) * part if series == 1 else 0)
+                    series = 0 if res == -1 else 1
+        return min(20, max(0, round(total , 2)))
 
 
 
